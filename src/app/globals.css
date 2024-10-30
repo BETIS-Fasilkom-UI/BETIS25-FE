@@ -6,7 +6,8 @@
   --background: linear-gradient(180deg, #692597 0%, #220C31 100%);
 }
 
-body {
+html {
   background: var(--background);
   color: #FEF5FF;
+  scroll-behavior: smooth;
 }
