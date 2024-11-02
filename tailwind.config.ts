@@ -31,6 +31,7 @@ const config: Config = {
         foreground: "#FEF5FF",
         "magenta-50": "#f8ebf3",
         "magenta-100": "#e9c1d9",
+        "magenta-150": "#eb92c9",
         "magenta-200": "#dea3c7",
         "magenta-300": "#cf79ae",
         "magenta-400": "#c5599e",
