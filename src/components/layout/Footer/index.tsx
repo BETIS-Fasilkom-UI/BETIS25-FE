@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { social } from "./constant";
+import { social } from "./const";
 import { MapPin, Mail } from "lucide-react";
 
 export const Footer = () => {
