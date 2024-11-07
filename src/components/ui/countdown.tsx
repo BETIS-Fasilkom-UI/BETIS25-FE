@@ -1,16 +1,16 @@
-'use client'
-import React, { ComponentPropsWithoutRef, useEffect, useState } from 'react'
-import { Timer } from 'lucide-react'
-import { cn } from '@/lib/utils'
+"use client"
+import React, { ComponentPropsWithoutRef, useEffect, useState } from "react"
+import { Timer } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface CountdownProps {
   date: string
-  type: 'Days' | 'Hours' | 'Minutes' | 'Seconds'
+  type: "Days" | "Hours" | "Minutes" | "Seconds"
   classNameType?: string
   classNameBlock?: string
 }
 
-const BlockTime: React.FC<ComponentPropsWithoutRef<'div'> & CountdownProps> = ({
+const BlockTime: React.FC<ComponentPropsWithoutRef<"div"> & CountdownProps> = ({
   date,
   type,
   classNameType,
@@ -20,7 +20,7 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<'div'> & CountdownProps> = ({
     <div className="flex flex-col items-center gap-1">
       <span
         className={cn(
-          'font-raleway inline-block font-semibold text-white text-[0.563rem] sm:text-sm md:text-base lg:text-xl',
+          "font-raleway inline-block font-semibold text-white text-[0.563rem] sm:text-sm md:text-base lg:text-xl",
           classNameType
         )}
       >
@@ -28,13 +28,13 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<'div'> & CountdownProps> = ({
       </span>
       <div
         className={cn(
-          'flex justify-center items-center h-[4.063rem] w-[3.375rem] md:h-[5.188rem] md:w-[4.563rem] lg:w-[5.813rem] lg:h-[6.938rem] bg-[#FFFFFF] dark:bg-[#00090A] border-2 border-[#F3F0FE] dark:border-[#252525] rounded-[0.5rem]',
+          "flex justify-center items-center h-[4.063rem] w-[3.375rem] md:h-[5.188rem] md:w-[4.563rem] lg:w-[5.813rem] lg:h-[6.938rem] bg-white dark:bg-[#00090A] border-2 border-[#F3F0FE] dark:border-[#252525] rounded-[0.5rem]",
           classNameBlock
         )}
       >
         <span
           className={cn(
-            'inline-block font-cinzel font-black leading-9 text-2xl md:text-3xl lg:text-5xl text-tosca-dark-active hover:text-tosca-dark-hover dark:text-[#FFFFFF]',
+            "inline-block font-cinzel font-black leading-9 text-2xl md:text-3xl lg:text-5xl text-tosca-dark-active hover:text-tosca-dark-hover dark:text-white",
             classNameType
           )}
         >
@@ -76,8 +76,8 @@ const Countdown = ({
 
   const [remainingTime, setRemainingTime] = useState(defaultRemainingTime)
   const [dateTime, setDateTime] = useState({
-    date: '',
-    time: '',
+    date: "",
+    time: "",
   })
 
   useEffect(() => {
@@ -117,18 +117,18 @@ const Countdown = ({
   }, [targetDate, displayDate, onComplete])
 
   useEffect(() => {
-    const date = targetDate.toLocaleDateString('id-ID', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
+    const date = targetDate.toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     })
     const time = targetDate
-      .toLocaleTimeString('id-ID', {
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZoneName: 'short',
+      .toLocaleTimeString("id-ID", {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZoneName: "short",
       })
-      .replace('.', ':')
+      .replace(".", ":")
 
     setDateTime({
       date,
@@ -142,33 +142,33 @@ const Countdown = ({
         <BlockTime
           classNameBlock={classNameBlock}
           classNameType={classNameType}
-          type={remainingTime.days != 0 ? 'Days' : 'Hours'}
+          type={remainingTime.days != 0 ? "Days" : "Hours"}
           date={
             remainingTime.days != 0
-              ? remainingTime.days.toString().padStart(2, '0')
-              : remainingTime.hours.toString().padStart(2, '0')
+              ? remainingTime.days.toString().padStart(2, "0")
+              : remainingTime.hours.toString().padStart(2, "0")
           }
         />
         <DotTime />
         <BlockTime
           classNameBlock={classNameBlock}
           classNameType={classNameType}
-          type={remainingTime.days != 0 ? 'Hours' : 'Minutes'}
+          type={remainingTime.days != 0 ? "Hours" : "Minutes"}
           date={
             remainingTime.days != 0
-              ? remainingTime.hours.toString().padStart(2, '0')
-              : remainingTime.minutes.toString().padStart(2, '0')
+              ? remainingTime.hours.toString().padStart(2, "0")
+              : remainingTime.minutes.toString().padStart(2, "0")
           }
         />
         <DotTime />
         <BlockTime
           classNameBlock={classNameBlock}
           classNameType={classNameType}
-          type={remainingTime.days != 0 ? 'Minutes' : 'Seconds'}
+          type={remainingTime.days != 0 ? "Minutes" : "Seconds"}
           date={
             remainingTime.days != 0
-              ? remainingTime.minutes.toString().padStart(2, '0')
-              : remainingTime.seconds.toString().padStart(2, '0')
+              ? remainingTime.minutes.toString().padStart(2, "0")
+              : remainingTime.seconds.toString().padStart(2, "0")
           }
         />
       </div>
@@ -176,13 +176,13 @@ const Countdown = ({
         <div className="flex items-center gap-1 sm:gap-2">
           <Timer
             className={cn(
-              'w-[0.875rem] h-[0.875rem] sm:w-[1.125rem] sm:h-[1.125rem] text-white',
+              "w-[0.875rem] h-[0.875rem] sm:w-[1.125rem] sm:h-[1.125rem] text-white",
               classNameType
             )}
           />
           <span
             className={cn(
-              'inline-block text-[0.563rem] md:text-sm lg:text-base pt-[0.125rem] sm:pt-0 text-white',
+              "inline-block text-[0.563rem] md:text-sm lg:text-base pt-[0.125rem] sm:pt-0 text-white",
               classNameType
             )}
           >{`${dateTime.date}, ${dateTime.time}`}</span>
