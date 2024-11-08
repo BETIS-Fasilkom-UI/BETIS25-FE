@@ -1,24 +1,36 @@
-"use client"
-import { cn } from "@/lib/utils"
-import { ButtonHTMLAttributes, forwardRef, useState } from "react"
-import { Loader2 } from "lucide-react"
+"use client";
+import { cn } from "@/lib/utils";
+import {
+  ButtonHTMLAttributes,
+  forwardRef,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  useState,
+  createElement,
+} from "react";
+import { Loader2, LucideProps } from "lucide-react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "tertiary"
-  isLoading?: boolean
-  showStars?: boolean
+  variant?: "primary" | "secondary" | "tertiary" | "destructive";
+  isLoading?: boolean;
+  icon?: ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+  >;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant = "primary", 
-    showStars = true,
-    isLoading, 
-    children,
-    disabled,
-    ...props 
-  }, ref) => {
+  (
+    {
+      className,
+      variant = "primary",
+      icon,
+      isLoading,
+      children,
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
     const [clicked, setClicked] = useState(false);
 
     const handleClick = () => {
@@ -30,27 +42,32 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     disabled:pointer-events-none disabled:opacity-70 
     font-openSans text-base leading-6 px-7 py-3
     md:text-lg md:px-8 md:py-4
-    lg:text-xl lg:leading-7 lg:px-9 lg:py-5
+    lg:text-xl lg:leading-7 lg:px-9 lg:py-5 transition-all duration-200 ease-in-out
     `;
-    
+
     const variantStyles = {
-      primary: "bg-gradient-to-b from-magenta-500 to-magenta-button text-white hover:bg-gradient-to-b hover:from-magenta-button-hover hover:to-magenta-500",
-      secondary: "bg-magenta-50 text-magenta-600 hover:bg-magenta-100 border-2 border-magenta-700",
-      tertiary: "bg-white text-magenta-600 hover:bg-magenta-50 border-2 border-magenta-200",
+      primary:
+        "bg-gradient-to-b from-magenta-500 to-magenta-button text-white hover:bg-gradient-to-b hover:from-magenta-button-hover hover:to-magenta-500",
+      secondary:
+        "bg-magenta-50 text-magenta-600 hover:bg-magenta-100 border-2 border-magenta-700",
+      tertiary:
+        "bg-white text-magenta-600 hover:bg-magenta-50 border-2 border-magenta-200",
+      destructive: "bg-red-400 text-white hover:bg-red-500",
     };
 
     const disabledVariantStyles = {
       primary: "bg-magenta-50 text-magenta-600",
       secondary: "bg-white text-magenta-600 border-2 border-magenta-50",
       tertiary: "bg-white text-magenta-600 border-2 border-magenta-",
+      destructive: "bg-red-100 text-white",
     };
-
 
     const clickedVariantStyles = {
       primary: "bg-gradient-to-b from-magenta-700 to-magenta-button-active",
       secondary: "bg-magenta-200",
-      tertiary: "bg-magenta-100",  
-    }
+      tertiary: "bg-magenta-100",
+      destructive: "bg-red-400",
+    };
 
     return (
       <button
@@ -73,14 +90,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         ) : (
           <>
-            {showStars && <span className="mr-2">★</span>}
-            <span className="flex justify-center w-full">
-              {children}
-            </span>
-            {showStars && <span className="ml-2">★</span>}
+            {icon && <span className="mr-2">{createElement(icon)}</span>}
+            <span className="flex justify-center w-full">{children}</span>
+            {icon && <span className="ml-2">{createElement(icon)}</span>}
           </>
         )}
-        
       </button>
     );
   }

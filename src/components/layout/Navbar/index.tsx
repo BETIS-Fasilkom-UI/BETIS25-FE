@@ -36,7 +36,7 @@ export const Navbar = () => {
         {isAutehnticated ? (
           <div className="flex items-center gap-6">
             <Link href="/dashboard">
-              <Button>Logout</Button>
+              <Button variant="destructive">Logout</Button>
             </Link>
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
