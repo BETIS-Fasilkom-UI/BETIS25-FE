@@ -12,7 +12,7 @@ const openSans = Open_Sans({
 });
 
 const raleway = Raleway({
-  weight: "400",
+  weight: ["400", "600"],
   variable: "--font-raleway",
   subsets: ["latin"],
   display: "swap",
