@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <footer className="w-full">
       {/* Desktop */}
-      <div className="bg-[#481E58] flex justify-between items-center pt-[120px] pb-[120px] xl:pb-[164px] px-[60px] xl:px-[84px] max-lg:hidden">
+      <div className="bg-[#481E58] flex justify-between items-center pt-20 pb-16 xl:pb-16 px-16 xl:px-20 max-lg:hidden">
         <div className="space-y-[70px]">
           <div className="flex gap-[30px] items-center">
             <div className="xl:w-[194px] xl:h-[170px] w-[130px] h-[110px] relative">
@@ -16,13 +16,13 @@ export const Footer = () => {
                 src="/Footer.png"
                 alt="FooterLogo"
                 fill
-                className="object-contain"
+                className="object-contain max-w-[150px]"
               />
             </div>
             <h1 className="text-[#E2E2E2] text-[32px] xl:text-[54px] font-cinzel">
               BETIS
               <br />
-              <p className="font-raleway text-[20px] xl:text-[32px]">
+              <p className="font-raleway text-[20px] xl:text-xl">
                 Bimbingan Belajar Gratis
               </p>
             </h1>
@@ -34,38 +34,38 @@ export const Footer = () => {
           </div>
         </div>
         <div className="border-t-2 border-[#E2E2E2] space-y-9 pt-4 max-w-[300px] xl:max-w-[521px]">
-          <div className="flex justify-between gap-3 xl:gap-10">
+          <div className="flex justify-between gap-3 xl:gap-10 text-[#E2E2E2] text-t7 xl:text-t6 font-semibold font-raleway">
             <Link
               href="/about"
-              className="text-[#E2E2E2] text-t7 xl:text-t5 font-semibold font-raleway"
+              className=""
             >
               About Betis
             </Link>
             <Link
               href="/talk"
-              className="text-[#8D8D8D] text-t7 xl:text-t5 font-semibold font-raleway"
+              className=""
             >
               BETIS-Talk
             </Link>
             <Link
               href="/shop"
-              className="text-[#8D8D8D] text-t7 xl:text-t5 font-semibold font-raleway"
+              className=""
             >
               BETIS-Shop
             </Link>
           </div>
           <div className="flex items-center justify-end gap-4 pt-8">
-            <p className=" text-[#E2E2E2] text-t8 xl:text-t6 font-raleway font-semibold text-right">
+            <p className=" text-[#E2E2E2] text-t8 xl:text-t7 font-raleway font-semibold text-right">
               Fakultas Ilmu Komputer Universitas Indonesia Kampus UI Depok,
               Pondok Cina, Kec. Beji, Kota Depok, Jawa Barat 16424
             </p>
-            <MapPin className="text-[#E2E2E2] xl:min-w-[60px] xl:min-h-[60px] xl:w-[60px] xl:h-[60px] min-w-[48px] min-h-[48px] w-[48px] h-[48px]" />
+            <MapPin className="text-[#E2E2E2] xl:min-w-[50px] xl:min-h-[50px] xl:w-[50px] xl:h-[50px] min-w-[48px] min-h-[48px] w-[48px] h-[48px]" />
           </div>
           <div className="flex items-center justify-end gap-4">
-            <p className=" text-[#E2E2E2] text-t8 xl:text-t6 font-raleway font-semibold text-right">
+            <p className=" text-[#E2E2E2] text-t8 xl:text-t7 font-raleway font-semibold text-right">
               betisfasilkomui2022@gmail.com
             </p>
-            <Mail className="text-[#E2E2E2] xl:min-w-[60px] xl:min-h-[60px] xl:w-[60px] xl:h-[60px] min-w-[48px] min-h-[48px] w-[48px] h-[48px]" />
+            <Mail className="text-[#E2E2E2] xl:min-w-[50px] xl:min-h-[50px] xl:w-[50px] xl:h-[50px] min-w-[48px] min-h-[48px] w-[48px] h-[48px]" />
           </div>
         </div>
       </div>

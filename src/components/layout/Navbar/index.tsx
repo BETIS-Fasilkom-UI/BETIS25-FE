@@ -24,9 +24,9 @@ export const Navbar = () => {
           )}
         >
           <div className="flex items-center justify-center gap-7">
-            <div className="w-[61px] h-[54px] relative">
+            <div className="w-[50px] md:w-[61px] h-[54px] relative">
               <Image
-                src="/footer.png"
+                src="/Footer.png"
                 fill
                 className="object-contain"
                 alt="Logo"
@@ -42,7 +42,7 @@ export const Navbar = () => {
                 <Link
                   key={index}
                   href={item.href}
-                  className="text-white lg:text-t8 xl:text-t6 text-center font-semibold font-raleway"
+                  className="text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway"
                 >
                   {item.title}
                 </Link>
