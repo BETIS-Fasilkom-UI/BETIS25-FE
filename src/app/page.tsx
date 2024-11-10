@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function Home() {
   const [page, setPage] = useState(1);
   return (
-    <div className="min-h-screen flex justify-center flex-col gap-6 items-center">
+    <div className="min-h-[150vh] flex justify-center flex-col gap-6 items-center">
       <div className="grid grid-cols-2 gap-6">
         <Button variant="primary">Click me</Button>
         <Button isLoading variant="primary">
