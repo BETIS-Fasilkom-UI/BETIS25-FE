@@ -10,9 +10,9 @@ export default function Home() {
   const [page, setPage] = useState(1);
   return (
     <div className="min-h-[150vh] flex justify-center flex-col gap-6 items-center">
-      <div className="grid grid-cols-2 gap-6">
-        <Button variant="primary">Click me</Button>
-        <Button isLoading variant="primary">
+      <div className="grid grid-cols-1 gap-6">
+        <Button>Click me</Button>
+        <Button isLoading>
           Click me
         </Button>
         <Button variant="secondary">Click me</Button>
@@ -32,7 +32,7 @@ export default function Home() {
       <Chip>Chip</Chip>
       <Chip variant="secondary">Chip</Chip>
       <Chip variant="tertiary">Chip</Chip>
-      <Button variant="primary">
+      <Button>
         <Tooltip text="Tooltip">Hover me</Tooltip>
       </Button>
       <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />

@@ -51,7 +51,9 @@ export const Navbar = () => {
             {isAutehnticated ? (
               <div className="flex items-center gap-6">
                 <Link href="/dashboard">
-                  <Button variant="destructive">Logout</Button>
+                  <Button variant="destructive" className="">
+                    Logout
+                  </Button>
                 </Link>
                 <Avatar>
                   <AvatarImage
@@ -86,7 +88,7 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 + index * 0.1, type: "tween"}}
+                  transition={{ duration: 0.3 + index * 0.1, type: "tween" }}
                   className="px-5 py-[15px]"
                 >
                   <Link href={item.href} className="w-fit cursor-pointer">
@@ -98,7 +100,7 @@ export const Navbar = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.9}}
+                transition={{ duration: 0.9 }}
                 className={cn(
                   "font-bold px-5 py-[15px] rounded-b-[20px]",
                   isAutehnticated
