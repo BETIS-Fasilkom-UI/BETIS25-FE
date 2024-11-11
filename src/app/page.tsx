@@ -1,20 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Chip from "@/components/ui/chip";
-import Countdown from "@/components/ui/countdown";
+import Countdown from "@/components/elements/Countdown";
 import Pagination from "@/components/ui/pagination";
 import Tooltip from "@/components/ui/tooltip";
 import { useState } from "react";
+import { ContactPerson } from "@/components/elements/ContactPerson";
 
 export default function Home() {
   const [page, setPage] = useState(1);
   return (
-    <div className="min-h-[150vh] flex justify-center flex-col gap-6 items-center">
+    <div className="min-h-[150vh] flex justify-center flex-col gap-6 my-10 items-center">
       <div className="grid grid-cols-1 gap-6">
         <Button>Click me</Button>
-        <Button isLoading>
-          Click me
-        </Button>
+        <Button isLoading>Click me</Button>
         <Button variant="secondary">Click me</Button>
         <Button isLoading variant="secondary">
           Click me
@@ -36,6 +35,7 @@ export default function Home() {
         <Tooltip text="Tooltip">Hover me</Tooltip>
       </Button>
       <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
+      <ContactPerson />
     </div>
   );
 }
