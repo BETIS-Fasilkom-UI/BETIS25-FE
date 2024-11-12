@@ -19,7 +19,7 @@ html {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: linear-gradient(180deg, #692597 0%, #220C31 100%);
   border-radius: 5px;
 }
 
