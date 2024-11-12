@@ -38,7 +38,7 @@ export default function Home() {
       </Button>
       <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
       <ContactPerson />
-      <TestimonyCarousel slides={betisTestimoni} options={betisTestimoniOptions} />
+      {/* <TestimonyCarousel slides={betisTestimoni} options={betisTestimoniOptions} /> */}
     </div>
   );
 }
