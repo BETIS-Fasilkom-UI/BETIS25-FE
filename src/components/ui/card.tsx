@@ -169,7 +169,6 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
           key={index}
           variant={btn.variant || "primary"}
           onClick={btn.onClick}
-          showStars={false}
           className={cn(
             "relative flex justify-between items-center py-2 md:py-2",
             buttons.length === 1 ? "w-full" : "flex-[1_1_45%]"
