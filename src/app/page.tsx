@@ -6,11 +6,13 @@ import Pagination from "@/components/ui/pagination";
 import Tooltip from "@/components/ui/tooltip";
 import { useState } from "react";
 import { ContactPerson } from "@/components/elements/ContactPerson";
+import TestimonyCarousel from "@/components/elements/testimony/TestimonyCarousel";
+import { betisTestimoni, betisTestimoniOptions } from "@/components/elements/testimony/const";
 
 export default function Home() {
   const [page, setPage] = useState(1);
   return (
-    <div className="min-h-[150vh] flex justify-center flex-col gap-6 my-10 items-center">
+    <div className="h-[400vh] flex justify-center flex-col gap-6 my-10 items-center">
       <div className="grid grid-cols-1 gap-6">
         <Button>Click me</Button>
         <Button isLoading>Click me</Button>
@@ -36,6 +38,7 @@ export default function Home() {
       </Button>
       <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
       <ContactPerson />
+      <TestimonyCarousel slides={betisTestimoni} options={betisTestimoniOptions} />
     </div>
   );
 }
