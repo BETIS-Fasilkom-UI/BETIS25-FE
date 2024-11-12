@@ -77,4 +77,5 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 
-export { type ButtonProps, Button };
+export { Button };
+
