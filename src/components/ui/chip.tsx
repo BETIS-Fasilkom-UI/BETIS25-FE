@@ -15,8 +15,8 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
     const chipClasses = `
     inline-flex font-raleway items-center justify-center rounded-full font-semibold 
     text-xs leading-4 px-4 py-2 border-2
-    md:text-base md:leading-6 md:px-5 md:py-2 md:border-2
-    lg:text-2xl lg:leading-8 lg:px-6 lg:py-3 lg:border-4
+    md:text-base md:leading-6 md:px-5 md:py-2 md:border-[3.5px]
+    lg:text-2xl lg:leading-8 lg:px-6 lg:py-3
     `;
     
     const variants = {

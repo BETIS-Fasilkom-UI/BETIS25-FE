@@ -26,6 +26,14 @@ const config: Config = {
         t7: "16px",
         t8: "14px",
       },
+      boxShadow: {
+        "testimony-card":
+          "4px 4px 12px 0px #FEF5FF, -4px -4px 12px 0px #FEF5FF",
+      },
+      backgroundImage: {
+        "cp-gradient":
+          "linear-gradient(180deg, rgba(72, 16, 51, 0.8) 0%, rgba(34, 12, 49, 0.8) 100%)",
+      },
       colors: {
         background: "linear-gradient(180deg, #692597 0%, #220C31 100%)",
         foreground: "#FEF5FF",
