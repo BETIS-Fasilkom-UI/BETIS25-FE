@@ -106,6 +106,8 @@ const config: Config = {
         "tosca-pagination": "#2a727c",
         "tosca-pagination-darker": "#1d565e",
         "tosca-foundation-darker": "#113237",
+        "tosca-tabs-active": "#4b8297",
+        "blue-tabs-active": "#2e388e",
         "neutral-50": "#fafafa",
         "neutral-100": "#efefef",
         "neutral-200": "#e8e8e8",
