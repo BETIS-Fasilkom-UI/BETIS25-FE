@@ -2,25 +2,21 @@ export const navData = [
   {
     title: "Home",
     href: "/",
-  },
-  {
-    title: "About",
-    href: "/about",
+    isAvailable: true
   },
   {
     title: "Course",
     href: "/course",
+    isAvailable: false
   },
   {
     title: "Leaderboard",
     href: "/leaderboard",
-  },
-  {
-    title: "Betis-Shop",
-    href: "/shop",
+    isAvailable: false
   },
   {
     title: "Betis-talk",
     href: "/talk",
+    isAvailable: false
   }
 ];

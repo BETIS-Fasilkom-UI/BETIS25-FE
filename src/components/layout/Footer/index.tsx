@@ -31,13 +31,13 @@ export const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="border-t-2 border-[#E2E2E2] space-y-4 pt-4 max-w-[300px] xl:max-w-[530px]">
-          <div className="flex justify-between gap-3 xl:gap-10 text-t7 xl:text-t6 font-semibold font-raleway mb-3">
+        <div className="space-y-4  max-w-[300px] xl:max-w-[530px]">
+          {/* <div className="flex justify-between gap-3 xl:gap-10 text-t7 xl:text-t6 font-semibold font-raleway mb-3">
             <Link href="/about">About Betis</Link>
             <Link href="/talk">BETIS-Talk</Link>
             <Link href="/shop">BETIS-Shop</Link>
-          </div>
-          <div className="flex items-center justify-end gap-4 pt-8">
+          </div> */}
+          <div className="flex items-center justify-end gap-4">
             <p className="text-t8 xl:text-t7 font-raleway font-semibold text-right">
               Fakultas Ilmu Komputer Universitas Indonesia Kampus UI Depok,
               Pondok Cina, Kec. Beji, Kota Depok, Jawa Barat 16424

@@ -41,8 +41,8 @@ export const Navbar = () => {
               {navData.map((item, index) => (
                 <Link
                   key={index}
-                  href={item.href}
-                  className="text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway"
+                  href={item.isAvailable ? item.href : "#"}
+                  className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${item.isAvailable ? "cursor-pointer" : "cursor-not-allowed text-white/30"}`}
                 >
                   {item.title}
                 </Link>
