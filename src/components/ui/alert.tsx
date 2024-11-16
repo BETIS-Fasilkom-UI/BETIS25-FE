@@ -4,7 +4,7 @@ import { Check, CircleAlert, Info, LoaderCircle, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const alertVariants = cva(
-  "relative w-full rounded-[0.5rem] border-l-8 text-gray-950 p-4 [&>.icon~*]:pl-14 [&>.icon+div]:translate-y-[-12px] [&>.icon]:absolute [&>.icon]:left-4 [&>.icon]:top-4",
+  "relative w-full rounded-[0.5rem] border-l-8 text-gray-950 p-4 pl-[70px] [&>.icon+div]:translate-y-[-12px] [&>.icon]:absolute [&>.icon]:left-4 [&>.icon]:top-2",
   {
     variants: {
       variant: {
