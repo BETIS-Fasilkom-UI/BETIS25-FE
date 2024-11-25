@@ -33,6 +33,8 @@ const config: Config = {
       backgroundImage: {
         "cp-gradient":
           "linear-gradient(180deg, rgba(72, 16, 51, 0.8) 0%, rgba(34, 12, 49, 0.8) 100%)",
+        "starry-gradient":
+          "linear-gradient(180deg, rgba(41,15,56,255) 0%, rgba(34, 12, 49, 0.8) 70%, rgba(125,40,130,255) 100%)",
       },
       colors: {
         background: "linear-gradient(180deg, #692597 0%, #220C31 100%)",
