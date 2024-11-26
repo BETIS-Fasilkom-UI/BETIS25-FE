@@ -3,7 +3,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema, registerUser } from "@/hooks/auth";
+import { registerSchema, useRegister } from "@/hooks/auth";
 import { z } from "zod";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,19 +14,14 @@ import StarryBackground from "../LoginModule/module-elements/background";
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
 const RegisterModule = () => {
-  const {
-    //register,
-    handleSubmit,
-    //formState: { errors, isSubmitting },
-    formState: { errors },
-  } = useForm<RegisterFormValues>({
+  const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
   });
 
   const onSubmit = async (values: RegisterFormValues) => {
-    const result = await registerUser(values);
+    const result = await useRegister(values);
     if (!result.isSuccess) {
-      console.error("Login failed");
+      console.error("Register failed");
     }
   };
 
@@ -41,7 +36,7 @@ const RegisterModule = () => {
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <div className="lg:flex lg:space-x-8">
                 <div className="lg:w-1/2 space-y-5">
                   {/* Nama Lengkap Input */}
@@ -50,10 +45,11 @@ const RegisterModule = () => {
                       label="Nama Lengkap"
                       type="text"
                       placeholder="Enter your full name"
+                      onChange={(e) => {form.setValue('fullName', e.target.value)}}
                       asterisk
                     />
-                    {errors.fullName && (
-                      <p className="text-sm text-red-500">{errors.fullName.message}</p>
+                    {form.formState.errors.fullName && (
+                      <p className="text-sm text-red-500">{form.formState.errors.fullName.message}</p>
                     )}
                   </div>
 
@@ -64,9 +60,10 @@ const RegisterModule = () => {
                       type="text"
                       placeholder="Enter your phone number"
                       asterisk
+                      onChange={(e) => {form.setValue('phoneNumber', e.target.value)}}
                     />
-                    {errors.phoneNumber && (
-                      <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
+                    {form.formState.errors.phoneNumber && (
+                      <p className="text-sm text-red-500">{form.formState.errors.phoneNumber.message}</p>
                     )}
                   </div>
 
@@ -77,9 +74,10 @@ const RegisterModule = () => {
                       type="password"
                       placeholder="Enter your password"
                       asterisk
+                      onChange={(e) => {form.setValue('password', e.target.value)}}
                     />
-                    {errors.password && (
-                      <p className="text-sm text-red-500">{errors.password.message}</p>
+                    {form.formState.errors.password && (
+                      <p className="text-sm text-red-500">{form.formState.errors.password.message}</p>
                     )}
                   </div>
                 </div>
@@ -93,9 +91,10 @@ const RegisterModule = () => {
                       type="text"
                       placeholder="Enter your name"
                       asterisk
+                      onChange={(e) => {form.setValue('username', e.target.value)}}
                     />
-                    {errors.username && (
-                      <p className="text-sm text-red-500">{errors.username.message}</p>
+                    {form.formState.errors.username && (
+                      <p className="text-sm text-red-500">{form.formState.errors.username.message}</p>
                     )}
                   </div>
 
@@ -106,9 +105,10 @@ const RegisterModule = () => {
                       type="email"
                       placeholder="Enter your email"
                       asterisk
+                      onChange={(e) => {form.setValue('email', e.target.value)}}
                     />
-                    {errors.email && (
-                      <p className="text-sm text-red-500">{errors.email.message}</p>
+                    {form.formState.errors.email && (
+                      <p className="text-sm text-red-500">{form.formState.errors.email.message}</p>
                     )}
                   </div>
 
@@ -119,9 +119,10 @@ const RegisterModule = () => {
                       type="password"
                       placeholder="Enter your password"
                       asterisk
+                      onChange={(e) => {form.setValue('confirmPassword', e.target.value)}}
                     />
-                    {errors.confirmPassword && (
-                      <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
+                    {form.formState.errors.confirmPassword && (
+                      <p className="text-sm text-red-500">{form.formState.errors.confirmPassword.message}</p>
                     )}
                   </div>
                 </div>
