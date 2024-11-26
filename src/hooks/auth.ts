@@ -23,7 +23,7 @@ export const registerSchema = z
     email: z.string().email(),
     fullName: z.string(),
     username: z.string(),
-    phoneNumber: z.string().regex(/^\+?[1-9]\d{1,14}$/),
+    phoneNumber: z.string().regex(/[1-9]\d{1,14}$/),
     password: z.string().min(6),
     confirmPassword: z.string().min(6),
   })
