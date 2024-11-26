@@ -3,11 +3,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
-  updatePassword,
   sendEmailVerification,
   sendPasswordResetEmail,
-  confirmPasswordReset,
-  verifyPasswordResetCode,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { toast } from "@/components/ui/sonner";
@@ -34,15 +31,6 @@ export const registerSchema = z
 export const forgotPasswordSchema = z.object({
   email: z.string().email(),
 });
-
-export const changePasswordSchema = z
-  .object({
-    newPassword: z.string().min(6),
-    confirmPassword: z.string().min(6),
-  })
-  .refine((data) => data.newPassword === data.confirmPassword, {
-    message: "Password and confirm password must be the same",
-  });
 
 export async function useLogin(values: z.infer<typeof loginSchema>) {
   const userCredential = await signInWithEmailAndPassword(
@@ -114,29 +102,6 @@ export function useForgotPassword(
   sendPasswordResetEmail(auth, values.email)
     .then(() => {
       toast.success("Email reset password telah dikirim");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      toast.error(errorCode, errorMessage);
-    });
-}
-
-export function useChangeForgottenPassword(
-  values: z.infer<typeof changePasswordSchema>,
-  code: string
-) {
-  verifyPasswordResetCode(auth, code)
-    .then(() => {
-      confirmPasswordReset(auth, code, values.newPassword)
-        .then(() => {
-          toast.success("Password berhasil diubah");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          toast.error(errorCode, errorMessage);
-        });
     })
     .catch((error) => {
       const errorCode = error.code;
