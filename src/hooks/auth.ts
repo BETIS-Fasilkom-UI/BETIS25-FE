@@ -31,9 +31,12 @@ export const registerSchema = z
     message: "Password and confirm password must be the same",
   });
 
+export const forgotPasswordSchema = z.object({
+  email: z.string().email(),
+});
+
 export const changePasswordSchema = z
   .object({
-    email: z.string().email(),
     newPassword: z.string().min(6),
     confirmPassword: z.string().min(6),
   })
@@ -55,7 +58,7 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
 
   if (!userCredential.user?.emailVerified) {
     toast.error("Email belum terverifikasi");
-    return { isSuccess : false };
+    return { isSuccess: false };
   }
 
   const user = userCredential.user;
@@ -97,7 +100,7 @@ export async function useRegister(values: z.infer<typeof registerSchema>) {
     toast.success("Register success, silahkan cek email untuk verifikasi");
 
     // add logic ke db buat create user user
-    
+
     return { isSuccess: true };
   } else {
     toast.error("Register failed");
@@ -105,9 +108,39 @@ export async function useRegister(values: z.infer<typeof registerSchema>) {
   }
 }
 
-export async function useForgotPassword(
-  values: z.infer<typeof changePasswordSchema>
+export function useForgotPassword(
+  values: z.infer<typeof forgotPasswordSchema>
 ) {
-  // implement later
-  
+  sendPasswordResetEmail(auth, values.email)
+    .then(() => {
+      toast.success("Email reset password telah dikirim");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      toast.error(errorCode, errorMessage);
+    });
+}
+
+export function useChangeForgottenPassword(
+  values: z.infer<typeof changePasswordSchema>,
+  code: string
+) {
+  verifyPasswordResetCode(auth, code)
+    .then(() => {
+      confirmPasswordReset(auth, code, values.newPassword)
+        .then(() => {
+          toast.success("Password berhasil diubah");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          toast.error(errorCode, errorMessage);
+        });
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      toast.error(errorCode, errorMessage);
+    });
 }
