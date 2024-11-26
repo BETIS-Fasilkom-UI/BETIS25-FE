@@ -43,6 +43,7 @@ interface TabsProps {
   backgroundColor?: boolean;
   showIcon?: boolean;
   showNumber?: boolean;
+  showArrow?: boolean;
   tabs: TabItem[];
   icon?: React.ReactNode;
 }
@@ -57,6 +58,7 @@ const TabsComponent = React.forwardRef<
       backgroundColor = true,
       showIcon = false,
       showNumber = false,
+      showArrow = false,
       icon = null,
       tabs = [],
     },
@@ -149,37 +151,39 @@ const TabsComponent = React.forwardRef<
       >
         {showNumber && (
           <div className="flex flex-row items-center justify-center w-full">
-            <div
-              className={cn(
-                orientation === "vertical"
-                  ? arrowVerticalStyles(true, backgroundColor)
-                  : arrowHorizontalStyles(true, backgroundColor)
-              )}
-            >
-              {orientation === "vertical" ? (
-                <ArrowUp
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev > 0 ? prev - 1 : tabs.length - 1
-                    )
-                  }
-                />
-              ) : (
-                <ArrowLeft
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev > 0 ? prev - 1 : tabs.length - 1
-                    )
-                  }
-                />
-              )}
-            </div>
+            {showArrow && (
+              <div
+                className={cn(
+                  orientation === "vertical"
+                    ? arrowVerticalStyles(true, backgroundColor)
+                    : arrowHorizontalStyles(true, backgroundColor)
+                )}
+              >
+                {orientation === "vertical" ? (
+                  <ArrowUp
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev > 0 ? prev - 1 : tabs.length - 1
+                      )
+                    }
+                  />
+                ) : (
+                  <ArrowLeft
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev > 0 ? prev - 1 : tabs.length - 1
+                      )
+                    }
+                  />
+                )}
+              </div>
+            )}
 
             <TabsList
               className={cn(
@@ -213,37 +217,40 @@ const TabsComponent = React.forwardRef<
               ))}
             </TabsList>
 
-            <div
-              className={cn(
-                orientation === "vertical"
-                  ? arrowVerticalStyles(false, backgroundColor)
-                  : arrowHorizontalStyles(false, backgroundColor)
-              )}
-            >
-              {orientation === "vertical" ? (
-                <ArrowDown
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev < tabs.length - 1 ? prev + 1 : 0
-                    )
-                  }
-                />
-              ) : (
-                <ArrowRight
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev < tabs.length - 1 ? prev + 1 : 0
-                    )
-                  }
-                />
-              )}
-            </div>
+            {showArrow && (
+              <div
+                className={cn(
+                  orientation === "vertical"
+                    ? arrowVerticalStyles(false, backgroundColor)
+                    : arrowHorizontalStyles(false, backgroundColor)
+                )}
+              >
+                {orientation === "vertical" ? (
+                  <ArrowDown
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev < tabs.length - 1 ? prev + 1 : 0
+                      )
+                    }
+                  />
+                ) : (
+                  <ArrowRight
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev < tabs.length - 1 ? prev + 1 : 0
+                      )
+                    }
+                  />
+                )}
+              </div>
+            )}
+            
           </div>
         )}
 
