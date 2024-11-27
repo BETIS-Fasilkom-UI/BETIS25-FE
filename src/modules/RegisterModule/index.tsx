@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, useRegister } from "@/hooks/auth";
 import { z } from "zod";
+import Link from "next/link";
+import Image from "next/image";
+
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
-import Link from "next/link";
 import StarryBackground from "../LoginModule/module-elements/background";
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
@@ -19,6 +21,7 @@ const RegisterModule = () => {
   });
 
   const onSubmit = async (values: RegisterFormValues) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useRegister(values);
     if (!result.isSuccess) {
       console.error("Register failed");
@@ -26,18 +29,20 @@ const RegisterModule = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
       <StarryBackground />
       
-      <div className="min-h-screen flex items-center justify-center mt-32 px-5">
+      <div className="absolute inset-0 bg-black opacity-20 z-20 pointer-events-none"></div>
+
+      <div className="flex flex-grow items-center justify-center py-[12rem] px-5">
         <Card className="max-lg:w-full max-lg:max-w-md lg:w-[70%] px-8 lg:px-24">
           <CardHeader>
             <CardTitle className="text-center text-4xl md:text-4xl lg:text-5xl py-5">Register</CardTitle>
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <div className="lg:flex lg:space-x-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+              <div className="lg:flex lg:space-x-8 space-y-4">
                 <div className="lg:w-1/2 space-y-5">
                   {/* Nama Lengkap Input */}
                   <div className="lg:order-1">
@@ -82,14 +87,13 @@ const RegisterModule = () => {
                   </div>
                 </div>
 
-                {/* Kolom Kanan */}
                 <div className="lg:w-1/2 space-y-5">
                   {/* Nama Panggilan Input */}
                   <div className="lg:order-4">
                     <Input
                       label="Nama Panggilan"
                       type="text"
-                      placeholder="Enter your name"
+                      placeholder="Enter your username"
                       asterisk
                       onChange={(e) => {form.setValue('username', e.target.value)}}
                     />
@@ -140,7 +144,7 @@ const RegisterModule = () => {
           <CardFooter className="flex justify-center pb-2">
             <p className="text-sm">
               Sudah punya Akun?{" "}
-              <Link href="/register" className="text-yellow-400 font-bold">
+              <Link href="/login" className="text-yellow-400 font-bold">
                 Login
               </Link>
             </p>
@@ -148,6 +152,48 @@ const RegisterModule = () => {
 
         </Card>
       </div>
+
+      <div className="relative">
+        <Image
+          src="/Pohon4.png"
+          width={302}
+          height={498}
+          alt="Pohon"
+          className="lg:hidden absolute bottom-[-2rem] right-0 -z-10"
+        />
+      </div>
+
+      <div className="relative">
+        <Image
+          src="/Dedaunan.png"
+          width={360}
+          height={159}
+          alt="Dedaunan"
+          className="max-lg:hidden absolute bottom-0 right-36 -z-10"
+        />
+      </div>
+
+      <div className="relative">
+        <Image
+          src="/RumahJamur3.png"
+          width={400}
+          height={495}
+          alt="Jamur"
+          className="absolute bottom-0 left-0 -z-10 md:w-[500px] md:h-[614px] lg:w-[600px] lg:h-[714px]"
+        />
+      </div>
+
+      <div className="relative">
+        <Image
+          src="/Daun.png"
+          width={186}
+          height={178}
+          alt="Daun"
+          className="absolute bottom-0 right-0 -z-10 md:w-[150px] md:h-[150px] lg:w-[250px] lg:h-[250px]"
+        />
+      </div>
+
+
     </div>
   );
 };
