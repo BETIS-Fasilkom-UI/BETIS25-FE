@@ -3,73 +3,73 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, loginUser } from "@/hooks/auth";
+import { loginSchema, useLogin } from "@/hooks/auth";
 import { z } from "zod";
+import Link from "next/link";
+import Image from "next/image";
+
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
-import Link from "next/link";
 import StarryBackground from "./module-elements/background";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginModule = () => {
-  const {
-    //register,
-    handleSubmit,
-    //formState: { errors, isSubmitting },
-    formState: { errors },
-  } = useForm<LoginFormValues>({
+  const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = async (values: LoginFormValues) => {
-    const result = await loginUser(values);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const result = await useLogin(values);
     if (!result.isSuccess) {
       console.error("Login failed");
     }
   };
 
   return (
-    <div className="min-h-screen py-8">
+    <div className="flex flex-col min-h-screen relative">
       <StarryBackground />
+
+      <div className="absolute inset-0 bg-black opacity-20 z-20 pointer-events-none"></div>
       
-      <div className="min-h-screen flex items-center justify-center mt-32 px-5">
+      <div className="flex flex-grow items-center justify-center py-[15rem] px-5">
         <Card className="w-full max-w-md lg:max-w-lg px-8">
           <CardHeader>
             <CardTitle className="text-center text-4xl md:text-4xl lg:text-5xl py-5">Login</CardTitle>
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="">
-              {/* Email Input */}
+            <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="pb-4">
                 <Input
                   label="Email"
                   type="email"
                   placeholder="Enter your email"
+                  onChange={(e) => {form.setValue('email', e.target.value)}}
                   asterisk
                 />
-                {errors.email && (
-                  <p className="text-sm text-red-500">{errors.email.message}</p>
+                {form.formState.errors.email && (
+                  <p className="text-sm text-red-500">{form.formState.errors.email.message}</p>
                 )}
               </div>
 
-              {/* Password Input */}
               <div className="pb-2">
                 <Input
                   label="Password"
                   type="password"
                   placeholder="Enter your password"
+                  onChange={(e) => {form.setValue('password', e.target.value)}}
                   asterisk
                 />
-                {errors.password && (
-                  <p className="text-sm text-red-500">{errors.password.message}</p>
+                {form.formState.errors.password && (
+                  <p className="text-sm text-red-500">{form.formState.errors.password.message}</p>
                 )}
               </div>
               
               <div className="text-right pb-4">
-                <Link href="/forgot-password" className="text-sm">
+                <Link href="/reset-password" className="text-sm">
                   Lupa Password?
                 </Link>
               </div>
@@ -92,6 +92,96 @@ const LoginModule = () => {
 
         </Card>
       </div>
+      
+      {/* BACKGROUND IMAGE */}
+      <div className="relative">
+        <Image
+          src="/RumahJamur.png"
+          width={280}
+          height={373}
+          alt="Jamur"
+          className="md:hidden absolute bottom-0 right-0 -z-10"
+        />
+
+        <Image
+          src="/RumahJamur2.png"
+          width={495}
+          height={606}
+          alt="Jamur"
+          className="max-md:hidden absolute bottom-0 right-0 -z-10"
+        />
+
+        <Image
+          src="/JamurMini.png"
+          width={184}
+          height={208}
+          alt="Jamur Mini"
+          className="max-lg:hidden absolute bottom-0 right-[20rem] -z-10"
+        />
+      </div>
+
+      <div className="relative">
+        <Image
+          src="/Pohon1.png"
+          width={215}
+          height={515}
+          alt="Pohon"
+          className="lg:hidden absolute bottom-0 left-0 -z-10 md:h-[1024px] md:w-[312px]"
+        />
+
+        <Image
+          src="/Pohon2.png"
+          width={556}
+          height={979}
+          alt="Pohon"
+          className="max-lg:hidden absolute bottom-0 left-0 -z-10"
+        />
+
+        <Image
+          src="/Pohon3.png"
+          width={445}
+          height={668}
+          alt="Pohon"
+          className="max-lg:hidden absolute bottom-0 left-[23rem] -z-10"
+        />
+      </div>
+
+      <div className="relative">
+        <Image
+          src="/Mascot.png"
+          width={140}
+          height={213}
+          alt="Mascot"
+          className="absolute bottom-0 left-5 -z-10 md:w-[206px] md:h-[314px] md:left-36"
+        />
+      </div>
+
+      <div className="relative">
+        <Image
+          src="/Dedaunan.png"
+          width={251}
+          height={111}
+          alt="Dedaunan"
+          className="max-lg:hidden absolute bottom-0 right-1/2 translate-x-[-3rem] -z-10 "
+        />
+
+        <Image
+          src="/Dedaunan2.png"
+          width={251}
+          height={111}
+          alt="Dedaunan"
+          className="max-lg:hidden absolute bottom-0 left-1/2 translate-x-12 -z-10 "
+        />
+
+        <Image
+          src="/Dedaunan3.png"
+          width={251}
+          height={111}
+          alt="Dedaunan"
+          className="max-lg:hidden absolute bottom-0 left-1/2 translate-x-[-6rem] -z-10 "
+        />
+      </div>
+
     </div>
   );
 };

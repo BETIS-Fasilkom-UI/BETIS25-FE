@@ -2,8 +2,11 @@ import React, { useEffect, useRef } from 'react';
 
 const StarryBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const prevWidth = useRef<number | null>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -12,10 +15,9 @@ const StarryBackground = () => {
 
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
-      canvas.height = 3/4 * window.innerHeight;
+      canvas.height = window.innerHeight;
     };
     setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
 
     // Star props
     const stars: { x: number; y: number; size: number; opacity: number }[] = [];
@@ -53,20 +55,25 @@ const StarryBackground = () => {
       requestAnimationFrame(animate);
     };
 
-    window.addEventListener('resize', () => {
-      setCanvasSize();
-      createStars();
-    });
+    const handleResize = () => {
+      const currentWidth = window.innerWidth;
+      if (currentWidth !== prevWidth.current) {
+        prevWidth.current = currentWidth;
+        setCanvasSize();
+        createStars();
+      }
+    };
 
+    window.addEventListener("resize", handleResize);
     animate();
 
     return () => {
-      window.removeEventListener('resize', setCanvasSize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-screen -z-10 bg-starry-gradient">
+    <div className="fixed inset-0 w-full h-screen -z-30 bg-starry-gradient overflow-hidden overscroll-none">
       <canvas
         ref={canvasRef}
         className="w-full h-full"
