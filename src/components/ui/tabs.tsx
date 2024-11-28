@@ -2,6 +2,7 @@ import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { ArrowLeft, ArrowRight, ArrowDown, ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 
 const Tabs = TabsPrimitive.Root;
 
@@ -52,7 +53,8 @@ interface TabsProps {
   tabs: TabItem[];
   icon?: React.ReactNode;
   initialTab?: number;
-  
+  page?: number;
+  setPage?: (page: number) => void;
 }
 
 const TabsComponent = React.forwardRef<
@@ -69,6 +71,8 @@ const TabsComponent = React.forwardRef<
       icon = null,
       tabs = [],
       initialTab = -1,
+      page,
+      setPage
     },
     ref
   ) => {
@@ -77,22 +81,15 @@ const TabsComponent = React.forwardRef<
 
     const handleTabClick = (index: number) => {
       setActiveTab(index);
+      setPage && setPage(index);
     };
 
-    // const handleClickOutside = (event: MouseEvent) => {
-    //   if (tabsRef.current && !tabsRef.current.contains(event.target as Node)) {
-    //     setActiveTab(-1);
-    //   }
-    // };
+    useEffect(() => {
+      if (page !== undefined) {
+        setActiveTab(page);
+      }
+    }, [page]);
 
-    // React.useEffect(() => {
-    //   document.addEventListener("click", handleClickOutside);
-    //   return () => {
-    //     document.removeEventListener("click", handleClickOutside);
-    //   };
-    // }, []);
-
-    // Styles
     const tabWithBackgroundStyles = (isActive: boolean) =>
       cn(
         "relative group px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base flex-1",
