@@ -69,172 +69,188 @@ const RegistrationModule = () => {
               {
                 title: "Data Siswa",
                 content: (
-                  <Card className="space-y-6">
+                  <Card className="space-y-6 lg:px-24 lg:py-16">
                     <CardHeader>
                       <CardTitle className="font-raleway font-semibold text-xl">Data Pribadi</CardTitle>
                     </CardHeader>
 
                     <CardContent>
-                      <form className="space-y-4">
-                        <div>
-                          <Input
-                            label="Nama Lengkap"
-                            type="text"
-                            placeholder="Enter your full name"
-                            asterisk
-                          />
-                        </div>
+                      <form className="">
+                        <div className="lg:flex space-y-4 lg:space-x-8 lg:pb-10">
+                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
+                            <div>
+                              <Input
+                                label="Nama Lengkap"
+                                type="text"
+                                placeholder="Enter your full name"
+                                asterisk
+                              />
+                            </div>
 
-                        <div>
-                          <Input
-                            label="Nama Panggilan"
-                            type="text"
-                            placeholder="Enter your username"
-                            asterisk
-                          />
-                        </div>
+                            <div>
+                              <Input
+                                label="Nama Panggilan"
+                                type="text"
+                                placeholder="Enter your username"
+                                asterisk
+                              />
+                            </div>
 
-                        <div>
-                          <Input
-                            label="Tanggal Lahir"
-                            type="date"
-                            asterisk
-                          />
-                        </div>
+                            <div>
+                              <Input
+                                label="Tanggal Lahir"
+                                type="date"
+                                asterisk
+                              />
+                            </div>
 
-                        <div>
-                          <Input
-                            label="Nomor Telepon"
-                            type="tel"
-                            placeholder="Enter your phone number"
-                            asterisk
-                          />
-                        </div>
+                            <div>
+                              <Input
+                                label="Nomor Telepon"
+                                type="tel"
+                                placeholder="Enter your phone number"
+                                asterisk
+                              />
+                            </div>
+                          </div>
 
-                        <div>
-                          <Input
-                            label="Alamat"
-                            type="text"
-                            placeholder="Enter your address"
-                            asterisk
-                          />
-                        </div>
+                          <div className="lg:w-1/2 space-y-4 lg:space-y-2">
+                            <div>
+                              <Input
+                                label="Alamat"
+                                type="text"
+                                placeholder="Enter your address"
+                                asterisk
+                              />
+                            </div>
 
-                        <div>
-                          <FileInput
-                            label="Kartu Identitas"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                            asterisk
-                          />
-                        </div>
+                            <div>
+                              <FileInput
+                                label="Kartu Identitas"
+                                file={file}
+                                setFile={setFile}
+                                className="w-full"
+                                asterisk
+                              />
+                            </div>
 
-                        <div>
-                          <Label>
-                            Metode Belajar <span className="text-red-500">*</span>
-                          </Label>
-                          <Combobox
-                            choices={metodeBelajarChoices}
-                            placeholder="Click here to choose"
-                            value={selectedValueMetode}
-                            onChange={(val) => setSelectedValueMetode(val)}
-                            className="w-full"
-                          />
-                        </div>
-
-                        <CardHeader>
-                          <CardTitle className="font-raleway font-semibold text-xl">Data Orang Tua/Wali</CardTitle>
-                        </CardHeader>
-
-                        <div>
-                          <Input
-                            label="Nama Orang Tua/Wali (Salah Satu Saja)"
-                            type="text"
-                            placeholder="Enter your guardian's or parent's name"
-                            asterisk
-                          />
-                        </div>
-
-                        <div> 
-                          <Input 
-                            label="Hubungan dengan Wali"
-                            type="text"
-                            placeholder="Enter your relationship with your guardian"
-                            asterisk
-                          />
-                        </div>
-
-                        <div>
-                          <Input
-                            label="Nomor Telepon Wali"
-                            type="tel"
-                            placeholder="Enter your guardian's phone number "
-                            asterisk
-                          />
-                        </div>
-
-                        <div>
-                          <FileInput
-                            label="Slip Gaji / Surat Keterangan Penghasilan Orang Tua"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                            asterisk
-                          />
+                            <div>
+                              <Label>
+                                Metode Belajar <span className="text-red-500">*</span>
+                              </Label>
+                              <Combobox
+                                choices={metodeBelajarChoices}
+                                placeholder="Click here to choose"
+                                value={selectedValueMetode}
+                                onChange={(val) => setSelectedValueMetode(val)}
+                                className="w-full"
+                              />
+                            </div>
+                          </div>
                         </div>
 
                         <CardHeader>
-                          <CardTitle className="font-raleway font-semibold text-xl">Riwayat Pendidikan</CardTitle>
+                          <CardTitle className="font-raleway font-semibold text-xl max-lg:pt-16 pb-4">Data Orang Tua/Wali</CardTitle>
                         </CardHeader>
 
-                        <div>
-                          <Input
-                            label="Asal SMA/SMK"
-                            type="text"
-                            placeholder="Enter your school name"
-                            asterisk
-                          />
+                        <div className="lg:flex lg:space-x-8 lg:pb-10">
+                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
+                            <div>
+                              <Input
+                                label="Nama Orang Tua/Wali (Salah Satu Saja)"
+                                type="text"
+                                placeholder="Enter your guardian's or parent's name"
+                                asterisk
+                              />
+                            </div>
+
+                            <div> 
+                              <Input 
+                                label="Hubungan dengan Wali"
+                                type="text"
+                                placeholder="Enter your relationship with your guardian"
+                                asterisk
+                              />
+                            </div>
+
+                            <div>
+                              <Input
+                                label="Nomor Telepon Wali"
+                                type="tel"
+                                placeholder="Enter your guardian's phone number "
+                                asterisk
+                              />
+                            </div>
+                          </div>
+
+                          <div className="lg:w-1/2 max-lg:pt-4 lg:space-y-2">
+                            <FileInput
+                              label="Slip Gaji / Surat Keterangan Penghasilan Orang Tua"
+                              file={file}
+                              setFile={setFile}
+                              className="w-full"
+                              asterisk
+                            />
+                          </div>
                         </div>
 
-                        <div>
-                          <Label>
-                            Kelas <span className="text-red-500">*</span>
-                          </Label>
-                          <Combobox
-                            choices={KelasChoices}
-                            placeholder="Click here to choose"
-                            value={selectedValueKelas}
-                            onChange={(val) => setSelectedValueKelas(val)}
-                            className="w-full"
-                          />
+                        <CardHeader>
+                          <CardTitle className="font-raleway font-semibold text-xl max-lg:pt-16 pb-4">Riwayat Pendidikan</CardTitle>
+                        </CardHeader>
+
+                        <div className="lg:flex lg:space-x-8 lg:pb-10">
+                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
+                            <div>
+                              <Input
+                                label="Asal SMA/SMK"
+                                type="text"
+                                placeholder="Enter your school name"
+                                asterisk
+                              />
+                            </div>
+
+                            <div>
+                              <Label>
+                                Kelas <span className="text-red-500">*</span>
+                              </Label>
+                              <Combobox
+                                choices={KelasChoices}
+                                placeholder="Click here to choose"
+                                value={selectedValueKelas}
+                                onChange={(val) => setSelectedValueKelas(val)}
+                                className="w-full"
+                              />
+                            </div>
+
+                            <div>
+                              <Input
+                                label="Rata-Rata Rapot Semester 1-5"
+                                type="number"
+                                placeholder="Enter your grade report"
+                                asterisk
+                              />
+                            </div>
+                          </div>
+
+                          <div className="lg:w-1/2 max-lg:pt-4 lg:space-y-2">
+                            <FileInput
+                              label="Rapot Peserta"
+                              file={file}
+                              setFile={setFile}
+                              className="w-full"
+                              asterisk
+                            />
+                          </div>
                         </div>
 
-                        <div>
-                          <Input
-                            label="Rata-Rata Rapot Semester 1-5"
-                            type="number"
-                            placeholder="Enter your grade report"
-                            asterisk
-                          />
+                        <div className="lg:flex max-lg:pt-8 lg:justify-end">
+                          <Button onClick={handleNextTab} variant="secondary" className="max-lg:w-full rounded-[20px] lg:py-7 lg:text-xl" size="lg">
+                            Selanjutnya
+                            <span className="">
+                              <ArrowRight />
+                            </span>
+                          </Button>
                         </div>
-
-                        <div>
-                          <FileInput
-                            label="Rapot Peserta"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                            asterisk
-                          />
-                        </div>
-
-                        <Button onClick={handleNextTab} variant="secondary" className="w-full rounded-[20px]" size="lg">
-                          Selanjutnya
-                          <span className="">
-                            <ArrowRight />
-                          </span>
-                        </Button>
                       </form>
                     </CardContent>
                   </Card>
@@ -243,92 +259,103 @@ const RegistrationModule = () => {
               {
                 title: "Komitmen",
                 content: (
-                  <Card className="space-y-6">
+                  <Card className="space-y-6 lg:px-24 lg:py-16">
                     <CardHeader>
                       <CardTitle className="font-raleway font-semibold text-xl">Komitmen</CardTitle>
                     </CardHeader>
 
                     <CardContent>
                       <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* PDF */}
-                        <div>
-                          <FileInput
-                            label="Motivation Letter (PDF)"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                            asterisk
-                          />
-                        </div>
+                        <div className="lg:flex lg:space-x-8 lg:pb-10">
+                          <div className="lg:w-1/2 lg:space-y-5">
+                            {/* PDF */}
+                            <div>
+                              <FileInput
+                                label="Motivation Letter (PDF)"
+                                file={file}
+                                setFile={setFile}
+                                className="w-full"
+                                asterisk
+                              />
+                            </div>
 
-                        {/* PDF */}
-                        <div>
-                          <FileInput
-                            label="Surat Komitmen (PDF)"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                            asterisk
-                          />
-                        </div>
+                            {/* PDF */}
+                            <div>
+                              <FileInput
+                                label="Surat Komitmen (PDF)"
+                                file={file}
+                                setFile={setFile}
+                                className="w-full"
+                                asterisk
+                              />
+                            </div>
+                          </div>
 
-                        {/* PDF */}
-                        <div>
-                          <FileInput
-                            label="Bukti Follow Sosial Media (PDF)"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                            asterisk
-                          />
-                        </div>
+                          <div className="lg:w-1/2 lg:space-y-5">
+                            {/* PDF */}
+                            <div>
+                              <FileInput
+                                label="Bukti Follow Sosial Media (PDF)"
+                                file={file}
+                                setFile={setFile}
+                                className="w-full"
+                                asterisk
+                              />
+                            </div>
 
-                        <div>
-                          <FileInput
-                            label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                            asterisk
-                          />
+                            <div>
+                              <FileInput
+                                label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
+                                file={file}
+                                setFile={setFile}
+                                className="w-full"
+                                asterisk
+                              />
+                            </div>
+                          </div>
                         </div>
 
                         <CardHeader>
                           <CardTitle className="font-raleway font-semibold text-xl">Berkas Pendukung</CardTitle>
                         </CardHeader>
 
-                        <div>
-                          <FileInput
-                            label="Surat Keterangan Tidak Mampu"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                          />
+                        <div className="lg:flex lg:space-x-8 lg:pb-10">
+                          <div className="lg:w-1/2 lg:space-y-5">
+                            <div>
+                              <FileInput
+                                label="Surat Keterangan Tidak Mampu"
+                                file={file}
+                                setFile={setFile}
+                                className="w-full"
+                              />
+                            </div>
+
+                            <div>
+                              <FileInput
+                                label="Tagihan Listrik"
+                                file={file}
+                                setFile={setFile}
+                                className="w-full"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="lg:w-1/2 lg:space-y-5">
+                            <FileInput
+                              label="Foto Tampak Tempat Tinggal"
+                              file={file}
+                              setFile={setFile}
+                              className="w-full"
+                            />
+                          </div>
                         </div>
 
-                        <div>
-                          <FileInput
-                            label="Tagihan Listrik"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                          />
-                        </div>
-
-                        <div>
-                          <FileInput
-                            label="Foto Tampak Tempat Tinggal"
-                            file={file}
-                            setFile={setFile}
-                            className="w-full"
-                          />
-                        </div>
 
                         <CardHeader>
                           <CardTitle className="font-raleway font-semibold text-xl">Kode Afiliasi</CardTitle>
                         </CardHeader>
 
-                        <div>
+                        <div className="lg:w-1/2">
                           <Input
                             type="text"
                             placeholder="Enter your code"
