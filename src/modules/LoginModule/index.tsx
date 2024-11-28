@@ -13,28 +13,28 @@ import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import StarryBackground from "./module-elements/background";
 
-type LoginFormValues = z.infer<typeof loginSchema>;
+type LoginFormValues = z.infer<typeof loginSchema>
 
 const LoginModule = () => {
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
-  });
+  })
 
   const onSubmit = async (values: LoginFormValues) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const result = await useLogin(values);
+    const result = await useLogin(values)
     if (!result.isSuccess) {
-      console.error("Login failed");
+      console.error("Login failed")
     }
-  };
+  }
 
   return (
     <div className="flex flex-col min-h-screen relative">
       <StarryBackground />
 
-      <div className="absolute inset-0 bg-black opacity-20 z-20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-black opacity-30 z-10 pointer-events-none"></div>
       
-      <div className="flex flex-grow items-center justify-center py-[15rem] px-5">
+      <div className="flex flex-grow items-center justify-center py-[15rem] px-5 z-20">
         <Card className="w-full max-w-md lg:max-w-lg px-8">
           <CardHeader>
             <CardTitle className="text-center text-4xl md:text-4xl lg:text-5xl py-5">Login</CardTitle>
@@ -183,7 +183,7 @@ const LoginModule = () => {
       </div>
 
     </div>
-  );
-};
+  )
+}
 
 export default LoginModule;
