@@ -17,7 +17,12 @@ const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger ref={ref} className={cn(className)} {...props} />
+  <TabsPrimitive.Trigger 
+    ref={ref} 
+    className={cn(
+      "flex-1",
+      className)} 
+    {...props} />
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
@@ -46,6 +51,8 @@ interface TabsProps {
   showArrow?: boolean;
   tabs: TabItem[];
   icon?: React.ReactNode;
+  initialTab?: number;
+  
 }
 
 const TabsComponent = React.forwardRef<
@@ -61,36 +68,39 @@ const TabsComponent = React.forwardRef<
       showArrow = false,
       icon = null,
       tabs = [],
+      initialTab = -1,
     },
     ref
   ) => {
-    const [activeTab, setActiveTab] = React.useState(-1);
+    const [activeTab, setActiveTab] = React.useState(initialTab);
     const tabsRef = React.useRef<HTMLDivElement | null>(null);
 
     const handleTabClick = (index: number) => {
       setActiveTab(index);
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (tabsRef.current && !tabsRef.current.contains(event.target as Node)) {
-        setActiveTab(-1);
-      }
-    };
+    // const handleClickOutside = (event: MouseEvent) => {
+    //   if (tabsRef.current && !tabsRef.current.contains(event.target as Node)) {
+    //     setActiveTab(-1);
+    //   }
+    // };
 
-    React.useEffect(() => {
-      document.addEventListener("click", handleClickOutside);
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-      };
-    }, []);
+    // React.useEffect(() => {
+    //   document.addEventListener("click", handleClickOutside);
+    //   return () => {
+    //     document.removeEventListener("click", handleClickOutside);
+    //   };
+    // }, []);
 
     // Styles
     const tabWithBackgroundStyles = (isActive: boolean) =>
       cn(
-        "px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs",
+        "relative group px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs flex-1",
+        "rounded-xl overflow-hidden",
         isActive
           ? "bg-tosca-light-active text-tosca-tabs-active"
           : "text-white hover:bg-tosca-light-active hover:text-tosca-tabs-active"
+        
       );
 
     const tabWithoutBackgroundStyles = (isActive: boolean) =>
@@ -146,7 +156,7 @@ const TabsComponent = React.forwardRef<
           "flex items-center p-2 rounded-2xl justify-center",
           backgroundColor &&
             "bg-gradient-to-b from-tosca-normal-active to-tosca-pagination-darker",
-          orientation === "vertical" && activeTab !== -1 ? "w-1/3" : "w-auto"
+          orientation === "vertical" && activeTab !== -1 ? "w-1/3" : "w-full"
         )}
       >
         {showNumber && (
@@ -187,7 +197,7 @@ const TabsComponent = React.forwardRef<
 
             <TabsList
               className={cn(
-                "flex",
+                "flex w-full",
                 orientation === "vertical"
                   ? "flex-col space-y-3"
                   : "flex-row space-x-4"
@@ -313,11 +323,10 @@ const TabsComponent = React.forwardRef<
       <div
         ref={tabsRef}
         className={cn(
-          "inline-flex",
           orientation === "vertical"
             ? activeTab !== -1
               ? "w-full"
-              : "w-auto"
+              : "inline-flex w-auto"
             : "w-full"
         )}
       >
@@ -326,7 +335,7 @@ const TabsComponent = React.forwardRef<
           className={cn(
             "relative flex",
             orientation === "vertical" ? "flex-row" : "flex-col",
-            showNumber && (orientation === "vertical" ? "py-16" : "px-24")
+            showNumber && (orientation === "vertical" ? "" : "")
           )}
           value={activeTab.toString()}
           onValueChange={(value) => handleTabClick(Number(value))}

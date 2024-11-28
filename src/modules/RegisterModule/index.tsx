@@ -13,28 +13,28 @@ import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import StarryBackground from "../LoginModule/module-elements/background";
 
-type RegisterFormValues = z.infer<typeof registerSchema>;
+type RegisterFormValues = z.infer<typeof registerSchema>
 
 const RegisterModule = () => {
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
-  });
+  })
 
   const onSubmit = async (values: RegisterFormValues) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useRegister(values);
     if (!result.isSuccess) {
-      console.error("Register failed");
+      console.error("Register failed")
     }
-  };
+  }
 
   return (
     <div className="flex flex-col min-h-screen relative">
       <StarryBackground />
       
-      <div className="absolute inset-0 bg-black opacity-20 z-20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-black opacity-30 z-10 pointer-events-none"></div>
 
-      <div className="flex flex-grow items-center justify-center py-[12rem] px-5">
+      <div className="flex flex-grow items-center justify-center py-[12rem] px-5 z-20">
         <Card className="max-lg:w-full max-lg:max-w-md lg:w-[70%] px-8 lg:px-24">
           <CardHeader>
             <CardTitle className="text-center text-4xl md:text-4xl lg:text-5xl py-5">Register</CardTitle>
@@ -153,6 +153,7 @@ const RegisterModule = () => {
         </Card>
       </div>
 
+      {/* BACKGROUND IMAGE */}
       <div className="relative">
         <Image
           src="/Pohon4.png"
@@ -193,9 +194,8 @@ const RegisterModule = () => {
         />
       </div>
 
-
     </div>
-  );
-};
+  )
+}
 
-export default RegisterModule;
+export default RegisterModule
