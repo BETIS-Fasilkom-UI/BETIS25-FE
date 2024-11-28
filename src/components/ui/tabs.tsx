@@ -95,7 +95,7 @@ const TabsComponent = React.forwardRef<
     // Styles
     const tabWithBackgroundStyles = (isActive: boolean) =>
       cn(
-        "relative group px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs flex-1",
+        "relative group px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base flex-1",
         "rounded-xl overflow-hidden",
         isActive
           ? "bg-tosca-light-active text-tosca-tabs-active"
@@ -105,7 +105,7 @@ const TabsComponent = React.forwardRef<
 
     const tabWithoutBackgroundStyles = (isActive: boolean) =>
       cn(
-        "px-3 py-3 lg:px-8 lg:py-4 transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs",
+        "px-3 py-3 lg:px-8 lg:py-4 transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base",
         isActive
           ? "bg-tosca-light-active text-blue-tabs-active"
           : "text-gray-600 hover:bg-tosca-light-active hover:text-blue-tabs-active"
@@ -113,7 +113,7 @@ const TabsComponent = React.forwardRef<
 
     const numberWithBackgroundStyles = (isActive: boolean) =>
       cn(
-        "mr-2 px-2 py-1 rounded-full text-xs font-bold",
+        "mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold",
         isActive
           ? "bg-[#9fc7d2] text-tosca-tabs-active"
           : "bg-[#669aa2] text-white",
@@ -122,7 +122,7 @@ const TabsComponent = React.forwardRef<
 
     const numberWithoutBackgroundStyles = (isActive: boolean) =>
       cn(
-        "mr-2 px-2 py-1 rounded-full text-xs font-bold",
+        "mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold",
         isActive
           ? "bg-[#94abc3] text-blue-tabs-active"
           : "bg-gray-600 bg-opacity-40 text-gray-600"
