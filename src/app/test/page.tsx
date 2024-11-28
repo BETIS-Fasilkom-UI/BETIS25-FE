@@ -95,12 +95,21 @@ export default function Home() {
       <Textarea />
       <Toggle />
       <TabsComponent
+        page={page}
+        setPage={setPage}
         tabs={[
           { title: "Tab 1", content: <div>Tab 1</div> },
           { title: "Tab 2", content: <div>Tab 2</div> },
-          { title: "Tab 3", content: <div>Tab 3</div> },
         ]}
       />
+      <Button onClick={() => {
+        if (page === 1){
+          setPage(0)
+        } else {
+          setPage(1)
+        }
+      }}>Next</Button>
+      {page}
     </div>
   );
 }
