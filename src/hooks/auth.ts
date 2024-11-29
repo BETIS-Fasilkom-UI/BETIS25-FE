@@ -3,7 +3,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
-  updatePassword,
   sendEmailVerification,
   sendPasswordResetEmail,
   confirmPasswordReset,
