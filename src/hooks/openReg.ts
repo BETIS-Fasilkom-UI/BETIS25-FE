@@ -13,15 +13,15 @@ export const openRegSchema = z.object({
   fullName: z.string(),
   username: z.string(),
   phoneNumber: z.string().regex(/[1-9]\d{1,14}$/),
-  birthDate: z.string(),
+  birthDate: z.date(),
   address: z.string(),
   identityCard: z
     .any()
     .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
+      return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.type),
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     ),
   studyMethood: z.string(),
@@ -31,10 +31,10 @@ export const openRegSchema = z.object({
   parentIdentityCard: z
     .any()
     .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
+      return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.type),
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     ),
   highschoolName: z.string(),
@@ -43,48 +43,48 @@ export const openRegSchema = z.object({
   studentReport: z
     .any()
     .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
+      return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.type),
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     ),
   motivationLetter: z
     .any()
     .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
+      return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => files?.[0]?.type === "application/pdf",
+      (files) => files?.type === "application/pdf",
       "Only .PDF formats are supported."
     ),
   commitmentLetter: z
     .any()
     .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
+      return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => files?.[0]?.type === "application/pdf",
+      (files) => files?.type === "application/pdf",
       "Only .PDF formats are supported."
     ),
   proofOfFollowing: z
     .any()
     .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
+      return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => files?.[0]?.type === "application/pdf",
+      (files) => files?.type === "application/pdf",
       "Only .PDF formats are supported."
     ),
   proofOfTwibbon: z
     .any()
     .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
+      return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
       (files) =>
-        files?.[0]?.type === "application/pdf" ||
-        ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+        files?.type === "application/pdf" ||
+        ACCEPTED_IMAGE_TYPES.includes(files?.type),
       "Only .PDFm .jpg, .jpeg, .png and .webp formats are supported."
     ),
   referralCode: z.string().optional(),

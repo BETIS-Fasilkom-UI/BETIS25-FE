@@ -126,6 +126,18 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        swing: 'swing 5s ease-in-out infinite',
+      },
+      keyframes: {
+        swing: {
+          '0%': { transform: 'rotate(-10deg)' },
+          '30%': { transform: 'rotate(10deg)' },
+          '50%': { transform: 'rotate(-10deg)' },
+          '80%': { transform: 'rotate(10deg)' },
+          '100%': { transform: 'rotate(-10deg)' },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
