@@ -2,6 +2,7 @@ import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { ArrowLeft, ArrowRight, ArrowDown, ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 
 const Tabs = TabsPrimitive.Root;
 
@@ -17,7 +18,12 @@ const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger ref={ref} className={cn(className)} {...props} />
+  <TabsPrimitive.Trigger 
+    ref={ref} 
+    className={cn(
+      "flex-1",
+      className)} 
+    {...props} />
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
@@ -43,8 +49,12 @@ interface TabsProps {
   backgroundColor?: boolean;
   showIcon?: boolean;
   showNumber?: boolean;
+  showArrow?: boolean;
   tabs: TabItem[];
   icon?: React.ReactNode;
+  initialTab?: number;
+  page?: number;
+  setPage?: (page: number) => void;
 }
 
 const TabsComponent = React.forwardRef<
@@ -57,43 +67,42 @@ const TabsComponent = React.forwardRef<
       backgroundColor = true,
       showIcon = false,
       showNumber = false,
+      showArrow = false,
       icon = null,
       tabs = [],
+      initialTab = -1,
+      page,
+      setPage
     },
     ref
   ) => {
-    const [activeTab, setActiveTab] = React.useState(-1);
+    const [activeTab, setActiveTab] = React.useState(initialTab);
     const tabsRef = React.useRef<HTMLDivElement | null>(null);
 
     const handleTabClick = (index: number) => {
       setActiveTab(index);
+      setPage && setPage(index);
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (tabsRef.current && !tabsRef.current.contains(event.target as Node)) {
-        setActiveTab(-1);
+    useEffect(() => {
+      if (page !== undefined) {
+        setActiveTab(page);
       }
-    };
+    }, [page]);
 
-    React.useEffect(() => {
-      document.addEventListener("click", handleClickOutside);
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-      };
-    }, []);
-
-    // Styles
     const tabWithBackgroundStyles = (isActive: boolean) =>
       cn(
-        "px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs",
+        "relative group px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base flex-1",
+        "rounded-xl overflow-hidden",
         isActive
           ? "bg-tosca-light-active text-tosca-tabs-active"
           : "text-white hover:bg-tosca-light-active hover:text-tosca-tabs-active"
+        
       );
 
     const tabWithoutBackgroundStyles = (isActive: boolean) =>
       cn(
-        "px-3 py-3 lg:px-8 lg:py-4 transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs",
+        "px-3 py-3 lg:px-8 lg:py-4 transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base",
         isActive
           ? "bg-tosca-light-active text-blue-tabs-active"
           : "text-gray-600 hover:bg-tosca-light-active hover:text-blue-tabs-active"
@@ -101,7 +110,7 @@ const TabsComponent = React.forwardRef<
 
     const numberWithBackgroundStyles = (isActive: boolean) =>
       cn(
-        "mr-2 px-2 py-1 rounded-full text-xs font-bold",
+        "mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold",
         isActive
           ? "bg-[#9fc7d2] text-tosca-tabs-active"
           : "bg-[#669aa2] text-white",
@@ -110,7 +119,7 @@ const TabsComponent = React.forwardRef<
 
     const numberWithoutBackgroundStyles = (isActive: boolean) =>
       cn(
-        "mr-2 px-2 py-1 rounded-full text-xs font-bold",
+        "mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold",
         isActive
           ? "bg-[#94abc3] text-blue-tabs-active"
           : "bg-gray-600 bg-opacity-40 text-gray-600"
@@ -144,46 +153,48 @@ const TabsComponent = React.forwardRef<
           "flex items-center p-2 rounded-2xl justify-center",
           backgroundColor &&
             "bg-gradient-to-b from-tosca-normal-active to-tosca-pagination-darker",
-          orientation === "vertical" && activeTab !== -1 ? "w-1/3" : "w-auto"
+          orientation === "vertical" && activeTab !== -1 ? "w-1/3" : "w-full"
         )}
       >
         {showNumber && (
           <div className="flex flex-row items-center justify-center w-full">
-            <div
-              className={cn(
-                orientation === "vertical"
-                  ? arrowVerticalStyles(true, backgroundColor)
-                  : arrowHorizontalStyles(true, backgroundColor)
-              )}
-            >
-              {orientation === "vertical" ? (
-                <ArrowUp
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev > 0 ? prev - 1 : tabs.length - 1
-                    )
-                  }
-                />
-              ) : (
-                <ArrowLeft
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev > 0 ? prev - 1 : tabs.length - 1
-                    )
-                  }
-                />
-              )}
-            </div>
+            {showArrow && (
+              <div
+                className={cn(
+                  orientation === "vertical"
+                    ? arrowVerticalStyles(true, backgroundColor)
+                    : arrowHorizontalStyles(true, backgroundColor)
+                )}
+              >
+                {orientation === "vertical" ? (
+                  <ArrowUp
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev > 0 ? prev - 1 : tabs.length - 1
+                      )
+                    }
+                  />
+                ) : (
+                  <ArrowLeft
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev > 0 ? prev - 1 : tabs.length - 1
+                      )
+                    }
+                  />
+                )}
+              </div>
+            )}
 
             <TabsList
               className={cn(
-                "flex",
+                "flex w-full",
                 orientation === "vertical"
                   ? "flex-col space-y-3"
                   : "flex-row space-x-4"
@@ -213,37 +224,40 @@ const TabsComponent = React.forwardRef<
               ))}
             </TabsList>
 
-            <div
-              className={cn(
-                orientation === "vertical"
-                  ? arrowVerticalStyles(false, backgroundColor)
-                  : arrowHorizontalStyles(false, backgroundColor)
-              )}
-            >
-              {orientation === "vertical" ? (
-                <ArrowDown
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev < tabs.length - 1 ? prev + 1 : 0
-                    )
-                  }
-                />
-              ) : (
-                <ArrowRight
-                  size={20}
-                  strokeWidth={3}
-                  className="cursor-pointer max-lg:w-3 max-lg:h-3"
-                  onClick={() =>
-                    setActiveTab((prev) =>
-                      prev < tabs.length - 1 ? prev + 1 : 0
-                    )
-                  }
-                />
-              )}
-            </div>
+            {showArrow && (
+              <div
+                className={cn(
+                  orientation === "vertical"
+                    ? arrowVerticalStyles(false, backgroundColor)
+                    : arrowHorizontalStyles(false, backgroundColor)
+                )}
+              >
+                {orientation === "vertical" ? (
+                  <ArrowDown
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev < tabs.length - 1 ? prev + 1 : 0
+                      )
+                    }
+                  />
+                ) : (
+                  <ArrowRight
+                    size={20}
+                    strokeWidth={3}
+                    className="cursor-pointer max-lg:w-3 max-lg:h-3"
+                    onClick={() =>
+                      setActiveTab((prev) =>
+                        prev < tabs.length - 1 ? prev + 1 : 0
+                      )
+                    }
+                  />
+                )}
+              </div>
+            )}
+            
           </div>
         )}
 
@@ -306,11 +320,10 @@ const TabsComponent = React.forwardRef<
       <div
         ref={tabsRef}
         className={cn(
-          "inline-flex",
           orientation === "vertical"
             ? activeTab !== -1
               ? "w-full"
-              : "w-auto"
+              : "inline-flex w-auto"
             : "w-full"
         )}
       >
@@ -319,7 +332,7 @@ const TabsComponent = React.forwardRef<
           className={cn(
             "relative flex",
             orientation === "vertical" ? "flex-row" : "flex-col",
-            showNumber && (orientation === "vertical" ? "py-16" : "px-24")
+            showNumber && (orientation === "vertical" ? "" : "")
           )}
           value={activeTab.toString()}
           onValueChange={(value) => handleTabClick(Number(value))}

@@ -33,6 +33,8 @@ const config: Config = {
       backgroundImage: {
         "cp-gradient":
           "linear-gradient(180deg, rgba(72, 16, 51, 0.8) 0%, rgba(34, 12, 49, 0.8) 100%)",
+        "starry-gradient":
+          "linear-gradient(180deg, rgba(41,15,56,255) 0%, rgba(34, 12, 49, 0.8) 70%, rgba(125,40,130,255) 100%)",
       },
       colors: {
         background: "linear-gradient(180deg, #692597 0%, #220C31 100%)",
@@ -123,6 +125,18 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      animation: {
+        swing: 'swing 5s ease-in-out infinite',
+      },
+      keyframes: {
+        swing: {
+          '0%': { transform: 'rotate(-10deg)' },
+          '30%': { transform: 'rotate(10deg)' },
+          '50%': { transform: 'rotate(-10deg)' },
+          '80%': { transform: 'rotate(10deg)' },
+          '100%': { transform: 'rotate(-10deg)' },
+        },
       },
     },
   },
