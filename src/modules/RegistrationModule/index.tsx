@@ -39,6 +39,7 @@ const KelasChoices = [
 ];
 
 const RegistrationModule = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedValueMetode, setSelectedValueMetode] =
     useState<string>("");
   const [selectedValueKelas, setSelectedValueKelas] =
@@ -84,6 +85,7 @@ const RegistrationModule = () => {
   });
 
   const onSubmit = async (values: OpenRegFormValues) => {
+    setIsLoading(true);
     const currentTab1Data = form.getValues();
     const currentTab2Data = form.getValues();
     setTab1Data(currentTab1Data);
@@ -101,10 +103,17 @@ const RegistrationModule = () => {
     try {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const result = await useOpenReg(combinedData, optionalFiles);
-      if (!result.isSuccess) {
-        toast.error("Registration failed");
-      } else {
-        toast.success("Registration successful");
+      toast.promise(
+        result.isSuccess
+          ? Promise.resolve(result.message)
+          : Promise.reject(result.message),
+        {
+          loading: "Loading...",
+          success: result.message,
+          error: result.message,
+        }
+      );
+      if (result.isSuccess) {
         form.reset();
         setTab1Data(null);
         setTab2Data(null);
@@ -116,6 +125,7 @@ const RegistrationModule = () => {
       //console.error(error);
       toast.error("Registration failed");
     }
+    setIsLoading(false);
   };
 
   const handleTab = () => {
@@ -808,6 +818,7 @@ const RegistrationModule = () => {
                           </Button>
 
                           <Button
+                            isLoading={isLoading}
                             type="submit"
                             className="rounded-[20px]"
                             size="lg"

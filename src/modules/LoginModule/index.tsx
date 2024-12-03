@@ -1,31 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, useLogin } from "@/hooks/auth";
 import { z } from "zod";
 import Link from "next/link";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import StarryBackground from "./module-elements/background";
+import { toast } from "@/components/ui/sonner";
 
 type LoginFormValues = z.infer<typeof loginSchema>
 
 const LoginModule = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   })
 
+  const router = useRouter()
+
   const onSubmit = async (values: LoginFormValues) => {
+    setIsLoading(true)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useLogin(values)
-    if (!result.isSuccess) {
-      console.error("Login failed")
+
+    toast.promise(
+      result.isSuccess
+        ? Promise.resolve(result.message)
+        : Promise.reject(result.message),
+      {
+        loading: "Loading...",
+        success: result.message,
+        error: result.message,
+      }
+    );
+
+    if (result.isSuccess) {
+      router.push("/")
     }
+    setIsLoading(false)
   }
 
   return (
@@ -74,7 +92,7 @@ const LoginModule = () => {
                 </Link>
               </div>
 
-              <Button type="submit" className="w-full rounded-[20px]" size="lg">
+              <Button isLoading={isLoading} type="submit" className="w-full rounded-[20px]" size="lg">
                 Login
               </Button>
 

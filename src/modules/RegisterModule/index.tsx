@@ -1,31 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, useRegister } from "@/hooks/auth";
 import { z } from "zod";
 import Link from "next/link";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import StarryBackground from "../LoginModule/module-elements/background";
+import { toast } from "@/components/ui/sonner";
 
 type RegisterFormValues = z.infer<typeof registerSchema>
 
 const RegisterModule = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
   })
 
+  const router = useRouter()
+
   const onSubmit = async (values: RegisterFormValues) => {
+    setIsLoading(true)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useRegister(values);
-    if (!result.isSuccess) {
-      console.error("Register failed")
-    }
+    toast.promise(
+      result.isSuccess
+        ? Promise.resolve(result.message)
+        : Promise.reject(result.message),
+      {
+        loading: "Loading...",
+        success: result.message,
+        error: result.message,
+      }
+    );
+    setTimeout(() => {
+      if (result.isSuccess) {
+        router.push("/login")
+      }
+    }, 4000)
+    setIsLoading(false)
   }
 
   return (
@@ -133,7 +151,7 @@ const RegisterModule = () => {
               </div>
 
               <div className="flex justify-center pt-3">
-                <Button type="submit" className="w-full lg:w-1/2 rounded-[20px] lg:py-7" size="lg">
+                <Button isLoading={isLoading} type="submit" className="w-full lg:w-1/2 rounded-[20px] lg:py-7" size="lg">
                   Daftar
                 </Button>
               </div>
