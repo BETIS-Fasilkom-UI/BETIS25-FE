@@ -28,16 +28,13 @@ const RegisterModule = () => {
     setIsLoading(true)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useRegister(values);
-    toast.promise(
-      result.isSuccess
-        ? Promise.resolve(result.message)
-        : Promise.reject(result.message),
-      {
-        loading: "Loading...",
-        success: result.message,
-        error: result.message,
-      }
-    );
+    
+    if (result.isSuccess) {
+      toast.success(result.message)
+    } else {
+      toast.error(result.message)
+    }
+
     setTimeout(() => {
       if (result.isSuccess) {
         router.push("/login")
@@ -60,7 +57,7 @@ const RegisterModule = () => {
 
           <CardContent>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-              <div className="lg:flex lg:space-x-8 space-y-4">
+              <div className="lg:flex lg:space-x-8 max-lg:space-y-4">
                 <div className="lg:w-1/2 space-y-5">
                   {/* Nama Lengkap Input */}
                   <div className="lg:order-1">

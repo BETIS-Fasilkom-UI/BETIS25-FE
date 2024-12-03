@@ -37,41 +37,51 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
     auth,
     values.email,
     values.password
-  );
+  )
+    .then(async (userCred) => {
+      const user = userCred.user;
+      if (!user.emailVerified) {
+        return {
+          isSuccess: false,
+          message: "Email belum terverifikasi, silahkan cek email",
+        };
+      }
+      const idToken = await user.getIdToken();
+      const userData = user.displayName?.split("<|>") || [];
 
-  if (!userCredential) {
-    return { isSuccess: false, message: "Email/Password salah" };
-  }
+      const response = await fetch(
+        "http://localhost:8080/api/v1/auth/create-session/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id_token: idToken,
+            full_name: userData[0],
+            nickname: userData[1],
+            phone_number: userData[2],
+          }),
+        }
+      );
 
-  if (!userCredential.user?.emailVerified) {
-    return { isSuccess: false, message: "Email belum diverifikasi" };
-  }
-
-  const user = userCredential.user;
-  const idToken = await user.getIdToken();
-  const userData = user.displayName?.split("<|>") || [];
-
-  const response = await fetch(
-    "http://localhost:8080/api/v1/auth/create-session/",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id_token: idToken,
-        full_name: userData[0],
-        nickname: userData[1],
-        phone_number: userData[2],
-      }),
-    }
-  );
-
-  if (response.ok) {
-    return { isSuccess: true, message: "Login success" };
-  } else {
-    return { isSuccess: false, message: "Login failed" };
-  }
+      if (response.ok) {
+        return { isSuccess: true, message: "Login success" };
+      } else {
+        return { isSuccess: false, message: "Login failed" };
+      }
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      return {
+        isSuccess: false,
+        message: ` ${
+          (errorCode === "auth/invalid-credential" && "Wrong email/password") ||
+          "Login failed"
+        }`,
+      };
+    });
+  return userCredential;
 }
 
 export async function useRegister(values: z.infer<typeof registerSchema>) {
@@ -79,22 +89,36 @@ export async function useRegister(values: z.infer<typeof registerSchema>) {
     auth,
     values.email,
     values.password
-  );
+  )
+    .then(async (userCred) => {
+      if (userCred.user) {
+        const user = userCred.user;
+        await updateProfile(user, {
+          displayName: `${values.fullName}<|>${values.username}<|>${values.phoneNumber}`,
+        });
+        sendEmailVerification(user);
 
-  if (userCredential.user) {
-    const user = userCredential.user;
-    await updateProfile(user, {
-      displayName: `${values.fullName}<|>${values.username}<|>${values.phoneNumber}`,
+        return {
+          isSuccess: true,
+          message: "Register success, silahkan cek email untuk verifikasi",
+        };
+      } else {
+        return { isSuccess: false, message: "Register failed" };
+      }
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      return {
+        isSuccess: false,
+        message: ` ${
+          (errorCode === "auth/email-already-in-use" &&
+            "Email already in use") ||
+          "Register failed"
+        }`,
+      };
     });
-    sendEmailVerification(user);
 
-    return {
-      isSuccess: true,
-      message: "Register success, silahkan cek email untuk verifikasi",
-    };
-  } else {
-    return { isSuccess: false, message: "Register failed" };
-  }
+  return userCredential;
 }
 
 export function useForgotPassword(

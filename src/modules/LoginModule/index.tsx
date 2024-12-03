@@ -29,19 +29,11 @@ const LoginModule = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useLogin(values)
 
-    toast.promise(
-      result.isSuccess
-        ? Promise.resolve(result.message)
-        : Promise.reject(result.message),
-      {
-        loading: "Loading...",
-        success: result.message,
-        error: result.message,
-      }
-    );
-
     if (result.isSuccess) {
+      toast.success(result.message)
       router.push("/")
+    } else {
+      toast.error(result.message)
     }
     setIsLoading(false)
   }
