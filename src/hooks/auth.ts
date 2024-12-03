@@ -20,7 +20,7 @@ export const registerSchema = z
     email: z.string().email(),
     fullName: z.string(),
     username: z.string(),
-    phoneNumber: z.string().regex(/[1-9]\d{1,14}$/),
+    phoneNumber: z.string().regex(/[1-9]\d{10,14}$/),
     password: z.string().min(6),
     confirmPassword: z.string().min(6),
   })
@@ -40,17 +40,16 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
   );
 
   if (!userCredential) {
-    toast.error("Email/Password salah");
-    return { isSuccess: false };
+    return { isSuccess: false, message: "Email/Password salah" };
   }
 
   if (!userCredential.user?.emailVerified) {
-    toast.error("Email belum terverifikasi");
-    return { isSuccess: false };
+    return { isSuccess: false, message: "Email belum diverifikasi" };
   }
 
   const user = userCredential.user;
   const idToken = await user.getIdToken();
+  const userData = user.displayName?.split("<|>") || [];
 
   const response = await fetch(
     "http://localhost:8080/api/v1/auth/create-session/",
@@ -59,16 +58,19 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id_token: idToken }),
+      body: JSON.stringify({
+        id_token: idToken,
+        full_name: userData[0],
+        nickname: userData[1],
+        phone_number: userData[2],
+      }),
     }
   );
 
   if (response.ok) {
-    toast.success("Login success");
-    return { isSuccess: true };
+    return { isSuccess: true, message: "Login success" };
   } else {
-    toast.error("Login failed");
-    return { isSuccess: false };
+    return { isSuccess: false, message: "Login failed" };
   }
 }
 
@@ -82,17 +84,16 @@ export async function useRegister(values: z.infer<typeof registerSchema>) {
   if (userCredential.user) {
     const user = userCredential.user;
     await updateProfile(user, {
-      displayName: values.fullName,
+      displayName: `${values.fullName}<|>${values.username}<|>${values.phoneNumber}`,
     });
     sendEmailVerification(user);
-    toast.success("Register success, silahkan cek email untuk verifikasi");
 
-    // add logic ke db buat create user user
-
-    return { isSuccess: true };
+    return {
+      isSuccess: true,
+      message: "Register success, silahkan cek email untuk verifikasi",
+    };
   } else {
-    toast.error("Register failed");
-    return { isSuccess: false };
+    return { isSuccess: false, message: "Register failed" };
   }
 }
 
