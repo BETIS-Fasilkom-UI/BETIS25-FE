@@ -1,5 +1,8 @@
+import Hero from '@/components/elements/hero/hero';
+
 export default function Page() {
   return (
+    <>
     <main className="min-h-screen flex flex-col justify-center items-center text-center">
       <h1 className="font-cinzel text-[96px] text-violet-900/40">
         Coming Soon
@@ -13,5 +16,7 @@ export default function Page() {
         </h3>
       </div>
     </main>
+    <Hero />
+    </>
   );
 };
