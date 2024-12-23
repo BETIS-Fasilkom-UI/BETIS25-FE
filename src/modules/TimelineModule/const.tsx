@@ -4,7 +4,7 @@ export const events: EventEntry[] = [
     {
         name: 'Grand Launching',
         date: '25 Januari',
-        status: 'In Progress'
+        status: 'Done'
     },
     {
         name: 'Be - Talks',
