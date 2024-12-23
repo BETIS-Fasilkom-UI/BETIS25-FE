@@ -12,6 +12,6 @@ export default function Page() {
           Please wait and check back later.
         </h3>
       </div>
-    </main>
+    </main>    
   );
 };
