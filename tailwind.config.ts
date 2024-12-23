@@ -29,6 +29,8 @@ const config: Config = {
       boxShadow: {
         "testimony-card":
           "4px 4px 12px 0px #FEF5FF, -4px -4px 12px 0px #FEF5FF",
+        'event-entry-card': 
+          '-4px -4px 12px 0px #FEF5FF, 4px 4px 12px 0px #FEF5FF',
       },
       backgroundImage: {
         "cp-gradient":
