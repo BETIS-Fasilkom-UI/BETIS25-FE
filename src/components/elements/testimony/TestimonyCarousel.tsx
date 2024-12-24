@@ -97,7 +97,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, setTweenNodes, slides.length, tweenScale]);
 
   return (
-    <div className="w-[96%] lg:w-[75%] flex flex-col md:gap-6 items-center">
+    <div className="w-[96%] flex flex-col md:gap-6 items-center">
       <h1 className="lg:text-t1 md:text-t2 text-t5 max-w-[90%] font-cinzel text-center lg:mb-[36px]">
         What They Said About betis?
       </h1>

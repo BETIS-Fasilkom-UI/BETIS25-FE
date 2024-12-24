@@ -3,6 +3,7 @@ import { toast } from "./sonner";
 import { useDropzone, DropzoneInputProps} from 'react-dropzone';
 import { cn } from "@/lib/utils";
 import { File, Upload } from "lucide-react";
+import { Label } from './label'
 
 export interface UploadedElementProps {
   file: File
@@ -20,6 +21,7 @@ export interface FileInputProps {
   className?: string
   secondaryMessage?: string
   label?: string
+  asterisk?: boolean;
 }
 
 const UploadedElement = ({ file, setFile }: UploadedElementProps) => {
@@ -41,7 +43,7 @@ const NotUploadedElement = ({ secondaryMessage }: NotUploadedElementProps) => {
   )
 }
 
-export const FileInput = ({ file, setFile, secondaryMessage }: FileInputProps) => {
+export const FileInput = ({ file, setFile, secondaryMessage, label, asterisk }: FileInputProps) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0]
 
@@ -66,25 +68,35 @@ export const FileInput = ({ file, setFile, secondaryMessage }: FileInputProps) =
 
 
   return (
-    <div
-      {...getRootProps()}
-      className={cn(
-        "h-full p-3  cursor-pointer flex justify-center items-center rounded-xl",
-        !file ? 'bg-white' : 'bg-violet-100',
-        isDragActive ? 'active' : '',
+    <div className={cn("flex flex-col gap-2", "w-full")}>
+      {label && (
+        <Label>
+          {label}
+          {asterisk && <span className="text-red-500"> *</span>}
+        </Label>
       )}
-    >
-      <input {...getInputProps()} />
+      
+      <div
+        {...getRootProps()}
+        className={cn(
+          "h-full p-3  cursor-pointer flex justify-center items-center rounded-xl",
+          !file ? 'bg-white' : 'bg-violet-100',
+          isDragActive ? 'active' : '',
+        )}
+      >
+        <input {...getInputProps()} />
 
-      {file ? (
-        <UploadedElement file={file} setFile={setFile} />
-      ) : (
-        <NotUploadedElement
-          secondaryMessage={secondaryMessage}
-          getInputProps={getInputProps}
-        />
-      )}
+        {file ? (
+          <UploadedElement file={file} setFile={setFile} />
+        ) : (
+          <NotUploadedElement
+            secondaryMessage={secondaryMessage}
+            getInputProps={getInputProps}
+          />
+        )}
+      </div>
     </div>
+
   )
 }
 
