@@ -8,10 +8,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { AlignJustify } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { User } from "@/hooks/interface";
 
-export const Navbar = () => {
+export const Navbar = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
-  const isAutehnticated = true;
+  const isAutehnticated = user !== null;
   return (
     <>
       <nav
@@ -42,7 +43,11 @@ export const Navbar = () => {
                 <Link
                   key={index}
                   href={item.isAvailable ? item.href : "#"}
-                  className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${item.isAvailable ? "cursor-pointer" : "cursor-not-allowed text-white/30"}`}
+                  className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${
+                    item.isAvailable
+                      ? "cursor-pointer"
+                      : "cursor-not-allowed text-white/30"
+                  }`}
                 >
                   {item.title}
                 </Link>
@@ -50,11 +55,9 @@ export const Navbar = () => {
             </div>
             {isAutehnticated ? (
               <div className="flex items-center gap-6">
-                <Link href="/dashboard">
-                  <Button variant="destructive" className="">
-                    Logout
-                  </Button>
-                </Link>
+                <Button variant="destructive" className="">
+                  Logout
+                </Button>
                 <Avatar>
                   <AvatarImage
                     src="https://github.com/shadcn.png"
