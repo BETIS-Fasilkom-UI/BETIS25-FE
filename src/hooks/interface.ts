@@ -6,3 +6,9 @@ export interface Response {
 export interface LoginResponse extends Response {
     token: string;
 }
+
+export interface User {
+    name: string;
+    email: string;
+    // nanti nambah <3
+}

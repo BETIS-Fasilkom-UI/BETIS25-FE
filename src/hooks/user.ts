@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
+import { User } from "./interface";
 
 export const getUserService = async () => {
   const token = cookies().get("token")?.value;
@@ -15,5 +16,5 @@ export const getUserService = async () => {
 
   const userData = user.name?.split("<|>") || [];
 
-  return { name: userData[0] as String, email: user.email as String };
+  return { name: userData[0] as String, email: user.email as String } as User;
 };
