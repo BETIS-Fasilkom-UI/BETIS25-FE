@@ -60,7 +60,7 @@ const RegisterModule = () => {
               <div className="grid md:grid-cols-2 gap-x-5 gap-y-4 md:gap-y-8">
                 
                   {/* Nama Lengkap Input */}
-                  <div className="">
+                  <div>
                     <Input
                       label="Nama Lengkap"
                       type="text"
@@ -74,7 +74,7 @@ const RegisterModule = () => {
                   </div>
 
                   {/* No HP / WA Input */}
-                  <div className="">
+                  <div>
                     <Input
                       label="No HP / WA"
                       type="text"
@@ -88,7 +88,7 @@ const RegisterModule = () => {
                   </div>
 
                   {/* Nama Panggilan Input */}
-                  <div className="">
+                  <div>
                     <Input
                       label="Nama Panggilan"
                       type="text"
@@ -102,7 +102,7 @@ const RegisterModule = () => {
                   </div>
 
                   {/* Email Input */}
-                  <div className="">
+                  <div>
                     <Input
                       label="Email Aktif"
                       type="email"
@@ -116,7 +116,7 @@ const RegisterModule = () => {
                   </div>
 
                   {/* Password Input */}
-                  <div className="">
+                  <div>
                     <Input
                       label="Password"
                       type="password"
@@ -142,7 +142,6 @@ const RegisterModule = () => {
                       <p className="text-sm text-red-500">{form.formState.errors.confirmPassword.message}</p>
                     )}
                   </div>
-                
               </div>
 
               <div className="flex justify-center pt-3">
