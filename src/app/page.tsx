@@ -1,5 +1,8 @@
 import Carousel from "@/modules/CarouselModule/Carousel";
-import { betisCarousel, CarouselOptions } from "@/modules/CarouselModule/const";
+import {
+  betisCarousel,
+  betisCarouselOptions,
+} from "@/modules/CarouselModule/const";
 
 export default function Page() {
   return (
@@ -15,7 +18,7 @@ export default function Page() {
           Please wait and check back later.
         </h3>
       </div>
-      <Carousel slides={betisCarousel} options={CarouselOptions} />
+      <Carousel slides={betisCarousel} options={betisCarouselOptions} />
       <div className="mb-[500px]"></div>
     </main>
   );

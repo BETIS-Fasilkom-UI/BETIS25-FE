@@ -10,6 +10,7 @@ import Image from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { CarouselButton, usePrevNextButtons } from "./CarouselButtons";
 import { cn } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
 
 type PropType = {
   slides: CarouselItemProps[];
@@ -23,6 +24,7 @@ export interface CarouselProps {
 export interface CarouselItemProps {
   src: string;
   alt: string;
+  year: string;
 }
 
 const Carousel: React.FC<PropType> = (props) => {
@@ -112,12 +114,12 @@ const Carousel: React.FC<PropType> = (props) => {
           <div className="flex gap-10 py-10 px-3.5   md:px-3  ">
             {slides.map((slide, index) => (
               <div className="relative" key={index}>
-                <div
+                <Card
                   className={cn(
-                    "slide-image relative transition-all duration-300 ease-in-out bg-[#6f4589] rounded-[32px] px-8 pt-10 pb-10 shadow-testimony-card flex flex-col justify-center items-center gap-[24px]"
+                    "border-0 shadow-[0px_0px_12px_rgba(255,255,255,0.60)] slide-image relative transition-all duration-300 ease-in-out bg-[#ffffff] rounded-[32px] lg:px-8 lg:pt-10 lg:pb-10 flex flex-col justify-center items-center"
                   )}
                 >
-                  <div className="w-[331px] h-[227px] relative rounded-2xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.20)]">
+                  <div className="w-[331px] h-[277px] relative rounded-2xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.20)]">
                     <Image
                       src={slide.src}
                       alt={slide.alt}
@@ -128,14 +130,14 @@ const Carousel: React.FC<PropType> = (props) => {
                   <div className="space-y-5 md:max-w-[60%]">
                     <div>
                       <h2 className="font-raleway h-7 text-center text-[#fef5ff]/50 text-sm font-semibold leading-7">
-                        BETIS 2024
+                        BETIS {slide.year}
                       </h2>
                       <h1 className="h-9 text-center text-[#fef5ff] text-4xl font-black font-cinzel leading-10">
-                        BE-TALKS
+                        <div>{slide.alt}</div>
                       </h1>
                     </div>
                   </div>
-                </div>
+                </Card>
               </div>
             ))}
           </div>
