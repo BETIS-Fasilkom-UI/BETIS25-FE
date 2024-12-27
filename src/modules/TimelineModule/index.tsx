@@ -27,14 +27,14 @@ const TimelineModule = () => {
         >
             <div className="absolute w-full h-auto overflow-x-clip">
                 <div className="relative top-0 left-0">
-                    <div className="absolute z-100 min-w-[150vw] min-h-[100vw] top-[-12vw] left-[-25vw]">
+                    <div className="absolute z-100 min-w-[150vw] min-h-[98.5vw] top-[-12vw] left-[-24.5vw]">
                         <Image src={'/TimelineBg.png'} alt=" " layout="fill" objectFit="contain" priority={true} />
                     </div>
                 </div>
             </div>
 
             {/* Treasure Chest, update the pt-[...] to adjust for the updated bg */}
-            <div className="flex-1 flex flex-col gap-0 items-center pt-[48%]">
+            <div className="flex-1 flex flex-col gap-0 items-center pt-[45%]">
                 {
                     isBigScreen ?
 
