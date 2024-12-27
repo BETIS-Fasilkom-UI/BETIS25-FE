@@ -29,7 +29,7 @@ const AboutBetis = () => {
             <h3 className="mb-[2%] text-lg font-medium text-center md:text-2xl lg:text-3xl md:text-justify font-raleway">
               BETIS: Bimbingan Belajar Gratis Fasilkom UI
             </h3>
-            <p className="text-md leading-normal text-justify md:text-xl lg:text-2xl font-openSans font-extralight">
+            <p className="text-md leading-normal text-justify md:text-xl lg:text-2xl font-openSans font-extralight mb-2">
               Program bimbingan belajar gratis untuk siswa SMA/sederajat dan
               alumni yang membutuhkan dukungan dalam persiapan menuju perguruan
               tinggi negeri. Program ini menyediakan materi akademis dan edukasi
@@ -52,7 +52,7 @@ const AboutBetis = () => {
               BETIS 2024
             </p>
           </div>
-          <div className="block w-[1.5px] md:h-[125px] bg-[#FEF5FF] bg-opacity-50 rounded-md lg:h-[150px] md:mx-14 lg:mx-24"></div>
+          <div className="block w-[2px] h-[75px] md:h-[125px] bg-[#FEF5FF] bg-opacity-50 rounded-md lg:h-[150px] md:mx-14 lg:mx-24"></div>
           <div className="flex flex-col items-center md:mr-24 lg:mr-32">
             <h3 className="text-2xl font-bold md:text-4xl lg:text-5xl font-cinzel">
               125
