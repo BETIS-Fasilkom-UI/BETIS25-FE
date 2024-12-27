@@ -6,9 +6,11 @@ export function BigEventCard({ className = "", event }: { className?: string, ev
     return (
         <div 
             className={cn(
-                `z-10 h-[100px] w-[250px] px-[23px] py-[19px] 
-                flex flex-col gap-[12.88px] justify-center items-center 
-                bg-[#6F4589] border shadow-event-entry-card rounded-[20px]`, 
+                `z-10 
+                md:h-[70px] md:w-[175px] md:px-[16px] md:py-[15px] md:rounded-[15px] 
+                lg:h-[100px] lg:w-[250px] lg:px-[23px] lg:py-[19px] lg:rounded-[20px] 
+                flex flex-col md:gap-[6px] lg:gap-[12.88px] justify-center items-center 
+                bg-[#6F4589] border shadow-event-entry-card`, 
                 className)}
         >
             <h1 className="font-[900] font-cinzel md:max-lg:text-[19px] lg:text-[23px]">

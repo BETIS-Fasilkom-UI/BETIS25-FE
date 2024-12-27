@@ -38,11 +38,13 @@ const TimelineModule = () => {
                         <div
                             key={`imagebruh`}
                             className={`w-0 
-                                h-[140px] border-[6.5px]
-                                border-[#FCFFCCCC]
-                                shadow-timeline relative rounded-[6px]`}
+                                    md:h-[100px] md:border-[4.5px] lg:h-[140px] lg:border-[6.5px]
+                                    border-[#FCFFCCCC]
+                                    shadow-timeline relative rounded-[6px]`}
                         >
-                            <div className="z-10 absolute top-[-170px] left-[-91.5px] w-[175px] h-[183px]">
+                            <div className={`z-10 absolute 
+                                md:left-[-55px] md:top-[-102px] md:w-[105px] md:h-[110px] 
+                                lg:left-[-91.5px] lg:top-[-170px] lg:w-[175px] lg:h-[183px]`}>
                                 <Image className="" src="/TreasureChest.png" alt="" width={175} height={183} loading="eager" />
                             </div>
                             <BigBlurredStarIcon className="absolute top-[-100px] left-[-100px]" />
@@ -72,21 +74,25 @@ const TimelineModule = () => {
                             <div
                                 key={event.name}
                                 className={`w-0 
-                                    ${idx == events.length - 1 ? 'h-0' : 'h-[140px] border-[6.5px]'} 
+                                    ${idx == events.length - 1 ? 'h-0' : 'md:h-[100px] md:border-[4.5px] lg:h-[140px] lg:border-[6.5px]'} 
                                     ${event.status === 'Done' ? 'border-[#FCFFCCCC]' : 'border-[#FCFFCC4D]'} 
                                     shadow-timeline relative rounded-[6px]`}
                             >
                                 <div
-                                    className={`w-[70px] h-0 
-                                        ${idx % 2 == 1 && 'right-0'} top-[-6.5px] 
-                                        border-[3.2px] border-[#FCFFCCCC] rounded-[2px] 
+                                    className={`h-0
+                                        ${idx % 2 == 1 && 'right-0'} 
+                                        md:w-[49px] lg:w-[70px]
+                                        md:top-[-4.5px] lg:top-[-6.5px] 
+                                        md:border-[2.25px] lg:border-[3.2px] 
+                                        md:rounded-[1.4px] lg:rounded-[2px] 
+                                        border-[#FCFFCCCC] 
                                         shadow-timeline absolute`}
                                 />
                                 {/* <BigCircleIcon className="absolute top-[-35px] left-[-35px]" /> */}
                                 <BigBlurredStarIcon className="absolute top-[-100px] left-[-100px]" />
                                 <BigEventCard
-                                    className={`absolute top-[-53px] 
-                                        ${idx % 2 == 0 ? 'left-[68px]' : 'right-[68px]'}`}
+                                    className={`absolute top-[-37px] 
+                                        ${idx % 2 == 0 ? 'md:left-[48px] lg:left-[68px]' : 'md:right-[48px] lg:right-[68px]'}`}
                                     event={event}
                                 />
                             </div>
@@ -124,7 +130,10 @@ const TimelineModule = () => {
                 <div className="relative">
                     {
                         isBigScreen ?
-                            <div className="z-20 absolute top-[-5vw] right-[-45vw] w-[280px] h-[337px]">
+                            <div className={`z-20 absolute 
+                                md:top-[-10vw] md:right-[-45vw] md:w-[168px] md:h-[202px] 
+                                lg:top-[-5vw] lg:right-[-45vw] lg:w-[280px] lg:h-[337px]`}
+                            >
                                 <Image src="/KelinciTimeline.png" alt="" width={280} height={337} />
                             </div>
                             :
