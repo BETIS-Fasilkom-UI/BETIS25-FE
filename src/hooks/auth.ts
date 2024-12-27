@@ -9,6 +9,8 @@ import {
 import { auth } from "@/lib/firebase";
 import { toast } from "@/components/ui/sonner";
 import z from "zod";
+import { LoginResponse } from "./interface";
+import { setCookie } from "cookies-next";
 
 export const loginSchema = z.object({
   email: z.string().email(),
@@ -66,6 +68,10 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
       );
 
       if (response.ok) {
+        const data: LoginResponse = await response.json();
+        setCookie("token", data.token, {
+          maxAge: 60 * 60 * 24 * 5,
+        });
         return { isSuccess: true, message: "Login success" };
       } else {
         return { isSuccess: false, message: "Login failed" };
