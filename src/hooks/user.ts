@@ -12,9 +12,8 @@ export const getUserService = async () => {
   if (!payload) {
     return null;
   }
-  const user = decode(payload.session) as JwtPayload;
 
-  const userData = user.name?.split("<|>") || [];
+  const userData = payload.name?.split("<|>") || [];
 
-  return { name: userData[0] as String, email: user.email as String } as User;
+  return { name: userData[0] as String, email: payload.email as String } as User;
 };
