@@ -1,9 +1,9 @@
-import Hero from '@/components/elements/hero/hero';
+import Hero from '@/components/elements/hero/Hero';
 
 export default function Page() {
   return (
     <>
-    <main className="min-h-screen flex flex-col justify-center items-center text-center">
+    {/* <main className="min-h-screen flex flex-col justify-center items-center text-center">
       <h1 className="font-cinzel text-[96px] text-violet-900/40">
         Coming Soon
       </h1>
@@ -14,8 +14,8 @@ export default function Page() {
         <h3 className="font-raleway text-t8 md:text-t6 max-md:mt-3">
           Please wait and check back later.
         </h3>
-      </div>
-    </main>
+      </div> */}
+    {/* </main> */}
     <Hero />
     </>
   );
