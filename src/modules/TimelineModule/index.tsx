@@ -40,7 +40,7 @@ const TimelineModule = () => {
                             className={`w-0 
                                     md:h-[100px] md:border-[4.5px] lg:h-[140px] lg:border-[6.5px]
                                     border-[#FCFFCCCC]
-                                    shadow-timeline relative rounded-[6px]`}
+                                    shadow-timeline relative`}
                         >
                             <div className={`z-10 absolute 
                                 md:left-[-55px] md:top-[-102px] md:w-[105px] md:h-[110px] 
@@ -56,7 +56,7 @@ const TimelineModule = () => {
                             className={`w-0 
                                 h-[60px] border-[2.5px]
                                 border-[#FCFFCCCC]
-                                shadow-timeline relative rounded-[2.5px]`}
+                                shadow-timeline relative`}
                         >
                             <div className="z-10 absolute top-[-65px] left-[-33.5px] w-[67px] h-[70px]">
                                 <Image className="" src="/TreasureChest.png" alt="" width={67} height={70} loading="eager" />
@@ -76,13 +76,16 @@ const TimelineModule = () => {
                                 className={`w-0 
                                     ${idx == events.length - 1 ? 'h-0' : 'md:h-[100px] md:border-[4.5px] lg:h-[140px] lg:border-[6.5px]'} 
                                     ${event.status === 'Done' ? 'border-[#FCFFCCCC]' : 'border-[#FCFFCC4D]'} 
-                                    shadow-timeline relative rounded-[6px]`}
+                                    shadow-timeline relative 
+                                    ${(idx == events.length-1)||(events[idx+1].status==='Awaiting') ? 'rounded-b-[6px]' : ''}`}
                             >
+                                {/* Horizontal line */}
                                 <div
-                                    className={`h-0
+                                    className={`z-[-10] h-0
                                         ${idx % 2 == 1 && 'right-0'} 
                                         md:w-[49px] lg:w-[70px]
-                                        md:top-[-4.5px] lg:top-[-6.5px] 
+                                        ${idx == events.length - 1 ? 'md:top-[-4.5px] lg:top-[-6.5px]': 'md:top-[-8.5px] lg:top-[-12.5px]'}
+                                        
                                         md:border-[2.25px] lg:border-[3.2px] 
                                         md:rounded-[1.4px] lg:rounded-[2px] 
                                         border-[#FCFFCCCC] 
@@ -91,7 +94,7 @@ const TimelineModule = () => {
                                 {/* <BigCircleIcon className="absolute top-[-35px] left-[-35px]" /> */}
                                 <BigBlurredStarIcon className="absolute top-[-100px] left-[-100px]" />
                                 <BigEventCard
-                                    className={`absolute top-[-37px] 
+                                    className={`absolute md:top-[-37px] lg:top-[-53px] 
                                         ${idx % 2 == 0 ? 'md:left-[48px] lg:left-[68px]' : 'md:right-[48px] lg:right-[68px]'}`}
                                     event={event}
                                 />
@@ -104,13 +107,15 @@ const TimelineModule = () => {
                                 className={`w-0 
                                     ${idx == events.length - 1 ? 'h-0' : 'h-[60px] border-[2.5px]'} 
                                     ${event.status === 'Done' ? 'border-[#FCFFCCCC]' : 'border-[#FCFFCC4D]'} 
-                                    shadow-timeline relative rounded-[2.5px]`}
+                                    shadow-timeline relative
+                                    ${(idx == events.length-1)||(events[idx+1].status==='Awaiting') ? 'rounded-b-[2.5px]' : ''}`}
                             >
                                 {/* Horizontal line */}
                                 <div
                                     className={`w-[27px] h-0 
-                                        ${idx % 2 == 1 && 'right-0'} top-[-2px] 
-                                        border-[0.9px] border-[#FCFFCCCC] rounded-[2.5px] 
+                                        ${idx % 2 == 1 && 'right-0'} 
+                                        ${idx == events.length - 1 ? 'top-[-2px]': 'top-[-4px]'} 
+                                        border-[1px] border-[#FCFFCCCC] rounded-[2.5px] 
                                         shadow-timeline absolute`}
                                 />
                                 {/* <SmallCircleIcon className="absolute top-[-8.5px] left-[-10px]" /> */}
