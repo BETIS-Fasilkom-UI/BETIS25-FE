@@ -53,7 +53,7 @@ const CountdownSNBTModule = () => {
           />
         </div>
 
-        <div className="absolute z-10 w-[548.86px] h-[61.37px] sm:w-[658.632px] sm:h-[73.644px] md:opacity-0 left-20 -top-20">
+        <div className="absolute z-10 w-[548.86px] h-[61.37px] sm:w-[658.632px] sm:h-[73.644px] md:opacity-0 -right-14 -top-20 sm:-right-32">
           <Image
             alt="Vector1"
             src="/Vector1.png"
@@ -63,7 +63,7 @@ const CountdownSNBTModule = () => {
           />
         </div>
 
-        <div className="absolute z-10 w-[464.54px] h-[38.41px] sm:w-[650.356px] sm:h-[53.774px] md:opacity-0 right-16 -bottom-12 sm:-bottom-11 sm:right-10">
+        <div className="absolute z-10 w-[464.54px] h-[38.41px] sm:w-[650.356px] sm:h-[53.774px] md:opacity-0 -bottom-12 sm:-bottom-11 -left-14 sm:-left-36">
         <Image
           alt="Vector2"
           src="/Vector2.png"
