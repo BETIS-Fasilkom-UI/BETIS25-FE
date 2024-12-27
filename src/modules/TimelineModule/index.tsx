@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { events } from "./const";
 import { BigEventCard, SmallEventCard } from "./module-elements/Card";
-import { BigCircleIcon, SmallCircleIcon } from "./module-elements/CircleIcon";
 import { BigBlurredStarIcon, SmallBlurredStarIcon } from "./module-elements/BlurredStarIcon";
 import Image from "next/image";
 
@@ -64,7 +63,6 @@ const TimelineModule = () => {
                             <div className="z-10 absolute top-[-65px] left-[-33.5px] w-[67px] h-[70px]">
                                 <Image className="" src="/TreasureChest.png" alt="" width={67} height={70} loading="eager" />
                             </div>
-                            {/* <SmallBlurredStarIcon className="absolute top-[-30px] left-[-37px]" /> */}
                         </div>
                 }
             </div>
@@ -93,7 +91,6 @@ const TimelineModule = () => {
                                         border-[#FCFFCCCC] 
                                         shadow-timeline absolute`}
                                 />
-                                {/* <BigCircleIcon className="absolute top-[-35px] left-[-35px]" /> */}
                                 <BigBlurredStarIcon className="absolute top-[-100px] left-[-100px]" />
                                 <BigEventCard
                                     className={`absolute md:top-[-37px] lg:top-[-53px] 
