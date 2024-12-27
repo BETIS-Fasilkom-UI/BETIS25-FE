@@ -11,7 +11,7 @@ export function EventCard({ className = "", event }: { className?: string, event
                 md:h-[70px] md:w-[175px] md:px-[16px] md:py-[15px] md:gap-[4px] md:rounded-[15px] 
                 lg:h-[100px] lg:w-[250px] lg:px-[23px] lg:gap-[12.88px] lg:py-[19px] lg:rounded-[20px] 
                 flex flex-col justify-center items-center 
-                bg-[#6F4589] border shadow-event-entry-card`, 
+                bg-[#6F4589] border max-md:shadow-event-entry-card-small md:shadow-event-entry-card`, 
                 className)}
         >
             <h1 className="font-[900] font-cinzel max-md:text-[14px] md:max-lg:text-[16px] lg:text-[23px]">
