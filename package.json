@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-checkbox": "^1.1.2",
@@ -24,21 +25,28 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
+    "cookies-next": "^5.0.2",
     "date-fns": "^4.1.0",
     "embla-carousel": "^8.3.1",
     "embla-carousel-react": "^8.3.1",
+    "firebase": "^11.0.2",
     "framer-motion": "^11.11.11",
     "lucide-react": "^0.454.0",
+    "moment": "^2.30.1",
     "next": "14.2.8",
+    "next-cloudinary": "^6.16.0",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^3.7.15",
     "react": "^18",
     "react-day-picker": "8.10.1",
     "react-dom": "^18",
     "react-dropzone": "^14.3.5",
+    "react-hook-form": "^7.53.2",
     "sonner": "^1.5.0",
+    "swr": "^2.2.5",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

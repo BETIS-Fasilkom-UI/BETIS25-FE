@@ -33,6 +33,8 @@ const config: Config = {
       backgroundImage: {
         "cp-gradient":
           "linear-gradient(180deg, rgba(72, 16, 51, 0.8) 0%, rgba(34, 12, 49, 0.8) 100%)",
+        "starry-gradient":
+          "linear-gradient(180deg, rgba(41,15,56,255) 0%, rgba(34, 12, 49, 0.8) 70%, rgba(125,40,130,255) 100%)",
       },
       colors: {
         background: "linear-gradient(180deg, #692597 0%, #220C31 100%)",
@@ -51,9 +53,9 @@ const config: Config = {
         "magenta-button": "#8e2b8f",
         "magenta-button-hover": "#c55f9e",
         "magenta-button-active": "#a7327a",
-        "violet-50": "#e6e9ee",
-        "violet-100": "#cb9bc8",
-        "violet-200": "#ab8bb2",
+        "violet-50": "#ede9ee",
+        "violet-100": "#c6b9cb",
+        "violet-200": "#ab98b2",
         "violet-300": "#84688f",
         "violet-400": "#6d4b79",
         "violet-500": "#481e58",
@@ -123,6 +125,18 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      animation: {
+        swing: 'swing 5s ease-in-out infinite',
+      },
+      keyframes: {
+        swing: {
+          '0%': { transform: 'rotate(-10deg)' },
+          '30%': { transform: 'rotate(10deg)' },
+          '50%': { transform: 'rotate(-10deg)' },
+          '80%': { transform: 'rotate(10deg)' },
+          '100%': { transform: 'rotate(-10deg)' },
+        },
       },
     },
   },
