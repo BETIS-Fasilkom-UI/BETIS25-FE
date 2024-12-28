@@ -1,5 +1,3 @@
-import BetalksWebinarppkbModule from "@/modules/BetalksWebinarppkbModule";
-
 export default function Page() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center text-center">
@@ -14,7 +12,6 @@ export default function Page() {
           Please wait and check back later.
         </h3>
       </div>
-      <BetalksWebinarppkbModule></BetalksWebinarppkbModule>
     </main>
   );
 }
