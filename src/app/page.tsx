@@ -1,9 +1,3 @@
-import Carousel from "@/modules/CarouselModule/Carousel";
-import {
-  betisCarousel,
-  betisCarouselOptions,
-} from "@/modules/CarouselModule/const";
-
 export default function Page() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center text-center">
@@ -18,8 +12,6 @@ export default function Page() {
           Please wait and check back later.
         </h3>
       </div>
-      <Carousel slides={betisCarousel} options={betisCarouselOptions} />
-      <div className="mb-[500px]"></div>
     </main>
   );
 }
