@@ -8,13 +8,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { AlignJustify } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User } from "@/hooks/interface";
+import { UserJWT } from "@/hooks/interface";
 import { getCookie, setCookie } from "cookies-next";
 import { toast } from "@/components/ui/sonner";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 
-export const Navbar = ({ user }: { user: User | null }) => {
+export const Navbar = ({ user }: { user: UserJWT | null }) => {
   const [open, setOpen] = useState(false);
   const isAuthenticated = user !== null;
   const Logout = async () => {
