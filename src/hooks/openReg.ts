@@ -1,5 +1,6 @@
 "use client";
 import z from "zod";
+import useCloudinaryUpload from "./cloudinary";
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_TYPES = [
@@ -120,7 +121,8 @@ export async function useOpenReg(
       "Only .PDF formats are supported."
     );
     if (!validation.isSuccess) return validation;
-    //TODO: Logic pindahin file ke cloudinary terus convert jadi link
+    const uploadImage = useCloudinaryUpload(povertyLetter);
+    console.log(uploadImage);
   }
 
   if (housePhoto) {
@@ -130,7 +132,8 @@ export async function useOpenReg(
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     );
     if (!validation.isSuccess) return validation;
-    //TODO: Logic pindahin file ke cloudinary terus convert jadi link
+    const uploadImage = useCloudinaryUpload(housePhoto);
+    console.log(uploadImage);
   }
 
   if (electricityBill) {
@@ -140,7 +143,8 @@ export async function useOpenReg(
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     );
     if (!validation.isSuccess) return validation;
-    //TODO: Logic pindahin file ke cloudinary terus convert jadi link
+    const uploadImage = useCloudinaryUpload(electricityBill);
+    console.log(uploadImage);
   }
 
   
@@ -159,5 +163,5 @@ export async function useOpenReg(
     return { isSuccess: false, message: data.message };
   }
 
-  return { isSuccess: true };
+  return { isSuccess: true, message: "Registration success" };
 }

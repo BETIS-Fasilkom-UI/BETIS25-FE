@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Modal, ModalButton } from "@/components/ui/modal";
 import { useState } from "react";
 
-const BetalksWebinarppkbModule = () => {
+const BetalksWebinarPPKB = () => {
   // isRegisterOpen state as placeholder for needing login
   const [isRegisterOpen, setRegisterOpen] = useState(false);
   const [isBetalksDescOpen, setBetalksDescOpen] = useState(false);
@@ -15,16 +15,16 @@ const BetalksWebinarppkbModule = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="text-[var(--Font,#FEF5FF)] font-cinzel text-3xl font-black leading-[3.75rem] mb-5 xl:flex xl:text-[3.2rem] xl:mb-[3.25rem]">
+      <div className="text-[var(--Font,#FEF5FF)] font-cinzel max-md:text-center text-2xl md:text-3xl font-black leading-[3.75rem] mb-5 xl:flex xl:text-[3.2rem] xl:mb-[3.25rem]">
         Our Event
       </div>
 
       <Card className="!border-0 !shadow-[0px_0px_12px_rgba(255,255,255,0.60)] !flex !flex-col-reverse !px-8 !pt-2 !pb-12 !mb-10 xl:!pl-14 xl:!pr-0 xl:!pt-9 xl:!h-[300px] xl:!flex-row xl:mx-auto xl:!mb-[9rem]">
         <div className="w-[72vmin] xl:w-[729px] flex flex-col">
-          <div className="text-[var(--Font,#FEF5FF)] font-cinzel text-3xl xl:text-4xl font-black leading-10 mt-8 xl:mt-0 xl:flex mb-4">
+          <div className="text-[var(--Font,#FEF5FF)] font-cinzel text-2xl md:text-3xl max-md:text-center xl:text-4xl font-black leading-10 mt-8 xl:mt-0 xl:flex mb-4">
             be talks
           </div>
-          <div className="text-[var(--Font,#FEF5FF)] text-justify font-raleway text-sm font-semibold xl:text-base xl:font-medium leading-7 mb-5 ">
+          <div className="text-[var(--Font,#FEF5FF)] text-justify font-raleway text-xs font-semibold md:text-base xl:font-medium leading-7 mb-5 ">
             Be-Talks adalah acara yang bertujuan untuk membangkitkan semangat
             belajar bagi peserta BETIS Fasilkom UI 2025, serta masyarakat umum
             agar tetap konsisten dalam mengejar impian mereka. Dengan adanya
@@ -81,10 +81,10 @@ const BetalksWebinarppkbModule = () => {
 
       <Card className="!border-0 !shadow-[0px_0px_12px_rgba(255,255,255,0.60)] !flex !flex-col-reverse !px-8 !pt-2 !pb-12 !mb-10 xl:!pr-14 xl:!pl-0 xl:!pt-9 xl:!h-[300px] xl:!flex-row-reverse xl:mx-auto xl:!mb-[9rem]">
         <div className="w-[72vmin] xl:w-[729px] flex flex-col">
-          <div className="text-[var(--Font,#FEF5FF)] font-cinzel text-3xl xl:text-4xl font-black leading-10 mt-8 xl:mt-0 xl:flex mb-4">
+          <div className="text-[var(--Font,#FEF5FF)] font-cinzel text-2xl md:text-3xl max-md:text-center xl:text-4xl font-black leading-10 mt-8 xl:mt-0 xl:flex mb-4">
             Webinar PPKB
           </div>
-          <div className="text-[var(--Font,#FEF5FF)] text-justify font-raleway text-sm font-semibold xl:text-base xl:font-medium leading-7 mb-5 ">
+          <div className="text-[var(--Font,#FEF5FF)] text-justify font-raleway text-xs font-semibold md:text-base xl:font-medium leading-7 mb-5 ">
             Webinar PPKB adalah acara untuk memberikan panduan menulis esai yang
             baik dan benar dalam seleksi PPKB (Prestasi dan Penelusuran
             Kemampuan Belajar). Peserta akan mempelajari struktur, strategi
@@ -142,4 +142,4 @@ const BetalksWebinarppkbModule = () => {
   );
 };
 
-export default BetalksWebinarppkbModule;
+export default BetalksWebinarPPKB;
