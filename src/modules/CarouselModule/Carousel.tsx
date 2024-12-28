@@ -104,22 +104,22 @@ const Carousel: React.FC<PropType> = (props) => {
   }, [emblaApi, setTweenNodes, slides.length, tweenScale]);
 
   return (
-    <div className="w-[89%] max-w-[1278px] flex flex-col md:gap-6 items-center">
-      <h1 className="lg:text-t1 md:text-t2 text-t5 max-w-[90%] font-cinzel text-center lg:mb-[36px]">
-        Betis 2024
+    <div className="w-[89%] sm:max-w-[1280px] flex flex-col md:gap-8 items-center">
+      <h1 className="lg:text-t1 md:text-t2 sm:text-t3 text-2xl max-w-[90%] font-cinzel text-center lg:mb-9 mt-10">
+        Betis 2024's Archive
       </h1>
-      <div className="flex gap-2 md:gap-5 w-full">
+      <div className="flex gap-[1vmin] sm:gap-[3vmin] md:gap-5 w-full h-auto">
         <CarouselButton direction="prev" onClick={onPrevButtonClick} />
         <div className="overflow-hidden w-full" ref={emblaRef}>
-          <div className="flex gap-10 py-10 px-3.5   md:px-3  ">
+          <div className="flex gap-10 py-6 sm:py-12 px-3.5  md:px-3  ">
             {slides.map((slide, index) => (
               <div className="relative" key={index}>
                 <Card
                   className={cn(
-                    "border-0 shadow-[0px_0px_12px_rgba(255,255,255,0.60)] slide-image relative transition-all duration-300 ease-in-out bg-[#ffffff] rounded-[32px] lg:px-8 lg:pt-10 lg:pb-10 flex flex-col justify-center items-center"
+                    " border-0 shadow-[0px_0px_12px_rgba(255,255,255,0.60)] slide-image relative transition-all duration-300 ease-in-out bg-[#ffffff] rounded-[32px] px-[4.5vmin] pt-[6vmin] sm:px-8 sm:pt-10 sm:pb-8 flex flex-col justify-center items-center"
                   )}
                 >
-                  <div className="w-[331px] h-[277px] relative rounded-2xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.20)]">
+                  <div className="w-[50vmin] h-[42vmin] sm:w-[331px] sm:h-[277px] relative rounded-2xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.20)]">
                     <Image
                       src={slide.src}
                       alt={slide.alt}
@@ -127,15 +127,13 @@ const Carousel: React.FC<PropType> = (props) => {
                       className="object-cover rounded-[10px]"
                     />
                   </div>
-                  <div className="space-y-5 md:max-w-[60%]">
-                    <div>
-                      <h2 className="font-raleway h-7 text-center text-[#fef5ff]/50 text-sm font-semibold leading-7">
-                        BETIS {slide.year}
-                      </h2>
-                      <h1 className="h-9 text-center text-[#fef5ff] text-4xl font-black font-cinzel leading-10">
-                        <div>{slide.alt}</div>
-                      </h1>
-                    </div>
+                  <div>
+                    <h2 className="font-raleway h-5 sm:h-7 text-center text-[#fef5ff]/50 text-[.6rem] sm:text-sm font-semibold sm:leading-7">
+                      BETIS {slide.year}
+                    </h2>
+                    <h1 className="h-7 sm:h-9 text-center text-[#fef5ff] text-2xl sm:text-4xl font-black font-cinzel sm:leading-10">
+                      <div>{slide.alt}</div>
+                    </h1>
                   </div>
                 </Card>
               </div>
@@ -144,15 +142,15 @@ const Carousel: React.FC<PropType> = (props) => {
         </div>
         <CarouselButton direction="next" onClick={onNextButtonClick} />
       </div>
-      <div className="flex gap-5 lg:gap-2 max-md:hidden">
+      <div className="flex gap-[0.25rem] sm:gap-5 lg:gap-2">
         {Array.from({ length: slides.length }).map((_, index) => (
           <div
             onClick={() => emblaApi?.scrollTo(index)}
             key={index}
             className={cn(
-              "size-4 rounded-full cursor-pointer",
+              "size-[0.55rem] sm:size-4 rounded-full cursor-pointer",
               activeSlideIndex === index
-                ? "w-8 bg-gradient-to-b from-[#b73786] to-[#621d48]"
+                ? "w-[1.10rem] sm:w-8 bg-gradient-to-b from-[#b73786] to-[#621d48]"
                 : "bg-black"
             )}
           />
