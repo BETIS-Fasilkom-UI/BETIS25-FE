@@ -8,7 +8,6 @@ import KupuKupu from "./assets/kupu";
 export default function Page() {
     return (
       <>
-      
       <div className="min-h-screen w-screen flex justify-center relative">
 
         <div className="flex flex-col justify-center items-center">
@@ -37,8 +36,6 @@ export default function Page() {
           left={true}
           className="z-[-1] w-[180px] max-md:w-[80px] aspect-[800/678] absolute top-[30%] left-[3%] transform scale-x-[-1]"
         />
-
-
       </div>
 
       <div className='h-screen'>

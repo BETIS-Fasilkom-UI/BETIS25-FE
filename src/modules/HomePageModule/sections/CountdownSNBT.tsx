@@ -3,10 +3,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
 
-const CountdownSNBTModule = () => {
+const CountdownSNBT = () => {
   return (
-
-    <div className="relative flex justify-center w-[100%] sm:w-[100%] h-[700px] sm:h-[800px] overflow-hidden">
+    <div className="relative flex justify-center w-[100%] sm:w-[100%] h-[700px] sm:h-[800px] overflow-hidden mb-[100px] md:mb-[200px]">
       <div className="relative w-[90%] sm:w-[80%] h-[500px] sm:h-[550px] translate-y-[100px] sm:translate-y-[150px] rounded-[40px] sm:rounded-[90px]">
         <div className="absolute inset-0 bg-[linear-gradient(0deg,_rgba(34,12,49,0)_0%,_#2B103A_27%,_#451C55_74%,_#8E2B8F_100%)] opacity-[12%] rounded-[40px] sm:rounded-[90px]"></div>
 
@@ -64,17 +63,17 @@ const CountdownSNBTModule = () => {
         </div>
 
         <div className="absolute z-10 w-[464.54px] h-[38.41px] sm:w-[650.356px] sm:h-[53.774px] md:opacity-0 -bottom-12 sm:-bottom-11 -left-14 sm:-left-36">
-        <Image
-          alt="Vector2"
-          src="/Vector2.png"
-          fill
-          sizes="none"
-          className="object-contain"
-        />
-      </div>
+          <Image
+            alt="Vector2"
+            src="/Vector2.png"
+            fill
+            sizes="none"
+            className="object-contain"
+          />
+        </div>
       </div>
     </div>
   );
 };
 
-export default CountdownSNBTModule;
+export default CountdownSNBT;
