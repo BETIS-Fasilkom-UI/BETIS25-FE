@@ -10,7 +10,7 @@ import Hero from './sections/hero/hero'
 
 export const HomePageModule = () => {
   return (
-    <main className="flex flex-col justify-center items-center">
+    <main className="flex flex-col justify-center items-center mb-[10dvh]">
       <Hero />
       <AboutBetis />
       <DocumentationCarousel
