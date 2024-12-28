@@ -1,6 +1,7 @@
-import AboutBetis from "@/components/elements/AboutBetis";
+import { getUserService } from "@/hooks/user";
 
-export default function Page() {
+export default async function Page() {
+  const user = await getUserService();
   return (
     <main className="min-h-screen flex flex-col justify-center items-center text-center">
       <h1 className="font-cinzel text-[96px] text-violet-900/40">
@@ -14,11 +15,11 @@ export default function Page() {
           Please wait and check back later.
         </h3>
       </div>
-      <AboutBetis />
-      <AboutBetis />
-      <AboutBetis />
-      <AboutBetis />
-      <AboutBetis />
+      {user && ( // If user is logged in
+        <p className="text-xs mt-5">
+          Welcome back, {user.name}! You are currently logged in.
+        </p>
+      )}
     </main>
   );
-};
+}

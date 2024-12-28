@@ -50,17 +50,17 @@ const RegisterModule = () => {
       <div className="absolute inset-0 bg-black opacity-30 z-10 pointer-events-none"></div>
 
       <div className="flex flex-grow items-center justify-center py-[12rem] px-5 z-20">
-        <Card className="max-lg:w-full max-lg:max-w-md lg:w-[70%] px-8 lg:px-24">
+        <Card className="max-lg:w-full max-lg:max-w-lg lg:w-[70%] px-8 lg:px-24">
           <CardHeader>
             <CardTitle className="text-center text-4xl md:text-4xl lg:text-5xl py-5">Register</CardTitle>
           </CardHeader>
 
           <CardContent>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-              <div className="lg:flex lg:space-x-8 max-lg:space-y-4">
-                <div className="lg:w-1/2 space-y-5">
+              <div className="grid md:grid-cols-2 gap-x-5 gap-y-4 md:gap-y-8">
+                
                   {/* Nama Lengkap Input */}
-                  <div className="lg:order-1">
+                  <div>
                     <Input
                       label="Nama Lengkap"
                       type="text"
@@ -74,7 +74,7 @@ const RegisterModule = () => {
                   </div>
 
                   {/* No HP / WA Input */}
-                  <div className="lg:order-2">
+                  <div>
                     <Input
                       label="No HP / WA"
                       type="text"
@@ -87,24 +87,8 @@ const RegisterModule = () => {
                     )}
                   </div>
 
-                  {/* Password Input */}
-                  <div className="lg:order-3">
-                    <Input
-                      label="Password"
-                      type="password"
-                      placeholder="Enter your password"
-                      asterisk
-                      onChange={(e) => {form.setValue('password', e.target.value)}}
-                    />
-                    {form.formState.errors.password && (
-                      <p className="text-sm text-red-500">{form.formState.errors.password.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="lg:w-1/2 space-y-5">
                   {/* Nama Panggilan Input */}
-                  <div className="lg:order-4">
+                  <div>
                     <Input
                       label="Nama Panggilan"
                       type="text"
@@ -118,7 +102,7 @@ const RegisterModule = () => {
                   </div>
 
                   {/* Email Input */}
-                  <div className="lg:order-5">
+                  <div>
                     <Input
                       label="Email Aktif"
                       type="email"
@@ -131,8 +115,22 @@ const RegisterModule = () => {
                     )}
                   </div>
 
+                  {/* Password Input */}
+                  <div>
+                    <Input
+                      label="Password"
+                      type="password"
+                      placeholder="Enter your password"
+                      asterisk
+                      onChange={(e) => {form.setValue('password', e.target.value)}}
+                    />
+                    {form.formState.errors.password && (
+                      <p className="text-sm text-red-500">{form.formState.errors.password.message}</p>
+                    )}
+                  </div>
+
                   {/* Konfirmasi Password Input */}
-                  <div className="lg:order-6 lg:pb-4">
+                  <div className="lg:pb-4">
                     <Input
                       label="Konfirmasi Password"
                       type="password"
@@ -144,7 +142,6 @@ const RegisterModule = () => {
                       <p className="text-sm text-red-500">{form.formState.errors.confirmPassword.message}</p>
                     )}
                   </div>
-                </div>
               </div>
 
               <div className="flex justify-center pt-3">
