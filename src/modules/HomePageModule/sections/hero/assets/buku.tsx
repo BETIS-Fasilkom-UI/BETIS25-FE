@@ -1,11 +1,12 @@
 import Image from 'next/image'
 
+
 export default function Jalan(props: {className: string}) {
     return(
-        <div className={props.className}>
+        <div className={`${props.className}`}>
         <Image 
-            src="/jalan.png" 
-            alt="Jalan" 
+            src="/buku.png" 
+            alt="buku" 
             sizes="none"
             fill
         />

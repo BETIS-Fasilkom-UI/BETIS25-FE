@@ -3,6 +3,7 @@ import Jalan from "./assets/jalan";
 import Kerajaan1 from "./assets/kerajaan1";
 import Kerajaan2 from "./assets/kerajaan2";
 import KupuKupu from "./assets/kupu";
+import Buku from "./assets/buku";
 
 
 export default function Page() {
@@ -35,6 +36,9 @@ export default function Page() {
         <KupuKupu
           left={true}
           className="z-[-1] w-[180px] max-md:w-[80px] aspect-[800/678] absolute top-[30%] left-[3%] transform scale-x-[-1]"
+        />
+        <Buku
+          className="z-[0] w-[800px] max-md:w-[650px] max-sm:w-[549px] aspect-[5200/1782] absolute top-[1150px] max-md:top-[1100px] max-sm:top-[900px]"
         />
       </div>
 
