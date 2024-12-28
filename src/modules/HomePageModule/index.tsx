@@ -6,10 +6,12 @@ import Timeline from "./sections/Timeline";
 import BetalksWebinarPPKB from "./sections/BetalksWebinarPPBK";
 import CountdownSNBT from "./sections/CountdownSNBT";
 import { ContactPerson } from "@/components/elements/ContactPerson";
+import Hero from './sections/Hero/index';
 
 export const HomePageModule = () => {
   return (
-    <main className="flex flex-col justify-center items-center my-[10dvh]">
+    <main className="flex flex-col justify-center items-center mb-[10dvh]">
+      <Hero />
       <AboutBetis />
       <DocumentationCarousel
         slides={betisCarousel}
