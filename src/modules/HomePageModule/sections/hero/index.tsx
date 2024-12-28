@@ -23,10 +23,10 @@ export default function Page() {
           className="z-[-1] w-[1000px] max-md:w-[900px] max-sm:w-[645px] aspect-[3197/4262] absolute top-[50%] translate-y-[-23%]"
         />
         <Kerajaan1
-          className="z-[-2] w-[1000px] max-md:w-[900px] max-sm:w-[645px] aspect-[4276/8320] absolute top-[15%] max-sm:top-[30%] left-0 opacity-50"
+          className="z-[-2] w-[1000px] max-md:w-[900px] max-sm:w-[645px] aspect-[4276/8320] absolute top-[15%] max-sm:top-[30%] left-0 opacity-80"
         />
         <Kerajaan2
-          className="z-[-2] w-[1000px] max-md:w-[900px] max-sm:w-[645px] aspect-[5760/8320] absolute top-[15%] max-sm:top-[30%] right-0 opacity-50"
+          className="z-[-2] w-[1000px] max-md:w-[900px] max-sm:w-[645px] aspect-[5760/8320] absolute top-[15%] max-sm:top-[30%] right-0 opacity-60"
         />
         <KupuKupu
           reverse={false}
@@ -38,7 +38,7 @@ export default function Page() {
         />
       </div>
 
-      <div className='h-screen'>
+      <div className='h-[900px] max-md:h-[650px] max-sm:h-[400px]'>
 
       </div>
       </>

@@ -3,13 +3,17 @@ import Buku from "./buku";
 import Pohon from "./pohon";
 import Aliran from "./aliran";
 import Mascot from "./mascot";
+import styles from './hero.module.css'
 
 
 export default function Jalan(props: {className: string}) {
     return(
         <div className={`${props.className}`}>
+            {/* Biar bikin atasnya soft */}
+            <div className='w-[50%] h-1 border-[50px] border-[#692597] blur-[50px] absolute top-[-5%] left-[50%] translate-x-[-50%] rounded-full'></div>
+
             <Image
-                className='z-0'
+                className={`${styles.softEdge} z-0`}
                 src="/jalan.png" 
                 alt="Jalan" 
                 sizes="none"

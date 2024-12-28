@@ -6,7 +6,7 @@ import Timeline from "./sections/Timeline";
 import BetalksWebinarPPKB from "./sections/BetalksWebinarPPBK";
 import CountdownSNBT from "./sections/CountdownSNBT";
 import { ContactPerson } from "@/components/elements/ContactPerson";
-import Hero from './sections/hero/hero'
+import Hero from './sections/Hero/index';
 
 export const HomePageModule = () => {
   return (
