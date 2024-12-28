@@ -23,11 +23,10 @@ const FaqModule = () => {
       </div>
 
       {/* Right Section: Accordion */}
-      <div className="w w-full lg:w-1/2" >
-        <Accordion type="single" collapsible className="gap-4">
-
+      <div className="w w-full lg:w-1/2">
+        <Accordion type="single" collapsible className="flex flex-col gap-3">
           {/* Question 1 */}
-          <AccordionItem value="item-1">
+          <AccordionItem value="item-1" className="mb-10">
             <AccordionTrigger>
               Materi apa yang diajarkan di BETIS 2025?
             </AccordionTrigger>
@@ -42,9 +41,7 @@ const FaqModule = () => {
             <AccordionTrigger>
               Bagaimana sistem pembelajaran BETIS 2025?
             </AccordionTrigger>
-            <AccordionContent>
-              bla bla
-            </AccordionContent>
+            <AccordionContent>bla bla</AccordionContent>
           </AccordionItem>
 
           {/* Question 3 */}
@@ -52,9 +49,7 @@ const FaqModule = () => {
             <AccordionTrigger>
               Periode KBM BETIS 2025 sampai kapan?
             </AccordionTrigger>
-            <AccordionContent>
-              bla bla
-            </AccordionContent>
+            <AccordionContent>bla bla</AccordionContent>
           </AccordionItem>
 
           {/* Question 4 */}
@@ -62,9 +57,7 @@ const FaqModule = () => {
             <AccordionTrigger>
               Kapan pengumuman peserta BETIS 2025 diumumkan?
             </AccordionTrigger>
-            <AccordionContent>
-              bla bla
-            </AccordionContent>
+            <AccordionContent>bla bla</AccordionContent>
           </AccordionItem>
 
           {/* Question 5 */}
@@ -72,9 +65,7 @@ const FaqModule = () => {
             <AccordionTrigger>
               Bagaimana jika kita tidak punya slip gaji orang tua?
             </AccordionTrigger>
-            <AccordionContent>
-             bla bla
-            </AccordionContent>
+            <AccordionContent>bla bla</AccordionContent>
           </AccordionItem>
 
           {/* Question 6 */}
@@ -82,9 +73,7 @@ const FaqModule = () => {
             <AccordionTrigger>
               Apakah akan ada biaya tertentu yang harus dibayar?
             </AccordionTrigger>
-            <AccordionContent>
-              bla bla
-            </AccordionContent>
+            <AccordionContent>bla bla</AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
@@ -93,3 +82,4 @@ const FaqModule = () => {
 };
 
 export default FaqModule;
+
