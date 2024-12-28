@@ -1,7 +1,7 @@
 "use client";
 
 import { events } from "./const";
-import { EventCard } from "./module-elements/Card";
+import { EventCard } from "./module-elements/card";
 import { BigBlurredStarIcon, SmallBlurredStarIcon } from "./module-elements/BlurredStarIcon";
 import Image from "next/image";
 
