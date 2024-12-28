@@ -123,6 +123,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
               ))}
               <Link
                 href={isAuthenticated ? "#" : "/login"}
+                onClick={isAuthenticated ? Logout : () => {}}
               >
                 <motion.div
                   initial={{ opacity: 0 }}
