@@ -9,10 +9,27 @@ import { cn } from "@/lib/utils";
 import { AlignJustify } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User } from "@/hooks/interface";
+import { getCookie, setCookie } from "cookies-next";
+import { toast } from "@/components/ui/sonner";
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
 
 export const Navbar = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
   const isAutehnticated = user !== null;
+  const Logout = async () => {
+    if (isAutehnticated) {
+      const token = getCookie("token");
+      if (token) {
+        await signOut(auth).then(() => {
+          setCookie("token", "", {
+            expires: new Date(0),
+          });
+          toast.success("Logout success");
+        });
+      }
+    }
+  };
   return (
     <>
       <nav
@@ -55,7 +72,7 @@ export const Navbar = ({ user }: { user: User | null }) => {
             </div>
             {isAutehnticated ? (
               <div className="flex items-center gap-6">
-                <Button variant="destructive" className="">
+                <Button onClick={Logout} variant="destructive" className="">
                   Logout
                 </Button>
                 <Avatar>

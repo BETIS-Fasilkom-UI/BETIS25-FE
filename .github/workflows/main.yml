@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to VM
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and Pull Latest Changes
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          proxy_host: ${{ secrets.PROXY_HOST }}
+          proxy_username: ${{ secrets.PROXY_USERNAME }}
+          proxy_passphrase: ${{ secrets.PROXY_PASSPHRASE }}
+          proxy_key: ${{ secrets.PROXY_KEY }}
+          proxy_port: ${{ secrets.PROXY_PORT }}
+          script: |
+            cd ~/BETIS25-FE
+            git pull upstream main
+            pnpm install
+            pnpm run build
+            pm2 restart betis25-fe
