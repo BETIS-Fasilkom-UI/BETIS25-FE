@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const AboutBetis = () => {
   return (
-    <div className="w-[100vw] h-auto my-10 px-[6.4%] overflow-x-clip py-[3%]">
+    <div className="w-screen h-auto my-10 overflow-x-clip p-8">
       {/* Main Container */}
       <div className="relative flex flex-col items-center justify-center w-full max-w-[100vw] gap-[3%] md:items-start">
         {/* Heading */}
