@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { EventEntry } from "../../HomePageModule/interface";
+import { EventEntry } from "../interface";
 
 export function EventCard({
   className = "",

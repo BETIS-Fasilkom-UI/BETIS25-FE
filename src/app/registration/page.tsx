@@ -6,7 +6,7 @@ import React from "react";
 const RegistrationPage = async () => {
   const user = await getUserService();
   if (!user) {
-    redirect("/");
+    redirect("/login");
   }
   return <RegistrationModule />;
 };
