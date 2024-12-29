@@ -26,6 +26,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
             expires: new Date(0),
           });
           toast.success("Logout success");
+          window.location.reload();
         });
       }
     }

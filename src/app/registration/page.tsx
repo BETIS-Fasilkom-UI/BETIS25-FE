@@ -1,8 +1,14 @@
-import RegistrationModule from '@/modules/RegistrationModule'
-import React from 'react'
+import { getUserService } from "@/hooks/user";
+import RegistrationModule from "@/modules/RegistrationModule";
+import { redirect } from "next/navigation";
+import React from "react";
 
-const RegistrationPage = () => {
-  return <RegistrationModule />
-}
+const RegistrationPage = async () => {
+  const user = await getUserService();
+  if (!user) {
+    redirect("/");
+  }
+  return <RegistrationModule />;
+};
 
-export default RegistrationPage
+export default RegistrationPage;
