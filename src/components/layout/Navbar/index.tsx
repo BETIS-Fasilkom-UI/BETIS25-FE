@@ -8,10 +8,29 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { AlignJustify } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { UserJWT } from "@/hooks/interface";
+import { getCookie, setCookie } from "cookies-next";
+import { toast } from "@/components/ui/sonner";
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
 
-export const Navbar = () => {
+export const Navbar = ({ user }: { user: UserJWT | null }) => {
   const [open, setOpen] = useState(false);
-  const isAutehnticated = true;
+  const isAuthenticated = user !== null;
+  const Logout = async () => {
+    if (isAuthenticated) {
+      const token = getCookie("token");
+      if (token) {
+        await signOut(auth).then(() => {
+          setCookie("token", "", {
+            expires: new Date(0),
+          });
+          toast.success("Logout success");
+          window.location.reload();
+        });
+      }
+    }
+  };
   return (
     <>
       <nav
@@ -20,7 +39,7 @@ export const Navbar = () => {
         <div
           className={cn(
             "flex items-center justify-between max-md:px-5 px-7 py-7 bg-[#481e58a6]",
-            isAutehnticated ? "xl:px-14" : "xl:px-8"
+            isAuthenticated ? "xl:px-14" : "xl:px-8"
           )}
         >
           <div className="flex items-center justify-center gap-7">
@@ -42,19 +61,21 @@ export const Navbar = () => {
                 <Link
                   key={index}
                   href={item.isAvailable ? item.href : "#"}
-                  className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${item.isAvailable ? "cursor-pointer" : "cursor-not-allowed text-white/30"}`}
+                  className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${
+                    item.isAvailable
+                      ? "cursor-pointer"
+                      : "cursor-not-allowed text-white/30"
+                  }`}
                 >
                   {item.title}
                 </Link>
               ))}
             </div>
-            {isAutehnticated ? (
+            {isAuthenticated ? (
               <div className="flex items-center gap-6">
-                <Link href="/dashboard">
-                  <Button variant="destructive" className="">
-                    Logout
-                  </Button>
-                </Link>
+                <Button onClick={Logout} variant="destructive" className="">
+                  Logout
+                </Button>
                 <Avatar>
                   <AvatarImage
                     src="https://github.com/shadcn.png"
@@ -91,25 +112,35 @@ export const Navbar = () => {
                   transition={{ duration: 0.3 + index * 0.1, type: "tween" }}
                   className="px-5 py-[15px]"
                 >
-                  <Link href={item.href} className="w-fit cursor-pointer">
+                    <Link
+                    href={item.isAvailable ? item.href : "#"}
+                    className={`w-fit ${
+                      item.isAvailable ? "cursor-pointer" : "cursor-not-allowed text-white/30"
+                    }`}
+                    >
                     {item.title}
-                  </Link>
+                    </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.9 }}
-                className={cn(
-                  "font-bold px-5 py-[15px] rounded-b-[20px]",
-                  isAutehnticated
-                    ? "bg-magenta-800"
-                    : "bg-gradient-to-b from-magenta-500 to-magenta-button"
-                )}
+              <Link
+                href={isAuthenticated ? "#" : "/login"}
+                onClick={isAuthenticated ? Logout : () => {}}
               >
-                {isAutehnticated ? "Logout" : "Login"}
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.9 }}
+                  className={cn(
+                    "font-bold px-5 py-[15px] rounded-b-[20px]",
+                    isAuthenticated
+                      ? "bg-magenta-800"
+                      : "bg-gradient-to-b from-magenta-500 to-magenta-button"
+                  )}
+                >
+                  {isAuthenticated ? "Logout" : "Login"}
+                </motion.div>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>

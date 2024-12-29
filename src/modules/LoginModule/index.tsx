@@ -31,7 +31,7 @@ const LoginModule = () => {
 
     if (result.isSuccess) {
       toast.success(result.message)
-      router.push("/")
+      window.location.reload()
     } else {
       toast.error(result.message)
     }
