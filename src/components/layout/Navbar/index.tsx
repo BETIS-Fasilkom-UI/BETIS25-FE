@@ -41,7 +41,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
         <div
           className={cn(
             "flex items-center justify-between max-md:px-5 px-7 py-7 bg-[#481e58a6]",
-            isAuthenticated ? "xl:px-14" : "xl:px-8",
+            isAuthenticated ? "xl:px-14" : "xl:px-8"
           )}
         >
           <div className="flex items-center justify-center gap-7">
@@ -78,13 +78,15 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                 <Button onClick={Logout} variant="destructive" className="">
                   Logout
                 </Button>
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <Link href={"/profile"}>  
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="@shadcn"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </Link>
               </div>
             ) : (
               <Link href="/login">
@@ -139,7 +141,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                     "font-bold px-5 py-[15px] rounded-b-[20px]",
                     isAuthenticated
                       ? "bg-magenta-800"
-                      : "bg-gradient-to-b from-magenta-500 to-magenta-button",
+                      : "bg-gradient-to-b from-magenta-500 to-magenta-button"
                   )}
                 >
                   {isAuthenticated ? "Logout" : "Login"}
