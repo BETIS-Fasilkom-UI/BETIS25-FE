@@ -65,7 +65,7 @@ const AboutBetis = () => {
           </div>
         </div>
         {/* Girl Illustration */}
-        <div className="absolute w-[24rem] h-[16rem] right-0 top-1/2 translate-x-48 -translate-y-80 md:w-[32rem] md:h-[96rem] md:translate-x-[15rem] md:-translate-y-[30rem] lg:w-[40rem] lg:h-[120rem] lg:translate-x-[18rem] lg:-translate-y-[38rem]">
+        <div className="absolute w-[24rem] h-[350px] sm:h-[400px] md:h-[650px] lg:h-[800px] top-0 md:top-72  right-0 translate-x-48  md:w-[32rem]  md:translate-x-[15rem] lg:w-[40rem] lg:translate-x-[18rem] ">
           <Image
             src="/about/girl-illustration.png"
             alt="Girl Illustration"
