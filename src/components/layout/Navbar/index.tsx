@@ -1,21 +1,19 @@
 "use client";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import {navData} from "./const";
+import { navData } from "./const";
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {cn} from "@/lib/utils";
-import {AlignJustify} from "lucide-react";
-import {motion, AnimatePresence} from "framer-motion";
-import {User} from "@/hooks/interface";
-import {getCookie, setCookie} from "cookies-next";
-import {toast} from "@/components/ui/sonner";
-import {useRouter} from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
+import { AlignJustify } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { UserJWT } from "@/hooks/interface";
+import { getCookie, setCookie } from "cookies-next";
+import { toast } from "@/components/ui/sonner";
 
-export const Navbar = ({user}: { user: User | null }) => {
+export const Navbar = ({ user }: { user: UserJWT | null }) => {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
   const isAuthenticated = user !== null;
   const Logout = async () => {
     if (isAuthenticated) {
@@ -30,6 +28,7 @@ export const Navbar = ({user}: { user: User | null }) => {
             expires: new Date(0),
           });
           toast.success("Logout success");
+          window.location.reload();
         });
       }
     }
@@ -42,7 +41,7 @@ export const Navbar = ({user}: { user: User | null }) => {
         <div
           className={cn(
             "flex items-center justify-between max-md:px-5 px-7 py-7 bg-[#481e58a6]",
-            isAuthenticated ? "xl:px-14" : "xl:px-8"
+            isAuthenticated ? "xl:px-14" : "xl:px-8",
           )}
         >
           <div className="flex items-center justify-center gap-7">
@@ -101,40 +100,51 @@ export const Navbar = ({user}: { user: User | null }) => {
         <AnimatePresence>
           {open && (
             <motion.div
-              initial={{height: 0}}
-              animate={{height: "auto"}}
-              exit={{height: 0}}
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              exit={{ height: 0 }}
               className="flex flex-col bg-[#481e58a6] justify-start text-[#FEF5FF] text-t7 lg:hidden"
             >
               {navData.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{opacity: 0, y: -20}}
-                  animate={{opacity: 1, y: 0}}
-                  exit={{opacity: 0, y: -20}}
-                  transition={{duration: 0.3 + index * 0.1, type: "tween"}}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 + index * 0.1, type: "tween" }}
                   className="px-5 py-[15px]"
                 >
-                  <Link href={item.href} className="w-fit cursor-pointer">
+                  <Link
+                    href={item.isAvailable ? item.href : "#"}
+                    className={`w-fit ${
+                      item.isAvailable
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed text-white/30"
+                    }`}
+                  >
                     {item.title}
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                exit={{opacity: 0}}
-                transition={{duration: 0.9}}
-                className={cn(
-                  "font-bold px-5 py-[15px] rounded-b-[20px] cursor-pointer",
-                  isAuthenticated
-                    ? "bg-magenta-800"
-                    : "bg-gradient-to-b from-magenta-500 to-magenta-button"
-                )}
-                onClick={isAuthenticated ? () => router.push("/login") : Logout}
+              <Link
+                href={isAuthenticated ? "#" : "/login"}
+                onClick={isAuthenticated ? Logout : () => {}}
               >
-                {isAuthenticated ? "Logout" : "Login"}
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.9 }}
+                  className={cn(
+                    "font-bold px-5 py-[15px] rounded-b-[20px]",
+                    isAuthenticated
+                      ? "bg-magenta-800"
+                      : "bg-gradient-to-b from-magenta-500 to-magenta-button",
+                  )}
+                >
+                  {isAuthenticated ? "Logout" : "Login"}
+                </motion.div>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>
