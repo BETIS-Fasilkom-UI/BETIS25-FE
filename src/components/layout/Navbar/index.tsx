@@ -78,13 +78,15 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                 <Button onClick={Logout} variant="destructive" className="">
                   Logout
                 </Button>
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <a href="/profile">
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="@shadcn"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </a>
               </div>
             ) : (
               <Link href="/login">
