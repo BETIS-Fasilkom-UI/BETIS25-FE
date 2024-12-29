@@ -11,8 +11,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { UserJWT } from "@/hooks/interface";
 import { getCookie, setCookie } from "cookies-next";
 import { toast } from "@/components/ui/sonner";
-import { auth } from "@/lib/firebase";
-import { signOut } from "firebase/auth";
 
 export const Navbar = ({ user }: { user: UserJWT | null }) => {
   const [open, setOpen] = useState(false);
@@ -21,7 +19,11 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
     if (isAuthenticated) {
       const token = getCookie("token");
       if (token) {
-        await signOut(auth).then(() => {
+        await fetch("http://localhost:8080/api/v1/auth/logout", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then(() => {
           setCookie("token", "", {
             expires: new Date(0),
           });
@@ -39,7 +41,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
         <div
           className={cn(
             "flex items-center justify-between max-md:px-5 px-7 py-7 bg-[#481e58a6]",
-            isAuthenticated ? "xl:px-14" : "xl:px-8"
+            isAuthenticated ? "xl:px-14" : "xl:px-8",
           )}
         >
           <div className="flex items-center justify-center gap-7">
@@ -112,14 +114,16 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                   transition={{ duration: 0.3 + index * 0.1, type: "tween" }}
                   className="px-5 py-[15px]"
                 >
-                    <Link
+                  <Link
                     href={item.isAvailable ? item.href : "#"}
                     className={`w-fit ${
-                      item.isAvailable ? "cursor-pointer" : "cursor-not-allowed text-white/30"
+                      item.isAvailable
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed text-white/30"
                     }`}
-                    >
+                  >
                     {item.title}
-                    </Link>
+                  </Link>
                 </motion.div>
               ))}
               <Link
@@ -135,7 +139,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                     "font-bold px-5 py-[15px] rounded-b-[20px]",
                     isAuthenticated
                       ? "bg-magenta-800"
-                      : "bg-gradient-to-b from-magenta-500 to-magenta-button"
+                      : "bg-gradient-to-b from-magenta-500 to-magenta-button",
                   )}
                 >
                   {isAuthenticated ? "Logout" : "Login"}

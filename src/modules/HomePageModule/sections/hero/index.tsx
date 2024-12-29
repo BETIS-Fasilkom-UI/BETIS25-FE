@@ -4,18 +4,17 @@ import Kerajaan1 from "./assets/kerajaan1";
 import Kerajaan2 from "./assets/kerajaan2";
 import KupuKupu from "./assets/kupu";
 
-
-export default function Page() {
-    return (
-      <>
+export default function Hero() {
+  return (
+    <>
       <div className="min-h-screen w-screen flex justify-center relative">
 
         <div className="flex flex-col justify-center items-center">
-          <Greet 
-          primaryText="BETIS 2025"
-          secondaryText="Bimbingan Belajar Gratis"
-          linkPrimary="Daftar Sekarang"
-          linkSecondary="Description"
+          <Greet
+            primaryText="BETIS 2025"
+            secondaryText="Bimbingan Belajar Gratis"
+            linkPrimary="Daftar Sekarang"
+            linkSecondary="Description"
           />
         </div>
 
@@ -41,6 +40,6 @@ export default function Page() {
       <div className='h-[900px] max-md:h-[650px] max-sm:h-[400px]'>
 
       </div>
-      </>
-    );
-  };
+    </>
+  );
+};

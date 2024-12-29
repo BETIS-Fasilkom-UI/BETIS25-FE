@@ -74,7 +74,7 @@ const BetalksWebinarPPKB = () => {
             src="/imageBEtalks.png"
             fill
             sizes="none"
-            className="object-contain"
+            className="object-contain animate-swing"
           />
         </div>
       </Card>
@@ -134,7 +134,7 @@ const BetalksWebinarPPKB = () => {
             src="/imageWebinarPPKB.png"
             fill
             sizes="none"
-            className="object-contain"
+            className="object-contain animate-swing"
           />
         </div>
       </Card>

@@ -1,14 +1,18 @@
-import React from "react";
-import { ProfileModule } from "@/modules/ProfileModules";
-import { getUserService } from "@/hooks/user";
+import { getUserData, getUserService } from "@/hooks/user";
+import { ProfilePageModule } from "@/modules/ProfilePageModule"
 import { redirect } from "next/navigation";
 
-const page = async () => {
-  const user = await getUserService();
-  if (!user) {
-    redirect("/login");
-  }
-  return <ProfileModule />;
-};
+const ProfilePage = async () => {
+    const user = await getUserData();
 
-export default page;
+    console.log(user);
+    
+
+    if (!user) {
+        redirect("/");
+    }
+
+    return <ProfilePageModule  user={user}/>    
+}
+
+export default ProfilePage
