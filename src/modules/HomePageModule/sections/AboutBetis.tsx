@@ -1,3 +1,4 @@
+import { CountUp } from "@/animation/CountUp";
 import Image from "next/image";
 
 const AboutBetis = () => {
@@ -42,7 +43,11 @@ const AboutBetis = () => {
         <div className="flex flex-row items-center justify-around p-3 my-5 text-center text-[#FEF5FF] bg-[#F8EBF333] rounded-[20px] shadow-[4px_4px_12px_0px_rgba(254,245,255,0.40),-4px_-4px_12px_0px_rgba(254,245,255,0.40)] backdrop-blur-md w-full md:align-baseline md:my-7 md:justify-center">
           <div className="flex flex-col items-center">
             <h3 className="text-2xl font-bold md:text-4xl lg:text-5xl font-cinzel">
-              350+
+              <CountUp 
+                target={350}
+                duration={2}
+              />
+              +
             </h3>
             <h4 className="text-xl font-bold md:text-3xl lg:text-4xl font-cinzel">
               Pendaftar
@@ -54,7 +59,10 @@ const AboutBetis = () => {
           <div className="block w-[2px] h-[75px] md:h-[125px] bg-[#FEF5FF] bg-opacity-50 rounded-md lg:h-[150px] md:mx-14 lg:mx-24"></div>
           <div className="flex flex-col items-center md:mr-24 lg:mr-32">
             <h3 className="text-2xl font-bold md:text-4xl lg:text-5xl font-cinzel">
-              125
+              <CountUp
+                target={125}
+                duration={2}
+              />
             </h3>
             <h4 className="text-xl font-bold md:text-3xl lg:text-4xl font-cinzel">
               Peserta
