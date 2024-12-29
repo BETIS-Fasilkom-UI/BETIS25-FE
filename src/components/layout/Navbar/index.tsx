@@ -44,7 +44,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
             isAuthenticated ? "xl:px-14" : "xl:px-8"
           )}
         >
-          <div className="flex items-center justify-center gap-7">
+          <Link href={"/"} className="flex items-center justify-center gap-7">
             <div className="w-[50px] md:w-[61px] h-[54px] relative">
               <Image
                 src="/Footer.png"
@@ -56,7 +56,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
             <h1 className="text-white max-sm:hidden xl:text-t5 text-t4 font-cinzel">
               BETIS 2025
             </h1>
-          </div>
+          </Link>
           <div className="flex items-center justify-end gap-8 xl:gap-14 max-lg:hidden">
             <div className="flex gap-4 xl:gap-7 items-center">
               {navData.map((item, index) => (
@@ -78,7 +78,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                 <Button onClick={Logout} variant="destructive" className="">
                   Logout
                 </Button>
-                <Link href={"/profile"}>  
+                <Link href={"/profile"}>
                   <Avatar>
                     <AvatarImage
                       src="https://github.com/shadcn.png"
