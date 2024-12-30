@@ -1,4 +1,4 @@
-import SponsorModule from '@/modules/SponsorModule'
+import SponsorModule from '@/modules/HomePageModule/sections/Sponsor'
 import React from 'react'
 
 const SponsorPage = () => {
