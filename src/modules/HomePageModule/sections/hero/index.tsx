@@ -12,7 +12,7 @@ export default function Hero() {
         <Greet
           primaryText="BETIS 2025"
           secondaryText="Bimbingan Belajar Gratis"
-          linkPrimary="Daftar Sekarang"
+          linkPrimary="registration"
           linkSecondary="Description"
         />
       </div>

@@ -25,9 +25,11 @@ const CountdownSNBT = () => {
               Waktunya berjuang dan raih mimpimu
             </div>
             <div className="flex justify-center">
-              <Button className="w-fit sm:w-[80%] h-[90%] text-t8 sm:text-t7">
-                Daftar BETIS 2025
-              </Button>
+              <a href="/registration">
+                <Button className="w-fit sm:w-[80%] h-[90%] text-t8 sm:text-t7">
+                  Daftar BETIS 2025
+                </Button>
+              </a>
             </div>
           </div>
         </div>
