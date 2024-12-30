@@ -30,15 +30,6 @@ export const openRegSchema = z.object({
   parentName: z.string(),
   relationWithParent: z.string(),
   parentPhoneNumber: z.string().regex(/[1-9]\d{1,14}$/),
-  parentIdentityCard: z
-    .any()
-    .refine((files) => {
-      return files?.size <= MAX_FILE_SIZE;
-    }, `Max image size is 5MB.`)
-    .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.type),
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
-    ),
   highschoolName: z.string(),
   highschoolClass: z.string(),
   meanScore: z.string(),
@@ -122,6 +113,7 @@ export async function useOpenReg(
     povertyLetter?: File;
     housePhoto?: File;
     electricityBill?: File;
+    paycheck?: File;
   }
 ) {
 
@@ -142,8 +134,6 @@ export async function useOpenReg(
     // Upload Necessary files to s3
     const identityCardUrl = await uploadFile(values.identityCard, `identity-card_${userName}_${userId}`, folder);
     
-    const parentIdentityCardUrl = await uploadFile(values.parentIdentityCard, `parent-identity-card_${userName}_${userId}`, folder);
-    
     const studentReportUrl = await uploadFile(values.studentReport, `student-report_${userName}_${userId}`, folder);
 
     const motivationLetterUrl = await uploadFile(values.motivationLetter, `motivasi-letter_${userName}_${userId}`, folder);
@@ -156,11 +146,23 @@ export async function useOpenReg(
 
     const proofOfSg = await uploadFile(values.proofOfSg, `proof-of-sg_${userName}_${userId}`, folder);
   
-    const { povertyLetter, housePhoto, electricityBill } = optionalFiles;
+    const { povertyLetter, housePhoto, electricityBill, paycheck } = optionalFiles;
   
     let povertyLetterUrl = null;
     let housePhotoUrl = null;
     let electricityBillUrl = null;
+    let parentPaycheckUrl = null;
+
+    if (paycheck) {
+      const validation = validateFile(
+        paycheck,
+        ACCEPTED_IMAGE_TYPES,
+        "Only .jpg, .jpeg, .png and .webp formats are supported."
+      );
+      if (!validation.isSuccess) return validation;
+  
+      parentPaycheckUrl = await uploadFile(paycheck, `parent-paycheck_${userName}_${userId}`, folder);
+    }
   
     if (povertyLetter) {
       const validation = validateFile(
@@ -207,7 +209,7 @@ export async function useOpenReg(
       guardian_name: values.parentName,
       guardian_relationship: values.relationWithParent,
       guardian_phone: values.parentPhoneNumber,
-      guardian_document_url: parentIdentityCardUrl,
+      paycheck_url: parentPaycheckUrl,
       school_name: values.highschoolName,
       grade: values.highschoolClass,
       average_score: parseFloat(values.meanScore),

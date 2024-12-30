@@ -55,37 +55,35 @@ const RegistrationModule = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const [povertyFile, setPovertyFile] = useState<File | null>(null);
-  const [electricityBillFile, setElectricityBillFile] =
-    useState<File | null>(null);
-  const [housePhotoFile, setHousePhotoFile] = useState<File | null>(
-    null
-  );
+  const [electricityBillFile, setElectricityBillFile] = useState<File | null>(null);
+  const [housePhotoFile, setHousePhotoFile] = useState<File | null>(null);
+  const [paycheckFile, setPaycheckFile] = useState<File | null>(null);
 
   const { replace } = useRouter();
 
   const form = useForm<OpenRegFormValues>({
     resolver: zodResolver(openRegSchema),
-    defaultValues: {
-      fullName: "John Doe",
-      username: "johndoe",
-      phoneNumber: "1234567890",
-      birthDate: new Date("2000-01-01"),
-      address: "123 Main St",
-      studyMethood: "online",
-      parentName: "Jane Doe",
-      relationWithParent: "Mother",
-      parentPhoneNumber: "0987654321",
-      highschoolName: "High School ABC",
-      highschoolClass: "kelas-12",
-      meanScore: "90",
-      studentReport: null,
-      motivationLetter: null,
-      commitmentLetter: null,
-      proofOfFollowing: null,
-      proofOfTwibbon: null,
-      proofOfSg: null,
-      referralCode: "REF123",
-    },
+    // defaultValues: {
+    //   fullName: "John Doe",
+    //   username: "johndoe",
+    //   phoneNumber: "1234567890",
+    //   birthDate: new Date("2000-01-01"),
+    //   address: "123 Main St",
+    //   studyMethood: "online",
+    //   parentName: "Jane Doe",
+    //   relationWithParent: "Mother",
+    //   parentPhoneNumber: "0987654321",
+    //   highschoolName: "High School ABC",
+    //   highschoolClass: "kelas-12",
+    //   meanScore: "90",
+    //   studentReport: null,
+    //   motivationLetter: null,
+    //   commitmentLetter: null,
+    //   proofOfFollowing: null,
+    //   proofOfTwibbon: null,
+    //   proofOfSg: null,
+    //   referralCode: "REF123",
+    // },
   });
 
   const onSubmit = async (values: OpenRegFormValues) => {
@@ -101,6 +99,7 @@ const RegistrationModule = () => {
       povertyLetter: povertyFile || undefined,
       housePhoto: housePhotoFile || undefined,
       electricityBill: electricityBillFile || undefined,
+      paycheckUrl: paycheckFile || undefined,
     };
 
     try {
@@ -474,28 +473,11 @@ const RegistrationModule = () => {
 
                           <div className="lg:w-1/2 max-lg:pt-4 lg:space-y-2">
                             <FileInput
-                              label="Slip Gaji / Surat Keterangan Penghasilan Orang Tua"
-                              file={form.watch("parentIdentityCard")}
-                              setFile={(file) =>
-                                form.setValue(
-                                  "parentIdentityCard",
-                                  file
-                                )
-                              }
+                              label="Slip Gaji Orang Tua / Wali"
+                              file={paycheckFile}
+                              setFile={setPaycheckFile}
                               className="w-full"
-                              asterisk
                             />
-                            {form.formState.errors
-                              .parentIdentityCard && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .parentIdentityCard?.message ===
-                                    "string"
-                                    ? form.formState.errors
-                                      .parentIdentityCard.message
-                                    : ""}
-                                </p>
-                              )}
                           </div>
                         </div>
 
