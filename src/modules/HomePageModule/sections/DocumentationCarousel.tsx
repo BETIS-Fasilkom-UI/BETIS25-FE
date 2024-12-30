@@ -108,7 +108,7 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
 
   return (
     <div className="w-[90vw] flex flex-col md:gap-8 items-center">
-      <h1 className="lg:text-t1 md:text-t2 sm:text-t3 text-2xl max-w-[90%] font-cinzel text-center lg:mb-9 mt-10">
+      <h1 className="text-2xl md:text-4xl lg:text-5xl max-w-[90%] font-cinzel text-center lg:mb-9 mt-10">
         Betis 2024's Archive
       </h1>
       <div className="flex gap-[1vmin] sm:gap-[3vmin] md:gap-5 w-full h-auto">

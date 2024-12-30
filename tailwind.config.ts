@@ -29,12 +29,11 @@ const config: Config = {
       boxShadow: {
         "testimony-card":
           "4px 4px 12px 0px #FEF5FF, -4px -4px 12px 0px #FEF5FF",
-        'event-entry-card': 
-          '-4px -4px 12px 0px #FEF5FF, 4px 4px 12px 0px #FEF5FF',
-        'event-entry-card-small':
-          '-2.593px -2.593px 7.778px 0px #FEF5FF, 2.593px 2.593px 7.778px 0px #FEF5FF',
-        'timeline':
-          '-4px -4px 16px 0px #FCFFCC4D, 4px 4px 16px 0px #FCFFCC4D',
+        "event-entry-card":
+          "-4px -4px 12px 0px #FEF5FF, 4px 4px 12px 0px #FEF5FF",
+        "event-entry-card-small":
+          "-2.593px -2.593px 7.778px 0px #FEF5FF, 2.593px 2.593px 7.778px 0px #FEF5FF",
+        timeline: "-4px -4px 16px 0px #FCFFCC4D, 4px 4px 16px 0px #FCFFCC4D",
       },
       backgroundImage: {
         "cp-gradient":
@@ -133,15 +132,25 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       animation: {
-        swing: 'swing 5s ease-in-out infinite',
+        swing: "swing 5s ease-in-out infinite",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
         swing: {
-          '0%': { transform: 'rotate(-10deg)' },
-          '30%': { transform: 'rotate(10deg)' },
-          '50%': { transform: 'rotate(-10deg)' },
-          '80%': { transform: 'rotate(10deg)' },
-          '100%': { transform: 'rotate(-10deg)' },
+          "0%": { transform: "rotate(-10deg)" },
+          "30%": { transform: "rotate(10deg)" },
+          "50%": { transform: "rotate(-10deg)" },
+          "80%": { transform: "rotate(10deg)" },
+          "100%": { transform: "rotate(-10deg)" },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
     },

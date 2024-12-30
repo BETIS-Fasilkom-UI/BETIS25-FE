@@ -15,7 +15,7 @@ const BetalksWebinarPPKB = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="text-[var(--Font,#FEF5FF)] font-cinzel max-md:text-center text-2xl md:text-3xl font-black leading-[3.75rem] mb-5 xl:flex xl:text-[3.2rem] xl:mb-[3.25rem]">
+      <div className="text-[var(--Font,#FEF5FF)] font-cinzel max-md:text-center text-2xl md:text-4xl lg:text-5xl font-black leading-[3.75rem] mb-5 xl:flex xl:mb-[3.25rem]">
         Our Event
       </div>
 

@@ -1,4 +1,4 @@
-import VismisModule from '@/modules/VismisModule'
+import VismisModule from '@/modules/HomePageModule/sections/VismisModule/Vismis'
 import React from 'react'
 
 const VismisPage = () => {

@@ -7,12 +7,17 @@ import BetalksWebinarPPKB from "./sections/BetalksWebinarPPBK";
 import CountdownSNBT from "./sections/CountdownSNBT";
 import { ContactPerson } from "@/components/elements/ContactPerson";
 import Hero from "./sections/hero";
+import Sponsor from "./sections/Sponsor";
+import Medpar from "./sections/Medpar";
+import Faq from "./sections/Faq";
+import Vismis from "./sections/VismisModule/Vismis";
 
 export const HomePageModule = () => {
   return (
     <main className="flex flex-col justify-center items-center mb-[10dvh]">
       <Hero />
       <AboutBetis />
+      <Vismis />
       <DocumentationCarousel
         slides={betisCarousel}
         options={betisCarouselOptions}
@@ -20,6 +25,9 @@ export const HomePageModule = () => {
       <Timeline />
       <BetalksWebinarPPKB />
       <CountdownSNBT />
+      <Medpar />
+      <Sponsor />
+      <Faq />
       <ContactPerson />
     </main>
   );

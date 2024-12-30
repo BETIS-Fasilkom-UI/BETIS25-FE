@@ -1,4 +1,4 @@
-import MedparModule from '@/modules/MedparModule'
+import MedparModule from '@/modules/HomePageModule/sections/Medpar'
 import React from 'react'
 
 const MedparPage = () => {

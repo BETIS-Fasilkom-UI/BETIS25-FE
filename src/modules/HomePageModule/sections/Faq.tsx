@@ -5,17 +5,19 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
-const FaqModule = () => {
+const Faq = () => {
   return (
-    <section className="mt-48 flex flex-col lg:flex-row items-start gap-16 px-6 lg:px-20">
+    <section className="mt-48 grid lg:grid-cols-2 lg:gap-20 gap-6 w-[95vw] md:w-[90vw] lg:w-[80vw] mb-48">
       {/* Left Section: FAQ Title and Description */}
-      <div className="w-full lg:w-1/2 text-center lg:text-left">
+      <div className="text-center lg:text-left">
         {/* FAQ Title */}
-        <h1>FAQ</h1>
+        <h1 className="font-cinzel text-2xl md:text-4xl lg:text-5xl">FAQ</h1>
         {/* Subtitle */}
-        <h2>Frequently Asked Question</h2>
+        <h2 className="font-raleway font-semibold text-xl md:text-3xl lg:text-4xl">
+          Frequently Asked Question
+        </h2>
         {/* Description */}
-        <p className="hidden lg:inline">
+        <p className="mt-6 max-lg:hidden font-raleway text-xl">
           Berikut adalah beberapa pertanyaan yang sering diajukan. Jika masih
           membutuhkan bantuan lebih lanjut, silakan hubungi Contact Person yang
           tersedia.
@@ -23,10 +25,10 @@ const FaqModule = () => {
       </div>
 
       {/* Right Section: Accordion */}
-      <div className="w w-full lg:w-1/2">
+      <div>
         <Accordion type="single" collapsible className="flex flex-col gap-3">
           {/* Question 1 */}
-          <AccordionItem value="item-1" className="mb-10">
+          <AccordionItem value="item-1" className="w-full">
             <AccordionTrigger>
               Materi apa yang diajarkan di BETIS 2025?
             </AccordionTrigger>
@@ -41,7 +43,10 @@ const FaqModule = () => {
             <AccordionTrigger>
               Bagaimana sistem pembelajaran BETIS 2025?
             </AccordionTrigger>
-            <AccordionContent>bla bla</AccordionContent>
+            <AccordionContent>
+              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
+              Nasional Berdasarkan Tes (SNBT) 2025.
+            </AccordionContent>
           </AccordionItem>
 
           {/* Question 3 */}
@@ -49,7 +54,10 @@ const FaqModule = () => {
             <AccordionTrigger>
               Periode KBM BETIS 2025 sampai kapan?
             </AccordionTrigger>
-            <AccordionContent>bla bla</AccordionContent>
+            <AccordionContent>
+              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
+              Nasional Berdasarkan Tes (SNBT) 2025.
+            </AccordionContent>
           </AccordionItem>
 
           {/* Question 4 */}
@@ -57,7 +65,10 @@ const FaqModule = () => {
             <AccordionTrigger>
               Kapan pengumuman peserta BETIS 2025 diumumkan?
             </AccordionTrigger>
-            <AccordionContent>bla bla</AccordionContent>
+            <AccordionContent>
+              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
+              Nasional Berdasarkan Tes (SNBT) 2025.
+            </AccordionContent>
           </AccordionItem>
 
           {/* Question 5 */}
@@ -65,7 +76,10 @@ const FaqModule = () => {
             <AccordionTrigger>
               Bagaimana jika kita tidak punya slip gaji orang tua?
             </AccordionTrigger>
-            <AccordionContent>bla bla</AccordionContent>
+            <AccordionContent>
+              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
+              Nasional Berdasarkan Tes (SNBT) 2025.
+            </AccordionContent>
           </AccordionItem>
 
           {/* Question 6 */}
@@ -73,7 +87,10 @@ const FaqModule = () => {
             <AccordionTrigger>
               Apakah akan ada biaya tertentu yang harus dibayar?
             </AccordionTrigger>
-            <AccordionContent>bla bla</AccordionContent>
+            <AccordionContent>
+              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
+              Nasional Berdasarkan Tes (SNBT) 2025.
+            </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
@@ -81,5 +98,4 @@ const FaqModule = () => {
   );
 };
 
-export default FaqModule;
-
+export default Faq;

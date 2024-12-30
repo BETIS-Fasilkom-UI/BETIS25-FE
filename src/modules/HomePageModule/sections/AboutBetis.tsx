@@ -7,7 +7,7 @@ const AboutBetis = () => {
       {/* Main Container */}
       <div className="relative flex flex-col items-center justify-center w-full max-w-[100vw] gap-[3%] md:items-start">
         {/* Heading */}
-        <h1 className="w-full mb-[3%] text-2xl text-center text-white md:text-4xl lg:text-5xl mt-2 font-cinzel">
+        <h1 className="w-full mb-[3%] text-2xl md:text-4xl lg:text-5xl text-center text-white mt-2 font-cinzel">
           Apa Itu BETIS?
         </h1>
 
