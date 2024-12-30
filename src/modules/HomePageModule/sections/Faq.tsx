@@ -44,8 +44,10 @@ const Faq = () => {
               Bagaimana sistem pembelajaran BETIS 2025?
             </AccordionTrigger>
             <AccordionContent>
-              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
-              Nasional Berdasarkan Tes (SNBT) 2025.
+              Sistem pembelajaran BETIS akan ada dua, yaitu Full Online dan
+              Hybrid. Untuk Hybrid akan melaksanakan Kegiatan Belajar Mengajar
+              (KBM) Offline langsung di Fasilkom dan Online di Zoom, sedangkan
+              untuk Full Online akan melaksanakan KBM Online di Zoom saja.
             </AccordionContent>
           </AccordionItem>
 
@@ -55,8 +57,8 @@ const Faq = () => {
               Periode KBM BETIS 2025 sampai kapan?
             </AccordionTrigger>
             <AccordionContent>
-              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
-              Nasional Berdasarkan Tes (SNBT) 2025.
+              Untuk periode KBM sendiri akan dimulai dari bulan Februari hingga
+              April.
             </AccordionContent>
           </AccordionItem>
 
@@ -66,8 +68,7 @@ const Faq = () => {
               Kapan pengumuman peserta BETIS 2025 diumumkan?
             </AccordionTrigger>
             <AccordionContent>
-              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
-              Nasional Berdasarkan Tes (SNBT) 2025.
+              Pengumuman peserta BETIS 2025 akan diumumkan pada bulan Januari.
             </AccordionContent>
           </AccordionItem>
 
@@ -77,8 +78,8 @@ const Faq = () => {
               Bagaimana jika kita tidak punya slip gaji orang tua?
             </AccordionTrigger>
             <AccordionContent>
-              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
-              Nasional Berdasarkan Tes (SNBT) 2025.
+              Gaji slip orang tua sendiri sifatnya opsional, namun akan menjadi
+              nilai plus bagi panitia ketika seleksi peserta.
             </AccordionContent>
           </AccordionItem>
 
@@ -88,8 +89,7 @@ const Faq = () => {
               Apakah akan ada biaya tertentu yang harus dibayar?
             </AccordionTrigger>
             <AccordionContent>
-              Peserta akan diajarkan materi yang berkaitan dengan Seleksi
-              Nasional Berdasarkan Tes (SNBT) 2025.
+              Tidak akan dipungut biaya sama sekali.
             </AccordionContent>
           </AccordionItem>
         </Accordion>

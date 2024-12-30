@@ -1,6 +1,7 @@
 import Countdown from "@/components/elements/Countdown";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CountdownSNBT = () => {
@@ -16,7 +17,7 @@ const CountdownSNBT = () => {
             </div>
             <Countdown
               displayDate
-              targetDate={new Date("2025-02-04T23:59:59")}
+              targetDate={new Date("2025-04-23T08:00:00")}
             />
             <div className="font-raleway text-t8 md:text-t8 xl:text-t7 text-center">
               Menuju SNBT 2025!
@@ -25,9 +26,11 @@ const CountdownSNBT = () => {
               Waktunya berjuang dan raih mimpimu
             </div>
             <div className="flex justify-center">
-              <Button className="w-fit sm:w-[80%] h-[90%] text-t8 sm:text-t7">
-                Daftar BETIS 2025
-              </Button>
+              <Link href="/registration">
+                <Button className="w-fit h-[90%] text-t8 sm:text-t7">
+                  Daftar BETIS 2025
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

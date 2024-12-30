@@ -34,12 +34,14 @@ const BetalksWebinarPPKB = () => {
             </div>
             <div className="gap-3 flex flex-col xl:flex-row">
               <Button
+                disabled
                 className="flex-1 !py-3"
                 onClick={() => setRegisterOpen(true)}
               >
                 Daftar Sekarang
               </Button>
               <Button
+                disabled
                 className="flex-1 !py-3"
                 variant="secondary"
                 onClick={() => setBetalksDescOpen(true)}
@@ -105,12 +107,14 @@ const BetalksWebinarPPKB = () => {
             </div>
             <div className="gap-3 flex flex-col xl:flex-row">
               <Button
+                disabled
                 className="flex-1 !py-3"
                 onClick={() => setRegisterOpen(true)}
               >
                 Daftar Sekarang
               </Button>
               <Button
+                disabled
                 className="flex-1 !py-3"
                 variant="secondary"
                 onClick={() => setBetalksDescOpen(true)}

@@ -12,7 +12,7 @@ export default function Greet(props: {linkPrimary: string, linkSecondary: string
                 <Link href={props.linkPrimary}>
                     <Button className="w-full">Daftar Sekarang</Button>
                 </Link>
-                <Link href={props.linkPrimary}>
+                <Link href={props.linkPrimary} className="hidden">
                     <Button className="w-full" variant="secondary">Description</Button>
                 </Link>
             </div>
