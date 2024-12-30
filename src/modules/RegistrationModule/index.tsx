@@ -86,6 +86,17 @@ const RegistrationModule = () => {
 
     const combinedData = { ...tab1Data, ...tab2Data, ...values };
 
+    const referralCode = ["STH-096", "GF-669", "ACE-505", "ASP-299", "MUT-454"];
+
+    if (
+      combinedData.referralCode &&
+      !referralCode.includes(combinedData.referralCode)
+    ) {
+      toast.error("Invalid referral code");
+      setIsLoading(false);
+      return;
+    }
+
     const optionalFiles = {
       povertyLetter: povertyFile || undefined,
       housePhoto: housePhotoFile || undefined,
@@ -638,11 +649,15 @@ const RegistrationModule = () => {
 
                         <CardHeader>
                           <CardTitle className="font-raleway font-semibold text-xl max-lg:pt-16">
-                            Berkas Pendukung
+                            Berkas Pendukung (Opsional)
                           </CardTitle>
+                          <p className="text-sm text-neutral-50">
+                            Unggahan berkas opsional ini dapat menbantu
+                            memperkuat pendaftaran Anda pada proses seleksi
+                          </p>
                         </CardHeader>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pb-10">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pb-10 pt-6">
                           <FileInput
                             label="Surat Keterangan Tidak Mampu"
                             file={povertyFile}
@@ -671,7 +686,7 @@ const RegistrationModule = () => {
                           </CardTitle>
                         </CardHeader>
 
-                        <div className="lg:w-1/2">
+                        <div className="lg:w-1/2 pt-6">
                           <Input
                             type="text"
                             placeholder="Enter your code"
