@@ -58,7 +58,9 @@ export default function RootLayout({
         className={` ${raleway.variable} ${cinzel.variable} ${openSans.variable} antialiased`}
       >
         <NextTopLoader showSpinner={false} color="#c5599e" shadow={false} />
-        <Layout>{children}</Layout>
+        <Layout>
+            {children}
+        </Layout>
       </body>
     </html>
   );

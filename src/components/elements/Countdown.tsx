@@ -20,7 +20,7 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<"div"> & CountdownProps> = ({
     <div className="flex flex-col items-center gap-1">
       <span
         className={cn(
-          "font-raleway inline-block font-semibold text-white text-[0.563rem] sm:text-sm md:text-base lg:text-xl",
+          "font-raleway inline-block font-semibold text-white text-xs sm:text-sm md:text-base lg:text-xl",
           classNameType
         )}
       >
@@ -28,13 +28,13 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<"div"> & CountdownProps> = ({
       </span>
       <div
         className={cn(
-          "flex justify-center items-center h-[4.063rem] w-[3.375rem] md:h-[5.188rem] md:w-[4.563rem] lg:w-[5.813rem] lg:h-[6.938rem] bg-white dark:bg-[#00090A] border-2 border-[#F3F0FE] dark:border-[#252525] rounded-[0.5rem]",
+          "flex justify-center items-center h-[5rem] w-[4rem] md:h-[5.188rem] md:w-[4.563rem] lg:w-[5.813rem] lg:h-[6.938rem] bg-white dark:bg-[#00090A] border-2 border-[#F3F0FE] dark:border-[#252525] rounded-[0.5rem]",
           classNameBlock
         )}
       >
         <span
           className={cn(
-            "inline-block font-cinzel font-black leading-9 text-2xl md:text-3xl lg:text-5xl text-tosca-dark-active hover:text-tosca-dark-hover dark:text-white",
+            "inline-block font-cinzel font-black leading-9 text-3xl md:text-4xl lg:text-5xl text-tosca-dark-active hover:text-tosca-dark-hover dark:text-white",
             classNameType
           )}
         >
@@ -182,7 +182,7 @@ const Countdown = ({
           />
           <span
             className={cn(
-              "inline-block text-[0.563rem] md:text-sm lg:text-base pt-[0.125rem] sm:pt-0 text-white",
+              "inline-block text-xs md:text-sm lg:text-base pt-[0.125rem] sm:pt-0 text-white",
               classNameType
             )}
           >{`${dateTime.date}, ${dateTime.time}`}</span>

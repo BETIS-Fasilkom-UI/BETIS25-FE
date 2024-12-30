@@ -21,7 +21,7 @@ const StarryBackground = () => {
 
     // Star props
     const stars: { x: number; y: number; size: number; opacity: number }[] = []
-    const STAR_COUNT = 3000
+    const STAR_COUNT = 2500
     const MIN_STAR_SIZE = 0.8 
     const MAX_STAR_SIZE = 1
 

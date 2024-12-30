@@ -8,7 +8,10 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { CarouselButton, usePrevNextButtons } from "./CarouselButtons";
+import {
+  CarouselButton,
+  usePrevNextButtons,
+} from "../module-elements/CarouselButtons";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 
@@ -27,7 +30,7 @@ export interface CarouselItemProps {
   year: string;
 }
 
-const Carousel: React.FC<PropType> = (props) => {
+const DocumentationCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenNodes = useRef<HTMLElement[]>([]);
@@ -104,8 +107,8 @@ const Carousel: React.FC<PropType> = (props) => {
   }, [emblaApi, setTweenNodes, slides.length, tweenScale]);
 
   return (
-    <div className="w-[89%] sm:max-w-[1280px] flex flex-col md:gap-8 items-center">
-      <h1 className="lg:text-t1 md:text-t2 sm:text-t3 text-2xl max-w-[90%] font-cinzel text-center lg:mb-9 mt-10">
+    <div className="w-full px-5 md:px-10 lg:px-20 flex flex-col md:gap-8 items-center">
+      <h1 className="text-2xl md:text-4xl lg:text-5xl max-w-[90%] font-cinzel text-center lg:mb-9 mt-10">
         Betis 2024's Archive
       </h1>
       <div className="flex gap-[1vmin] sm:gap-[3vmin] md:gap-5 w-full h-auto">
@@ -116,7 +119,7 @@ const Carousel: React.FC<PropType> = (props) => {
               <div className="relative" key={index}>
                 <Card
                   className={cn(
-                    " border-0 shadow-[0px_0px_12px_rgba(255,255,255,0.60)] slide-image relative transition-all duration-300 ease-in-out bg-[#ffffff] rounded-[32px] px-[4.5vmin] pt-[6vmin] sm:px-8 sm:pt-10 sm:pb-8 flex flex-col justify-center items-center"
+                    "w-full border-0 shadow-[0px_0px_12px_rgba(255,255,255,0.60)] slide-image relative transition-all duration-300 ease-in-out bg-[#ffffff] rounded-[32px] px-[4.5vmin] pt-[6vmin] sm:px-8 sm:pt-10 sm:pb-8 flex flex-col justify-center items-center"
                   )}
                 >
                   <div className="w-[50vmin] h-[42vmin] sm:w-[331px] sm:h-[277px] relative rounded-2xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.20)]">
@@ -160,4 +163,4 @@ const Carousel: React.FC<PropType> = (props) => {
   );
 };
 
-export default Carousel;
+export default DocumentationCarousel;

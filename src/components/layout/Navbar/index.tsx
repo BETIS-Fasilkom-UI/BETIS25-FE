@@ -8,22 +8,44 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { AlignJustify } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { UserJWT } from "@/hooks/interface";
+import { getCookie, setCookie } from "cookies-next";
+import { toast } from "@/components/ui/sonner";
 
-export const Navbar = () => {
+export const Navbar = ({ user }: { user: UserJWT | null }) => {
   const [open, setOpen] = useState(false);
-  const isAutehnticated = true;
+  const isAuthenticated = user !== null;
+  const Logout = async () => {
+    if (isAuthenticated) {
+      const token = getCookie("token");
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
+      if (token) {
+        await fetch(`${API_URL}auth/logout`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then(() => {
+          setCookie("token", "", {
+            expires: new Date(0),
+          });
+          toast.success("Logout success");
+          window.location.reload();
+        });
+      }
+    }
+  };
   return (
     <>
       <nav
-        className={cn("z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full")}
+        className={cn("z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full max-w-[1920px]")}
       >
         <div
           className={cn(
             "flex items-center justify-between max-md:px-5 px-7 py-7 bg-[#481e58a6]",
-            isAutehnticated ? "xl:px-14" : "xl:px-8"
+            isAuthenticated ? "xl:px-14" : "xl:px-8"
           )}
         >
-          <div className="flex items-center justify-center gap-7">
+          <Link href={"/"} className="flex items-center justify-center gap-7">
             <div className="w-[50px] md:w-[61px] h-[54px] relative">
               <Image
                 src="/Footer.png"
@@ -35,33 +57,37 @@ export const Navbar = () => {
             <h1 className="text-white max-sm:hidden xl:text-t5 text-t4 font-cinzel">
               BETIS 2025
             </h1>
-          </div>
+          </Link>
           <div className="flex items-center justify-end gap-8 xl:gap-14 max-lg:hidden">
             <div className="flex gap-4 xl:gap-7 items-center">
               {navData.map((item, index) => (
                 <Link
                   key={index}
                   href={item.isAvailable ? item.href : "#"}
-                  className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${item.isAvailable ? "cursor-pointer" : "cursor-not-allowed text-white/30"}`}
+                  className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${
+                    item.isAvailable
+                      ? "cursor-pointer"
+                      : "cursor-not-allowed text-white/30"
+                  }`}
                 >
                   {item.title}
                 </Link>
               ))}
             </div>
-            {isAutehnticated ? (
+            {isAuthenticated ? (
               <div className="flex items-center gap-6">
-                <Link href="/dashboard">
-                  <Button variant="destructive" className="">
-                    Logout
-                  </Button>
+                <Button onClick={Logout} variant="destructive" className="">
+                  Logout
+                </Button>
+                <Link href={"/profile"}>
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="@shadcn"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
                 </Link>
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
               </div>
             ) : (
               <Link href="/login">
@@ -91,25 +117,37 @@ export const Navbar = () => {
                   transition={{ duration: 0.3 + index * 0.1, type: "tween" }}
                   className="px-5 py-[15px]"
                 >
-                  <Link href={item.href} className="w-fit cursor-pointer">
+                  <Link
+                    href={item.isAvailable ? item.href : "#"}
+                    className={`w-fit ${
+                      item.isAvailable
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed text-white/30"
+                    }`}
+                  >
                     {item.title}
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.9 }}
-                className={cn(
-                  "font-bold px-5 py-[15px] rounded-b-[20px]",
-                  isAutehnticated
-                    ? "bg-magenta-800"
-                    : "bg-gradient-to-b from-magenta-500 to-magenta-button"
-                )}
+              <Link
+                href={isAuthenticated ? "#" : "/login"}
+                onClick={isAuthenticated ? Logout : () => {}}
               >
-                {isAutehnticated ? "Logout" : "Login"}
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.9 }}
+                  className={cn(
+                    "font-bold px-5 py-[15px] rounded-b-[20px]",
+                    isAuthenticated
+                      ? "bg-magenta-800"
+                      : "bg-gradient-to-b from-magenta-500 to-magenta-button"
+                  )}
+                >
+                  {isAuthenticated ? "Logout" : "Login"}
+                </motion.div>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>

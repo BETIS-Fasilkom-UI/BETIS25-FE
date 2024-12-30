@@ -10,12 +10,7 @@ import { openRegSchema, useOpenReg } from "@/hooks/openReg";
 import { z } from "zod";
 
 import { TabsComponent } from "@/components/ui/tabs";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Input from "@/components/ui/input";
 import { FileInput } from "@/components/ui/file-input";
 import { Button } from "@/components/ui/button";
@@ -24,6 +19,7 @@ import { Combobox } from "@/components/ui/combobox";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import StarryBackground from "../LoginModule/module-elements/background";
 import { toast } from "@/components/ui/sonner";
+import { useRouter } from "next/navigation";
 // import { toast } from '@/components/ui/sonner';
 
 type OpenRegFormValues = z.infer<typeof openRegSchema>;
@@ -40,48 +36,45 @@ const KelasChoices = [
 
 const RegistrationModule = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedValueMetode, setSelectedValueMetode] =
-    useState<string>("");
-  const [selectedValueKelas, setSelectedValueKelas] =
-    useState<string>("");
-  const [tab1Data, setTab1Data] = useState<OpenRegFormValues | null>(
-    null
-  );
-  const [tab2Data, setTab2Data] = useState<OpenRegFormValues | null>(
-    null
-  );
+  const [selectedValueMetode, setSelectedValueMetode] = useState<string>("");
+  const [selectedValueKelas, setSelectedValueKelas] = useState<string>("");
+  const [tab1Data, setTab1Data] = useState<OpenRegFormValues | null>(null);
+  const [tab2Data, setTab2Data] = useState<OpenRegFormValues | null>(null);
   const [page, setPage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   const [povertyFile, setPovertyFile] = useState<File | null>(null);
-  const [electricityBillFile, setElectricityBillFile] =
-    useState<File | null>(null);
-  const [housePhotoFile, setHousePhotoFile] = useState<File | null>(
+  const [electricityBillFile, setElectricityBillFile] = useState<File | null>(
     null
   );
+  const [housePhotoFile, setHousePhotoFile] = useState<File | null>(null);
+  const [paycheckFile, setPaycheckFile] = useState<File | null>(null);
+
+  const { push } = useRouter();
 
   const form = useForm<OpenRegFormValues>({
     resolver: zodResolver(openRegSchema),
-    defaultValues: {
-      fullName: "",
-      username: "",
-      phoneNumber: "",
-      birthDate: new Date(),
-      address: "",
-      studyMethood: "",
-      parentName: "",
-      relationWithParent: "",
-      parentPhoneNumber: "",
-      highschoolName: "",
-      highschoolClass: "",
-      meanScore: "",
-      studentReport: null,
-      motivationLetter: null,
-      commitmentLetter: null,
-      proofOfFollowing: null,
-      proofOfTwibbon: null,
-      referralCode: "",
-    },
+    // defaultValues: {
+    //   fullName: "John Doe",
+    //   username: "johndoe",
+    //   phoneNumber: "1234567890",
+    //   birthDate: new Date("2000-01-01"),
+    //   address: "123 Main St",
+    //   studyMethood: "online",
+    //   parentName: "Jane Doe",
+    //   relationWithParent: "Mother",
+    //   parentPhoneNumber: "0987654321",
+    //   highschoolName: "High School ABC",
+    //   highschoolClass: "kelas-12",
+    //   meanScore: "90",
+    //   studentReport: null,
+    //   motivationLetter: null,
+    //   commitmentLetter: null,
+    //   proofOfFollowing: null,
+    //   proofOfTwibbon: null,
+    //   proofOfSg: null,
+    //   referralCode: "REF123",
+    // },
   });
 
   const onSubmit = async (values: OpenRegFormValues) => {
@@ -92,12 +85,23 @@ const RegistrationModule = () => {
     setTab2Data(currentTab2Data);
 
     const combinedData = { ...tab1Data, ...tab2Data, ...values };
-    //console.log("Combined Data:", combinedData);
+
+    const referralCode = ["STH-096", "GF-669", "ACE-505", "ASP-299", "MUT-454"];
+
+    if (
+      combinedData.referralCode &&
+      !referralCode.includes(combinedData.referralCode)
+    ) {
+      toast.error("Invalid referral code");
+      setIsLoading(false);
+      return;
+    }
 
     const optionalFiles = {
       povertyLetter: povertyFile || undefined,
       housePhoto: housePhotoFile || undefined,
       electricityBill: electricityBillFile || undefined,
+      paycheckUrl: paycheckFile || undefined,
     };
 
     try {
@@ -114,12 +118,15 @@ const RegistrationModule = () => {
         }
       );
       if (result.isSuccess) {
+        toast.success("Registration success");
         form.reset();
         setTab1Data(null);
         setTab2Data(null);
         setPovertyFile(null);
         setElectricityBillFile(null);
         setHousePhotoFile(null);
+
+        push("/profile");
       }
     } catch (error) {
       //console.error(error);
@@ -140,17 +147,13 @@ const RegistrationModule = () => {
 
   useEffect(() => {
     if (page === 0 && tab1Data) {
-      (Object.keys(tab1Data) as (keyof typeof tab1Data)[]).forEach(
-        (key) => {
-          form.setValue(key, tab1Data[key]);
-        }
-      );
+      (Object.keys(tab1Data) as (keyof typeof tab1Data)[]).forEach((key) => {
+        form.setValue(key, tab1Data[key]);
+      });
     } else if (page === 1 && tab2Data) {
-      (Object.keys(tab2Data) as (keyof typeof tab2Data)[]).forEach(
-        (key) => {
-          form.setValue(key, tab2Data[key]);
-        }
-      );
+      (Object.keys(tab2Data) as (keyof typeof tab2Data)[]).forEach((key) => {
+        form.setValue(key, tab2Data[key]);
+      });
     }
   }, [page, tab1Data, tab2Data, form]);
 
@@ -166,7 +169,7 @@ const RegistrationModule = () => {
             OPEN REGISTRATION
           </h1>
 
-          <Link href="/">
+          <Link href="https://docs.google.com/document/d/1GaGN7ervIPajtL9GSfb8KgneVambLU38fqax7lPiXuQ/edit?usp=sharing" target="_blank">
             <Button
               className="w-1/2 md:w-[70%] rounded-[20px] md:text-xl py-6 md:py-8"
               size="lg"
@@ -188,7 +191,7 @@ const RegistrationModule = () => {
                 {
                   title: "Data Siswa",
                   content: (
-                    <Card className="space-y-6 md:px-16 md:py-10 lg:px-24 lg:py-16">
+                    <Card className="space-y-6 md:px-16 md:py-10 lg:px-24 lg:py-16 bg-[#481E58]">
                       <CardHeader>
                         <CardTitle className="font-raleway font-semibold text-xl">
                           Data Pribadi
@@ -205,19 +208,13 @@ const RegistrationModule = () => {
                                 placeholder="Enter your full name"
                                 value={form.watch("fullName")}
                                 onChange={(e) => {
-                                  form.setValue(
-                                    "fullName",
-                                    e.target.value
-                                  );
+                                  form.setValue("fullName", e.target.value);
                                 }}
                                 asterisk
                               />
                               {form.formState.errors.fullName && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.fullName
-                                      .message
-                                  }
+                                  {form.formState.errors.fullName.message}
                                 </p>
                               )}
                             </div>
@@ -229,19 +226,13 @@ const RegistrationModule = () => {
                                 placeholder="Enter your username"
                                 value={form.watch("username")}
                                 onChange={(e) => {
-                                  form.setValue(
-                                    "username",
-                                    e.target.value
-                                  );
+                                  form.setValue("username", e.target.value);
                                 }}
                                 asterisk
                               />
                               {form.formState.errors.username && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.username
-                                      .message
-                                  }
+                                  {form.formState.errors.username.message}
                                 </p>
                               )}
                             </div>
@@ -252,9 +243,9 @@ const RegistrationModule = () => {
                                 type="date"
                                 value={
                                   form.watch("birthDate")
-                                    ? moment(
-                                        form.watch("birthDate")
-                                      ).format("YYYY-MM-DD")
+                                    ? moment(form.watch("birthDate")).format(
+                                        "YYYY-MM-DD"
+                                      )
                                     : ""
                                 }
                                 onChange={(e) =>
@@ -270,10 +261,7 @@ const RegistrationModule = () => {
                               />
                               {form.formState.errors.birthDate && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.birthDate
-                                      .message
-                                  }
+                                  {form.formState.errors.birthDate.message}
                                 </p>
                               )}
                             </div>
@@ -285,19 +273,13 @@ const RegistrationModule = () => {
                                 placeholder="Enter your phone number"
                                 value={form.watch("phoneNumber")}
                                 onChange={(e) => {
-                                  form.setValue(
-                                    "phoneNumber",
-                                    e.target.value
-                                  );
+                                  form.setValue("phoneNumber", e.target.value);
                                 }}
                                 asterisk
                               />
                               {form.formState.errors.phoneNumber && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.phoneNumber
-                                      .message
-                                  }
+                                  {form.formState.errors.phoneNumber.message}
                                 </p>
                               )}
                             </div>
@@ -311,19 +293,13 @@ const RegistrationModule = () => {
                                 placeholder="Enter your address"
                                 value={form.watch("address")}
                                 onChange={(e) => {
-                                  form.setValue(
-                                    "address",
-                                    e.target.value
-                                  );
+                                  form.setValue("address", e.target.value);
                                 }}
                                 asterisk
                               />
                               {form.formState.errors.address && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.address
-                                      .message
-                                  }
+                                  {form.formState.errors.address.message}
                                 </p>
                               )}
                             </div>
@@ -340,11 +316,9 @@ const RegistrationModule = () => {
                               />
                               {form.formState.errors.identityCard && (
                                 <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .identityCard?.message ===
-                                  "string"
-                                    ? form.formState.errors
-                                        .identityCard.message
+                                  {typeof form.formState.errors.identityCard
+                                    ?.message === "string"
+                                    ? form.formState.errors.identityCard.message
                                     : ""}
                                 </p>
                               )}
@@ -353,9 +327,7 @@ const RegistrationModule = () => {
                             <div>
                               <Label>
                                 Metode Belajar{" "}
-                                <span className="text-red-500">
-                                  *
-                                </span>
+                                <span className="text-red-500">*</span>
                               </Label>
                               <Combobox
                                 choices={metodeBelajarChoices}
@@ -369,10 +341,7 @@ const RegistrationModule = () => {
                               />
                               {form.formState.errors.studyMethood && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.studyMethood
-                                      .message
-                                  }
+                                  {form.formState.errors.studyMethood.message}
                                 </p>
                               )}
                             </div>
@@ -394,19 +363,13 @@ const RegistrationModule = () => {
                                 placeholder="Enter your guardian's or parent's name"
                                 value={form.watch("parentName")}
                                 onChange={(e) => {
-                                  form.setValue(
-                                    "parentName",
-                                    e.target.value
-                                  );
+                                  form.setValue("parentName", e.target.value);
                                 }}
                                 asterisk
                               />
                               {form.formState.errors.parentName && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.parentName
-                                      .message
-                                  }
+                                  {form.formState.errors.parentName.message}
                                 </p>
                               )}
                             </div>
@@ -416,9 +379,7 @@ const RegistrationModule = () => {
                                 label="Hubungan dengan Wali"
                                 type="text"
                                 placeholder="Enter your relationship with your guardian"
-                                value={form.watch(
-                                  "relationWithParent"
-                                )}
+                                value={form.watch("relationWithParent")}
                                 onChange={(e) => {
                                   form.setValue(
                                     "relationWithParent",
@@ -427,12 +388,11 @@ const RegistrationModule = () => {
                                 }}
                                 asterisk
                               />
-                              {form.formState.errors
-                                .relationWithParent && (
+                              {form.formState.errors.relationWithParent && (
                                 <p className="text-sm text-red-500">
                                   {
-                                    form.formState.errors
-                                      .relationWithParent.message
+                                    form.formState.errors.relationWithParent
+                                      .message
                                   }
                                 </p>
                               )}
@@ -443,9 +403,7 @@ const RegistrationModule = () => {
                                 label="Nomor Telepon Wali"
                                 type="tel"
                                 placeholder="Enter your guardian's phone number"
-                                value={form.watch(
-                                  "parentPhoneNumber"
-                                )}
+                                value={form.watch("parentPhoneNumber")}
                                 onChange={(e) => {
                                   form.setValue(
                                     "parentPhoneNumber",
@@ -454,12 +412,11 @@ const RegistrationModule = () => {
                                 }}
                                 asterisk
                               />
-                              {form.formState.errors
-                                .parentPhoneNumber && (
+                              {form.formState.errors.parentPhoneNumber && (
                                 <p className="text-sm text-red-500">
                                   {
-                                    form.formState.errors
-                                      .parentPhoneNumber.message
+                                    form.formState.errors.parentPhoneNumber
+                                      .message
                                   }
                                 </p>
                               )}
@@ -468,28 +425,11 @@ const RegistrationModule = () => {
 
                           <div className="lg:w-1/2 max-lg:pt-4 lg:space-y-2">
                             <FileInput
-                              label="Slip Gaji / Surat Keterangan Penghasilan Orang Tua"
-                              file={form.watch("parentIdentityCard")}
-                              setFile={(file) =>
-                                form.setValue(
-                                  "parentIdentityCard",
-                                  file
-                                )
-                              }
+                              label="Slip Gaji Orang Tua / Wali"
+                              file={paycheckFile}
+                              setFile={setPaycheckFile}
                               className="w-full"
-                              asterisk
                             />
-                            {form.formState.errors
-                              .parentIdentityCard && (
-                              <p className="text-sm text-red-500">
-                                {typeof form.formState.errors
-                                  .parentIdentityCard?.message ===
-                                "string"
-                                  ? form.formState.errors
-                                      .parentIdentityCard.message
-                                  : ""}
-                              </p>
-                            )}
                           </div>
                         </div>
 
@@ -515,23 +455,16 @@ const RegistrationModule = () => {
                                 }}
                                 asterisk
                               />
-                              {form.formState.errors
-                                .highschoolName && (
+                              {form.formState.errors.highschoolName && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors
-                                      .highschoolName.message
-                                  }
+                                  {form.formState.errors.highschoolName.message}
                                 </p>
                               )}
                             </div>
 
                             <div>
                               <Label>
-                                Kelas{" "}
-                                <span className="text-red-500">
-                                  *
-                                </span>
+                                Kelas <span className="text-red-500">*</span>
                               </Label>
                               <Combobox
                                 choices={KelasChoices}
@@ -539,19 +472,15 @@ const RegistrationModule = () => {
                                 value={selectedValueKelas}
                                 onChange={(val) => {
                                   setSelectedValueKelas(val);
-                                  form.setValue(
-                                    "highschoolClass",
-                                    val
-                                  );
+                                  form.setValue("highschoolClass", val);
                                 }}
                                 className="w-full"
                               />
-                              {form.formState.errors
-                                .highschoolClass && (
+                              {form.formState.errors.highschoolClass && (
                                 <p className="text-sm text-red-500">
                                   {
-                                    form.formState.errors
-                                      .highschoolClass.message
+                                    form.formState.errors.highschoolClass
+                                      .message
                                   }
                                 </p>
                               )}
@@ -564,19 +493,13 @@ const RegistrationModule = () => {
                                 placeholder="Enter your grade report"
                                 value={form.watch("meanScore")}
                                 onChange={(e) => {
-                                  form.setValue(
-                                    "meanScore",
-                                    e.target.value
-                                  );
+                                  form.setValue("meanScore", e.target.value);
                                 }}
                                 asterisk
                               />
                               {form.formState.errors.meanScore && (
                                 <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors.meanScore
-                                      .message
-                                  }
+                                  {form.formState.errors.meanScore.message}
                                 </p>
                               )}
                             </div>
@@ -594,10 +517,9 @@ const RegistrationModule = () => {
                             />
                             {form.formState.errors.studentReport && (
                               <p className="text-sm text-red-500">
-                                {typeof form.formState.errors
-                                  .studentReport?.message === "string"
-                                  ? form.formState.errors
-                                      .studentReport.message
+                                {typeof form.formState.errors.studentReport
+                                  ?.message === "string"
+                                  ? form.formState.errors.studentReport.message
                                   : ""}
                               </p>
                             )}
@@ -627,7 +549,7 @@ const RegistrationModule = () => {
                 {
                   title: "Komitmen",
                   content: (
-                    <Card className="space-y-6 lg:px-24 lg:py-16">
+                    <Card className="space-y-6 lg:px-24 lg:py-16 bg-[#481E58]">
                       <CardHeader>
                         <CardTitle className="font-raleway font-semibold text-xl">
                           Komitmen
@@ -635,151 +557,127 @@ const RegistrationModule = () => {
                       </CardHeader>
 
                       <CardContent>
-                        <div className="lg:flex max-lg:space-y-4 lg:space-x-8 lg:pb-10">
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <div>
-                              <FileInput
-                                label="Motivation Letter (PDF)"
-                                file={form.watch("motivationLetter")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "motivationLetter",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .motivationLetter && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .motivationLetter?.message ===
-                                  "string"
-                                    ? form.formState.errors
-                                        .motivationLetter.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
+                          <FileInput
+                            label="Motivation Letter (PDF)"
+                            file={form.watch("motivationLetter")}
+                            setFile={(file) =>
+                              form.setValue("motivationLetter", file)
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors.motivationLetter && (
+                            <p className="text-sm text-red-500">
+                              {typeof form.formState.errors.motivationLetter
+                                ?.message === "string"
+                                ? form.formState.errors.motivationLetter.message
+                                : ""}
+                            </p>
+                          )}
 
-                            <div>
-                              <FileInput
-                                label="Surat Komitmen (PDF)"
-                                file={form.watch("commitmentLetter")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "commitmentLetter",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .commitmentLetter && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .commitmentLetter?.message ===
-                                  "string"
-                                    ? form.formState.errors
-                                        .commitmentLetter.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
-                          </div>
+                          <FileInput
+                            label="Surat Komitmen (PDF)"
+                            file={form.watch("commitmentLetter")}
+                            setFile={(file) =>
+                              form.setValue("commitmentLetter", file)
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors.commitmentLetter && (
+                            <p className="text-sm text-red-500">
+                              {typeof form.formState.errors.commitmentLetter
+                                ?.message === "string"
+                                ? form.formState.errors.commitmentLetter.message
+                                : ""}
+                            </p>
+                          )}
 
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <div>
-                              <FileInput
-                                label="Bukti Follow Sosial Media (PDF)"
-                                file={form.watch("proofOfFollowing")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "proofOfFollowing",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .proofOfFollowing && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .proofOfFollowing?.message ===
-                                  "string"
-                                    ? form.formState.errors
-                                        .proofOfFollowing.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
+                          <FileInput
+                            label="Bukti Follow Sosial Media (PDF)"
+                            file={form.watch("proofOfFollowing")}
+                            setFile={(file) =>
+                              form.setValue("proofOfFollowing", file)
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors.proofOfFollowing && (
+                            <p className="text-sm text-red-500">
+                              {typeof form.formState.errors.proofOfFollowing
+                                ?.message === "string"
+                                ? form.formState.errors.proofOfFollowing.message
+                                : ""}
+                            </p>
+                          )}
 
-                            <div>
-                              <FileInput
-                                label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
-                                file={form.watch("proofOfTwibbon")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "proofOfTwibbon",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .proofOfTwibbon && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .proofOfTwibbon?.message ===
-                                  "string"
-                                    ? form.formState.errors
-                                        .proofOfTwibbon.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
-                          </div>
+                          <FileInput
+                            label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
+                            file={form.watch("proofOfTwibbon")}
+                            setFile={(file) =>
+                              form.setValue("proofOfTwibbon", file)
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors.proofOfTwibbon && (
+                            <p className="text-sm text-red-500">
+                              {typeof form.formState.errors.proofOfTwibbon
+                                ?.message === "string"
+                                ? form.formState.errors.proofOfTwibbon.message
+                                : ""}
+                            </p>
+                          )}
+
+                          <FileInput
+                            label="Bukti Upload Story Instagram (JPG/PNG/JPEG/PDF)"
+                            file={form.watch("proofOfSg")}
+                            setFile={(file) => form.setValue("proofOfSg", file)}
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors.proofOfSg && (
+                            <p className="text-sm text-red-500">
+                              {typeof form.formState.errors.proofOfSg
+                                ?.message === "string"
+                                ? form.formState.errors.proofOfSg.message
+                                : ""}
+                            </p>
+                          )}
                         </div>
 
                         <CardHeader>
                           <CardTitle className="font-raleway font-semibold text-xl max-lg:pt-16">
-                            Berkas Pendukung
+                            Berkas Pendukung (Opsional)
                           </CardTitle>
+                          <p className="text-sm text-neutral-50">
+                            Unggahan berkas opsional ini dapat menbantu
+                            memperkuat pendaftaran Anda pada proses seleksi
+                          </p>
                         </CardHeader>
 
-                        <div className="lg:flex space-y-4 lg:space-x-8 lg:pb-10">
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <div>
-                              <FileInput
-                                label="Surat Keterangan Tidak Mampu"
-                                file={povertyFile}
-                                setFile={setPovertyFile}
-                                className="w-full"
-                              />
-                            </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pb-10 pt-6">
+                          <FileInput
+                            label="Surat Keterangan Tidak Mampu"
+                            file={povertyFile}
+                            setFile={setPovertyFile}
+                            className="w-full"
+                          />
 
-                            <div>
-                              <FileInput
-                                label="Tagihan Listrik"
-                                file={electricityBillFile}
-                                setFile={setElectricityBillFile}
-                                className="w-full"
-                              />
-                            </div>
-                          </div>
+                          <FileInput
+                            label="Tagihan Listrik"
+                            file={electricityBillFile}
+                            setFile={setElectricityBillFile}
+                            className="w-full"
+                          />
 
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <FileInput
-                              label="Foto Tampak Tempat Tinggal"
-                              file={housePhotoFile}
-                              setFile={setHousePhotoFile}
-                              className="w-full"
-                            />
-                          </div>
+                          <FileInput
+                            label="Foto Tampak Tempat Tinggal"
+                            file={housePhotoFile}
+                            setFile={setHousePhotoFile}
+                            className="w-full"
+                          />
                         </div>
 
                         <CardHeader>
@@ -788,16 +686,13 @@ const RegistrationModule = () => {
                           </CardTitle>
                         </CardHeader>
 
-                        <div className="lg:w-1/2">
+                        <div className="lg:w-1/2 pt-6">
                           <Input
                             type="text"
                             placeholder="Enter your code"
                             value={form.watch("referralCode")}
                             onChange={(e) => {
-                              form.setValue(
-                                "referralCode",
-                                e.target.value
-                              );
+                              form.setValue("referralCode", e.target.value);
                             }}
                             asterisk
                           />
@@ -886,11 +781,7 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src={
-          isHovered || page === 1
-            ? "/MascotDewasa.png"
-            : "/MascotLesu.png"
-        }
+        src={isHovered || page === 1 ? "/MascotDewasa.png" : "/MascotLesu.png"}
         width={isHovered || page === 1 ? 224 : 216}
         height={isHovered || page === 1 ? 590 : 582}
         alt="Mascot"
