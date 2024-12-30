@@ -25,8 +25,8 @@ export const HomePageModule = () => {
       <Timeline />
       <BetalksWebinarPPKB />
       <CountdownSNBT />
-      <Medpar />
-      <Sponsor />
+      {/*<Medpar />
+      <Sponsor />*/}
       <Faq />
       <div className="w-full px-5 md:px-10 lg:px-20">
         <ContactPerson />
