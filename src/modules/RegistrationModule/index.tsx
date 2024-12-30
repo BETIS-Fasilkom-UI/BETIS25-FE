@@ -24,6 +24,7 @@ import { Combobox } from "@/components/ui/combobox";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import StarryBackground from "../LoginModule/module-elements/background";
 import { toast } from "@/components/ui/sonner";
+import { useRouter } from "next/navigation";
 // import { toast } from '@/components/ui/sonner';
 
 type OpenRegFormValues = z.infer<typeof openRegSchema>;
@@ -54,34 +55,35 @@ const RegistrationModule = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const [povertyFile, setPovertyFile] = useState<File | null>(null);
-  const [electricityBillFile, setElectricityBillFile] =
-    useState<File | null>(null);
-  const [housePhotoFile, setHousePhotoFile] = useState<File | null>(
-    null
-  );
+  const [electricityBillFile, setElectricityBillFile] = useState<File | null>(null);
+  const [housePhotoFile, setHousePhotoFile] = useState<File | null>(null);
+  const [paycheckFile, setPaycheckFile] = useState<File | null>(null);
+
+  const { replace } = useRouter();
 
   const form = useForm<OpenRegFormValues>({
     resolver: zodResolver(openRegSchema),
-    defaultValues: {
-      fullName: "John Doe",
-      username: "johndoe",
-      phoneNumber: "1234567890",
-      birthDate: new Date("2000-01-01"),
-      address: "123 Main St",
-      studyMethood: "online",
-      parentName: "Jane Doe",
-      relationWithParent: "Mother",
-      parentPhoneNumber: "0987654321",
-      highschoolName: "High School ABC",
-      highschoolClass: "kelas-12",
-      meanScore: "90",
-      studentReport: null,
-      motivationLetter: null,
-      commitmentLetter: null,
-      proofOfFollowing: null,
-      proofOfTwibbon: null,
-      referralCode: "REF123",
-    },
+    // defaultValues: {
+    //   fullName: "John Doe",
+    //   username: "johndoe",
+    //   phoneNumber: "1234567890",
+    //   birthDate: new Date("2000-01-01"),
+    //   address: "123 Main St",
+    //   studyMethood: "online",
+    //   parentName: "Jane Doe",
+    //   relationWithParent: "Mother",
+    //   parentPhoneNumber: "0987654321",
+    //   highschoolName: "High School ABC",
+    //   highschoolClass: "kelas-12",
+    //   meanScore: "90",
+    //   studentReport: null,
+    //   motivationLetter: null,
+    //   commitmentLetter: null,
+    //   proofOfFollowing: null,
+    //   proofOfTwibbon: null,
+    //   proofOfSg: null,
+    //   referralCode: "REF123",
+    // },
   });
 
   const onSubmit = async (values: OpenRegFormValues) => {
@@ -92,12 +94,12 @@ const RegistrationModule = () => {
     setTab2Data(currentTab2Data);
 
     const combinedData = { ...tab1Data, ...tab2Data, ...values };
-    //console.log("Combined Data:", combinedData);
 
     const optionalFiles = {
       povertyLetter: povertyFile || undefined,
       housePhoto: housePhotoFile || undefined,
       electricityBill: electricityBillFile || undefined,
+      paycheckUrl: paycheckFile || undefined,
     };
 
     try {
@@ -114,12 +116,15 @@ const RegistrationModule = () => {
         }
       );
       if (result.isSuccess) {
+        toast.success("Registration success");
         form.reset();
         setTab1Data(null);
         setTab2Data(null);
         setPovertyFile(null);
         setElectricityBillFile(null);
         setHousePhotoFile(null);
+
+        replace("/");
       }
     } catch (error) {
       //console.error(error);
@@ -253,8 +258,8 @@ const RegistrationModule = () => {
                                 value={
                                   form.watch("birthDate")
                                     ? moment(
-                                        form.watch("birthDate")
-                                      ).format("YYYY-MM-DD")
+                                      form.watch("birthDate")
+                                    ).format("YYYY-MM-DD")
                                     : ""
                                 }
                                 onChange={(e) =>
@@ -342,9 +347,9 @@ const RegistrationModule = () => {
                                 <p className="text-sm text-red-500">
                                   {typeof form.formState.errors
                                     .identityCard?.message ===
-                                  "string"
+                                    "string"
                                     ? form.formState.errors
-                                        .identityCard.message
+                                      .identityCard.message
                                     : ""}
                                 </p>
                               )}
@@ -429,13 +434,13 @@ const RegistrationModule = () => {
                               />
                               {form.formState.errors
                                 .relationWithParent && (
-                                <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors
-                                      .relationWithParent.message
-                                  }
-                                </p>
-                              )}
+                                  <p className="text-sm text-red-500">
+                                    {
+                                      form.formState.errors
+                                        .relationWithParent.message
+                                    }
+                                  </p>
+                                )}
                             </div>
 
                             <div>
@@ -456,40 +461,23 @@ const RegistrationModule = () => {
                               />
                               {form.formState.errors
                                 .parentPhoneNumber && (
-                                <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors
-                                      .parentPhoneNumber.message
-                                  }
-                                </p>
-                              )}
+                                  <p className="text-sm text-red-500">
+                                    {
+                                      form.formState.errors
+                                        .parentPhoneNumber.message
+                                    }
+                                  </p>
+                                )}
                             </div>
                           </div>
 
                           <div className="lg:w-1/2 max-lg:pt-4 lg:space-y-2">
                             <FileInput
-                              label="Slip Gaji / Surat Keterangan Penghasilan Orang Tua"
-                              file={form.watch("parentIdentityCard")}
-                              setFile={(file) =>
-                                form.setValue(
-                                  "parentIdentityCard",
-                                  file
-                                )
-                              }
+                              label="Slip Gaji Orang Tua / Wali"
+                              file={paycheckFile}
+                              setFile={setPaycheckFile}
                               className="w-full"
-                              asterisk
                             />
-                            {form.formState.errors
-                              .parentIdentityCard && (
-                              <p className="text-sm text-red-500">
-                                {typeof form.formState.errors
-                                  .parentIdentityCard?.message ===
-                                "string"
-                                  ? form.formState.errors
-                                      .parentIdentityCard.message
-                                  : ""}
-                              </p>
-                            )}
                           </div>
                         </div>
 
@@ -517,13 +505,13 @@ const RegistrationModule = () => {
                               />
                               {form.formState.errors
                                 .highschoolName && (
-                                <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors
-                                      .highschoolName.message
-                                  }
-                                </p>
-                              )}
+                                  <p className="text-sm text-red-500">
+                                    {
+                                      form.formState.errors
+                                        .highschoolName.message
+                                    }
+                                  </p>
+                                )}
                             </div>
 
                             <div>
@@ -548,13 +536,13 @@ const RegistrationModule = () => {
                               />
                               {form.formState.errors
                                 .highschoolClass && (
-                                <p className="text-sm text-red-500">
-                                  {
-                                    form.formState.errors
-                                      .highschoolClass.message
-                                  }
-                                </p>
-                              )}
+                                  <p className="text-sm text-red-500">
+                                    {
+                                      form.formState.errors
+                                        .highschoolClass.message
+                                    }
+                                  </p>
+                                )}
                             </div>
 
                             <div>
@@ -597,7 +585,7 @@ const RegistrationModule = () => {
                                 {typeof form.formState.errors
                                   .studentReport?.message === "string"
                                   ? form.formState.errors
-                                      .studentReport.message
+                                    .studentReport.message
                                   : ""}
                               </p>
                             )}
@@ -635,114 +623,126 @@ const RegistrationModule = () => {
                       </CardHeader>
 
                       <CardContent>
-                        <div className="lg:flex max-lg:space-y-4 lg:space-x-8 lg:pb-10">
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <div>
-                              <FileInput
-                                label="Motivation Letter (PDF)"
-                                file={form.watch("motivationLetter")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "motivationLetter",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .motivationLetter && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .motivationLetter?.message ===
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
+                          <FileInput
+                            label="Motivation Letter (PDF)"
+                            file={form.watch("motivationLetter")}
+                            setFile={(file) =>
+                              form.setValue(
+                                "motivationLetter",
+                                file
+                              )
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors
+                            .motivationLetter && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors
+                                  .motivationLetter?.message ===
                                   "string"
-                                    ? form.formState.errors
-                                        .motivationLetter.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
+                                  ? form.formState.errors
+                                    .motivationLetter.message
+                                  : ""}
+                              </p>
+                            )}
 
-                            <div>
-                              <FileInput
-                                label="Surat Komitmen (PDF)"
-                                file={form.watch("commitmentLetter")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "commitmentLetter",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .commitmentLetter && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .commitmentLetter?.message ===
+                          <FileInput
+                            label="Surat Komitmen (PDF)"
+                            file={form.watch("commitmentLetter")}
+                            setFile={(file) =>
+                              form.setValue(
+                                "commitmentLetter",
+                                file
+                              )
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors
+                            .commitmentLetter && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors
+                                  .commitmentLetter?.message ===
                                   "string"
-                                    ? form.formState.errors
-                                        .commitmentLetter.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
-                          </div>
+                                  ? form.formState.errors
+                                    .commitmentLetter.message
+                                  : ""}
+                              </p>
+                            )}
 
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <div>
-                              <FileInput
-                                label="Bukti Follow Sosial Media (PDF)"
-                                file={form.watch("proofOfFollowing")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "proofOfFollowing",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .proofOfFollowing && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .proofOfFollowing?.message ===
+                          <FileInput
+                            label="Bukti Follow Sosial Media (PDF)"
+                            file={form.watch("proofOfFollowing")}
+                            setFile={(file) =>
+                              form.setValue(
+                                "proofOfFollowing",
+                                file
+                              )
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors
+                            .proofOfFollowing && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors
+                                  .proofOfFollowing?.message ===
                                   "string"
-                                    ? form.formState.errors
-                                        .proofOfFollowing.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
+                                  ? form.formState.errors
+                                    .proofOfFollowing.message
+                                  : ""}
+                              </p>
+                            )}
 
-                            <div>
-                              <FileInput
-                                label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
-                                file={form.watch("proofOfTwibbon")}
-                                setFile={(file) =>
-                                  form.setValue(
-                                    "proofOfTwibbon",
-                                    file
-                                  )
-                                }
-                                className="w-full"
-                                asterisk
-                              />
-                              {form.formState.errors
-                                .proofOfTwibbon && (
-                                <p className="text-sm text-red-500">
-                                  {typeof form.formState.errors
-                                    .proofOfTwibbon?.message ===
+                          <FileInput
+                            label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
+                            file={form.watch("proofOfTwibbon")}
+                            setFile={(file) =>
+                              form.setValue(
+                                "proofOfTwibbon",
+                                file
+                              )
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors
+                            .proofOfTwibbon && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors
+                                  .proofOfTwibbon?.message ===
                                   "string"
-                                    ? form.formState.errors
-                                        .proofOfTwibbon.message
-                                    : ""}
-                                </p>
-                              )}
-                            </div>
-                          </div>
+                                  ? form.formState.errors
+                                    .proofOfTwibbon.message
+                                  : ""}
+                              </p>
+                            )}
+
+                          <FileInput
+                            label="Bukti Upload Story Instagram (JPG/PNG/JPEG/PDF)"
+                            file={form.watch("proofOfSg")}
+                            setFile={(file) =>
+                              form.setValue(
+                                "proofOfSg",
+                                file
+                              )
+                            }
+                            className="w-full"
+                            asterisk
+                          />
+                          {form.formState.errors
+                            .proofOfSg && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors
+                                  .proofOfSg?.message ===
+                                  "string"
+                                  ? form.formState.errors
+                                    .proofOfSg.message
+                                  : ""}
+                              </p>
+                            )}
                         </div>
 
                         <CardHeader>
@@ -751,35 +751,27 @@ const RegistrationModule = () => {
                           </CardTitle>
                         </CardHeader>
 
-                        <div className="lg:flex space-y-4 lg:space-x-8 lg:pb-10">
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <div>
-                              <FileInput
-                                label="Surat Keterangan Tidak Mampu"
-                                file={povertyFile}
-                                setFile={setPovertyFile}
-                                className="w-full"
-                              />
-                            </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pb-10">
+                          <FileInput
+                            label="Surat Keterangan Tidak Mampu"
+                            file={povertyFile}
+                            setFile={setPovertyFile}
+                            className="w-full"
+                          />
 
-                            <div>
-                              <FileInput
-                                label="Tagihan Listrik"
-                                file={electricityBillFile}
-                                setFile={setElectricityBillFile}
-                                className="w-full"
-                              />
-                            </div>
-                          </div>
+                          <FileInput
+                            label="Tagihan Listrik"
+                            file={electricityBillFile}
+                            setFile={setElectricityBillFile}
+                            className="w-full"
+                          />
 
-                          <div className="lg:w-1/2 space-y-4 lg:space-y-5">
-                            <FileInput
-                              label="Foto Tampak Tempat Tinggal"
-                              file={housePhotoFile}
-                              setFile={setHousePhotoFile}
-                              className="w-full"
-                            />
-                          </div>
+                          <FileInput
+                            label="Foto Tampak Tempat Tinggal"
+                            file={housePhotoFile}
+                            setFile={setHousePhotoFile}
+                            className="w-full"
+                          />
                         </div>
 
                         <CardHeader>
