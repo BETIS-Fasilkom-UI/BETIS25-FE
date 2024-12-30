@@ -169,7 +169,7 @@ const RegistrationModule = () => {
             OPEN REGISTRATION
           </h1>
 
-          <Link href="/">
+          <Link href="https://docs.google.com/document/d/1GaGN7ervIPajtL9GSfb8KgneVambLU38fqax7lPiXuQ/edit?usp=sharing" target="_blank">
             <Button
               className="w-1/2 md:w-[70%] rounded-[20px] md:text-xl py-6 md:py-8"
               size="lg"
