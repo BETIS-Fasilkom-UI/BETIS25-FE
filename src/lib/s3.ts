@@ -1,5 +1,4 @@
 import {
-    PutObjectCommand,
     S3Client
 } from "@aws-sdk/client-s3";
 
@@ -12,16 +11,26 @@ const s3 = new S3Client({
     },
 });
 
-const uploadFile = async (file: File, key?: string) => { 
-    const Body = Buffer.from(await file.arrayBuffer());
-    const Key = `ticket/${key ? key : file.name}`;
-    const response = await s3.send(new PutObjectCommand({ Bucket, Key, Body }));
-    if (!response || response.$metadata.httpStatusCode !== 200) {
-        throw new Error('Failed to upload file to S3');
-    }
-    const url = `https://${Bucket}.s3.amazonaws.com/${Key}`;
+const uploadFile = async (file: File, key?: string, folder?: string) => { 
+    const formData = new FormData();
 
-    return url;
+    formData.append('file', file as Blob);
+    formData.append('data', JSON.stringify({ key, folder }));
+
+    // Fetch
+    const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+    })
+
+    if (!response.ok) {
+        throw new Error('Failed to upload file');
+    }
+
+    const data: {url: string} = await response.json();
+
+    return data.url;
 }
 
 export { Bucket, s3, uploadFile };
+

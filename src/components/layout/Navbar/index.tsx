@@ -18,8 +18,9 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
   const Logout = async () => {
     if (isAuthenticated) {
       const token = getCookie("token");
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
       if (token) {
-        await fetch("http://localhost:8080/api/v1/auth/logout", {
+        await fetch(`${API_URL}auth/logout`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
