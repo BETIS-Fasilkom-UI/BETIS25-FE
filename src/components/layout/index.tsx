@@ -7,7 +7,7 @@ import { getUserService } from "@/hooks/user";
 export const Layout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getUserService();
   return (
-    <main className="min-h-screen max-w-screen overflow-x-hidden font-openSans max-w-[1920px] mx-auto">
+    <main className="min-h-screen overflow-x-hidden font-openSans max-w-[1920px] flex flex-col mx-auto">
       <Toaster position="top-center" />
       <Navbar user={user} />
       <main className="min-h-screen">{children}</main>

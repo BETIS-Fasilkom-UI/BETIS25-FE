@@ -20,8 +20,8 @@ const BetalksWebinarPPKB = () => {
       </div>
 
       <section className="space-y-10 md:space-y-20">
-        <Card className="w-full !flex !flex-col-reverse !px-8 !pt-2 !pb-12 xl:!pl-14 xl:!pr-0 xl:!pt-9 h-[300px] xl:!flex-row xl:mx-auto">
-          <div className="w-[72vmin] xl:w-[729px] flex flex-col">
+        <Card className="w-full flex flex-col-reverse xl:grid xl:grid-cols-2 bg-[#6F4589] bg-opacity-100 !px-8 !pt-2 !pb-12 xl:!pl-14 xl:!pr-0 xl:!pt-9 h-full xl:h-[320px] 2xl:h-[300px] xl:!flex-row xl:mx-auto">
+          <div className="flex flex-col">
             <div className="text-[var(--Font,#FEF5FF)] font-cinzel text-2xl md:text-3xl max-md:text-center xl:text-4xl font-black leading-10 mt-8 xl:mt-0 xl:flex mb-4">
               be talks
             </div>
@@ -50,7 +50,9 @@ const BetalksWebinarPPKB = () => {
                 title="OOPS!"
                 open={isRegisterOpen}
                 onOpenChange={setRegisterOpen}
-                buttons={[<ModalButton className="w-full">Register</ModalButton>]}
+                buttons={[
+                  <ModalButton className="w-full">Register</ModalButton>,
+                ]}
               >
                 Fitur ini memerlukan login untuk melanjutkan. Yuk, masuk atau
                 daftar dulu untuk menikmati pengalaman penuh!
@@ -64,12 +66,12 @@ const BetalksWebinarPPKB = () => {
                 orci ac egestas. Lorem ipsum dolor sit amet, consectetur
                 adipiscing elit. Ut dui orci ac egestas. Lorem ipsum dolor sit
                 amet, consectetur adipiscing elit. Ut dui orci ac egestas. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Ut dui orci ac
-                egestas
+                ipsum dolor sit amet, consectetur adipiscing elit. Ut dui orci
+                ac egestas
               </Modal>
             </div>
           </div>
-          <div className="relative flex mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-28 xl:!-right-[60px]">
+          <div className="relative mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-[8.75rem]">
             <Image
               alt="Megaphone"
               src="/imageBEtalks.png"
@@ -80,14 +82,14 @@ const BetalksWebinarPPKB = () => {
           </div>
         </Card>
 
-        <Card className="w-full !flex !flex-col-reverse !px-8 !pt-2 !pb-12 xl:!pr-14 xl:!pl-0 xl:!pt-9 h-[300px] xl:!flex-row-reverse xl:mx-auto">
-          <div className="w-[72vmin] xl:w-[729px] flex flex-col">
+        <Card className="w-full flex flex-col-reverse xl:grid xl:grid-cols-2 bg-[#6F4589] bg-opacity-100 !px-8 !pt-2 !pb-12 xl:!pl-14 xl:!pr-0 xl:!pt-9 h-full xl:h-[320px] 2xl:h-[300px] xl:!flex-row xl:mx-auto">
+          <div className="flex flex-col">
             <div className="text-[var(--Font,#FEF5FF)] font-cinzel text-2xl md:text-3xl max-md:text-center xl:text-4xl font-black leading-10 mt-8 xl:mt-0 xl:flex mb-4">
               Webinar PPKB
             </div>
             <div className="text-[var(--Font,#FEF5FF)] text-justify font-raleway text-xs font-semibold md:text-base xl:font-medium leading-7 mb-5 ">
-              Webinar PPKB adalah acara untuk memberikan panduan menulis esai yang
-              baik dan benar dalam seleksi PPKB (Prestasi dan Penelusuran
+              Webinar PPKB adalah acara untuk memberikan panduan menulis esai
+              yang baik dan benar dalam seleksi PPKB (Prestasi dan Penelusuran
               Kemampuan Belajar). Peserta akan mempelajari struktur, strategi
               penulisan, serta tips untuk membuat esai yang menarik dan sesuai
               kriteria, dengan tujuan meningkatkan peluang keberhasilan.
@@ -110,7 +112,9 @@ const BetalksWebinarPPKB = () => {
                 title="OOPS!"
                 open={isRegisterOpen}
                 onOpenChange={setRegisterOpen}
-                buttons={[<ModalButton className="w-full">Register</ModalButton>]}
+                buttons={[
+                  <ModalButton className="w-full">Register</ModalButton>,
+                ]}
               >
                 Fitur ini memerlukan login untuk melanjutkan. Yuk, masuk atau
                 daftar dulu untuk menikmati pengalaman penuh!
@@ -124,12 +128,12 @@ const BetalksWebinarPPKB = () => {
                 orci ac egestas. Lorem ipsum dolor sit amet, consectetur
                 adipiscing elit. Ut dui orci ac egestas. Lorem ipsum dolor sit
                 amet, consectetur adipiscing elit. Ut dui orci ac egestas. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Ut dui orci ac
-                egestas
+                ipsum dolor sit amet, consectetur adipiscing elit. Ut dui orci
+                ac egestas
               </Modal>
             </div>
           </div>
-          <div className="relative flex mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-[8.75rem] xl:!-left-[2.25rem]">
+          <div className="relative mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-[8.75rem]">
             <Image
               alt="Scroll"
               src="/imageWebinarPPKB.png"
@@ -140,7 +144,6 @@ const BetalksWebinarPPKB = () => {
           </div>
         </Card>
       </section>
-
     </div>
   );
 };

@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const Timeline = () => {
   return (
-    <div className="relative w-full flex flex-col items-center py-[20vh] mb-52">
+    <div className="relative w-full flex flex-col items-center pt-[10vh] md:py-[20vh] mb-52">
       <div className="absolute w-full h-auto overflow-x-clip">
         <div className="relative top-0 left-0">
           <div className="absolute z-100 min-w-[150vw] min-h-[98.5vw] top-[-12vw] left-[-24.5vw]">
