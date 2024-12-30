@@ -5,16 +5,17 @@ export async function POST(req: Request) {
     try {
         const formdata = await req.formData();
         
-        const body: {key: string} = JSON.parse(formdata.get('data') as string);
+        const body: {key: string, folder: string} = JSON.parse(formdata.get('data') as string);
         const file = formdata.get('file');
 
         let url = '';
         if (file instanceof File) {
             const Body = Buffer.from(await file.arrayBuffer());
 
+            const folder = (body.folder || '').replace(/^\/|\/$/g, '') + '/';
             const fileExtension = file.name.split('.').pop();
 
-            const Key = `ticket/${body.key}.${fileExtension}`;
+            const Key = `${folder}${body.key}.${fileExtension}`;
             const response = await s3.send(new PutObjectCommand({ Bucket, Key, Body }));
             if (!response || response.$metadata.httpStatusCode !== 200) {
                 throw new Error('Failed to upload file to S3');

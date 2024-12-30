@@ -1,5 +1,4 @@
 import {
-    PutObjectCommand,
     S3Client
 } from "@aws-sdk/client-s3";
 
@@ -12,11 +11,11 @@ const s3 = new S3Client({
     },
 });
 
-const uploadFile = async (file: File, key?: string) => { 
+const uploadFile = async (file: File, key?: string, folder?: string) => { 
     const formData = new FormData();
 
     formData.append('file', file as Blob);
-    formData.append('data', JSON.stringify({ key }));
+    formData.append('data', JSON.stringify({ key, folder }));
 
     // Fetch
     const response = await fetch('/api/upload', {
@@ -34,3 +33,4 @@ const uploadFile = async (file: File, key?: string) => {
 }
 
 export { Bucket, s3, uploadFile };
+

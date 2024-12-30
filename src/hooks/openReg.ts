@@ -115,35 +115,45 @@ export async function useOpenReg(
 ) {
 
   try {
-    const user = await useUserData();
+    console.log("Registering user");
     
+    // const user = await useUserData();
+    
+    const user = {
+      id: 1,
+      fullname: "John Doe",
+      email: "john@gmail.com"
+    }
+
     const userId = user?.id;
     const userName = user?.fullname.replace(/\s+/g, '-');
   
     console.log("Upload files to s3");
     
     console.log(user);
+
+    const folder = `open-reg/${userName}_${userId}`;
     
     // Upload Necessary files to s3
-    const identityCardUrl = await uploadFile(values.identityCard, `identity-card_${userName}_${userId}`);
+    const identityCardUrl = await uploadFile(values.identityCard, `identity-card_${userName}_${userId}`, folder);
     console.log(identityCardUrl);
     
-    const parentIdentityCardUrl = await uploadFile(values.parentIdentityCard, `parent-identity-card_${userName}_${userId}`);
+    const parentIdentityCardUrl = await uploadFile(values.parentIdentityCard, `parent-identity-card_${userName}_${userId}`, folder);
     console.log(parentIdentityCardUrl);
     
-    const studentReportUrl = await uploadFile(values.studentReport, `student-report_${userName}_${userId}`);
+    const studentReportUrl = await uploadFile(values.studentReport, `student-report_${userName}_${userId}`, folder);
     console.log(studentReportUrl);
 
-    const motivationLetterUrl = await uploadFile(values.motivationLetter, `motivasi-letter_${userName}_${userId}`);
+    const motivationLetterUrl = await uploadFile(values.motivationLetter, `motivasi-letter_${userName}_${userId}`, folder);
     console.log(motivationLetterUrl);
 
-    const commitmentLetterUrl = await uploadFile(values.commitmentLetter, `commitment-letter_${userName}_${userId}`);
+    const commitmentLetterUrl = await uploadFile(values.commitmentLetter, `commitment-letter_${userName}_${userId}`, folder);
     console.log(commitmentLetterUrl);
 
-    const proofOfFollowingUrl = await uploadFile(values.proofOfFollowing, `proof-of-following_${userName}_${userId}`);
+    const proofOfFollowingUrl = await uploadFile(values.proofOfFollowing, `proof-of-following_${userName}_${userId}`, folder);
     console.log(proofOfFollowingUrl);
 
-    const proofOfTwibbonUrl = await uploadFile(values.proofOfTwibbon, `proof-of-twibbon_${userName}_${userId}`);
+    const proofOfTwibbonUrl = await uploadFile(values.proofOfTwibbon, `proof-of-twibbon_${userName}_${userId}`, folder);
     console.log(proofOfTwibbonUrl);
   
     const { povertyLetter, housePhoto, electricityBill } = optionalFiles;
@@ -159,7 +169,7 @@ export async function useOpenReg(
         "Only .PDF formats are supported."
       );
       if (!validation.isSuccess) return validation;
-      povertyLetterUrl = await uploadFile(povertyLetter, `poverty-letter_${userName}_${userId}`);
+      povertyLetterUrl = await uploadFile(povertyLetter, `poverty-letter_${userName}_${userId}`, folder);
     }
   
     if (housePhoto) {
@@ -170,7 +180,7 @@ export async function useOpenReg(
       );
       if (!validation.isSuccess) return validation;
   
-      housePhotoUrl = await uploadFile(housePhoto, `house-photo_${userName}_${userId}`);
+      housePhotoUrl = await uploadFile(housePhoto, `house-photo_${userName}_${userId}`, folder);
     }
   
     if (electricityBill) {
@@ -181,7 +191,7 @@ export async function useOpenReg(
       );
       if (!validation.isSuccess) return validation;
   
-      electricityBillUrl = await uploadFile(electricityBill, `electricity-bill_${userName}_${userId}`);
+      electricityBillUrl = await uploadFile(electricityBill, `electricity-bill_${userName}_${userId}`, folder);
     }
   
     const body = {
