@@ -36,7 +36,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
   return (
     <>
       <nav
-        className={cn("z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full")}
+        className={cn("z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full max-w-[1920px]")}
       >
         <div
           className={cn(

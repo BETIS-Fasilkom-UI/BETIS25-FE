@@ -15,7 +15,7 @@ import Vismis from "./sections/VismisModule/Vismis";
 export const HomePageModule = () => {
   return (
     <main className="flex flex-col justify-center items-center mb-[10dvh]">
-      {/* <Hero /> */}
+      <Hero />
       <AboutBetis />
       <Vismis />
       <DocumentationCarousel
