@@ -1,4 +1,4 @@
-import FaqModule from '@/modules/FaqModule'
+import FaqModule from '@/modules/HomePageModule/sections/Faq'
 import React from 'react'
 
 const FaqPage = () => {
