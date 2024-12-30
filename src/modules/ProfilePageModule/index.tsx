@@ -10,7 +10,7 @@ export const ProfilePageModule = ({ user }: { user: User }) => {
   return (
     <main className="min-h-screen flex items-center justify-center">
       <StarryBackground />
-      <section className="w-[80vw] p-6 flex flex-col gap-6 bg-[#f8ebf30c] rounded-xl shadow-[4px_4px_12px_0px_rgba(254,245,255,0.40),-4px_-4px_12px_0px_rgba(254,245,255,0.40)] backdrop-blur-md">
+      <section className="w-[80vw] p-6 lg:p-10 flex flex-col gap-6 bg-[#f8ebf30c] rounded-xl shadow-[4px_4px_12px_0px_rgba(254,245,255,0.40),-4px_-4px_12px_0px_rgba(254,245,255,0.40)] backdrop-blur-md my-40">
         <Avatar className="w-40 h-40 mb-6 max-md:mx-auto">
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>
