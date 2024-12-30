@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const Vismis = () => {
   return (
-    <div className="flex flex-col items-center mt-20">
+    <div className="flex flex-col items-center mt-20 ">
       <h1 className="text-center font-cinzel text-4xl mb-12 text-white">
         VISI MISI BETIS
       </h1>

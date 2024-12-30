@@ -107,7 +107,7 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, setTweenNodes, slides.length, tweenScale]);
 
   return (
-    <div className="w-full flex flex-col md:gap-8 items-center">
+    <div className="w-full px-5 md:px-10 lg:px-20 flex flex-col md:gap-8 items-center">
       <h1 className="lg:text-t1 md:text-t2 sm:text-t3 text-2xl max-w-[90%] font-cinzel text-center lg:mb-9 mt-10">
         Betis 2024's Archive
       </h1>

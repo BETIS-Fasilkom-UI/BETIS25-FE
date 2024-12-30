@@ -28,7 +28,9 @@ export const HomePageModule = () => {
       <Medpar />
       <Sponsor />
       <Faq />
-      <ContactPerson />
+      <div className="w-full px-5 md:px-10 lg:px-20">
+        <ContactPerson />
+      </div>
     </main>
   );
 };

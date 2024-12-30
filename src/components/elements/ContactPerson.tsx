@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const ContactPerson = () => {
   return (
-    <div className="bg-[#1E0D2599] flex flex-col -z-10 relative justify-center items-center py-20 md:py-[54px] w-[95%] max-md:px-4 md:px-8 md:w-[90%] lg:w-[80%] rounded-[40px]">
+    <div className="bg-[#1E0D2599] flex flex-col -z-10 relative justify-center items-center py-20 md:py-[54px] w-full max-md:px-4 md:px-8 rounded-[40px]">
       <div className="absolute w-full h-full -z-10 max-md:hidden">
         <Image
           src={"/ContactPersonBg.png"}

@@ -59,9 +59,7 @@ export default function RootLayout({
       >
         <NextTopLoader showSpinner={false} color="#c5599e" shadow={false} />
         <Layout>
-          <main className="max-w-screen-2xl mx-auto relative">
             {children}
-          </main>
         </Layout>
       </body>
     </html>
