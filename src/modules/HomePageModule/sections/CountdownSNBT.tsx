@@ -6,7 +6,7 @@ import React from "react";
 
 const CountdownSNBT = () => {
   return (
-    <div className="relative flex justify-center w-full h-[700px] sm:h-[800px] overflow-hidden max-md:mt-[100px] mb-[100px] md:mb-[200px] px-5 md:px-10 lg:px-20">
+    <div className="relative flex justify-center w-full h-[700px] sm:h-[800px] overflow-hidden max-md:mt-[100px] mt-[150px] px-5 md:px-10 lg:px-20">
       <div className="relative w-full h-[500px] sm:h-[550px] translate-y-[100px] sm:translate-y-[150px] rounded-[40px] sm:rounded-[90px]">
         <div className="absolute inset-0 bg-[linear-gradient(0deg,_rgba(34,12,49,0)_0%,_#2B103A_27%,_#451C55_74%,_#8E2B8F_100%)] opacity-[12%] rounded-[40px] sm:rounded-[90px]"></div>
 
@@ -26,11 +26,11 @@ const CountdownSNBT = () => {
               Waktunya berjuang dan raih mimpimu
             </div>
             <div className="flex justify-center">
-              <a href="/registration">
+              <Link href="/registration">
                 <Button className="w-fit sm:w-[80%] h-[90%] text-t8 sm:text-t7">
                   Daftar BETIS 2025
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
