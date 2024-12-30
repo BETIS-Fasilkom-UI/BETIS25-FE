@@ -5,16 +5,14 @@ import {
   CardHeader,
   CardTitle,
   CardImage,
-  CardContent,
   CardDescription,
 } from "@/components/ui/card";
 import "./styles.css";
-import { Description } from "@radix-ui/react-dialog";
 import Image from "next/image";
 
-const VismisModule = () => {
+const Vismis = () => {
   return (
-    <div className="mt-48 flex flex-col items-center mt-20">
+    <div className="flex flex-col items-center mt-20">
       <h1 className="text-center font-cinzel text-4xl mb-12 text-white">
         VISI MISI BETIS
       </h1>
@@ -108,4 +106,4 @@ const VismisModule = () => {
     </div>
   );
 };
-export default VismisModule;
+export default Vismis;
