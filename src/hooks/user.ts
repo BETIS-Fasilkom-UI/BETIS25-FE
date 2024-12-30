@@ -9,14 +9,6 @@ export const getUserService = async () => {
     return null;
   }
 
-  const res = await fetch("http://localhost:8080/api/v1/user", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  });
-
-  console.log(res);
-
   const payload = decode(token) as JwtPayload;
   if (!payload) {
     return null;
@@ -42,7 +34,7 @@ export const getUserData = async () => {
   }
 
   const response = await fetch(
-    `http://localhost:3000/api/user/${user?.email}`,
+    `http://localhost:8080/api/v1/user/${user?.email}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -54,12 +46,32 @@ export const getUserData = async () => {
     return null;
   } else {
     const data: GetUserDataResponse = await response.json();
+    const userData = data.data;
     return {
-      id: data.id,
-      fullname: data.fullname,
-      email: data.email,
-      phoneNumber: data.phone_number,
-      nickname: data.nickname,
+      id: userData.id,
+      fullname: userData.fullname,
+      email: userData.email,
+      phoneNumber: userData.phone_number,
+      nickname: userData.nickname,
+      address: userData.address,
+      identity_card_url: userData.identity_card_url,
+      study_method: userData.study_method,
+      guardian_name: userData.guardian_name,
+      guardian_relationship: userData.guardian_relationship,
+      guardian_phone: userData.guardian_phone,
+      guardian_document_url: userData.guardian_document_url,
+      school_name: userData.school_name,
+      grade: userData.grade,
+      average_score: userData.average_score,
+      report_card_url: userData.report_card_url,
+      motivation_letter_url: userData.motivation_letter_url,
+      commitment_statement_url: userData.commitment_statement_url,
+      social_media_following_url: userData.social_media_following_url,
+      twibbon_upload_url: userData.twibbon_upload_url,
+      financial_need_letter_url: userData.financial_need_letter_url,
+      electric_bill_document_url: userData.electric_bill_document_url,
+      residence_photo_url: userData.residence_photo_url,
+      affiliation_code: userData.affiliation_code,
     } as User;
   }
 };
