@@ -11,18 +11,13 @@ import Image from "next/image";
 const Timeline = () => {
   return (
     <div className="relative w-full flex flex-col items-center pt-[10vh] md:py-[20vh] mb-52">
-      <div className="absolute w-full h-auto overflow-x-clip">
-        <div className="relative top-0 left-0">
-          <div className="absolute z-100 min-w-[150vw] min-h-[98.5vw] top-[-12vw] left-[-24.5vw]">
-            <Image
-              src={"/TimelineBg.png"}
-              alt=" "
-              layout="fill"
-              objectFit="contain"
-              priority={true}
-            />
-          </div>
-        </div>
+      <div className="absolute w-[150vw] h-full xl:h-[2000px] overflow-x-clip -translate-y-[100px] md:-translate-y-[300px] lg:-translate-y-[350px] xl:-translate-y-[400px] 2xl:-translate-y-[300px]">
+        <Image
+          src={"/TimelineBg.png"}
+          alt=" "
+          fill
+          className="object-contain"
+        />
       </div>
 
       {/* Treasure Chest, update the pt-[...] to adjust for the updated bg */}
@@ -40,7 +35,7 @@ const Timeline = () => {
             className={`z-10 absolute 
                                 max-md:left-[-33.5px] max-md:top-[-65px] max-md:w-[67px] max-md:h-[70px]
                                 md:left-[-55px] md:top-[-102px] md:w-[105px] md:h-[110px] 
-                                lg:left-[-91.5px] lg:top-[-170px] lg:w-[175px] lg:h-[183px]`}
+                                lg:left-[-91.5px] lg:top-[-120px] lg:w-[175px] lg:h-[183px]`}
           >
             <Image
               className=""
