@@ -16,8 +16,7 @@ const AccordionItem = React.forwardRef<
     ref={ref}
     className={cn(
       "[&:not(:last-child)]:mb-2 rounded-2xl shadow-lg px-6",
-      "[&:nth-child(2)]:bg-tosca-dark-active",
-      "[&:not(:nth-child(2))]:bg-gradient-to-b from-tosca-normal-active to-tosca-pagination-darker",
+      "bg-gradient-to-b from-tosca-normal-active to-tosca-pagination-darker",
       className
     )}
     {...props}
