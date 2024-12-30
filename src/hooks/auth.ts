@@ -52,8 +52,10 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
       const idToken = await user.getIdToken();
       const userData = user.displayName?.split("<|>") || [];
 
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
       const response = await fetch(
-        "http://localhost:8080/api/v1/auth/create-session/",
+        `${API_URL}auth/create-session/`,
         {
           method: "POST",
           headers: {

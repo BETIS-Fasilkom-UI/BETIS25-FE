@@ -33,8 +33,10 @@ export const getUserData = async () => {
     return null;
   }
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const response = await fetch(
-    `http://localhost:8080/api/v1/user/${user?.email}`,
+    `${API_URL}user/${user?.email}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
