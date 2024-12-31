@@ -105,24 +105,22 @@ const RegistrationModule = () => {
       paycheckUrl: paycheckFile || undefined,
     };
 
-    try {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const result = await useOpenReg(combinedData, optionalFiles);
-      if (result.isSuccess) {
-        toast.success("Registration success");
-        form.reset();
-        setTab1Data(null);
-        setTab2Data(null);
-        setPovertyFile(null);
-        setElectricityBillFile(null);
-        setHousePhotoFile(null);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const result = await useOpenReg(combinedData, optionalFiles);
+    if (result.isSuccess) {
+      toast.success("Registration success");
+      form.reset();
+      setTab1Data(null);
+      setTab2Data(null);
+      setPovertyFile(null);
+      setElectricityBillFile(null);
+      setHousePhotoFile(null);
 
-        push("/profile");
-      }
-    } catch (error) {
-      //console.error(error);
-      toast.error("Registration failed");
+      push("/profile");
+    } else {
+      toast.error(result.message);
     }
+
     setIsLoading(false);
   };
 
@@ -419,7 +417,7 @@ const RegistrationModule = () => {
 
                           <div className="lg:w-1/2 max-lg:pt-4 lg:space-y-2">
                             <FileInput
-                              label="Slip Gaji Orang Tua / Wali"
+                              label="Slip Gaji Orang Tua / Wali (opsional)"
                               file={paycheckFile}
                               setFile={setPaycheckFile}
                               className="w-full"
@@ -552,93 +550,108 @@ const RegistrationModule = () => {
 
                       <CardContent>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
-                          <FileInput
-                            label="Motivation Letter (PDF)"
-                            file={form.watch("motivationLetter")}
-                            setFile={(file) =>
-                              form.setValue("motivationLetter", file)
-                            }
-                            className="w-full"
-                            asterisk
-                          />
-                          {form.formState.errors.motivationLetter && (
-                            <p className="text-sm text-red-500">
-                              {typeof form.formState.errors.motivationLetter
-                                ?.message === "string"
-                                ? form.formState.errors.motivationLetter.message
-                                : ""}
-                            </p>
-                          )}
+                          <div className="space-y-1">
+                            <FileInput
+                              label="Motivation Letter (PDF)"
+                              file={form.watch("motivationLetter")}
+                              setFile={(file) =>
+                                form.setValue("motivationLetter", file)
+                              }
+                              className="w-full"
+                              asterisk
+                            />
+                            {form.formState.errors.motivationLetter && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors.motivationLetter
+                                  ?.message === "string"
+                                  ? form.formState.errors.motivationLetter
+                                      .message
+                                  : ""}
+                              </p>
+                            )}
+                          </div>
 
-                          <FileInput
-                            label="Surat Komitmen (PDF)"
-                            file={form.watch("commitmentLetter")}
-                            setFile={(file) =>
-                              form.setValue("commitmentLetter", file)
-                            }
-                            className="w-full"
-                            asterisk
-                          />
-                          {form.formState.errors.commitmentLetter && (
-                            <p className="text-sm text-red-500">
-                              {typeof form.formState.errors.commitmentLetter
-                                ?.message === "string"
-                                ? form.formState.errors.commitmentLetter.message
-                                : ""}
-                            </p>
-                          )}
+                          <div className="space-y-1">
+                            <FileInput
+                              label="Surat Komitmen (PDF)"
+                              file={form.watch("commitmentLetter")}
+                              setFile={(file) =>
+                                form.setValue("commitmentLetter", file)
+                              }
+                              className="w-full"
+                              asterisk
+                            />
+                            {form.formState.errors.commitmentLetter && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors.commitmentLetter
+                                  ?.message === "string"
+                                  ? form.formState.errors.commitmentLetter
+                                      .message
+                                  : ""}
+                              </p>
+                            )}
+                          </div>
 
-                          <FileInput
-                            label="Bukti Follow Sosial Media (PDF)"
-                            file={form.watch("proofOfFollowing")}
-                            setFile={(file) =>
-                              form.setValue("proofOfFollowing", file)
-                            }
-                            className="w-full"
-                            asterisk
-                          />
-                          {form.formState.errors.proofOfFollowing && (
-                            <p className="text-sm text-red-500">
-                              {typeof form.formState.errors.proofOfFollowing
-                                ?.message === "string"
-                                ? form.formState.errors.proofOfFollowing.message
-                                : ""}
-                            </p>
-                          )}
+                          <div className="space-y-1">
+                            <FileInput
+                              label="Bukti Follow Sosial Media (PDF)"
+                              file={form.watch("proofOfFollowing")}
+                              setFile={(file) =>
+                                form.setValue("proofOfFollowing", file)
+                              }
+                              className="w-full"
+                              asterisk
+                            />
+                            {form.formState.errors.proofOfFollowing && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors.proofOfFollowing
+                                  ?.message === "string"
+                                  ? form.formState.errors.proofOfFollowing
+                                      .message
+                                  : ""}
+                              </p>
+                            )}
+                          </div>
 
-                          <FileInput
-                            label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
-                            file={form.watch("proofOfTwibbon")}
-                            setFile={(file) =>
-                              form.setValue("proofOfTwibbon", file)
-                            }
-                            className="w-full"
-                            asterisk
-                          />
-                          {form.formState.errors.proofOfTwibbon && (
-                            <p className="text-sm text-red-500">
-                              {typeof form.formState.errors.proofOfTwibbon
-                                ?.message === "string"
-                                ? form.formState.errors.proofOfTwibbon.message
-                                : ""}
-                            </p>
-                          )}
+                          <div className="space-y-1">
+                            <FileInput
+                              label="Bukti Upload Twibbon (JPG/PNG/JPEG/PDF)"
+                              file={form.watch("proofOfTwibbon")}
+                              setFile={(file) =>
+                                form.setValue("proofOfTwibbon", file)
+                              }
+                              className="w-full"
+                              asterisk
+                            />
+                            {form.formState.errors.proofOfTwibbon && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors.proofOfTwibbon
+                                  ?.message === "string"
+                                  ? form.formState.errors.proofOfTwibbon.message
+                                  : ""}
+                              </p>
+                            )}
+                          </div>
 
-                          <FileInput
-                            label="Bukti Upload Story Instagram (JPG/PNG/JPEG/PDF)"
-                            file={form.watch("proofOfSg")}
-                            setFile={(file) => form.setValue("proofOfSg", file)}
-                            className="w-full"
-                            asterisk
-                          />
-                          {form.formState.errors.proofOfSg && (
-                            <p className="text-sm text-red-500">
-                              {typeof form.formState.errors.proofOfSg
-                                ?.message === "string"
-                                ? form.formState.errors.proofOfSg.message
-                                : ""}
-                            </p>
-                          )}
+                          <div className="space-y-1">
+                            <FileInput
+                              label="Bukti Upload Story Instagram (JPG/PNG/JPEG/PDF)"
+                              file={form.watch("proofOfSg")}
+                              setFile={(file) =>
+                                form.setValue("proofOfSg", file)
+                              }
+                              className="w-full"
+                              asterisk
+                            />
+                            {form.formState.errors.proofOfSg && (
+                              <p className="text-sm text-red-500">
+                                {typeof form.formState.errors.proofOfSg
+                                  ?.message === "string"
+                                  ? form.formState.errors.proofOfSg.message
+                                  : ""}
+                              </p>
+                            )}
+                          </div>
                         </div>
 
                         <CardHeader>
@@ -646,7 +659,7 @@ const RegistrationModule = () => {
                             Berkas Pendukung (Opsional)
                           </CardTitle>
                           <p className="text-sm text-neutral-50">
-                            Unggahan berkas opsional ini dapat menbantu
+                            Unggahan berkas opsional ini dapat membantu
                             memperkuat pendaftaran Anda pada proses seleksi
                           </p>
                         </CardHeader>
@@ -775,7 +788,7 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src={isHovered || page === 1 ? "/MascotDewasa.png" : "/MascotLesu.png"}
+        src={isHovered || page === 1 ? getAsset("/MascotDewasa.png") : getAsset("/MascotLesu.png")}
         width={isHovered || page === 1 ? 224 : 216}
         height={isHovered || page === 1 ? 590 : 582}
         alt="Mascot"
