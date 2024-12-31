@@ -9,7 +9,8 @@ export default function KupuKupu(props: {className: string, reverse: boolean}) {
                 className={props.reverse ? 'transform scale-x-[-1]' : ''}
                 src={getAsset("/kupu-kupu2.png")}
                 alt="kupukupuk" 
-                layout="fill"
+                sizes='none'
+                fill
             />
             <div className='w-full h-full rounded-full origin-top-left bg-[#ff9a50] blur-[82.47px]'>
 

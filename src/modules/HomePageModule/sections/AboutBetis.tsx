@@ -78,8 +78,9 @@ const AboutBetis = () => {
           <Image
             src={getAsset("/about/girl-illustration.png")}
             alt="Girl Illustration"
-            layout="fill"
-            objectFit="contain"
+            className="object-contain"
+            fill
+            sizes="none"
             priority={true}
           />
         </div>

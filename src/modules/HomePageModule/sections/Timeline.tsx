@@ -17,6 +17,7 @@ const Timeline = () => {
           src={getAsset("/TimelineBg.png")}
           alt=" "
           fill
+          sizes="none"
           className="object-contain"
         />
       </div>
@@ -39,10 +40,11 @@ const Timeline = () => {
                                 lg:left-[-91.5px] lg:top-[-120px] lg:w-[175px] lg:h-[183px]`}
           >
             <Image
-              className=""
+              className="object-fill"
               src={getAsset("/TreasureChest.png")}
               alt=""
-              layout="fill"
+              fill
+              sizes="none"
               loading="eager"
             />
           </div>
@@ -124,7 +126,7 @@ const Timeline = () => {
                         lg:right-[-45vw] lg:top-[-10vw] lg:w-[280px] lg:h-[357px]
                         2xl:right-[-40vw] 2xl:top-[-7vw] 2xl:w-[330px] 2xl:h-[407px]`}
           >
-            <Image src={getAsset("/KelinciTimeline.png")} alt="" layout="fill" />
+            <Image src={getAsset("/KelinciTimeline.png")} alt="" fill className="object-fill" sizes="none" />
           </div>
         </div>
       </div>

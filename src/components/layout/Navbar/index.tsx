@@ -53,6 +53,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
               <Image
                 src={getAsset("/Footer.png")}
                 fill
+                sizes="none"
                 className="object-contain"
                 alt="Logo"
               />

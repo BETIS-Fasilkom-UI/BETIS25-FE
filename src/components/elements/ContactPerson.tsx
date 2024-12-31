@@ -10,6 +10,7 @@ export const ContactPerson = () => {
           src={getAsset("/ContactPersonBg.png")}
           fill
           alt=""
+          sizes="none"
           className="object-fill rounded-[40px]"
         />
       </div>
@@ -17,6 +18,7 @@ export const ContactPerson = () => {
         <Image
           src={getAsset("/ContactPersonBgMob.png")}
           fill
+          sizes="none"
           alt=""
           className="object-fill rounded-[40px]"
         />
@@ -25,6 +27,7 @@ export const ContactPerson = () => {
         <Image
           src={getAsset("/ContactPersonLamp.png")}
           fill
+          sizes="none"
           alt=""
           className="object-contain rounded-[40px]"
         />
@@ -33,6 +36,7 @@ export const ContactPerson = () => {
         <Image
           src={getAsset("/ContactPersonBurung.png")}
           fill
+          sizes="none"
           alt=""
           className="object-contain rounded-[40px]"
         />
@@ -54,6 +58,7 @@ export const ContactPerson = () => {
                 src={getAsset("/social/LINE.svg")}
                 alt="line"
                 fill
+                sizes="none"
                 className="object-contain"
               />
             </div>
@@ -65,6 +70,7 @@ export const ContactPerson = () => {
                 src={getAsset("/social/Whatsapp.svg")}
                 alt="wa"
                 fill
+                sizes="none"
                 className="object-contain"
               />
             </div>
@@ -81,6 +87,7 @@ export const ContactPerson = () => {
                 src={getAsset("/social/LINE.svg")}
                 alt="line"
                 fill
+                sizes="none"
                 className="object-contain"
               />
             </div>
@@ -92,6 +99,7 @@ export const ContactPerson = () => {
                 src={getAsset("/social/Whatsapp.svg")}
                 alt="wa"
                 fill
+                sizes="none"
                 className="object-contain"
               />
             </div>
