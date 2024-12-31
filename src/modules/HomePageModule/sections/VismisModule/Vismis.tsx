@@ -82,7 +82,7 @@ const Vismis = () => {
                 <CardTitle>Kolaboratif</CardTitle>
               </CardHeader>
               <Image
-                src={getAsset("/Lentera.png")}
+                src={getAsset("/lentera.png")}
                 alt="Kolaboratif"
                 width={257}
                 height={316}
@@ -117,7 +117,7 @@ const Vismis = () => {
                 <CardTitle>Progresif</CardTitle>
               </CardHeader>
               <Image
-                src={getAsset("/Kupu-kupu.png")}
+                src={getAsset("/Kupu-Kupu.png")}
                 alt="Progresif"
                 width={280}
                 height={180}

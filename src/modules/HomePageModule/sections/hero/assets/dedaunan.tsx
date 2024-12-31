@@ -5,7 +5,7 @@ export default function Dedaunan(props: {className: string}) {
     return(
         <div className={props.className}>
         <Image 
-            src={getAsset("/dedaunan.png")} 
+            src={getAsset("/Dedaunan.png")} 
             alt="dedaunan" 
             sizes="none"
             fill
