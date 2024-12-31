@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { Modal, ModalButton } from "@/components/ui/modal";
 import { useState } from "react";
+import { getAsset } from "@/lib/s3";
 
 const BetalksWebinarPPKB = () => {
   // isRegisterOpen state as placeholder for needing login
@@ -76,7 +77,7 @@ const BetalksWebinarPPKB = () => {
           <div className="relative mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-[8.75rem]">
             <Image
               alt="Megaphone"
-              src="/imageBEtalks.png"
+              src={getAsset("/ImageBEtalks.png")}
               fill
               sizes="none"
               className="object-contain animate-swing"
@@ -88,7 +89,7 @@ const BetalksWebinarPPKB = () => {
           <div className="relative mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-[8.75rem]">
             <Image
               alt="Scroll"
-              src="/imageWebinarPPKB.png"
+              src={getAsset("/ImageWebinarPPKB.png")}
               fill
               sizes="none"
               className="object-contain animate-swing"

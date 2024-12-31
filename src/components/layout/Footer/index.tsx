@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { social } from "./const";
 import { MapPin, Mail } from "lucide-react";
+import { getAsset } from "@/lib/s3";
 
 export const Footer = () => {
   return (
@@ -13,7 +14,7 @@ export const Footer = () => {
           <div className="flex gap-6 items-center">
             <div className="w-[100px] h-[88px] relative">
               <Image
-                src="/Footer.png"
+                src={getAsset("/Footer.png")}
                 alt="FooterLogo"
                 fill
                 className="object-contain"
@@ -62,7 +63,7 @@ export const Footer = () => {
         <div className="bg-[#481E58] px-8 sm:px-[62px] h-[471px] flex justify-center items-center flex-col">
           <div className="w-[98px] h-[86px] relative">
             <Image
-              src="/Footer.png"
+              src={getAsset("/Footer.png")}
               alt="FooterLogo"
               fill
               className="object-contain"
@@ -123,13 +124,13 @@ const ContactLogo = ({ href, image }: { href: string; image: string }) => {
     >
       <div className="relative xl:w-[28px] xl:h-[28px] lg:w-[24px] lg:h-[24px] w-[16px] h-[16px]">
         <Image
-          src={image}
+          src={getAsset(image)}
           alt="Logo"
           fill
           className="object-contain max-md:hidden"
         />
         <Image
-          src={image.split(".").join("Mob.")}
+          src={getAsset(image.split(".").join("Mob."))}
           alt="Logo"
           fill
           className="object-contain md:hidden"

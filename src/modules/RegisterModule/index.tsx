@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import StarryBackground from "../LoginModule/module-elements/background";
 import { toast } from "@/components/ui/sonner";
+import { getAsset } from "@/lib/s3";
 
 type RegisterFormValues = z.infer<typeof registerSchema>
 
@@ -168,7 +169,7 @@ const RegisterModule = () => {
       {/* BACKGROUND IMAGE */}
       <div className="relative">
         <Image
-          src="/Pohon4.png"
+          src={getAsset("/Pohon4.png")}
           width={302}
           height={498}
           alt="Pohon"
@@ -178,7 +179,7 @@ const RegisterModule = () => {
 
       <div className="relative">
         <Image
-          src="/Dedaunan.png"
+          src={getAsset("/Dedaunan.png")}
           width={360}
           height={159}
           alt="Dedaunan"
@@ -188,7 +189,7 @@ const RegisterModule = () => {
 
       <div className="relative">
         <Image
-          src="/RumahJamur3.png"
+          src={getAsset("/RumahJamur3.png")}
           width={400}
           height={495}
           alt="Jamur"
@@ -198,7 +199,7 @@ const RegisterModule = () => {
 
       <div className="relative">
         <Image
-          src="/Daun.png"
+          src={getAsset("/Daun.png")}
           width={186}
           height={178}
           alt="Daun"

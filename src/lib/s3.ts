@@ -32,5 +32,12 @@ const uploadFile = async (file: File, key?: string, folder?: string) => {
     return data.url;
 }
 
-export { Bucket, s3, uploadFile };
+const getAsset = (key: string): string => { 
+    const cleanedKey = key.replace(/^\/|\/$/g, '');
+    const url = `https://betis25.s3.ap-southeast-2.amazonaws.com/assets/${cleanedKey}`;
+
+    return url;
+}
+
+export { Bucket, s3, uploadFile, getAsset};
 

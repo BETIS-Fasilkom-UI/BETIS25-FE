@@ -1,19 +1,20 @@
 "use client";
 
+import { getAsset } from "@/lib/s3";
+import Image from "next/image";
 import { events } from "../const";
-import { EventCard } from "../module-elements/card";
 import {
   BigBlurredStarIcon,
   SmallBlurredStarIcon,
 } from "../module-elements/BlurredStarIcon";
-import Image from "next/image";
+import { EventCard } from "../module-elements/card";
 
 const Timeline = () => {
   return (
     <div className="relative w-full flex flex-col items-center pt-[10vh] md:py-[20vh] mb-52">
       <div className="absolute w-[150vw] h-full xl:h-[2000px] overflow-x-clip -translate-y-[100px] md:-translate-y-[300px] lg:-translate-y-[350px] xl:-translate-y-[400px] 2xl:-translate-y-[300px]">
         <Image
-          src={"/TimelineBg.png"}
+          src={getAsset("/TimelineBg.png")}
           alt=" "
           fill
           className="object-contain"
@@ -39,7 +40,7 @@ const Timeline = () => {
           >
             <Image
               className=""
-              src="/TreasureChest.png"
+              src={getAsset("/TreasureChest.png")}
               alt=""
               layout="fill"
               loading="eager"
@@ -123,7 +124,7 @@ const Timeline = () => {
                         lg:right-[-45vw] lg:top-[-10vw] lg:w-[280px] lg:h-[357px]
                         2xl:right-[-40vw] 2xl:top-[-7vw] 2xl:w-[330px] 2xl:h-[407px]`}
           >
-            <Image src="/KelinciTimeline.png" alt="" layout="fill" />
+            <Image src={getAsset("/KelinciTimeline.png")} alt="" layout="fill" />
           </div>
         </div>
       </div>

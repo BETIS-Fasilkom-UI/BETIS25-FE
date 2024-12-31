@@ -32,6 +32,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Toggle } from "@/components/ui/toggle";
 import { TabsComponent } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/sonner";
+import { getAsset } from "@/lib/s3";
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -81,7 +82,7 @@ export default function Home() {
           <CardTitle>Title</CardTitle>
           <CardDescription>Description</CardDescription>
         </CardHeader>
-        <CardImage src="/Andrew.jpg" alt="random" />
+        <CardImage src={getAsset("/Andrew.jpg")} alt="random" />
         <CardContent>Content</CardContent>
         <CardFooter>
           <Button isLoading>Click me</Button>
