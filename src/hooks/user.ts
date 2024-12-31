@@ -33,7 +33,7 @@ export const getUserData = async () => {
     return null;
   }
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.SERVER_URL;
 
   const response = await fetch(
     `${API_URL}user/${user?.email}`,
