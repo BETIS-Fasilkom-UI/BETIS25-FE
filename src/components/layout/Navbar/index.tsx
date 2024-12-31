@@ -38,16 +38,18 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
   return (
     <>
       <nav
-        className={cn("z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full max-w-[1920px]")}
+        className={cn(
+          "z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full max-w-[1920px]"
+        )}
       >
         <div
           className={cn(
-            "flex items-center justify-between max-md:px-5 px-7 py-7 bg-[#481e58a6]",
+            "flex items-center justify-between max-md:px-4 px-7 py-4 md:py-7 bg-[#481e58a6]",
             isAuthenticated ? "xl:px-14" : "xl:px-8"
           )}
         >
           <Link href={"/"} className="flex items-center justify-center gap-7">
-            <div className="w-[50px] md:w-[61px] h-[54px] relative">
+            <div className="w-[40px] md:w-[61px] h-[36px] md:h-[54px] relative">
               <Image
                 src={getAsset("/Footer.png")}
                 fill
@@ -83,8 +85,8 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                 <Link href={"/profile"}>
                   <Avatar>
                     <AvatarImage
-                      src="https://github.com/shadcn.png"
-                      alt="@shadcn"
+                      src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                      alt="profile"
                     />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
@@ -109,7 +111,10 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
               exit={{ height: 0 }}
               className="flex flex-col bg-[#481e58a6] justify-start text-[#FEF5FF] text-t7 lg:hidden"
             >
-              {navData.map((item, index) => (
+              {[
+                ...navData,
+                { title: "Profile", href: "/profile", isAvailable: false },
+              ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: -20 }}
@@ -119,9 +124,13 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                   className="px-5 py-[15px]"
                 >
                   <Link
-                    href={item.isAvailable ? item.href : "#"}
+                    href={
+                      item.isAvailable || (index === 4 && isAuthenticated)
+                        ? item.href
+                        : "#"
+                    }
                     className={`w-fit ${
-                      item.isAvailable
+                      item.isAvailable || (index === 4 && isAuthenticated)
                         ? "cursor-pointer"
                         : "cursor-not-allowed text-white/30"
                     }`}

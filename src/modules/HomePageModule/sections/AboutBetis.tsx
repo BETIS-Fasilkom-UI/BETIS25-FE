@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const AboutBetis = () => {
   return (
-    <div className="w-full h-auto my-10 overflow-x-clip px-5 md:px-10 lg:px-20">
+    <div id="about" className="w-full h-auto my-10 overflow-x-clip px-5 md:px-10 lg:px-20">
       {/* Main Container */}
       <div className="relative flex flex-col items-center justify-center w-full max-w-[100vw] gap-[3%] md:items-start">
         {/* Heading */}
