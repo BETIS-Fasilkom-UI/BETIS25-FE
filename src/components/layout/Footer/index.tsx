@@ -47,7 +47,7 @@ export const Footer = () => {
           </div>
           <div className="flex items-center justify-end gap-4">
             <p className="text-t8 xl:text-t7 font-raleway font-semibold text-right">
-              betisfasilkomui2022@gmail.com
+              betisfasilkomui2025@gmail.com
             </p>
             <Mail className="min-w-[40px] min-h-[40px] w-[40px] h-[40px]" />
           </div>
