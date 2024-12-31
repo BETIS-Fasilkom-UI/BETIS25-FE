@@ -12,7 +12,7 @@ const RegistrationPage = async () => {
   const userData = await getUserData();
 
   if (userData?.address !== "") {
-    redirect("/");
+    redirect("/profile");
   }
 
   return <RegistrationModule />;

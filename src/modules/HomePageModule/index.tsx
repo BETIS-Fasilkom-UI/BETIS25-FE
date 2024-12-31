@@ -11,30 +11,26 @@ import Sponsor from "./sections/Sponsor";
 import Medpar from "./sections/Medpar";
 import Faq from "./sections/Faq";
 import Vismis from "./sections/VismisModule/Vismis";
-import { User } from "@/hooks/interface";
-import { MyProvider } from "./context";
 
-export const HomePageModule = ({userData}: {userData: User | null}) => {
+export const HomePageModule = () => {
   return (
-    <MyProvider value={{ isRegistered: userData?.address !== "" }}>
-      <main className="flex flex-col justify-center items-center mb-[10dvh]">
-        <Hero/>
-        <AboutBetis />
-        <Vismis />
-        <DocumentationCarousel
-          slides={betisCarousel}
-          options={betisCarouselOptions}
-        />
-        <Timeline />
-        <BetalksWebinarPPKB />
-        <CountdownSNBT />
-        <Medpar />
-        <Sponsor />
-        <Faq />
-        <div className="w-full px-5 md:px-10 lg:px-20">
-          <ContactPerson />
-        </div>
-      </main>
-    </MyProvider>
+    <main className="flex flex-col justify-center items-center mb-[10dvh]">
+      <Hero />
+      <AboutBetis />
+      <Vismis />
+      <DocumentationCarousel
+        slides={betisCarousel}
+        options={betisCarouselOptions}
+      />
+      <Timeline />
+      <BetalksWebinarPPKB />
+      <CountdownSNBT />
+      {/*<Medpar />
+      <Sponsor />*/}
+      <Faq />
+      <div className="w-full px-5 md:px-10 lg:px-20">
+        <ContactPerson />
+      </div>
+    </main>
   );
 };

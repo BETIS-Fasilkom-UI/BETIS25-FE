@@ -45,7 +45,7 @@ export const ContactPerson = () => {
       <div className="flex md:flex-row flex-col gap-8 justify-center items-center">
         <div className="bg-cp-gradient rounded-[32px] gap-2.5 lg:gap-6 border-2 border-violet-500 px-12 sm:px-20 py-[34px] flex flex-col items-center justify-center">
           <h1 className="font-raleway text-t6 lg:text-t5 text-center text-neutral-50">
-            John Doe
+            Gilang
           </h1>
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
@@ -56,7 +56,7 @@ export const ContactPerson = () => {
                 className="object-contain"
               />
             </div>
-            john_doe
+            prasetya2985
           </div>
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
@@ -67,12 +67,12 @@ export const ContactPerson = () => {
                 className="object-contain"
               />
             </div>
-            +62 818 0817 2003
+            082180613333
           </div>
         </div>
         <div className="bg-cp-gradient rounded-[32px] gap-2.5 lg:gap-6 border-2 border-violet-500 px-12 sm:px-20 py-[34px] flex flex-col items-center justify-center">
           <h1 className="font-raleway text-t6 lg:text-t5 text-center text-neutral-50">
-            John Doe
+            Diza
           </h1>
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
@@ -83,7 +83,7 @@ export const ContactPerson = () => {
                 className="object-contain"
               />
             </div>
-            john_doe
+            inayadiza
           </div>
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
@@ -94,7 +94,7 @@ export const ContactPerson = () => {
                 className="object-contain"
               />
             </div>
-            +62 818 0817 2003
+            082113742007
           </div>
         </div>
       </div>
