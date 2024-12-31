@@ -117,6 +117,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                     <Image
                       src={getAsset("/testimony/petik.png")}
                       fill
+                      sizes="none"
                       alt=""
                       className="object-contain"
                     />
@@ -125,6 +126,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                     <Image
                       src={getAsset("/testimony/petik.png")}
                       fill
+                      sizes="none"
                       alt=""
                       className="object-contain"
                     />
@@ -133,6 +135,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                     <Image
                       src={getAsset("/testimony/background.png")}
                       fill
+                      sizes="none"
                       alt=""
                       className="object-cover rounded-[32px]"
                     />
@@ -142,6 +145,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                       src={slide.src}
                       alt={slide.alt}
                       fill
+                      sizes="none"
                       className="object-cover rounded-[10px]"
                     />
                   </div>

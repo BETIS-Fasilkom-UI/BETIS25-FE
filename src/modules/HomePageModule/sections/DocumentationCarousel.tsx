@@ -127,6 +127,7 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
                       src={slide.src}
                       alt={slide.alt}
                       fill
+                      sizes="none"
                       className="object-cover rounded-[10px]"
                     />
                   </div>

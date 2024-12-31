@@ -17,6 +17,7 @@ export const Footer = () => {
                 src={getAsset("/Footer.png")}
                 alt="FooterLogo"
                 fill
+                sizes="none"
                 className="object-contain"
               />
             </div>
@@ -66,6 +67,7 @@ export const Footer = () => {
               src={getAsset("/Footer.png")}
               alt="FooterLogo"
               fill
+              sizes="none"
               className="object-contain"
             />
           </div>
@@ -127,12 +129,14 @@ const ContactLogo = ({ href, image }: { href: string; image: string }) => {
           src={getAsset(image)}
           alt="Logo"
           fill
+          sizes="none"
           className="object-contain max-md:hidden"
         />
         <Image
           src={getAsset(image.split(".").join("Mob."))}
           alt="Logo"
           fill
+          sizes="none"
           className="object-contain md:hidden"
         />
       </div>

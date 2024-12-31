@@ -19,6 +19,7 @@ export default function Jalan(props: {className: string}) {
                 alt="Jalan" 
                 sizes="none"
                 fill
+                priority
             />
             <div className='z-[0]'>
                 <Mascot
