@@ -722,6 +722,11 @@ const RegistrationModule = () => {
                           <Button
                             isLoading={isLoading}
                             type="submit"
+                            onClick={() => {
+                              if (!form.formState.isValid) {
+                                toast.warning("Please fill in all required fields");
+                              }
+                            }}
                             className="rounded-[20px]"
                             size="lg"
                           >
