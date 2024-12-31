@@ -2,6 +2,7 @@
 import { uploadFile } from "@/lib/s3";
 import z from "zod";
 import { useUserData } from "./auth";
+import { getCookie } from "cookies-next";
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_TYPES = [
@@ -79,7 +80,7 @@ export const openRegSchema = z.object({
         files?.type === "application/pdf" ||
         ACCEPTED_IMAGE_TYPES.includes(files?.type),
       "Only .PDFm .jpg, .jpeg, .png and .webp formats are supported."
-  ),
+    ),
   proofOfSg: z
     .any()
     .refine((files) => {
@@ -116,38 +117,69 @@ export async function useOpenReg(
     paycheck?: File;
   }
 ) {
-
   try {
     console.log("Registering user");
-    
+    const token = await getCookie("token");
+    if (!token) {
+      return { isSuccess: false, message: "Unauthorized access" };
+    }
     const user = await useUserData();
-    
+
     const userId = user?.id;
-    const userName = user?.fullname.replace(/\s+/g, '-');
-  
+    const userName = user?.fullname.replace(/\s+/g, "-");
+
     console.log("Upload files to s3");
-    
+
     console.log(user);
 
     const folder = `open-reg/${userName}_${userId}`;
-    
+
     // Upload Necessary files to s3
-    const identityCardUrl = await uploadFile(values.identityCard, `identity-card_${userName}_${userId}`, folder);
-    
-    const studentReportUrl = await uploadFile(values.studentReport, `student-report_${userName}_${userId}`, folder);
+    const identityCardUrl = await uploadFile(
+      values.identityCard,
+      `identity-card_${userName}_${userId}`,
+      folder
+    );
 
-    const motivationLetterUrl = await uploadFile(values.motivationLetter, `motivasi-letter_${userName}_${userId}`, folder);
+    const studentReportUrl = await uploadFile(
+      values.studentReport,
+      `student-report_${userName}_${userId}`,
+      folder
+    );
 
-    const commitmentLetterUrl = await uploadFile(values.commitmentLetter, `commitment-letter_${userName}_${userId}`, folder);
+    const motivationLetterUrl = await uploadFile(
+      values.motivationLetter,
+      `motivasi-letter_${userName}_${userId}`,
+      folder
+    );
 
-    const proofOfFollowingUrl = await uploadFile(values.proofOfFollowing, `proof-of-following_${userName}_${userId}`, folder);
+    const commitmentLetterUrl = await uploadFile(
+      values.commitmentLetter,
+      `commitment-letter_${userName}_${userId}`,
+      folder
+    );
 
-    const proofOfTwibbonUrl = await uploadFile(values.proofOfTwibbon, `proof-of-twibbon_${userName}_${userId}`, folder);
+    const proofOfFollowingUrl = await uploadFile(
+      values.proofOfFollowing,
+      `proof-of-following_${userName}_${userId}`,
+      folder
+    );
 
-    const proofOfSg = await uploadFile(values.proofOfSg, `proof-of-sg_${userName}_${userId}`, folder);
-  
-    const { povertyLetter, housePhoto, electricityBill, paycheck } = optionalFiles;
-  
+    const proofOfTwibbonUrl = await uploadFile(
+      values.proofOfTwibbon,
+      `proof-of-twibbon_${userName}_${userId}`,
+      folder
+    );
+
+    const proofOfSg = await uploadFile(
+      values.proofOfSg,
+      `proof-of-sg_${userName}_${userId}`,
+      folder
+    );
+
+    const { povertyLetter, housePhoto, electricityBill, paycheck } =
+      optionalFiles;
+
     let povertyLetterUrl = null;
     let housePhotoUrl = null;
     let electricityBillUrl = null;
@@ -160,10 +192,14 @@ export async function useOpenReg(
         "Only .jpg, .jpeg, .png and .webp formats are supported."
       );
       if (!validation.isSuccess) return validation;
-  
-      parentPaycheckUrl = await uploadFile(paycheck, `parent-paycheck_${userName}_${userId}`, folder);
+
+      parentPaycheckUrl = await uploadFile(
+        paycheck,
+        `parent-paycheck_${userName}_${userId}`,
+        folder
+      );
     }
-  
+
     if (povertyLetter) {
       const validation = validateFile(
         povertyLetter,
@@ -171,9 +207,13 @@ export async function useOpenReg(
         "Only .PDF formats are supported."
       );
       if (!validation.isSuccess) return validation;
-      povertyLetterUrl = await uploadFile(povertyLetter, `poverty-letter_${userName}_${userId}`, folder);
+      povertyLetterUrl = await uploadFile(
+        povertyLetter,
+        `poverty-letter_${userName}_${userId}`,
+        folder
+      );
     }
-  
+
     if (housePhoto) {
       const validation = validateFile(
         housePhoto,
@@ -181,10 +221,14 @@ export async function useOpenReg(
         "Only .jpg, .jpeg, .png and .webp formats are supported."
       );
       if (!validation.isSuccess) return validation;
-  
-      housePhotoUrl = await uploadFile(housePhoto, `house-photo_${userName}_${userId}`, folder);
+
+      housePhotoUrl = await uploadFile(
+        housePhoto,
+        `house-photo_${userName}_${userId}`,
+        folder
+      );
     }
-  
+
     if (electricityBill) {
       const validation = validateFile(
         electricityBill,
@@ -192,10 +236,14 @@ export async function useOpenReg(
         "Only .jpg, .jpeg, .png and .webp formats are supported."
       );
       if (!validation.isSuccess) return validation;
-  
-      electricityBillUrl = await uploadFile(electricityBill, `electricity-bill_${userName}_${userId}`, folder);
+
+      electricityBillUrl = await uploadFile(
+        electricityBill,
+        `electricity-bill_${userName}_${userId}`,
+        folder
+      );
     }
-  
+
     const body = {
       user_id: userId,
       full_name: values.fullName,
@@ -222,28 +270,27 @@ export async function useOpenReg(
       financial_need_letter_url: povertyLetterUrl ?? "",
       electric_bill_document_url: electricityBillUrl ?? "",
       residence_photo_url: housePhotoUrl ?? "",
-      affiliation_code: values.referralCode
-    }
+      affiliation_code: values.referralCode,
+    };
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  
+
     const response = await fetch(`${API_URL}user/daftar-peserta`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, 
       },
       body: JSON.stringify(body),
     });
-  
+
     if (!response.ok) {
       const data = await response.json();
       return { isSuccess: false, message: data.message };
     }
-  
-    return { isSuccess: true, message: "Registration success" };
-  }
 
-  catch (error) {
+    return { isSuccess: true, message: "Registration success" };
+  } catch (error) {
     return { isSuccess: false, message: (error as Error).message };
   }
 }

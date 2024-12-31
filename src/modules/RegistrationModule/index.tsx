@@ -55,27 +55,27 @@ const RegistrationModule = () => {
 
   const form = useForm<OpenRegFormValues>({
     resolver: zodResolver(openRegSchema),
-    // defaultValues: {
-    //   fullName: "John Doe",
-    //   username: "johndoe",
-    //   phoneNumber: "1234567890",
-    //   birthDate: new Date("2000-01-01"),
-    //   address: "123 Main St",
-    //   studyMethood: "online",
-    //   parentName: "Jane Doe",
-    //   relationWithParent: "Mother",
-    //   parentPhoneNumber: "0987654321",
-    //   highschoolName: "High School ABC",
-    //   highschoolClass: "kelas-12",
-    //   meanScore: "90",
-    //   studentReport: null,
-    //   motivationLetter: null,
-    //   commitmentLetter: null,
-    //   proofOfFollowing: null,
-    //   proofOfTwibbon: null,
-    //   proofOfSg: null,
-    //   referralCode: "REF123",
-    // },
+    //defaultValues: {
+    //  fullName: "John Doe",
+    //  username: "johndoe",
+    //  phoneNumber: "1234567890",
+    //  birthDate: new Date("2000-01-01"),
+    //  address: "123 Main St",
+    //  studyMethood: "online",
+    //  parentName: "Jane Doe",
+    //  relationWithParent: "Mother",
+    //  parentPhoneNumber: "0987654321",
+    //  highschoolName: "High School ABC",
+    //  highschoolClass: "kelas-12",
+    //  meanScore: "90",
+    //  studentReport: null,
+    //  motivationLetter: null,
+    //  commitmentLetter: null,
+    //  proofOfFollowing: null,
+    //  proofOfTwibbon: null,
+    //  proofOfSg: null,
+    //  referralCode: "REF123",
+    //},
   });
 
   const onSubmit = async (values: OpenRegFormValues) => {
@@ -108,16 +108,6 @@ const RegistrationModule = () => {
     try {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const result = await useOpenReg(combinedData, optionalFiles);
-      toast.promise(
-        result.isSuccess
-          ? Promise.resolve(result.message)
-          : Promise.reject(result.message),
-        {
-          loading: "Loading...",
-          success: result.message,
-          error: result.message,
-        }
-      );
       if (result.isSuccess) {
         toast.success("Registration success");
         form.reset();
@@ -170,7 +160,10 @@ const RegistrationModule = () => {
             OPEN REGISTRATION
           </h1>
 
-          <Link href="https://docs.google.com/document/d/1GaGN7ervIPajtL9GSfb8KgneVambLU38fqax7lPiXuQ/edit?usp=sharing" target="_blank">
+          <Link
+            href="https://docs.google.com/document/d/1GaGN7ervIPajtL9GSfb8KgneVambLU38fqax7lPiXuQ/edit?usp=sharing"
+            target="_blank"
+          >
             <Button
               className="w-1/2 md:w-[70%] rounded-[20px] md:text-xl py-6 md:py-8"
               size="lg"
