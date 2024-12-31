@@ -20,6 +20,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import StarryBackground from "../LoginModule/module-elements/background";
 import { toast } from "@/components/ui/sonner";
 import { useRouter } from "next/navigation";
+import { getAsset } from "@/lib/s3";
 // import { toast } from '@/components/ui/sonner';
 
 type OpenRegFormValues = z.infer<typeof openRegSchema>;
@@ -733,7 +734,7 @@ const RegistrationModule = () => {
 
       {/* BACKGROUND IMAGE */}
       <Image
-        src="/Tali.png"
+        src={getAsset("/Tali.png")}
         width={282}
         height={108}
         alt="Tali"
@@ -741,7 +742,7 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src="/Tali2.png"
+        src={getAsset("/Tali2.png")}
         width={380}
         height={90}
         alt="Tali"
@@ -749,7 +750,7 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src="/Lamp.png"
+        src={getAsset("/Lamp.png")}
         width={106}
         height={148}
         alt="Lamp"
@@ -757,7 +758,7 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src="/Burung.png"
+        src={getAsset("/Burung.png")}
         width={117}
         height={104}
         alt="Burung"
@@ -765,7 +766,7 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src="/Pohon3.png"
+        src={getAsset("/Pohon3.png")}
         width={216}
         height={355}
         alt="Pohon"
@@ -773,7 +774,7 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src="/Pohon5.png"
+        src={getAsset("/Pohon5.png")}
         width={216}
         height={355}
         alt="Pohon"

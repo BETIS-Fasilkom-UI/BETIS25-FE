@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import { getAsset } from "@/lib/s3";
 
 export const ContactPerson = () => {
   return (
     <div className="bg-[#1E0D2599] flex flex-col -z-10 relative justify-center items-center py-20 md:py-[54px] w-full max-md:px-4 md:px-8 rounded-[40px]">
       <div className="absolute w-full h-full -z-10 max-md:hidden">
         <Image
-          src={"/ContactPersonBg.png"}
+          src={getAsset("/ContactPersonBg.png")}
           fill
           alt=""
           className="object-fill rounded-[40px]"
@@ -14,7 +15,7 @@ export const ContactPerson = () => {
       </div>
       <div className="absolute w-full h-full -z-10 md:hidden">
         <Image
-          src={"/ContactPersonBgMob.png"}
+          src={getAsset("/ContactPersonBgMob.png")}
           fill
           alt=""
           className="object-fill rounded-[40px]"
@@ -22,7 +23,7 @@ export const ContactPerson = () => {
       </div>
       <div className="absolute w-[100px] h-[180px] z-10 top-0 left-0 md:top-10 md:left-[10%] lg:left-[20%]">
         <Image
-          src={"/ContactPersonLamp.png"}
+          src={getAsset("/ContactPersonLamp.png")}
           fill
           alt=""
           className="object-contain rounded-[40px]"
@@ -30,7 +31,7 @@ export const ContactPerson = () => {
       </div>
       <div className="absolute w-[120px] h-[100px] z-10 top-0 right-0 md:hidden">
         <Image
-          src={"/ContactPersonBurung.png"}
+          src={getAsset("/ContactPersonBurung.png")}
           fill
           alt=""
           className="object-contain rounded-[40px]"
@@ -50,7 +51,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={"/social/LINE.svg"}
+                src={getAsset("/social/LINE.svg")}
                 alt="line"
                 fill
                 className="object-contain"
@@ -61,7 +62,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={"/social/Whatsapp.svg"}
+                src={getAsset("/social/Whatsapp.svg")}
                 alt="wa"
                 fill
                 className="object-contain"
@@ -77,7 +78,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={"/social/LINE.svg"}
+                src={getAsset("/social/LINE.svg")}
                 alt="line"
                 fill
                 className="object-contain"
@@ -88,7 +89,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={"/social/Whatsapp.svg"}
+                src={getAsset("/social/Whatsapp.svg")}
                 alt="wa"
                 fill
                 className="object-contain"

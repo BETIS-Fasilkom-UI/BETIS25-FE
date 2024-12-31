@@ -1,16 +1,13 @@
-import React from "react";
-import AboutBetis from "./sections/AboutBetis";
-import { betisCarousel, betisCarouselOptions } from "./const";
-import DocumentationCarousel from "./sections/DocumentationCarousel";
-import Timeline from "./sections/Timeline";
-import BetalksWebinarPPKB from "./sections/BetalksWebinarPPBK";
-import CountdownSNBT from "./sections/CountdownSNBT";
 import { ContactPerson } from "@/components/elements/ContactPerson";
-import Hero from "./sections/hero";
-import Sponsor from "./sections/Sponsor";
-import Medpar from "./sections/Medpar";
+import { betisCarousel, betisCarouselOptions } from "./const";
+import AboutBetis from "./sections/AboutBetis";
+import CountdownSNBT from "./sections/CountdownSNBT";
+import DocumentationCarousel from "./sections/DocumentationCarousel";
 import Faq from "./sections/Faq";
+import Hero from "./sections/hero";
+import Timeline from "./sections/Timeline";
 import Vismis from "./sections/VismisModule/Vismis";
+import BetalksWebinarPPKB from "./sections/BetalksWebinarPPKB";
 
 export const HomePageModule = () => {
   return (
@@ -23,8 +20,8 @@ export const HomePageModule = () => {
         options={betisCarouselOptions}
       />
       <Timeline />
-      <BetalksWebinarPPKB />
       <CountdownSNBT />
+      <BetalksWebinarPPKB />
       {/*<Medpar />
       <Sponsor />*/}
       <Faq />

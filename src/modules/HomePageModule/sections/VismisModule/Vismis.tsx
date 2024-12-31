@@ -13,6 +13,7 @@ import Image from "next/image";
 import { MouseEventHandler, useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { getAsset } from "@/lib/s3";
 
 const Vismis = () => {
   const [isRotated, setIsRotated] = useState<Array<boolean>>([
@@ -46,7 +47,7 @@ const Vismis = () => {
                 <CardTitle>Inspiratif</CardTitle>
               </CardHeader>
               <Image
-                src="/buku.png"
+                src={getAsset("/buku.png")}
                 alt="Insipiratif"
                 width={694}
                 height={452}
@@ -81,7 +82,7 @@ const Vismis = () => {
                 <CardTitle>Kolaboratif</CardTitle>
               </CardHeader>
               <Image
-                src="/Lentera.png"
+                src={getAsset("/Lentera.png")}
                 alt="Kolaboratif"
                 width={257}
                 height={316}
@@ -116,7 +117,7 @@ const Vismis = () => {
                 <CardTitle>Progresif</CardTitle>
               </CardHeader>
               <Image
-                src="/Kupu-kupu.png"
+                src={getAsset("/Kupu-kupu.png")}
                 alt="Progresif"
                 width={280}
                 height={180}

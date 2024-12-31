@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import styles from './hero.module.css'
+import { getAsset } from '@/lib/s3'
 
 export default function Lentera(props: {className: string}) {
     return(
         <div className={`${props.className}`}>
             <Image 
-                src="/lentera.png" 
+                src={getAsset("/lentera.png")} 
                 alt="lentera" 
                 sizes="none"
                 fill

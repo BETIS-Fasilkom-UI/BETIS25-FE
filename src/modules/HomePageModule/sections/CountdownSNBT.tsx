@@ -1,8 +1,8 @@
 import Countdown from "@/components/elements/Countdown";
 import { Button } from "@/components/ui/button";
+import { getAsset } from "@/lib/s3";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const CountdownSNBT = () => {
   return (
@@ -38,7 +38,7 @@ const CountdownSNBT = () => {
         <div className="absolute z-20 w-[116.16px] h-[181.67px] sm:w-[208.63px] sm:h-[326.27px] -left-14 sm:-left-36 md:-left-20 lg:left-6 xl:left-20 2xl:left-32 -bottom-24 sm:-bottom-32 md:-bottom-20">
           <Image
             alt="Jam2"
-            src="/Jam2.png"
+            src={getAsset("/Jam2.png")}
             fill
             sizes="none"
             className="object-contain"
@@ -48,7 +48,7 @@ const CountdownSNBT = () => {
         <div className="absolute z-20 w-[109.74px] h-[219.48px] sm:w-[178.29px] sm:h-[356.57px] -right-14 sm:-right-32 md:-right-10 lg:right-12 xl:right-32 2xl:right-40 -top-36 sm:-top-48 md:top-6">
           <Image
             alt="Jam1"
-            src="/Jam1.png"
+            src={getAsset("/Jam1.png")}
             fill
             sizes="none"
             className="object-contain"
@@ -58,7 +58,7 @@ const CountdownSNBT = () => {
         <div className="absolute z-10 w-[548.86px] h-[61.37px] sm:w-[658.632px] sm:h-[73.644px] md:opacity-0 -right-14 -top-20 sm:-right-32">
           <Image
             alt="Vector1"
-            src="/Vector1.png"
+            src={getAsset("/Vector1.png")}
             fill
             sizes="none"
             className="object-contain"
@@ -68,7 +68,7 @@ const CountdownSNBT = () => {
         <div className="absolute z-10 w-[464.54px] h-[38.41px] sm:w-[650.356px] sm:h-[53.774px] md:opacity-0 -bottom-12 sm:-bottom-11 -left-14 sm:-left-36">
           <Image
             alt="Vector2"
-            src="/Vector2.png"
+            src={getAsset("/Vector2.png")}
             fill
             sizes="none"
             className="object-contain"

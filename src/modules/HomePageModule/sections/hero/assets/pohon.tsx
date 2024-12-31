@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import Dedaunan from "./dedaunan";
 import KupuKupu from './kupu2';
+import { getAsset } from '@/lib/s3';
 
 export default function Pohon(props: {className: string, reverse: boolean}) {
     return(
         <div className={props.className}>
         <Image
             className={props.reverse ? 'transform scale-x-[-1]' : ''}
-            src="/pohon.png" 
+            src={getAsset("/pohon.png")} 
             alt="pohon" 
             sizes="none"
             fill

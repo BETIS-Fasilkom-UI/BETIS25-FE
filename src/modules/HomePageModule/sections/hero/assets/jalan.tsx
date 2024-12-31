@@ -1,9 +1,10 @@
-import Image from 'next/image'
-import Buku from "./buku";
-import Pohon from "./pohon";
+import { getAsset } from '@/lib/s3';
+import Image from 'next/image';
 import Aliran from "./aliran";
+import Buku from "./buku";
+import styles from './hero.module.css';
 import Mascot from "./mascot";
-import styles from './hero.module.css'
+import Pohon from "./pohon";
 
 
 export default function Jalan(props: {className: string}) {
@@ -14,7 +15,7 @@ export default function Jalan(props: {className: string}) {
 
             <Image
                 className={`${styles.softEdge} z-0`}
-                src="/jalan.png" 
+                src={getAsset("/jalan.png")} 
                 alt="Jalan" 
                 sizes="none"
                 fill
