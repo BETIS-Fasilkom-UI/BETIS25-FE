@@ -3,13 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --background: linear-gradient(180deg, #220C31 -17.87%, #2B103A 27.13%, #451C55 74.06%, #8E2B8F 105.56%, #B134B2 105.56%);
-;
+  --background: linear-gradient(
+    180deg,
+    #220c31 -17.87%,
+    #2b103a 27.13%,
+    #451c55 74.06%,
+    #8e2b8f 105.56%,
+    #b134b2 105.56%
+  );
 }
 
 html {
   background: var(--background);
-  color: #FEF5FF;
+  color: #fef5ff;
   scroll-behavior: smooth;
 }
 
@@ -25,12 +31,16 @@ html {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #C6B9CB;
+  background: #c6b9cb;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #AB98B2;
+  background: #ab98b2;
   transition-duration: 0.5s;
+}
+
+html {
+  scroll-behavior: smooth;
 }

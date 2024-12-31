@@ -55,13 +55,13 @@ export const Footer = () => {
       </div>
       {/* Mobile */}
       <div className="md:hidden">
-        <div className="flex gap-3 items-center justify-center bg-white py-4">
+        <div className="flex gap-3 items-center justify-center bg-white py-2">
           {social.map((item, index) => (
             <ContactLogo key={index} href={item.href} image={item.image} />
           ))}
         </div>
-        <div className="bg-[#481E58] px-8 sm:px-[62px] h-[471px] flex justify-center items-center flex-col">
-          <div className="w-[98px] h-[86px] relative">
+        <div className="bg-[#481E58] px-8 sm:px-[62px] h-full py-8 flex justify-center items-center flex-col">
+          <div className="w-[78px] h-[66px] relative">
             <Image
               src={getAsset("/Footer.png")}
               alt="FooterLogo"
@@ -69,14 +69,14 @@ export const Footer = () => {
               className="object-contain"
             />
           </div>
-          <h1 className=" text-center text-[28px] font-cinzel mt-2 mb-6">
+          <h1 className=" text-center text-2xl font-cinzel mt-2 mb-5">
             BETIS
             <br />
-            <p className="font-raleway text-[12px]">Bimbingan Belajar Gratis</p>
+            <p className="font-raleway text-xs">Bimbingan Belajar Gratis</p>
           </h1>
           <div className="flex justify-between gap-3 xl:gap-10 border-t-2 pt-2 mb-6 border-[#E2E2E2]">
             <Link
-              href="/about"
+              href="#about"
               className=" text-t8 sm:text-t7 font-semibold font-raleway"
             >
               About Betis
@@ -104,7 +104,7 @@ export const Footer = () => {
             </div>
             <div className="flex items-center justify-end gap-3">
               <p className="  text-[10px] sm:text-[12px] font-raleway font-semibold text-right">
-                betisfasilkomui2022@gmail.com
+                betisfasilkomui2025@gmail.com
               </p>
               <Mail className=" min-w-[30px] min-h-[30px] w-[30px] h-[30px]" />
             </div>
@@ -122,7 +122,7 @@ const ContactLogo = ({ href, image }: { href: string; image: string }) => {
       target="_blank"
       className="lg:p-3 p-2 bg-transparent border-[#481E58] md:border-white border-2 rounded-full"
     >
-      <div className="relative xl:w-[28px] xl:h-[28px] lg:w-[24px] lg:h-[24px] w-[16px] h-[16px]">
+      <div className="relative xl:w-[28px] xl:h-[28px] lg:w-[24px] lg:h-[24px] w-[14px] h-[14px]">
         <Image
           src={getAsset(image)}
           alt="Logo"
