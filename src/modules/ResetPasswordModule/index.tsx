@@ -12,6 +12,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import StarryBackground from "../LoginModule/module-elements/background";
+import { getAsset } from "@/lib/s3";
 
 type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>
 
@@ -81,7 +82,7 @@ const ForgotPasswordModule = () => {
       {/* BACKGROUND IMAGE */}
       <div className="relative">
         <Image
-          src="/RumahJamur.png"
+          src={getAsset("/RumahJamur.png")}
           width={280}
           height={373}
           alt="Jamur"
@@ -91,7 +92,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src="/Pohon3.png"
+          src={getAsset("/Pohon3.png")}
           width={300}
           height={493}
           alt="Pohon"
@@ -101,7 +102,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src="/PohonBesar.png"
+          src={getAsset("/PohonBesar.png")}
           width={700}
           height={790}
           alt="Pohon Besar"
@@ -109,7 +110,7 @@ const ForgotPasswordModule = () => {
         />
 
         <Image
-          src="/Daun2.png"
+          src={getAsset("/Daun2.png")}
           width={153}
           height={126}
           alt="Daun"
@@ -117,7 +118,7 @@ const ForgotPasswordModule = () => {
         />
 
         <Image
-          src="/Daun3.png"
+          src={getAsset("/Daun3.png")}
           width={166}
           height={126}
           alt="Daun"
@@ -127,7 +128,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src="/MascotDewasa.png"
+          src={getAsset("/MascotDewasa.png")}
           width={118}
           height={319}
           alt="Mascot"
@@ -137,7 +138,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src="/RumahJamur4.png"
+          src={getAsset("/RumahJamur4.png")}
           width={740}
           height={703}
           alt="Jamur"
@@ -147,7 +148,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src="/PohonKecil2.png"
+          src={getAsset("/PohonKecil2.png")}
           width={306}
           height={417}
           alt="Pohon Kecil"
@@ -155,7 +156,7 @@ const ForgotPasswordModule = () => {
         />
 
         <Image
-          src="/PohonKecil.png"
+          src={getAsset("/PohonKecil.png")}
           width={148}
           height={228}
           alt="Pohon Kecil"

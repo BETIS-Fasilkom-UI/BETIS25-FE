@@ -10,6 +10,7 @@ import Image from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { CarouselButton, usePrevNextButtons } from "./TestimonyCarouselButton";
 import { cn } from "@/lib/utils";
+import { getAsset } from "@/lib/s3";
 
 type PropType = {
   slides: TestimonyCarouselItemProps[];
@@ -114,7 +115,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                 >
                   <div className="absolute w-[50px] h-full z-10 max-md:right-[10%] md:left-1/3 -top-[40%]">
                     <Image
-                      src={"/testimony/petik.png"}
+                      src={getAsset("/testimony/petik.png")}
                       fill
                       alt=""
                       className="object-contain"
@@ -122,7 +123,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                   </div>
                   <div className="absolute w-[50px] h-full z-10 left-[10%] bottom-[5%] md:hidden rotate-180">
                     <Image
-                      src={"/testimony/petik.png"}
+                      src={getAsset("/testimony/petik.png")}
                       fill
                       alt=""
                       className="object-contain"
@@ -130,7 +131,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                   </div>
                   <div className="absolute w-full h-full -z-10">
                     <Image
-                      src={"/testimony/background.png"}
+                      src={getAsset("/testimony/background.png")}
                       fill
                       alt=""
                       className="object-cover rounded-[32px]"

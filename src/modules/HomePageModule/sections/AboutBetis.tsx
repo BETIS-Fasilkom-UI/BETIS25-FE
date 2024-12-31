@@ -1,4 +1,5 @@
 import { CountUp } from "@/animation/CountUp";
+import { getAsset } from "@/lib/s3";
 import Image from "next/image";
 
 const AboutBetis = () => {
@@ -16,7 +17,7 @@ const AboutBetis = () => {
           {/* Logo Section */}
           <div className="relative flex-shrink-0 w-[10rem] h-[10rem] md:w-[12.5rem] md:h-[12.5rem] lg:w-[16rem] lg:h-[16rem] mb-[5.14%] md:ml-[2.5%] md:mb-0">
             <Image
-              src="/about/betis-logo.png"
+              src={getAsset("/about/betis-logo.png")}
               alt="BETIS Logo"
               sizes="none"
               fill
@@ -75,7 +76,7 @@ const AboutBetis = () => {
         {/* Girl Illustration */}
         <div className="absolute w-[24rem] h-[350px] sm:h-[400px] md:h-[650px] lg:h-[800px] top-0 md:top-72  right-0 translate-x-48  md:w-[32rem]  md:translate-x-[15rem] lg:w-[40rem] lg:translate-x-[18rem] ">
           <Image
-            src="/about/girl-illustration.png"
+            src={getAsset("/about/girl-illustration.png")}
             alt="Girl Illustration"
             layout="fill"
             objectFit="contain"

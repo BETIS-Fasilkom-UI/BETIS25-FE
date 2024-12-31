@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import StarryBackground from "./module-elements/background";
 import { toast } from "@/components/ui/sonner";
+import { getAsset } from "@/lib/s3";
 
 type LoginFormValues = z.infer<typeof loginSchema>
 
@@ -106,7 +107,7 @@ const LoginModule = () => {
       {/* BACKGROUND IMAGE */}
       <div className="relative">
         <Image
-          src="/RumahJamur.png"
+          src={getAsset("/RumahJamur.png")}
           width={280}
           height={373}
           alt="Jamur"
@@ -114,7 +115,7 @@ const LoginModule = () => {
         />
 
         <Image
-          src="/RumahJamur2.png"
+          src={getAsset("/RumahJamur2.png")}
           width={495}
           height={606}
           alt="Jamur"
@@ -122,7 +123,7 @@ const LoginModule = () => {
         />
 
         <Image
-          src="/JamurMini.png"
+          src={getAsset("/JamurMini.png")}
           width={184}
           height={208}
           alt="Jamur Mini"
@@ -132,7 +133,7 @@ const LoginModule = () => {
 
       <div className="relative">
         <Image
-          src="/Pohon1.png"
+          src={getAsset("/Pohon1.png")}
           width={215}
           height={515}
           alt="Pohon"
@@ -140,7 +141,7 @@ const LoginModule = () => {
         />
 
         <Image
-          src="/Pohon2.png"
+          src={getAsset("/Pohon2.png")}
           width={556}
           height={979}
           alt="Pohon"
@@ -148,7 +149,7 @@ const LoginModule = () => {
         />
 
         <Image
-          src="/Pohon3.png"
+          src={getAsset("/Pohon3.png")}
           width={445}
           height={668}
           alt="Pohon"
@@ -158,7 +159,7 @@ const LoginModule = () => {
 
       <div className="relative">
         <Image
-          src="/Mascot.png"
+          src={getAsset("/Mascot.png")}
           width={140}
           height={213}
           alt="Mascot"
@@ -168,7 +169,7 @@ const LoginModule = () => {
 
       <div className="relative">
         <Image
-          src="/Dedaunan.png"
+          src={getAsset("/Dedaunan.png")}
           width={251}
           height={111}
           alt="Dedaunan"
@@ -176,7 +177,7 @@ const LoginModule = () => {
         />
 
         <Image
-          src="/Dedaunan2.png"
+          src={getAsset("/Dedaunan2.png")}
           width={251}
           height={111}
           alt="Dedaunan"
@@ -184,7 +185,7 @@ const LoginModule = () => {
         />
 
         <Image
-          src="/Dedaunan3.png"
+          src={getAsset("/Dedaunan3.png")}
           width={251}
           height={111}
           alt="Dedaunan"

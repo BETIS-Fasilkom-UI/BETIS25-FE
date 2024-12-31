@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { UserJWT } from "@/hooks/interface";
 import { getCookie, setCookie } from "cookies-next";
 import { toast } from "@/components/ui/sonner";
+import { getAsset } from "@/lib/s3";
 
 export const Navbar = ({ user }: { user: UserJWT | null }) => {
   const [open, setOpen] = useState(false);
@@ -48,7 +49,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
           <Link href={"/"} className="flex items-center justify-center gap-7">
             <div className="w-[50px] md:w-[61px] h-[54px] relative">
               <Image
-                src="/Footer.png"
+                src={getAsset("/Footer.png")}
                 fill
                 className="object-contain"
                 alt="Logo"

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Lentera from './lentera';
 import styles from './hero.module.css'
+import { getAsset } from '@/lib/s3';
 
 
 export default function Mascot(props: {className: string}) {
@@ -12,7 +13,7 @@ export default function Mascot(props: {className: string}) {
                 />
                 <Image
                     className='z-0'
-                    src="/orangbawalentera.png" 
+                    src={getAsset("/orangbawalentera.png")} 
                     alt="mascot" 
                     sizes="none"
                     fill
