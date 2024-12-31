@@ -27,6 +27,11 @@ const RegisterModule = () => {
 
   const onSubmit = async (values: RegisterFormValues) => {
     setIsLoading(true)
+    if (values.password !== values.confirmPassword) {
+      toast.error("Password tidak sama")
+      setIsLoading(false)
+      return
+    }
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useRegister(values);
     

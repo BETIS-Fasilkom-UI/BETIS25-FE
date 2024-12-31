@@ -27,9 +27,6 @@ export const registerSchema = z
     password: z.string().min(6),
     confirmPassword: z.string().min(6),
   })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Password and confirm password must be the same",
-  });
 
 export const forgotPasswordSchema = z.object({
   email: z.string().email(),
