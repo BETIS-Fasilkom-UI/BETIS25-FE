@@ -21,7 +21,7 @@ jobs:
           proxy_key: ${{ secrets.PROXY_KEY }}
           proxy_port: ${{ secrets.PROXY_PORT }}
           script: |
-            source ~/.bashrc
+            export PATH=/usr/bin:/home/admin/.nvm/versions/node/v22.12.0/bin/node:/home/admin/.nvm/versions/node/v22.12.0/bin/pnpm:$PATH
             cd ~/BETIS25-FE
             git pull upstream main
             pnpm install
