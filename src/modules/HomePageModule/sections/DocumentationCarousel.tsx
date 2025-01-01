@@ -136,8 +136,8 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
                     <h2 className="font-raleway h-5 sm:h-7 text-center text-[#fef5ff]/50 text-[.6rem] sm:text-sm font-semibold sm:leading-7">
                       BETIS {slide.year}
                     </h2>
-                    <h1 className="h-7 sm:h-9 text-center text-[#fef5ff] text-2xl sm:text-4xl font-black font-cinzel sm:leading-10">
-                      <div>{slide.alt}</div>
+                    <h1 className="text-center text-[#fef5ff] text-2xl sm:text-4xl font-black font-cinzel sm:leading-10">
+                      {slide.alt}
                     </h1>
                   </div>
                 </Card>

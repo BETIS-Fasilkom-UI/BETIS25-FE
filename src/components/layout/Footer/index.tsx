@@ -9,10 +9,10 @@ export const Footer = () => {
   return (
     <footer className="w-full">
       {/* Desktop */}
-      <div className="bg-[#481E58] flex justify-between items-center py-[60px] px-16 xl:px-20 max-md:hidden">
+      <div className="bg-[#481E58] flex justify-between items-center py-12 px-14 xl:px-18 max-md:hidden">
         <div className="space-y-10">
           <div className="flex gap-6 items-center">
-            <div className="w-[100px] h-[88px] relative">
+            <div className="w-[90px] h-[78px] relative">
               <Image
                 src={getAsset("/Footer.png")}
                 alt="FooterLogo"
@@ -21,10 +21,10 @@ export const Footer = () => {
                 className="object-contain"
               />
             </div>
-            <h1 className="text-[32px] xl:text-t2 font-cinzel">
+            <h1 className="text-t4 xl:text-t3 font-cinzel">
               BETIS
               <br />
-              <p className="font-raleway text-t6">Bimbingan Belajar Gratis</p>
+              <p className="font-raleway text-t7">Bimbingan Belajar Gratis</p>
             </h1>
           </div>
           <div className="flex gap-6">
@@ -124,7 +124,7 @@ const ContactLogo = ({ href, image }: { href: string; image: string }) => {
       target="_blank"
       className="lg:p-3 p-2 bg-transparent border-[#481E58] md:border-white border-2 rounded-full"
     >
-      <div className="relative xl:w-[28px] xl:h-[28px] lg:w-[24px] lg:h-[24px] w-[14px] h-[14px]">
+      <div className="relative xl:w-[24px] xl:h-[24px] lg:w-[24px] lg:h-[24px] w-[14px] h-[14px]">
         <Image
           src={getAsset(image)}
           alt="Logo"

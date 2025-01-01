@@ -6,12 +6,12 @@ export default function Lentera(props: {className: string}) {
     return(
         <div className={`${props.className}`}>
             <Image 
-                src={getAsset("/lentera.png")} 
+                src={getAsset("/Lentera.png")} 
                 alt="lentera" 
                 sizes="none"
                 fill
             />
-            <div className={`${styles.lamp} z-[-1] w-[60%] aspect-[1/1] rounded-full absolute bottom-[20%] left-[50%] translate-x-[-50%]`}></div>
+            <div className={`${styles.lamp} z-[-1] w-[70%] aspect-[1/1] rounded-full absolute bottom-[20%] left-[50%] translate-x-[-50%]`}></div>
         </div>
     )
 }
