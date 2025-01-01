@@ -21,8 +21,9 @@ jobs:
           proxy_key: ${{ secrets.PROXY_KEY }}
           proxy_port: ${{ secrets.PROXY_PORT }}
           script: |
+            source ~/.bashrc
             cd ~/BETIS25-FE
             git pull upstream main
             pnpm install
             pnpm run build
-            pm2 restart betis25
+            pm2 restart betis25-fe
