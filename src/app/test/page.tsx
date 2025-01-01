@@ -33,84 +33,34 @@ import { Toggle } from "@/components/ui/toggle";
 import { TabsComponent } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/sonner";
 import { getAsset } from "@/lib/s3";
+import { uploadFile } from "@/lib/s3";
+import Image from "next/image";
 
 export default function Home() {
   const [page, setPage] = useState(1);
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, _] = useReroute();
+  const [urlPhoto, setUrlPhoto] = useState<string | null>(null);
 
   return isLoading ? (
     <Loading />
   ) : (
-    <div className="h-[400vh] flex justify-center flex-col gap-6 my-10 px-[10vw] items-center">
-      <div className="grid grid-cols-1 gap-6">
-        <Button>Click me</Button>
-        <Button isLoading>Click me</Button>
-        <Button variant="secondary">Click me</Button>
-        <Button isLoading variant="secondary">
-          Click me
-        </Button>
-        <Button variant="tertiary">Click me</Button>
-        <Button isLoading variant="tertiary">
-          Click me
-        </Button>
-        <Button variant="destructive">Click me</Button>
-        <Button isLoading variant="destructive">
-          Click me
-        </Button>
-      </div>
-      <Countdown displayDate targetDate={new Date("2024-12-31T23:59:59")} />
-      <Chip>Chip</Chip>
-      <Chip variant="secondary">Chip</Chip>
-      <Chip variant="tertiary">Chip</Chip>
-      <Button>
-        <Tooltip text="Tooltip">Hover me</Tooltip>
-      </Button>
-      <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
-      <ContactPerson />
-      <TestimonyCarousel
-        slides={betisTestimoni}
-        options={betisTestimoniOptions}
-      />
-      <Alert variant="success">Success</Alert>
-      <Alert variant="warning">Warning</Alert>
-      <Alert variant="error">Error</Alert>
-      <Alert variant="info">Info</Alert>
-      <DatePicker />
-      <Card>
-        <CardHeader>
-          <CardTitle>Title</CardTitle>
-          <CardDescription>Description</CardDescription>
-        </CardHeader>
-        <CardImage src={getAsset("/Andrew.jpg")} alt="random" />
-        <CardContent>Content</CardContent>
-        <CardFooter>
-          <Button isLoading>Click me</Button>
-          <Button variant="secondary">Click me</Button>
-        </CardFooter>
-      </Card>
-      <Checkbox />
-      <Combobox choices={comboboxDummy} />
+    <div className="h-[100vh] flex justify-center flex-col gap-6 my-10 px-[10vw] items-center">
       <FileInput file={file} setFile={setFile} />
-      <Input />
-      <Textarea />
-      <Toggle />
-      <TabsComponent
-        page={page}
-        setPage={setPage}
-        tabs={[
-          { title: "Tab 1", content: <div>Tab 1</div> },
-          { title: "Tab 2", content: <div>Tab 2</div> },
-        ]}
-      />
-      <Button onClick={() => {
-        if (page === 1){
-          setPage(0)
-        } else {
-          setPage(1)
-        }
-      }}>Next</Button>
-      {page}
+      <Button
+        onClick={async () => {
+          if (file) {
+            const url = await uploadFile(file, crypto.randomUUID(), "test");
+            setUrlPhoto(url);
+            toast.success(url);
+          } else {
+            toast.error("No file selected");
+          }
+        }}
+      >
+        Upload
+      </Button>
+      {urlPhoto && (urlPhoto)}
     </div>
   );
 }
