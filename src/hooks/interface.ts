@@ -34,6 +34,7 @@ export interface GetUserDataResponse extends Response {
     electric_bill_document_url: string;
     residence_photo_url: string;
     affiliation_code: string;
+    is_verified: boolean;
   };
 }
 
@@ -68,4 +69,5 @@ export interface User {
   electric_bill_document_url: string;
   residence_photo_url: string;
   affiliation_code: string;
+  isVerified: boolean;
 }

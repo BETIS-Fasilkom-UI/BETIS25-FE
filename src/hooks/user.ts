@@ -74,6 +74,7 @@ export const getUserData = async () => {
       electric_bill_document_url: userData.electric_bill_document_url,
       residence_photo_url: userData.residence_photo_url,
       affiliation_code: userData.affiliation_code,
+      isVerified: userData.is_verified,
     } as User;
   }
 };
