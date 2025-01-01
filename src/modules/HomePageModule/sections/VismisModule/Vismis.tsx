@@ -86,7 +86,7 @@ const Vismis = () => {
                 alt="Kolaboratif"
                 width={257}
                 height={316}
-                className="absolute bottom-0 items-center w-60"
+                className="absolute bottom-8 items-center w-60"
               />
             </Card>
 
@@ -119,9 +119,9 @@ const Vismis = () => {
               <Image
                 src={getAsset("/Kupu-Kupu.png")}
                 alt="Progresif"
-                width={280}
-                height={180}
-                className="absolute w-11/12 xl:-bottom-10 items-center"
+                width={240}
+                height={150}
+                className="absolute max-w-[400px] max-h-[400px] w-11/12 bottom-0 items-center "
               />
             </Card>
 
