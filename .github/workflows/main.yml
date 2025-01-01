@@ -25,4 +25,4 @@ jobs:
             git pull upstream main
             pnpm install
             pnpm run build
-            pm2 restart betis25-fe
+            pm2 restart betis25
