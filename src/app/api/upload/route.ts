@@ -9,10 +9,7 @@ export async function POST(req: Request) {
         const file = formdata.get('file');
 
         let url = '';
-        console.log("sampe sini")
-        console.log(file instanceof File)
         if (file instanceof File) {
-            console.log("ga sampe sini")
             const Body = Buffer.from(await file.arrayBuffer());
 
             const folder = (body.folder || '').replace(/^\/|\/$/g, '') + '/';
@@ -30,6 +27,7 @@ export async function POST(req: Request) {
     }
 
     catch (error) {
+        console.log(error);
         if (error instanceof Error) {
             return new Response(error.message, { status: 500 });
         }
