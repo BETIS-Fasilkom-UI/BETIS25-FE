@@ -40,8 +40,8 @@ export const openRegSchema = z.object({
       return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.type),
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
+      (files) => files?.type === "application/pdf",
+      "Only .PDF formats are supported."
     ),
   motivationLetter: z
     .any()
