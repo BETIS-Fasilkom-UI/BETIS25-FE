@@ -27,10 +27,10 @@ const AboutBetis = () => {
 
           {/* Text Section */}
           <div className="flex-1 text-[#FEF5FF]">
-            <h3 className="mb-[10px] md:mb-[28px] text-lg font-medium text-center md:text-2xl lg:text-3xl md:text-justify font-raleway">
+            <h3 className="mb-2.5 md:mb-6 text-lg font-medium text-center md:text-2xl lg:text-3xl md:text-justify font-raleway">
               <span className="max-md:font-bold">BETIS</span>: Bimbingan Belajar Gratis Fasilkom UI
             </h3>
-            <p className="text-sm leading-normal text-justify md:text-xl lg:text-2xl font-openSans font-extralight mb-2">
+            <p className="text-sm leading-normal text-justify md:text-sm lg:text-base 2xl:text-xl font-raleway mb-2">
               Program bimbingan belajar gratis untuk siswa SMA/sederajat dan
               alumni yang membutuhkan dukungan dalam persiapan menuju perguruan
               tinggi negeri. Program ini menyediakan materi akademis dan edukasi
