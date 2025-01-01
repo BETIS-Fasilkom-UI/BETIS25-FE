@@ -14,7 +14,7 @@ const s3 = new S3Client({
 const uploadFile = async (file: File, key?: string, folder?: string) => { 
     const formData = new FormData();
 
-    formData.append('file', file as Blob);
+    formData.append('file', file);
     formData.append('data', JSON.stringify({ key, folder }));
 
     // Fetch
