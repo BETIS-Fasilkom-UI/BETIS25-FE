@@ -9,7 +9,7 @@ export async function POST(req: Request) {
         const file = formdata.get('file');
 
         let url = '';
-        if (file instanceof File) {
+        if (file instanceof Blob) {
             const Body = Buffer.from(await file.arrayBuffer());
 
             const folder = (body.folder || '').replace(/^\/|\/$/g, '') + '/';
