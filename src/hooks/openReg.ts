@@ -277,6 +277,7 @@ export async function useOpenReg(
 
     const response = await fetch(`${API_URL}user/daftar-peserta`, {
       method: "POST",
+      credentials: "omit",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`, 
