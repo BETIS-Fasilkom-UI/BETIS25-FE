@@ -14,6 +14,7 @@ import {
 } from "../module-elements/CarouselButtons";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
+import { getAsset } from "@/lib/s3";
 
 type PropType = {
   slides: CarouselItemProps[];
@@ -124,7 +125,7 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
                 >
                   <div className="w-[50vmin] h-[42vmin] sm:w-[331px] sm:h-[277px] relative rounded-2xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.20)]">
                     <Image
-                      src={slide.src}
+                      src={getAsset(slide.src)}
                       alt={slide.alt}
                       fill
                       sizes="none"
