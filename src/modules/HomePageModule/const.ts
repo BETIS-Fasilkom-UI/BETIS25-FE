@@ -11,38 +11,28 @@ export const betisCarouselOptions: EmblaOptionsType = {
 
 export const betisCarousel: CarouselItemProps[] = [
   {
-    src: "/placeholder/placeholder(1).jpg",
-    alt: "Acara 1",
+    src: "CarouselGL.JPG",
+    alt: "Grand Launching",
     year: "2024",
   },
   {
-    src: "/placeholder/placeholder(2).jpg",
-    alt: "Acara 2",
+    src: "CarouselMainEvent.JPG",
+    alt: "Main Event",
     year: "2024",
   },
   {
-    src: "/placeholder/placeholder(3).jpg",
-    alt: "Acara 3",
+    src: "CarouselKBM.jpg",
+    alt: "KBM",
     year: "2024",
   },
   {
-    src: "/placeholder/placeholder(4).jpg",
-    alt: "Acara 4",
+    src: "CarouselKBMOnline.jpg",
+    alt: "KBM Online",
     year: "2024",
   },
   {
-    src: "/placeholder/placeholder(5).jpg",
-    alt: "Acara 5",
-    year: "2024",
-  },
-  {
-    src: "/placeholder/placeholder(6).jpg",
-    alt: "Acara 6",
-    year: "2024",
-  },
-  {
-    src: "/placeholder/placeholder(7).jpg",
-    alt: "Acara 7",
+    src: "CarouselGLOnline.jpg",
+    alt: "Grand Launching Online",
     year: "2024",
   },
 ];
