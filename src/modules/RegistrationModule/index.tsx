@@ -723,8 +723,31 @@ const RegistrationModule = () => {
                             isLoading={isLoading}
                             type="submit"
                             onClick={() => {
-                              if (!form.formState.isValid) {
-                                toast.warning("Please fill in all required fields");
+                              if (
+                                form.getValues().fullName === "" ||
+                                form.getValues().username === "" ||
+                                form.getValues().phoneNumber === "" ||
+                                form.getValues().address === "" ||
+                                form.getValues().identityCard === undefined ||
+                                form.getValues().studyMethood === "" ||
+                                form.getValues().parentName === "" ||
+                                form.getValues().relationWithParent === "" ||
+                                form.getValues().parentPhoneNumber === "" ||
+                                form.getValues().highschoolName === "" ||
+                                form.getValues().highschoolClass === "" ||
+                                form.getValues().meanScore === "" ||
+                                form.getValues().studentReport === undefined ||
+                                form.getValues().motivationLetter ===
+                                  undefined ||
+                                form.getValues().commitmentLetter ===
+                                  undefined ||
+                                form.getValues().proofOfFollowing === undefined ||
+                                form.getValues().proofOfTwibbon === undefined ||
+                                form.getValues().proofOfSg === undefined
+                              ) {
+                                toast.warning(
+                                  "Please fill in all required fields"
+                                );
                               }
                             }}
                             className="rounded-[20px]"
@@ -793,7 +816,11 @@ const RegistrationModule = () => {
       />
 
       <Image
-        src={isHovered || page === 1 ? getAsset("/MascotDewasa.png") : getAsset("/MascotLesu.png")}
+        src={
+          isHovered || page === 1
+            ? getAsset("/MascotDewasa.png")
+            : getAsset("/MascotLesu.png")
+        }
         width={isHovered || page === 1 ? 224 : 216}
         height={isHovered || page === 1 ? 590 : 582}
         alt="Mascot"
