@@ -1,0 +1,8 @@
+services:
+  betis25-fe:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: betis25-fe
+    ports:
+      - "3000:3000"
