@@ -44,12 +44,12 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
       >
         <div
           className={cn(
-            "flex items-center justify-between max-md:px-4 px-7 py-4 md:py-7 bg-[#481e58a6]",
+            "flex items-center justify-between max-md:px-4 px-7 py-4 md:py-5 bg-[#481e58a6]",
             isAuthenticated ? "xl:px-14" : "xl:px-8"
           )}
         >
           <Link href={"/"} className="flex items-center justify-center gap-7">
-            <div className="w-[40px] md:w-[61px] h-[36px] md:h-[54px] relative">
+            <div className="w-[40px] md:w-[52px] h-[36px] md:h-[48px] relative">
               <Image
                 src={getAsset("/Footer.png")}
                 fill
@@ -58,7 +58,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                 alt="Logo"
               />
             </div>
-            <h1 className="text-white max-sm:hidden xl:text-t5 text-t4 font-cinzel">
+            <h1 className="text-white max-sm:hidden xl:text-t5 text-t6 font-cinzel">
               BETIS 2025
             </h1>
           </Link>
@@ -80,7 +80,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
             </div>
             {isAuthenticated ? (
               <div className="flex items-center gap-6">
-                <Button onClick={Logout} variant="destructive" className="">
+                <Button onClick={Logout} variant="destructive" className="max-h-[50px]">
                   Logout
                 </Button>
                 <Link href={"/profile"}>
