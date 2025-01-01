@@ -159,6 +159,7 @@ export const useUserData:
   const response = await fetch(
     `${API_URL}user/${user?.email}`,
     {
+      credentials: "omit",
       headers: {
         Authorization: `Bearer ${token}`,
       },
