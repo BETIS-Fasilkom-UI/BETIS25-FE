@@ -298,7 +298,7 @@ const RegistrationModule = () => {
 
                             <div>
                               <FileInput
-                                label="Kartu Identitas"
+                                label="Kartu Identitas (Image)"
                                 file={form.watch("identityCard")}
                                 setFile={(file) =>
                                   form.setValue("identityCard", file)
