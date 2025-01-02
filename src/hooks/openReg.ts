@@ -79,7 +79,7 @@ export const openRegSchema = z.object({
       (files) =>
         files?.type === "application/pdf" ||
         ACCEPTED_IMAGE_TYPES.includes(files?.type),
-      "Only .PDFm .jpg, .jpeg, .png and .webp formats are supported."
+      "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
     ),
   proofOfSg: z
     .any()
@@ -188,8 +188,8 @@ export async function useOpenReg(
     if (paycheck) {
       const validation = validateFile(
         paycheck,
-        ACCEPTED_IMAGE_TYPES,
-        "Only .jpg, .jpeg, .png and .webp formats are supported."
+        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
+        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
       );
       if (!validation.isSuccess) return validation;
 
@@ -203,8 +203,8 @@ export async function useOpenReg(
     if (povertyLetter) {
       const validation = validateFile(
         povertyLetter,
-        ["application/pdf"],
-        "Only .PDF formats are supported."
+        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
+        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
       );
       if (!validation.isSuccess) return validation;
       povertyLetterUrl = await uploadFile(
@@ -217,8 +217,8 @@ export async function useOpenReg(
     if (housePhoto) {
       const validation = validateFile(
         housePhoto,
-        ACCEPTED_IMAGE_TYPES,
-        "Only .jpg, .jpeg, .png and .webp formats are supported."
+        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
+        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
       );
       if (!validation.isSuccess) return validation;
 
@@ -232,8 +232,8 @@ export async function useOpenReg(
     if (electricityBill) {
       const validation = validateFile(
         electricityBill,
-        ACCEPTED_IMAGE_TYPES,
-        "Only .jpg, .jpeg, .png and .webp formats are supported."
+        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
+        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
       );
       if (!validation.isSuccess) return validation;
 
