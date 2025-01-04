@@ -9,7 +9,7 @@ export async function fetchDataServer<T>(endpoint: string, options?: RequestInit
     }
 
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const API_URL = process.env.SERVER_URL;
 
     // Remove trailing and beginning slash from endpoint
     endpoint = endpoint.replace(/^\/|\/$/g, "");
