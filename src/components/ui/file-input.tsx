@@ -27,8 +27,8 @@ export interface FileInputProps {
 const UploadedElement = ({ file, setFile }: UploadedElementProps) => {
   return (
     <div className="flex flex-col gap-4 items-center px-12 py-6">
-      <File color="black" size={36} />
-      <p className="text-gray-500">{file.name}</p>
+      <File color="white" size={36} />
+      <p className="text-[#fef5ff]">{file.name}</p>
     </div>
   )
 }
@@ -79,8 +79,8 @@ export const FileInput = ({ file, setFile, secondaryMessage, label, asterisk }: 
       <div
         {...getRootProps()}
         className={cn(
-          "h-full p-3  cursor-pointer flex justify-center items-center rounded-xl",
-          !file ? 'bg-white' : 'bg-violet-100',
+          "h-full p-3  cursor-pointer flex justify-center items-center rounded-xl border border-dashed" ,
+          !file ? 'bg-white border-[#692597]' : 'bg-[#b6855e] border-white',
           isDragActive ? 'active' : '',
         )}
       >
