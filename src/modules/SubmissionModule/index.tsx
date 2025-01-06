@@ -48,7 +48,7 @@ const Submission = () => {
     }, []);
 
     return (
-        <div className="relative flex items-center justify-center h-full w-screen">
+        <div className="relative flex items-start md:items-center justify-center h-full w-screen">
             <div className="absolute md:w-[581.588px] md:h-[389.025px] lg:w-[664.672px] lg:h-[444.6px]">
                 <Image
                     alt="Scroll"
@@ -70,7 +70,7 @@ const Submission = () => {
             </div>
 
             {currentSection === 1 && (
-                <div className="relative grid place-items-center -top-3 sm:-top-[41px] md:-top-[43px] lg:-top-[58px]">
+                <div className="relative grid place-items-center -top-[1px] sm:top-[9.7px] md:-top-[43px] lg:-top-[58px]">
                     <div className="grid grid-cols-1 gap-1 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
                         <div className="text-center text-[#87101a] text-2xl translate-y-[3px] sm:-translate-y-[1px] sm:text-3xl md:text-4xl font-black font-cinzel">week 4</div>
 
@@ -108,7 +108,7 @@ const Submission = () => {
             )}
 
             {currentSection === 2 && (
-                <div className="relative grid place-items-center -top-6 sm:-top-10 md:-top-14">
+                <div className="relative grid place-items-center -top-[2px] sm:top-[9px] md:-top-14">
                     <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
                         <div className="text-center text-[#87101a] text-2xl sm:text-3xl md:text-4xl font-black font-cinzel translate-y-[4px] sm:-translate-y-0 md:-translate-y-5 lg:-translate-y-11">week 4</div>
 
@@ -140,7 +140,7 @@ const Submission = () => {
             )}
 
             {currentSection === 3 && (
-                <div className="relative grid place-items-center -top-3 sm:-top-9 md:-top-14">
+                <div className="relative grid place-items-center -top-[2px] sm:top-4 md:-top-14">
                     <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
                         <div className="text-center text-[#87101a] text-2xl sm:text-3xl md:text-4xl font-black font-cinzel translate-y-[4px] sm:-translate-y-[7px] md:-translate-y-1 lg:-translate-y-7">week 4</div>
 
@@ -187,7 +187,7 @@ const Submission = () => {
                 </div>
             )}
 
-            <div className="absolute -z-20 h-full -right-5 -bottom-3 aspect-[2/3]">
+            <div className="absolute -z-20 h-2/5 sm:h-2/3 aspect-[2/3] md:h-full -right-5 -bottom-3 md:aspect-[2/3]">
                 <Image
                     alt="PohonKanan"
                     src={getAsset("/pohonkanan.png")}
@@ -197,7 +197,7 @@ const Submission = () => {
                 />
             </div>
             
-            <div className="absolute -z-20 h-full -left-5 -bottom-3 aspect-[2/3]">
+            <div className="absolute -z-20 h-2/5 sm:h-2/3 aspect-[2/3] md:h-full -left-5 -bottom-3 md:aspect-[2/3]">
                 <Image
                     alt="PohonKiri"
                     src={getAsset("/pohonkiri.png")}
@@ -207,7 +207,7 @@ const Submission = () => {
                 />
             </div>
 
-            <div className="absolute -z-20 h-3/5 -left-5 -bottom-7 aspect-[2/3]">
+            <div className="absolute -z-20 h-1/4 sm:h-2/6 sm:aspect-[2/3] md:h-3/5 -left-3 -bottom-4 md:-left-5 md:-bottom-7 md:aspect-[2/3]">
                 <Image
                     alt="JamurKiri1"
                     src={getAsset("/jamurkiri1.png")}
@@ -217,7 +217,17 @@ const Submission = () => {
                 />
             </div>
 
-            <div className="absolute -z-20 h-2/5 left-44 -bottom-7 aspect-[2/3]">
+            <div className="absolute -z-20 h-1/4 aspect-[2/3] sm:h-0 left-0 -bottom-6">
+                <Image
+                    alt="JamurKiri1Gepeng"
+                    src={getAsset("/jamurkiri1gepeng.png")}
+                    fill
+                    sizes="none"
+                    className="object-contain"
+                />
+            </div>
+
+            <div className="absolute -z-20 md:h-2/5 left-44 -bottom-7 md:aspect-[2/3]">
                 <Image
                     alt="JamurKiri2"
                     src={getAsset("/jamurkiri2.png")}
@@ -227,7 +237,7 @@ const Submission = () => {
                 />
             </div>
 
-            <div className="absolute -z-20 h-3/5 right-4 -bottom-6 aspect-[2/3]">
+            <div className="absolute -z-20 h-1/4 aspect-[2/3] sm:h-2/5 sm:aspect-[2/3] md:h-3/5 right-0 -bottom-2 sm:right-4 sm:-bottom-6 md:aspect-[2/3]">
                 <Image
                     alt="JamurKanan"
                     src={getAsset("/jamurkanan.png")}
@@ -237,7 +247,7 @@ const Submission = () => {
                 />
             </div>
 
-            <div className="absolute -z-20 h-[7%] left-80 bottom-36 aspect-[2/3]">
+            <div className="absolute -z-20 md:h-[7%] left-80 bottom-36 md:aspect-[2/3]">
                 <Image
                     alt="KupuKiri"
                     src={getAsset("/kupukiri.png")}
@@ -247,7 +257,7 @@ const Submission = () => {
                 />
             </div>
 
-            <div className="absolute -z-20 h-[5%] right-16 bottom-80 aspect-[2/3]">
+            <div className="absolute -z-20 md:h-[5%] right-16 bottom-80 md:aspect-[2/3]">
                 <Image
                     alt="KupuKanan1"
                     src={getAsset("/kupukanan1.png")}
@@ -257,7 +267,7 @@ const Submission = () => {
                 />
             </div>
 
-            <div className="absolute -z-20 h-[7%] right-20 bottom-96 aspect-[2/3]">
+            <div className="absolute -z-20 md:h-[7%] right-20 bottom-96 md:aspect-[2/3]">
                 <Image
                     alt="KupuKanan2"
                     src={getAsset("/kupukanan2.png")}
