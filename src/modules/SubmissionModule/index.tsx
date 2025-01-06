@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
+import Tooltip from "@/components/ui/tooltip";
 import { FileInput } from "@/components/ui/file-input";
 import { toast } from "@/components/ui/sonner";
 import { getAsset, uploadFile } from "@/lib/s3";
@@ -112,7 +113,9 @@ const Submission = () => {
                     <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
                         <div className="text-center text-[#87101a] text-2xl sm:text-3xl md:text-4xl font-black font-cinzel translate-y-[4px] sm:-translate-y-0 md:-translate-y-5 lg:-translate-y-11">week 4</div>
 
-                        <div className="text-[#500910] text-[16px] sm:text-[24px] md:text-[20px] lg:text-2xl font-semibold font-raleway">Submisi Lorem Ipsum Lorem Ipsum</div>
+                        <Tooltip text="Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+                            <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                        </Tooltip>
 
                         <div className="flex items-center space-x-2">
                             <Calendar color="white" size={iconSize4} stroke="#500910" />
@@ -144,7 +147,11 @@ const Submission = () => {
                     <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
                         <div className="text-center text-[#87101a] text-2xl sm:text-3xl md:text-4xl font-black font-cinzel translate-y-[4px] sm:-translate-y-[7px] md:-translate-y-1 lg:-translate-y-7">week 4</div>
 
-                        <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway">Submisi Lorem Ipsum Lorem</div>
+                        <Tooltip text="Tooltip">
+                            <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">
+                                Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            </div>
+                        </Tooltip>
 
                         <div className="flex items-center space-x-2">
                             <Calendar color="white" size={iconSize1} stroke="#500910" />
@@ -160,17 +167,19 @@ const Submission = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                            <File color="white" size={iconSize3} stroke="#500910" />
-                            <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans">
-                                Namafilenya.pdf
+                        <Tooltip text="Namafilenya.pdf">
+                            <div className="flex items-center space-x-2">
+                                <File color="white" size={iconSize3} stroke="#500910" />
+                                <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans overflow-hidden whitespace-nowrap text-ellipsis">
+                                    Namafilenya.pdf
+                                </div>
                             </div>
-                        </div>
+                        </Tooltip>
                         
-                        <div className="relative flex flex-col sm:flex-row justify-center gap-1 sm:w-[100%] -translate-y-7 sm:translate-y-0">
+                        <div className="relative flex flex-col md:flex-row justify-center gap-1 sm:w-[100%] -translate-y-7 md:translate-y-0">
                             <Button
                                 onClick={() => setCurrentSection(2)}
-                                className="sm:w-[62%] md:w-[50%] sm:h-[80%] h-[10%]"
+                                className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
                                 variant="secondary"
                             >
                                 Remove Submission
@@ -178,7 +187,7 @@ const Submission = () => {
 
                             <Button
                                 onClick={() => setCurrentSection(1)}
-                                className="sm:w-[50%] md:w-[50%] sm:h-[80%] h-[10%]"
+                                className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
                             >
                                 Edit Submission
                             </Button>
