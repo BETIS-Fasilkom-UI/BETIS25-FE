@@ -23,10 +23,10 @@ export const registerSchema = z
     email: z.string().email(),
     fullName: z.string(),
     username: z.string(),
-    phoneNumber: z.string().regex(/[1-9]\d{10,14}$/),
+    phoneNumber: z.string().regex(/^\d{1,3}[1-9]\d{10,14}$/), // Ensure country code is included
     password: z.string().min(6),
     confirmPassword: z.string().min(6),
-  })
+  });
 
 export const forgotPasswordSchema = z.object({
   email: z.string().email(),
