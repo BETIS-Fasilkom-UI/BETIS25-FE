@@ -41,6 +41,7 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
     .then(async (userCred) => {
       const user = userCred.user;
       if (!user.emailVerified) {
+        sendEmailVerification(user);
         return {
           isSuccess: false,
           message: "Email belum terverifikasi, silahkan cek email",
