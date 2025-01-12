@@ -4,20 +4,22 @@ import { getAsset } from "@/lib/s3";
 import Image from "next/image";
 import { useParams } from 'next/navigation'
 import {Loading} from '@/components/elements/Loading'
+import CourseScroll from './CourseScroll'
 
 const Page = () => {
     const { id } = useParams()
-    const [isLoading, setIsLoading] = React.useState(true);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     if (isLoading) {
         return (
             <Loading />
         )
     }else{
-
         return (
-        <main className="min-h-screen w-full flex relative">
-            <h1>{id}</h1>
+        <main className="min-h-screen w-full flex flex-col justify-center items-center relative">
+            {/* <h1>{id}</h1> */}
+
+            <CourseScroll />
 
 
             {/* Background */}
