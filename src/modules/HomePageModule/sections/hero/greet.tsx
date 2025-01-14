@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { isRegistrationClosed } from "@/const";
 import Link from "next/link";
 
 export default function Greet(props: {
@@ -19,7 +20,9 @@ export default function Greet(props: {
       </div>
       <div className="w-full flex flex-col gap-5 max-md:gap-4 max-sm:gap-3">
         <Link href={props.linkPrimary}>
-          <Button className="w-full">Daftar Sekarang</Button>
+          <Button className="w-full"
+            disabled={isRegistrationClosed}
+          >Daftar Sekarang</Button>
         </Link>
         <Link href={props.linkPrimary} className="hidden">
           <Button className="w-full" variant="secondary">
