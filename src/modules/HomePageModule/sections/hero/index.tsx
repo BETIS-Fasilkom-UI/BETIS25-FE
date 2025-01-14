@@ -1,4 +1,4 @@
-import Greet from './greet';
+import {Greet} from './greet';
 import Jalan from "./assets/jalan";
 import Kerajaan1 from "./assets/kerajaan1";
 import Kerajaan2 from "./assets/kerajaan2";

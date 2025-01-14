@@ -1,13 +1,15 @@
+'use client'
 import { Button } from "@/components/ui/button";
 import { isRegistrationClosed } from "@/const";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default function Greet(props: {
+export function Greet(props: {
   linkPrimary: string;
   linkSecondary: string;
   primaryText: string;
   secondaryText: string;
 }) {
+  const { replace } = useRouter();
   return (
     <div className="w-fit flex flex-col gap-10 max-md:gap-6 max-sm:gap-4">
       <div>
@@ -19,16 +21,16 @@ export default function Greet(props: {
         </h2>
       </div>
       <div className="w-full flex flex-col gap-5 max-md:gap-4 max-sm:gap-3">
-        <Link href={props.linkPrimary}>
-          <Button className="w-full"
-            disabled={isRegistrationClosed}
-          >Daftar Sekarang</Button>
-        </Link>
-        <Link href={props.linkPrimary} className="hidden">
-          <Button className="w-full" variant="secondary">
-            Description
-          </Button>
-        </Link>
+        <Button
+          onClick={() => replace(props.linkPrimary)}
+          className="w-full"
+          disabled={isRegistrationClosed}
+        >Daftar Sekarang</Button>
+        <Button
+          onClick={() => replace(props.linkSecondary)}
+          className="w-full" variant="secondary">
+          Description
+        </Button>
       </div>
     </div>
   );
