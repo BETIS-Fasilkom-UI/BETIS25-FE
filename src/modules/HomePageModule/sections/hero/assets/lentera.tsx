@@ -6,7 +6,7 @@ export default function Lentera(props: {className: string}) {
     return(
         <div className={`${props.className}`}>
             <Image 
-                src={getAsset("/Lentera.png")} 
+                src={getAsset("/lentera.png")} 
                 alt="lentera" 
                 sizes="none"
                 fill

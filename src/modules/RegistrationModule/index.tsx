@@ -21,6 +21,7 @@ import StarryBackground from "../LoginModule/module-elements/background";
 import { toast } from "@/components/ui/sonner";
 import { useRouter } from "next/navigation";
 import { getAsset } from "@/lib/s3";
+import { isRegistrationClosed } from "@/const";
 // import { toast } from '@/components/ui/sonner';
 
 type OpenRegFormValues = z.infer<typeof openRegSchema>;
@@ -51,32 +52,18 @@ const RegistrationModule = () => {
   const [housePhotoFile, setHousePhotoFile] = useState<File | null>(null);
   const [paycheckFile, setPaycheckFile] = useState<File | null>(null);
 
-  const { push } = useRouter();
+  const { push, replace } = useRouter();
 
   const form = useForm<OpenRegFormValues>({
     resolver: zodResolver(openRegSchema),
-    //defaultValues: {
-    //  fullName: "John Doe",
-    //  username: "johndoe",
-    //  phoneNumber: "1234567890",
-    //  birthDate: new Date("2000-01-01"),
-    //  address: "123 Main St",
-    //  studyMethood: "online",
-    //  parentName: "Jane Doe",
-    //  relationWithParent: "Mother",
-    //  parentPhoneNumber: "0987654321",
-    //  highschoolName: "High School ABC",
-    //  highschoolClass: "kelas-12",
-    //  meanScore: "90",
-    //  studentReport: null,
-    //  motivationLetter: null,
-    //  commitmentLetter: null,
-    //  proofOfFollowing: null,
-    //  proofOfTwibbon: null,
-    //  proofOfSg: null,
-    //  referralCode: "REF123",
-    //},
   });
+
+  useEffect(() => {
+    if (isRegistrationClosed) {
+      toast.error("Registrasi sudah tutup");
+      replace("/");
+    }
+  }, [])
 
   const onSubmit = async (values: OpenRegFormValues) => {
     setIsLoading(true);
