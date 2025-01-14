@@ -44,7 +44,7 @@ const Vismis = () => {
           >
             <Card className="card__front absolute bg-[#F8EBF333] bg-opacity-100 top-0 bottom-0 right-0 left-0 flex flex-col items-center justify-start">
               <CardHeader>
-                <CardTitle>Inspiratif</CardTitle>
+                <CardTitle className="z-40">Inspiratif</CardTitle>
               </CardHeader>
               <Image
                 src={getAsset("/buku.png")}
@@ -77,16 +77,16 @@ const Vismis = () => {
             style={{ rotateY: isRotated[1] ? "180deg" : 0 }}
             className="h-full card__content transition-transform duration-1000"
           >
-            <Card className="card__front absolute bg-[#F8EBF333] bg-opacity-100 top-0 bottom-0 right-0 left-0 flex flex-col items-center justify-center">
+            <Card className="card__front absolute bg-[#F8EBF333] bg-opacity-100 top-0 bottom-0 right-0 left-0 flex flex-col items-center justify-center overflow-hidden">
               <CardHeader className="absolute top-12">
                 <CardTitle>Kolaboratif</CardTitle>
               </CardHeader>
               <Image
-                src={getAsset("/lentera.png")}
+                src={getAsset("/lentera-with-hand.png")}
                 alt="Kolaboratif"
                 width={257}
                 height={316}
-                className="absolute bottom-8 items-center w-60"
+                className="absolute bottom-0 max-lg:-left-20 items-center w-60"
               />
             </Card>
 
