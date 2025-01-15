@@ -24,7 +24,7 @@ export function Greet(props: {
         <Button
           onClick={() => replace(props.linkPrimary)}
           className="w-full"
-          disabled={isRegistrationClosed}
+          disabled={true}
         >Daftar Sekarang</Button>
         <Button
           onClick={() => replace(props.linkSecondary)}
