@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
-  sendEmailVerification,
+  //sendEmailVerification,
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -23,10 +23,10 @@ export const registerSchema = z
     email: z.string().email(),
     fullName: z.string(),
     username: z.string(),
-    phoneNumber: z.string().regex(/[1-9]\d{10,14}$/),
+    phoneNumber: z.string().regex(/[1-9]\d{1,14}$/), // Make country code optional
     password: z.string().min(6),
     confirmPassword: z.string().min(6),
-  })
+  });
 
 export const forgotPasswordSchema = z.object({
   email: z.string().email(),
@@ -40,12 +40,13 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
   )
     .then(async (userCred) => {
       const user = userCred.user;
-      if (!user.emailVerified) {
-        return {
-          isSuccess: false,
-          message: "Email belum terverifikasi, silahkan cek email",
-        };
-      }
+      //if (!user.emailVerified) {
+      //  sendEmailVerification(user);
+      //  return {
+      //    isSuccess: false,
+      //    message: "Email belum terverifikasi, silahkan cek email",
+      //  };
+      //}
       const idToken = await user.getIdToken();
       const userData = user.displayName?.split("<|>") || [];
 
@@ -102,11 +103,11 @@ export async function useRegister(values: z.infer<typeof registerSchema>) {
         await updateProfile(user, {
           displayName: `${values.fullName}<|>${values.username}<|>${values.phoneNumber}`,
         });
-        sendEmailVerification(user);
+        //sendEmailVerification(user);
 
         return {
           isSuccess: true,
-          message: "Register success, silahkan cek email untuk verifikasi",
+          message: "Register success!",
         };
       } else {
         return { isSuccess: false, message: "Register failed" };
