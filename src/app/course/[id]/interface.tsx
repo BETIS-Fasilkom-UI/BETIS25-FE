@@ -4,21 +4,21 @@ export interface CourseDetailResponse {
     data: CourseDetail;
   }
   
-  interface CourseDetail {
+export interface CourseDetail {
     id: string;
     title: string;
     description: string;
     scrolls: Module[];
   }
   
-  interface Module {
+export interface Module {
     id: string;
     title: string;
     description: string;
     sections: Section[];
   }
   
-  interface Section {
+export interface Section {
     id: string;
     title: string;
     description: string;
@@ -27,7 +27,7 @@ export interface CourseDetailResponse {
   
   type Item = Material | Submission | Quiz;
   
-  interface Material {
+export interface Material {
     id: string;
     title: string;
     description: string;
@@ -35,7 +35,7 @@ export interface CourseDetailResponse {
     url: string;
   }
   
-  interface Submission {
+export interface Submission {
     id: string;
     title: string;
     description: string;
@@ -45,7 +45,7 @@ export interface CourseDetailResponse {
     cutoff_at: string;
   }
   
-  interface Quiz {
+export interface Quiz {
     id: string;
     title: string;
     description: string;
