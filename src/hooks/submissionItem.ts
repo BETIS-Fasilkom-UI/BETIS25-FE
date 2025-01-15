@@ -28,7 +28,8 @@ export const submissionItemSchema = z.object({
 
 export async function useSubmission(
   values: z.infer<typeof submissionItemSchema>,
-  submissionId: string
+  submissionId: string,
+  submissionTitle: string,
 ) {
   try {
     console.log("Adding submission item");
@@ -45,29 +46,23 @@ export async function useSubmission(
 
     console.log(user);
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-    const res = await fetch(`${API_URL}sub/submission/${user?.email}`, {
-      credentials: "omit",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const folder = `submissions/${userName}_${userId}`;
     // const folder = `submissions/${course}/${week}/${submissionTitle}/${userName}_${userId}`;
+    const folder = `submissions/courseTest/weekTest/${submissionTitle}/${userName}_${userId}`;
 
     // Upload Necessary files to s3
     const submissionUrl = await uploadFile(
       values.submission,
-      `${userName}`,
+      `${values.submission?.name}`,
       folder
     );
 
     const body = {
       submission_id: submissionId,
+      user_id: userId,
       url: submissionUrl,
     };
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const response = await fetch(`${API_URL}sub/submission-item`, {
       method: "POST",

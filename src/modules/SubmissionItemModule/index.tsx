@@ -13,16 +13,27 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { SubmissionItem } from "@/app/sub/submission-item/[user_id]/[submission_id]/interface";
+import { Submission } from "@/app/sub/submission/[id]/interface";
 
 type SubmissionItemFormValues = z.infer<typeof submissionItemSchema>;
 
-const SubmissionItemModule = ({ data }: { data: SubmissionItem }) => {
+const SubmissionItemModule = ({
+  data,
+  submissionData,
+}: {
+  data: SubmissionItem;
+  submissionData: Submission;
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [FormData, setFormData] = useState<SubmissionItemFormValues | null>(null);
-  
+  const [FormData, setFormData] = useState<SubmissionItemFormValues | null>(
+    null
+  );
+  const [isEdit, setIsEdit] = useState(false);
+
   useEffect(() => {
-    if (data) {
+    if (data.url) {
       setFormData({ submission: data.url });
+      setIsEdit(true);
     }
   }, [data]);
 
@@ -32,7 +43,7 @@ const SubmissionItemModule = ({ data }: { data: SubmissionItem }) => {
     resolver: zodResolver(submissionItemSchema),
   });
 
-  const targetDate = new Date("2025-02-14T23:55:00+07:00"); // ganti ke yg cut off time
+  const targetDate = new Date("2025-02-14T23:55:00+07:00"); // TODO: ganti ke yg cut off time
   const now = new Date(
     new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
   );
@@ -41,7 +52,7 @@ const SubmissionItemModule = ({ data }: { data: SubmissionItem }) => {
   useEffect(() => {
     if (isSubmissionClosed) {
       toast.error("Submisi sudah tutup");
-      replace("/");
+      replace(`/sub/submission/${data.submission_id}`);
     }
   }, []);
 
@@ -53,13 +64,17 @@ const SubmissionItemModule = ({ data }: { data: SubmissionItem }) => {
     const combinedData = { ...FormData, ...values };
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const result = await useSubmission(combinedData);
+    const result = await useSubmission(
+      combinedData,
+      data.submission_id,
+      submissionData.title
+    );
     if (result.isSuccess) {
       toast.success("Registration success");
       form.reset();
       setFormData(null);
 
-      push("/sub/submission/[id]"); // blm nyambungin balik
+      replace(`/sub/submission/${data.submission_id}`);
     } else {
       toast.error(result.message);
     }
@@ -124,6 +139,9 @@ const SubmissionItemModule = ({ data }: { data: SubmissionItem }) => {
             <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
               <Link href="/sub/submission/[id]">
                 <Button
+                  onClick={() => {
+                    replace(`/sub/submission/${data.submission_id}`);
+                  }}
                   className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
                   variant="secondary"
                 >
