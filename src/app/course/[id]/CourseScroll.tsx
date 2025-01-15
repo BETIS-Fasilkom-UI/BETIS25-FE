@@ -48,7 +48,7 @@ const CourseScroll = ({id,title,description,items} : Section) =>{
                     </p>
 
                     <div className={`font-raleway text-[#500910] w-full ${active? 'block' : 'hidden'}`}>
-                        <div className='w-full flex flex-col gap-5'>
+                        <div className='w-full flex flex-col gap-5'> 
 
                             {/* Materi */}
                             <div className='w-full flex flex-col gap-2'>
@@ -56,7 +56,7 @@ const CourseScroll = ({id,title,description,items} : Section) =>{
                                 {items.map((item) => (
                                     item.type === 'material' && (
                                         <Link key={item.id} href={item.url}>
-                                            <div className='flex gap-3 items-center transition-all hover:opacity-80'>
+                                            <div className='flex gap-3 items-center transition-all hover:opacity-70'>
                                                 <div className='p-[7px] bg-[#AB98B2] rounded-[12px]'>
                                                     <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
                                                         <Image
@@ -83,7 +83,7 @@ const CourseScroll = ({id,title,description,items} : Section) =>{
                                 {items.map((item) => (
                                         item.type !== 'material' && (
                                             <Link key={item.id} href={`/`}>
-                                                <div className='flex gap-3 items-center transition-all hover:opacity-80'>
+                                                <div className='flex gap-3 items-center'>
                                                     <div className='p-[7px] bg-[#AB98B2] rounded-[12px]'>
                                                         <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
                                                             <Image
