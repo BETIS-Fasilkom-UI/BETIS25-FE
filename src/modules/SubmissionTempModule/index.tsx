@@ -6,27 +6,12 @@ import { FileInput } from "@/components/ui/file-input";
 import { toast } from "@/components/ui/sonner";
 import { getAsset, uploadFile } from "@/lib/s3";
 import Image from "next/image";
-import { Calendar, Clock, File, Link } from "lucide-react";
+import { Calendar, Clock, File } from "lucide-react";
 
-const Submission = () => {
-  const [currentSection, setCurrentSection] = useState<number>(1);
-
-  const handleDelete = async (id: string) => {
-    try {
-      const response = await fetch(`/sub/submission-item/${id}`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        console.log('Deleted successfully');
-        setCurrentSection(2);
-      } else {
-        console.error('Failed to delete');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
+const SubmissionTemp = () => {
+  const [file, setFile] = useState<File | null>(null);
+  const [urlPhoto, setUrlPhoto] = useState<string | null>(null);
+  const [currentSection, setCurrentSection] = useState<number>(3);
 
   return (
     <div className="relative flex items-start md:items-center justify-center h-screen w-screen">
@@ -53,21 +38,64 @@ const Submission = () => {
       </div>
 
       {currentSection === 1 && (
+        <div className="relative grid place-items-center -top-[1px] sm:top-[9.7px] md:-top-[43px] lg:-top-[58px]">
+          <div className="grid grid-cols-1 gap-1 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
+            <div className="text-center text-[#87101a] text-2xl translate-y-[3px] sm:-translate-y-[1px] md:-translate-y-[2px] lg:-translate-y-[1px] sm:text-3xl md:text-4xl font-black font-cinzel">
+              week 4
+            </div>
+
+            <div className="text-center text-[#500910] text-sm md:text-[15px] lg:text-[17px] font-semibold font-raleway">
+              File Submission
+            </div>
+
+            <FileInput file={file} setFile={setFile} />
+
+            <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
+              <Button
+                onClick={() => setCurrentSection(2)}
+                className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
+                variant="secondary"
+              >
+                Cancel
+              </Button>
+
+              <Button
+                onClick={async () => {
+                  if (file) {
+                    const url = await uploadFile(
+                      file,
+                      crypto.randomUUID(),
+                      "test"
+                    );
+                    setUrlPhoto(url);
+                    toast.success(url);
+                  } else {
+                    toast.error("No file selected");
+                  }
+                }}
+                className="h-[10%] sm:w-[50%] sm:h-[80%]"
+              >
+                Save Changes
+              </Button>
+            </div>
+            {urlPhoto && urlPhoto}
+          </div>
+        </div>
+      )}
+
+      {currentSection === 2 && (
         <div className="relative grid place-items-center -top-[2px] sm:top-[9px] md:-top-14">
           <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
-            {/* week??? */}
             <div className="text-center text-[#87101a] text-2xl sm:text-3xl md:text-4xl font-black font-cinzel translate-y-[4px] sm:-translate-y-0 md:-translate-y-5 lg:-translate-y-11">
               week 4
             </div>
 
-            {/* title */}
             <Tooltip text="Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit">
               <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">
                 Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit
               </div>
             </Tooltip>
 
-            {/* closed date */}
             <div className="flex items-center space-x-2">
               <Calendar
                 color="white"
@@ -79,7 +107,6 @@ const Submission = () => {
               </div>
             </div>
 
-            {/* remaining time (closed - now) */}
             <div className="flex items-center space-x-2">
               <Clock
                 color="white"
@@ -91,36 +118,30 @@ const Submission = () => {
               </div>
             </div>
 
-            {/* button add sub-item (hardcode) */}
-            {/* <Link href={`/sub/submission-item/${userId}/${submissionId}`}>  */}
-            <Link href="/sub/submission-item/[user_id]/[submission_id]">
-              <Button
-                className="w-[100%] h-[50%] sm:h-[80%]"
-                variant="secondary"
-              >
-                Add Submission
-              </Button>
-            </Link>
+            <Button
+              onClick={() => setCurrentSection(1)}
+              className="w-[100%] h-[50%] sm:h-[80%]"
+              variant="secondary"
+            >
+              Add Submission
+            </Button>
           </div>
         </div>
       )}
 
-      {currentSection === 2 && (
+      {currentSection === 3 && (
         <div className="relative grid place-items-center -top-[2px] sm:top-4 md:-top-14">
           <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
-            {/* week??? */}
             <div className="text-center text-[#87101a] text-2xl sm:text-3xl md:text-4xl font-black font-cinzel translate-y-[4px] sm:-translate-y-[7px] md:-translate-y-1 lg:-translate-y-7">
               week 4
             </div>
 
-            {/* title */}
             <Tooltip text="Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit">
               <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">
                 Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit
               </div>
             </Tooltip>
 
-            {/* closed date */}
             <div className="flex items-center space-x-2">
               <Calendar
                 color="white"
@@ -132,7 +153,6 @@ const Submission = () => {
               </div>
             </div>
 
-            {/* remaining time (closed - now) */}
             <div className="flex items-center space-x-2">
               <Clock
                 color="white"
@@ -144,7 +164,6 @@ const Submission = () => {
               </div>
             </div>
 
-            {/* filename */}
             <Tooltip text="Namafilenya.pdf">
               <div className="flex items-center space-x-2">
                 <File
@@ -158,22 +177,21 @@ const Submission = () => {
               </div>
             </Tooltip>
 
-            {/* button remove and edit */}
             <div className="relative flex flex-col md:flex-row justify-center gap-1 sm:w-[100%] -translate-y-7 md:translate-y-0">
               <Button
-                // onClick={() => handleDelete(submissionId)} // sub id not correct
+                onClick={() => setCurrentSection(2)}
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
                 variant="secondary"
               >
                 Remove Submission
               </Button>
 
-
-              {/* <Button
+              <Button
+                onClick={() => setCurrentSection(1)}
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
               >
                 Edit Submission
-              </Button> */}
+              </Button>
             </div>
           </div>
         </div>
@@ -201,4 +219,4 @@ const Submission = () => {
   );
 };
 
-export default Submission;
+export default SubmissionTemp;
