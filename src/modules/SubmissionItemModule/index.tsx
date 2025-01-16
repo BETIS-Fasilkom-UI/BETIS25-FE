@@ -7,7 +7,7 @@ import { toast } from "@/components/ui/sonner";
 import { getAsset, uploadFile } from "@/lib/s3";
 import Image from "next/image";
 import { Calendar, Clock, File, Link } from "lucide-react";
-import { submissionItemSchema, useSubmission } from "@/hooks/submissionItem";
+import { submissionItemSchema, useSubmission } from "@/hooks/submission";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -43,7 +43,7 @@ const SubmissionItemModule = ({
     resolver: zodResolver(submissionItemSchema),
   });
 
-  const targetDate = new Date("2025-02-14T23:55:00+07:00"); // TODO: ganti ke yg cut off time
+  const targetDate = new Date(submissionData.cutoff_at.replace(" ", "T"));
   const now = new Date(
     new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
   );
@@ -137,17 +137,15 @@ const SubmissionItemModule = ({
             )}
 
             <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
-              <Link href="/sub/submission/[id]">
-                <Button
-                  onClick={() => {
-                    replace(`/sub/submission/${data.submission_id}`);
-                  }}
-                  className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
-                  variant="secondary"
-                >
-                  Cancel
-                </Button>
-              </Link>
+              <Button
+                onClick={() => {
+                  replace(`/sub/submission/${data.submission_id}`);
+                }}
+                className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
+                variant="secondary"
+              >
+                Cancel
+              </Button>
 
               <Button
                 isLoading={isLoading}

@@ -7,26 +7,85 @@ import { toast } from "@/components/ui/sonner";
 import { getAsset, uploadFile } from "@/lib/s3";
 import Image from "next/image";
 import { Calendar, Clock, File, Link } from "lucide-react";
+import { Submission } from "@/app/sub/submission/[id]/interface";
+import { SubmissionItem } from "@/app/sub/submission-item/[user_id]/[submission_id]/interface";
+import { useRouter } from "next/navigation";
 
-const Submission = () => {
+const SubmissionModule = ({
+  submissionItemData,
+  submissionData,
+}: {
+  submissionItemData: SubmissionItem;
+  submissionData: Submission;
+}) => {
   const [currentSection, setCurrentSection] = useState<number>(1);
+
+  if (submissionItemData.url) {
+    setCurrentSection(2);
+  }
+
+  const { push, replace } = useRouter();
 
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(`/sub/submission-item/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       if (response.ok) {
-        console.log('Deleted successfully');
-        setCurrentSection(2);
+        console.log("Deleted successfully");
+        setCurrentSection(1);
       } else {
-        console.error('Failed to delete');
+        console.error("Failed to delete");
       }
     } catch (error) {
       console.error(error);
     }
   };
-  
+
+  function formatDueDate(isoString: string): string {
+    try {
+      const date = new Date(isoString);
+      if (isNaN(date.getTime())) throw new Error("Invalid date");
+
+      const options: Intl.DateTimeFormatOptions = {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      };
+
+      const formatter = new Intl.DateTimeFormat("en-US", options);
+      return formatter.format(date).replace(/\./g, ":");
+    } catch (error) {
+      console.error(error);
+      return "Invalid date";
+    }
+  }
+
+  const now = new Date(
+    new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
+  );
+
+  function calculateTimeRemaining(closedAt: string): string {
+    const closedDate = new Date(closedAt.replace(" ", "T"));
+
+    const diffInMs = closedDate.getTime() - now.getTime();
+
+    if (diffInMs <= 0) {
+      return "Submission closed";
+    }
+
+    const msInHour = 1000 * 60 * 60;
+    const msInDay = msInHour * 24;
+
+    const days = Math.floor(diffInMs / msInDay);
+    const hours = Math.floor((diffInMs % msInDay) / msInHour);
+
+    return `${days} days ${hours} hours`;
+  }
 
   return (
     <div className="relative flex items-start md:items-center justify-center h-screen w-screen">
@@ -55,7 +114,7 @@ const Submission = () => {
       {currentSection === 1 && (
         <div className="relative grid place-items-center -top-[2px] sm:top-[9px] md:-top-14">
           <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
-            {/* week??? */}
+            {/* week??? from course section me thinks*/}
             <div className="text-center text-[#87101a] text-2xl sm:text-3xl md:text-4xl font-black font-cinzel translate-y-[4px] sm:-translate-y-0 md:-translate-y-5 lg:-translate-y-11">
               week 4
             </div>
@@ -63,7 +122,7 @@ const Submission = () => {
             {/* title */}
             <Tooltip text="Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit">
               <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">
-                Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                {submissionData.title}
               </div>
             </Tooltip>
 
@@ -75,7 +134,7 @@ const Submission = () => {
                 stroke="#500910"
               />
               <div className="text-black text-[15px] md:text-[16px] font-normal font-sans">
-                Due Date: Saturday, 28 Februari 2022, 08.00 AM
+                Due Date: {formatDueDate(submissionData.closed_at)}
               </div>
             </div>
 
@@ -87,20 +146,21 @@ const Submission = () => {
                 stroke="#500910"
               />
               <div className="text-black text-[15px] sm:text-[16px] font-normal font-sans">
-                Time Remaining: 20 days 4 hours
+                Time Remaining: {calculateTimeRemaining(submissionData.cutoff_at)}
               </div>
             </div>
 
-            {/* button add sub-item (hardcode) */}
-            {/* <Link href={`/sub/submission-item/${userId}/${submissionId}`}>  */}
-            <Link href="/sub/submission-item/[user_id]/[submission_id]">
-              <Button
-                className="w-[100%] h-[50%] sm:h-[80%]"
-                variant="secondary"
-              >
-                Add Submission
-              </Button>
-            </Link>
+            <Button
+              onClick={() => {
+                push(
+                  `/sub/submission-item/${submissionItemData.user_id}/${submissionData.id}`
+                );
+              }}
+              className="w-[100%] h-[50%] sm:h-[80%]"
+              variant="secondary"
+            >
+              Add Submission
+            </Button>
           </div>
         </div>
       )}
@@ -116,7 +176,7 @@ const Submission = () => {
             {/* title */}
             <Tooltip text="Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit">
               <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">
-                Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                {submissionData.title}
               </div>
             </Tooltip>
 
@@ -128,7 +188,7 @@ const Submission = () => {
                 stroke="#500910"
               />
               <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans">
-                Due Date: Saturday, 28 Februari 2022, 08.00 AM
+                Due Date: {formatDueDate(submissionData.closed_at)}
               </div>
             </div>
 
@@ -140,7 +200,7 @@ const Submission = () => {
                 stroke="#500910"
               />
               <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans">
-                Time Remaining: 20 days 4 hours
+                Time Remaining: {calculateTimeRemaining(submissionData.cutoff_at)}
               </div>
             </div>
 
@@ -153,7 +213,7 @@ const Submission = () => {
                   stroke="#500910"
                 />
                 <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans overflow-hidden whitespace-nowrap text-ellipsis">
-                  Namafilenya.pdf
+                  {submissionItemData.url.split("/").pop()}
                 </div>
               </div>
             </Tooltip>
@@ -161,19 +221,23 @@ const Submission = () => {
             {/* button remove and edit */}
             <div className="relative flex flex-col md:flex-row justify-center gap-1 sm:w-[100%] -translate-y-7 md:translate-y-0">
               <Button
-                // onClick={() => handleDelete(submissionId)} // sub id not correct
+                onClick={() => handleDelete(submissionItemData.id)}
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
                 variant="secondary"
               >
                 Remove Submission
               </Button>
 
-
-              {/* <Button
+              <Button
+                onClick={() => {
+                  push(
+                    `/sub/submission-item/${submissionItemData.user_id}/${submissionData.id}`
+                  );
+                }}
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
               >
                 Edit Submission
-              </Button> */}
+              </Button>
             </div>
           </div>
         </div>
@@ -201,4 +265,4 @@ const Submission = () => {
   );
 };
 
-export default Submission;
+export default SubmissionModule;

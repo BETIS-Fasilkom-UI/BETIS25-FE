@@ -3,41 +3,35 @@ import { NextPage } from "next";
 import SubmissionItemModule from "@/modules/SubmissionItemModule";
 import { GetSubmissionItemDataResponse } from "./interface";
 import { GetSubmissionDataResponse } from "@/app/sub/submission/[id]/interface";
+import { getUserData } from "@/hooks/user";
+import { notFound, redirect } from "next/navigation";
+import { getSubmissionData, getSubmissionItemData } from "@/hooks/submission";
 
 const page: NextPage<{
-  params: { user_id: string, submission_id: string };
+  params: { user_id: string; submission_id: string };
 }> = async ({ params }) => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const user = await getUserData();
+  if (!user) {
+    redirect("/login");
+  }
+  const submissionItemData = await getSubmissionItemData(params.submission_id);
+  if (!submissionItemData) {
+    notFound();
+  }
+  console.log(submissionItemData);
 
-  const submission_item_response = await fetch(
-    `${API_URL}sub/submission-item/${params.user_id}/${params.submission_id}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-      },
-    }
-  );
-  const submission_item_data: GetSubmissionItemDataResponse = await submission_item_response.json();
-  console.log(submission_item_data);
-
-  const submission_response = await fetch(
-    `${API_URL}sub/submission/${params.submission_id}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-      },
-    }
-  );
-  const submission_data: GetSubmissionDataResponse = await submission_response.json();
-  console.log(submission_data);
+  const submissionData = await getSubmissionData(params.submission_id);
+  if (!submissionData) {
+    notFound();
+  }
+  console.log(submissionData);
 
   return (
     <div className="flex justify-center flex-col gap-1 pt-16 items-center overflow-hidden">
-      <SubmissionItemModule data={submission_item_data.data} submissionData={submission_data.data} />
+      <SubmissionItemModule
+        data={submissionItemData}
+        submissionData={submissionData}
+      />
     </div>
   );
 };
