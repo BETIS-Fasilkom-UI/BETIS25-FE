@@ -1,11 +1,10 @@
 import React from "react";
 import { NextPage } from "next";
 import SubmissionModule from "@/modules/SubmissionModule";
-import { GetSubmissionDataResponse } from "@/app/sub/submission/[id]/interface";
-import { GetSubmissionItemDataResponse } from "../../submission-item/[user_id]/[submission_id]/interface";
 import { getUserData } from "@/hooks/user";
 import { notFound, redirect } from "next/navigation";
 import { getSubmissionData, getSubmissionItemData } from "@/hooks/submission";
+import NotFound from "@/app/not-found";
 
 const page: NextPage<{
   params: { id: string };
@@ -17,13 +16,15 @@ const page: NextPage<{
 
   const submissionItemData = await getSubmissionItemData(params.id);
   if (!submissionItemData) {
-    notFound();
+    <NotFound />
+    return null
   }
   console.log(submissionItemData);
 
   const submissionData = await getSubmissionData(params.id);
   if (!submissionData) {
-    notFound();
+    <NotFound />
+    return null
   }
   console.log(submissionData);
 

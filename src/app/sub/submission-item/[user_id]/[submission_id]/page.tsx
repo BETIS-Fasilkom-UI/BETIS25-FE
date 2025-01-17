@@ -6,6 +6,7 @@ import { GetSubmissionDataResponse } from "@/app/sub/submission/[id]/interface";
 import { getUserData } from "@/hooks/user";
 import { notFound, redirect } from "next/navigation";
 import { getSubmissionData, getSubmissionItemData } from "@/hooks/submission";
+import NotFound from "@/app/not-found";
 
 const page: NextPage<{
   params: { user_id: string; submission_id: string };
@@ -16,13 +17,15 @@ const page: NextPage<{
   }
   const submissionItemData = await getSubmissionItemData(params.submission_id);
   if (!submissionItemData) {
-    notFound();
+    <NotFound />
+    return null
   }
   console.log(submissionItemData);
 
   const submissionData = await getSubmissionData(params.submission_id);
   if (!submissionData) {
-    notFound();
+    <NotFound />
+    return null
   }
   console.log(submissionData);
 
