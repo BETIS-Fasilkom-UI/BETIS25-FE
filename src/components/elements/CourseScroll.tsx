@@ -3,23 +3,23 @@ import { useState} from 'react';
 import Image from 'next/image';
 import { getAsset } from "@/lib/s3";
 import Link from 'next/link';
-import { Section } from './interface';
+import { Section } from '../../app/course/[id]/interface';
 
-const CourseScroll = ({id,title,description,items} : Section) =>{
+const CourseScroll = ({id, title, description, items, week}: Section & {week: string}) => {
     const [active, setActive] = useState(false);
     const handleClick = () =>{
         setActive(!active);
     }
 
     return(
-        <div className='w-[760px] max-md:w-[600px] max-sm:w-[366px]'
+        <div className='w-[660px] max-md:w-[600px] max-sm:w-[366px]'
         key={id}
         >
             <div className="w-full h-full flex flex-col relative">
-                <div className="absolute w-full h-[89%] top-[4%] max-sm:h-[95%] max-sm:top-[1%]">
+                <div className="absolute w-full h-[97%] top-[1%]">
                         <Image
                             alt="kertas"
-                            src={getAsset("/kertas2.png")} 
+                            src={getAsset("/lembarankertas2.png")} 
                             fill
                             sizes="none"
                         />
@@ -28,7 +28,7 @@ const CourseScroll = ({id,title,description,items} : Section) =>{
                 <div className="z-[0] relative w-full aspect-[805/103] flex justify-center items-center">
                     <h1 
                         className='font-cinzel text-4xl max-md:text-2xl max-sm:text-lg z-10 text-[#87101A]'>
-                        Week 1
+                        {week}
                     </h1>
                     <Image
                         alt="gulungan"
