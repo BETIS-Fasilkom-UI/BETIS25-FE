@@ -16,7 +16,7 @@ const CourseScroll = ({id,title,description,items} : Section) =>{
         key={id}
         >
             <div className="w-full h-full flex flex-col relative">
-                <div className="absolute w-full h-[89%] top-[4%]">
+                <div className="absolute w-full h-[89%] top-[4%] max-sm:h-[95%] max-sm:top-[1%]">
                         <Image
                             alt="kertas"
                             src={getAsset("/kertas2.png")} 
@@ -61,7 +61,7 @@ const CourseScroll = ({id,title,description,items} : Section) =>{
                                                     <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
                                                         <Image
                                                             alt="materi"
-                                                            src={getAsset("/li_file-plus.svg")}
+                                                            src={getAsset("/li_file-text.svg")}
                                                             fill
                                                             sizes="none"
                                                             className="object-contain"
@@ -83,12 +83,12 @@ const CourseScroll = ({id,title,description,items} : Section) =>{
                                 {items.map((item) => (
                                         item.type !== 'material' && (
                                             <Link key={item.id} href={`/`}>
-                                                <div className='flex gap-3 items-center'>
-                                                    <div className='p-[7px] bg-[#AB98B2] rounded-[12px]'>
+                                                <div className='flex gap-3 items-center transition-all hover:opacity-70'>
+                                                    <div className='p-[7px] bg-[#CB4551] rounded-[12px]'>
                                                         <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
                                                             <Image
                                                                 alt="materi"
-                                                                src={getAsset("/li_file-plus.svg")}
+                                                                src={getAsset(item.type ==="quiz"?"/li_file-question.svg":"/li_file-plus.svg")}
                                                                 fill
                                                                 sizes="none"
                                                                 className="object-contain"
