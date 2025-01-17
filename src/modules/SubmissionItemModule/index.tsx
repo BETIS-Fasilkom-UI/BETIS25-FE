@@ -1,11 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FileInput } from "@/components/ui/file-input";
 import { toast } from "@/components/ui/sonner";
-import { getAsset, uploadFile } from "@/lib/s3";
+import { getAsset } from "@/lib/s3";
 import Image from "next/image";
-import { submissionItemSchema, useSubmission } from "@/hooks/submission";
+import {
+  submissionItemSchema,
+  updateSubmission,
+  useSubmission,
+} from "@/hooks/submission";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,7 +30,7 @@ const SubmissionItemModule = ({
   const [FormData, setFormData] = useState<SubmissionItemFormValues | null>(
     null
   );
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(data ? true : false);
 
   useEffect(() => {
     if (data?.url) {
@@ -61,14 +65,25 @@ const SubmissionItemModule = ({
 
     const combinedData = { ...FormData, ...values };
 
+    let result = { isSuccess: false, message: "Unknown Error"};
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const result = await useSubmission(
-      combinedData,
-      submissionData.id,
-      submissionData.title
-    );
+    if (!isEdit) {
+      result = await useSubmission(
+        combinedData,
+        submissionData.id,
+        submissionData.title
+      );
+    } else if (isEdit && data) {
+      result = await updateSubmission(
+        combinedData,
+        data.id,
+        submissionData.id,
+        submissionData.title
+      );
+    }
+
     if (result.isSuccess) {
-      toast.success("Registration success");
+      toast.success("Submission success");
       form.reset();
       setFormData(null);
 
@@ -112,55 +127,57 @@ const SubmissionItemModule = ({
         />
       </div>
 
-      <div className="relative grid place-items-center -top-[1px] sm:top-[9.7px] md:-top-[43px] lg:-top-[58px]">
+      <form
+        className="relative grid place-items-center -top-[1px] sm:top-[9.7px] md:-top-[43px] lg:-top-[58px]"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <div className="grid grid-cols-1 gap-1 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
           <div className="text-center text-[#87101a] text-2xl translate-y-[3px] sm:-translate-y-[1px] md:-translate-y-[2px] lg:-translate-y-[1px] sm:text-3xl md:text-4xl font-black font-cinzel">
             week 4
           </div>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="text-center text-[#500910] text-sm md:text-[15px] lg:text-[17px] font-semibold font-raleway">
-              File Submission
-            </div>
+          <div className="text-center text-[#500910] text-sm md:text-[15px] lg:text-[17px] font-semibold font-raleway">
+            File Submission
+          </div>
 
-            <FileInput
-              file={form.watch("submission")}
-              setFile={(file) => form.setValue("submission", file)}
-            />
-            {form.formState.errors.submission && (
-              <p className="text-sm text-red-500">
-                {typeof form.formState.errors.submission?.message === "string"
-                  ? form.formState.errors.submission.message
-                  : ""}
-              </p>
-            )}
+          <FileInput
+            file={form.watch("submission")}
+            setFile={(file) => form.setValue("submission", file)}
+          />
 
-            <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
-              <Button
-                onClick={() => {
-                  replace(`/sub/submission/${submissionData.id}`);
-                }}
-                className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
-                variant="secondary"
-              >
-                Cancel
-              </Button>
+          <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
+            <Button
+              onClick={() => {
+                replace(`/sub/submission/${submissionData.id}`);
+              }}
+              className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
+              variant="secondary"
+            >
+              Cancel
+            </Button>
 
-              <Button
-                isLoading={isLoading}
-                type="submit"
-                onClick={() => {
-                  if (form.getValues().submission === undefined) {
-                    toast.warning("Please fill in all required fields");
-                  }
-                }}
-                className="h-[10%] sm:w-[50%] sm:h-[80%]"
-              >
-                Save Changes
-              </Button>
-            </div>
-          </form>
+            <Button
+              isLoading={isLoading}
+              type="submit"
+              onClick={() => {
+                if (form.getValues().submission === undefined) {
+                  toast.warning("Please fill in all required fields");
+                }
+                if (form.formState.errors.submission) {
+                  toast.warning(
+                    typeof form.formState.errors.submission?.message ===
+                      "string"
+                      ? form.formState.errors.submission.message
+                      : ""
+                  );
+                }
+              }}
+              className="h-[10%] sm:w-[50%] sm:h-[80%]"
+            >
+              Save Changes
+            </Button>
+          </div>
         </div>
-      </div>
+      </form>
 
       <div className="absolute -z-20 h-2/5 sm:h-2/3 aspect-[1/3] sm:aspect-[1/2] md:h-full -left-5 -bottom-[88px] sm:-bottom-16 md:-bottom-[98px] lg:bottom-0 lg:aspect-[2/3]">
         <Image

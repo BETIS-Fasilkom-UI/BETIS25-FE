@@ -8,6 +8,8 @@ import { Calendar, Clock, File } from "lucide-react";
 import { Submission } from "@/modules/SubmissionModule/interface";
 import { SubmissionItem } from "@/modules/SubmissionItemModule/interface";
 import { useRouter } from "next/navigation";
+import { deleteSubmission } from "@/hooks/submission";
+import { toast } from "@/components/ui/sonner";
 
 const SubmissionModule = ({
   submissionItemData,
@@ -22,16 +24,22 @@ const SubmissionModule = ({
 
   const { push } = useRouter();
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (
+    submissionItemId: string,
+    submissionItemName: string
+  ) => {
     try {
-      const response = await fetch(`/sub/submission-item/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        console.log("Deleted successfully");
+      const result = await deleteSubmission(
+        submissionItemId,
+        submissionItemName,
+        submissionData.id,
+        submissionData.title
+      );
+      if (result.isSuccess) {
+        toast.success("Submission deleted");
         setCurrentSection(1);
       } else {
-        console.error("Failed to delete");
+        toast.error(result.message);
       }
     } catch (error) {
       console.error(error);
@@ -116,7 +124,7 @@ const SubmissionModule = ({
             </div>
 
             {/* title */}
-            <Tooltip text="Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+            <Tooltip text={submissionData.title}>
               <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">
                 {submissionData.title}
               </div>
@@ -169,7 +177,7 @@ const SubmissionModule = ({
             </div>
 
             {/* title */}
-            <Tooltip text="Submisi Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+            <Tooltip text={submissionData.title}>
               <div className="text-[#500910] text-[14px] sm:text-[20px] md:text-[20px] lg:text-2xl font-semibold font-raleway overflow-hidden whitespace-nowrap text-ellipsis">
                 {submissionData.title}
               </div>
@@ -201,7 +209,7 @@ const SubmissionModule = ({
             </div>
 
             {/* filename */}
-            <Tooltip text="Namafilenya.pdf">
+            <Tooltip text={submissionItemData.url.split("/").pop() || "N/A"}>
               <div className="flex items-center space-x-2">
                 <File
                   color="white"
@@ -217,7 +225,12 @@ const SubmissionModule = ({
             {/* button remove and edit */}
             <div className="relative flex flex-col md:flex-row justify-center gap-1 sm:w-[100%] -translate-y-7 md:translate-y-0">
               <Button
-                onClick={() => handleDelete(submissionItemData.id)}
+                onClick={() =>
+                  handleDelete(
+                    submissionItemData.id,
+                    submissionItemData.url.split("/").pop() || "UnknownFileName"
+                  )
+                }
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
                 variant="secondary"
               >

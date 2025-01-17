@@ -32,6 +32,18 @@ const uploadFile = async (file: File, key?: string, folder?: string) => {
     return data.url;
 }
 
+const deleteFile = async (key: string, folder?: string) => {
+    console.log(JSON.stringify({ key, folder }))
+    const response = await fetch('/api/delete', {
+        method: 'DELETE',
+        body: JSON.stringify({ key, folder }),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to delete file');
+    }
+}
+
 const getAsset = (key: string): string => { 
     const cleanedKey = key.replace(/^\/|\/$/g, '');
     const url = `https://betis25.s3.ap-southeast-2.amazonaws.com/assets/${cleanedKey}`;
@@ -39,5 +51,4 @@ const getAsset = (key: string): string => {
     return url;
 }
 
-export { Bucket, s3, uploadFile, getAsset};
-
+export { Bucket, s3, uploadFile, getAsset, deleteFile};

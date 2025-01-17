@@ -1,5 +1,5 @@
 "use client";
-import { uploadFile } from "@/lib/s3";
+import { uploadFile, deleteFile } from "@/lib/s3";
 import z from "zod";
 import { useUserData } from "./auth";
 import { getCookie } from "cookies-next";
@@ -80,6 +80,120 @@ export async function useSubmission(
     }
 
     return { isSuccess: true, message: "Submission successfully added" };
+  } catch (error) {
+    return { isSuccess: false, message: (error as Error).message };
+  }
+}
+
+export async function updateSubmission(
+  values: z.infer<typeof submissionItemSchema>,
+  submissionItemId: string,
+  submissionId: string,
+  submissionTitle: string
+) {
+  try {
+    console.log("Updating submission item");
+    const token = await getCookie("token");
+    if (!token) {
+      return { isSuccess: false, message: "Unauthorized access" };
+    }
+    const user = await useUserData();
+
+    const userId = user?.id;
+    const userName = user?.fullname.replace(/\s+/g, "-");
+
+    console.log("Upload files to s3");
+
+    console.log(user);
+
+    // const folder = `submissions/${course}/${week}/${submissionTitle}/${userName}_${userId}`;
+    const folder = `submissions/courseTest/weekTest/${submissionTitle}/${userName}_${userId}`;
+
+    // Upload Necessary files to s3
+    const submissionUrl = await uploadFile(
+      values.submission,
+      `${values.submission?.name}`,
+      folder
+    );
+
+    const body = {
+      submission_id: submissionId,
+      user_id: userId,
+      url: submissionUrl,
+    };
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+    const response = await fetch(
+      `${API_URL}sub/submission-item/${submissionItemId}`,
+      {
+        method: "PUT",
+        credentials: "omit",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      }
+    );
+
+    if (!response.ok) {
+      const data = await response.json();
+      return { isSuccess: false, message: data.message };
+    }
+
+    return { isSuccess: true, message: "Submission successfully updated" };
+  } catch (error) {
+    return { isSuccess: false, message: (error as Error).message };
+  }
+}
+
+export async function deleteSubmission(
+  submissionItemId: string,
+  submissionItemName: string,
+  submissionId: string,
+  submissionTitle: string
+) {
+  try {
+    console.log("Deleting submission item");
+    const token = await getCookie("token");
+    if (!token) {
+      return { isSuccess: false, message: "Unauthorized access" };
+    }
+    const user = await useUserData();
+
+    const userId = user?.id;
+    const userName = user?.fullname.replace(/\s+/g, "-");
+
+    console.log("Delete files from s3");
+
+    console.log(user);
+
+    // const folder = `submissions/${course}/${week}/${submissionTitle}/${userName}_${userId}`;
+    const folder = `submissions/courseTest/weekTest/${submissionTitle}/${userName}_${userId}`;
+
+    const submissionUrl = await deleteFile(`${submissionItemName}`, folder);
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+    const response = await fetch(
+      `${API_URL}sub/submission-item/${submissionItemId}`,
+      {
+        method: "DELETE",
+        credentials: "omit",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const data = await response.json();
+      return { isSuccess: false, message: data.message };
+    }
+
+    return { isSuccess: true, message: "Submission successfully deleted" };
   } catch (error) {
     return { isSuccess: false, message: (error as Error).message };
   }
