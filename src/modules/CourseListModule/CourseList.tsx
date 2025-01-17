@@ -7,7 +7,7 @@ import Link from "next/link"; // linknya make ini???
 
 const CourseList = () => {
   return (
-    <div className="relative w-full h-[826px] md:h-[1262px] lg:h-[1682px] overflow-hidden flex flex-col items-center mt-52">
+    <div className="relative w-full h-[823px] md:h-[1256px] lg:h-[1682px] overflow-hidden flex flex-col items-center mt-52">
       <div className="relative z-[101] scale-[0.49] -left-[190px] md:-left-[280px] md:scale-75 lg:-left-[370px] lg:scale-100">
         <div className="w-[494px] aspect-[494/155] absolute z-[100] left-[115px]">
           <Image
@@ -121,7 +121,7 @@ const CourseList = () => {
       </div>
 
       {/* usahain make 1 file aja tpi klo kepaksa/biar lebih gampang make gambar hutansmol.png utk mobile */}
-      <div className="absolute w-[145vw] overflow-x-clip aspect-[2015/2152] z-[91] top-[350px]">
+      <div className="absolute w-[142vw] overflow-x-clip aspect-[2015/2152] z-[91] top-[170px] sm:top-[120px]">
         <Image
           alt="background"
           src={getAsset("/hutan.png")}
