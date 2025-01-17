@@ -1,11 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
 import SubmissionItemModule from "@/modules/SubmissionItemModule";
-import { GetSubmissionItemDataResponse } from "./interface";
-import { GetSubmissionDataResponse } from "@/app/sub/submission/[id]/interface";
 import { getUserData } from "@/hooks/user";
-import { notFound, redirect } from "next/navigation";
-import { getSubmissionData, getSubmissionItemData } from "@/hooks/submission";
+import { redirect } from "next/navigation";
+import { getSubmissionData, getSubmissionItemData } from "@/hooks/sub";
 import NotFound from "@/app/not-found";
 
 const page: NextPage<{
