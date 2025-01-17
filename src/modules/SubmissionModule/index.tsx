@@ -2,29 +2,25 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Tooltip from "@/components/ui/tooltip";
-import { FileInput } from "@/components/ui/file-input";
-import { toast } from "@/components/ui/sonner";
-import { getAsset, uploadFile } from "@/lib/s3";
+import { getAsset } from "@/lib/s3";
 import Image from "next/image";
-import { Calendar, Clock, File, Link } from "lucide-react";
-import { Submission } from "@/app/sub/submission/[id]/interface";
-import { SubmissionItem } from "@/app/sub/submission-item/[user_id]/[submission_id]/interface";
+import { Calendar, Clock, File } from "lucide-react";
+import { Submission } from "@/modules/SubmissionModule/interface";
+import { SubmissionItem } from "@/modules/SubmissionItemModule/interface";
 import { useRouter } from "next/navigation";
 
 const SubmissionModule = ({
   submissionItemData,
   submissionData,
 }: {
-  submissionItemData: SubmissionItem;
+  submissionItemData: SubmissionItem | null;
   submissionData: Submission;
 }) => {
-  const [currentSection, setCurrentSection] = useState<number>(1);
+  const [currentSection, setCurrentSection] = useState<number>(
+    submissionItemData?.url ? 2 : 1
+  );
 
-  if (submissionItemData.url) {
-    setCurrentSection(2);
-  }
-
-  const { push, replace } = useRouter();
+  const { push } = useRouter();
 
   const handleDelete = async (id: string) => {
     try {
@@ -146,15 +142,14 @@ const SubmissionModule = ({
                 stroke="#500910"
               />
               <div className="text-black text-[15px] sm:text-[16px] font-normal font-sans">
-                Time Remaining: {calculateTimeRemaining(submissionData.cutoff_at)}
+                Time Remaining:{" "}
+                {calculateTimeRemaining(submissionData.cutoff_at)}
               </div>
             </div>
 
             <Button
               onClick={() => {
-                push(
-                  `/sub/submission-item/${submissionItemData.user_id}/${submissionData.id}`
-                );
+                push(`/sub/submission-item/${submissionData.id}`);
               }}
               className="w-[100%] h-[50%] sm:h-[80%]"
               variant="secondary"
@@ -165,7 +160,7 @@ const SubmissionModule = ({
         </div>
       )}
 
-      {currentSection === 2 && (
+      {currentSection === 2 && submissionItemData && (
         <div className="relative grid place-items-center -top-[2px] sm:top-4 md:-top-14">
           <div className="grid grid-cols-1 gap-2 sm:gap-2 p-6 w-[260.968px] sm:w-[305.968px] md:w-[500.672px] lg:w-[530.672px]">
             {/* week??? */}
@@ -200,7 +195,8 @@ const SubmissionModule = ({
                 stroke="#500910"
               />
               <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans">
-                Time Remaining: {calculateTimeRemaining(submissionData.cutoff_at)}
+                Time Remaining:{" "}
+                {calculateTimeRemaining(submissionData.cutoff_at)}
               </div>
             </div>
 
@@ -230,9 +226,7 @@ const SubmissionModule = ({
 
               <Button
                 onClick={() => {
-                  push(
-                    `/sub/submission-item/${submissionItemData.user_id}/${submissionData.id}`
-                  );
+                  push(`/sub/submission-item/${submissionData.id}`);
                 }}
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
               >

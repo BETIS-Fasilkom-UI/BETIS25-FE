@@ -1,19 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import Tooltip from "@/components/ui/tooltip";
 import { FileInput } from "@/components/ui/file-input";
 import { toast } from "@/components/ui/sonner";
 import { getAsset, uploadFile } from "@/lib/s3";
 import Image from "next/image";
-import { Calendar, Clock, File, Link } from "lucide-react";
 import { submissionItemSchema, useSubmission } from "@/hooks/submission";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { SubmissionItem } from "@/app/sub/submission-item/[user_id]/[submission_id]/interface";
-import { Submission } from "@/app/sub/submission/[id]/interface";
+import { SubmissionItem } from "@/modules/SubmissionItemModule/interface";
+import { Submission } from "@/modules/SubmissionModule/interface";
 
 type SubmissionItemFormValues = z.infer<typeof submissionItemSchema>;
 
@@ -21,7 +19,7 @@ const SubmissionItemModule = ({
   data,
   submissionData,
 }: {
-  data: SubmissionItem;
+  data: SubmissionItem | null;
   submissionData: Submission;
 }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,13 +29,13 @@ const SubmissionItemModule = ({
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
-    if (data.url) {
+    if (data?.url) {
       setFormData({ submission: data.url });
       setIsEdit(true);
     }
   }, [data]);
 
-  const { push, replace } = useRouter();
+  const { replace } = useRouter();
 
   const form = useForm<SubmissionItemFormValues>({
     resolver: zodResolver(submissionItemSchema),
@@ -52,7 +50,7 @@ const SubmissionItemModule = ({
   useEffect(() => {
     if (isSubmissionClosed) {
       toast.error("Submisi sudah tutup");
-      replace(`/sub/submission/${data.submission_id}`);
+      replace(`/sub/submission/${submissionData.id}`);
     }
   }, []);
 
@@ -66,7 +64,7 @@ const SubmissionItemModule = ({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const result = await useSubmission(
       combinedData,
-      data.submission_id,
+      submissionData.id,
       submissionData.title
     );
     if (result.isSuccess) {
@@ -74,7 +72,7 @@ const SubmissionItemModule = ({
       form.reset();
       setFormData(null);
 
-      replace(`/sub/submission/${data.submission_id}`);
+      replace(`/sub/submission/${submissionData.id}`);
     } else {
       toast.error(result.message);
     }
@@ -139,7 +137,7 @@ const SubmissionItemModule = ({
             <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
               <Button
                 onClick={() => {
-                  replace(`/sub/submission/${data.submission_id}`);
+                  replace(`/sub/submission/${submissionData.id}`);
                 }}
                 className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
                 variant="secondary"

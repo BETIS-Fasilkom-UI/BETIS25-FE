@@ -14,18 +14,16 @@ const page: NextPage<{
     redirect("/login");
   }
 
-  const submissionItemData = await getSubmissionItemData(params.id);
-  if (!submissionItemData) {
-    <NotFound />
-    return null
-  }
-  console.log(submissionItemData);
-
   const submissionData = await getSubmissionData(params.id);
   if (!submissionData) {
     <NotFound />
     return null
   }
+  
+  const submissionItemData = await getSubmissionItemData(params.id, user.id);
+  
+  console.log(submissionItemData);
+
   console.log(submissionData);
 
   return (

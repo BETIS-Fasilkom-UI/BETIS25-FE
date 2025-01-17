@@ -1,34 +1,39 @@
 import { cookies } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
-import { GetSubmissionItemDataResponse, SubmissionItem } from "@/app/sub/submission-item/[user_id]/[submission_id]/interface";
-import { GetSubmissionDataResponse, Submission } from "@/app/sub/submission/[id]/interface";
+import {
+  GetSubmissionItemDataResponse,
+  SubmissionItem,
+} from "@/modules/SubmissionItemModule/interface";
+import {
+  GetSubmissionDataResponse,
+  Submission,
+} from "@/modules/SubmissionModule/interface";
 
 export const getSubmissionItemData = async (
-  submissionId: string
+  submissionId: string,
+  userId: string
 ) => {
   const token = cookies().get("token")?.value;
   if (!token) {
     return null;
   }
 
-  const user = decode(token) as JwtPayload;
-  if (!user) {
-    return null;
-  }
-
   const API_URL = process.env.SERVER_URL;
 
-  const response = await fetch(`${API_URL}sub/submission-item/${user.id}/${submissionId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(
+    `${API_URL}sub/submission-item/${userId}/${submissionId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   if (!response.ok) {
     return null;
   } else {
     const data: GetSubmissionItemDataResponse = await response.json();
-    const submissionItemData = data.data
+    const submissionItemData = data.data;
     return {
       id: submissionItemData.id,
       submission_id: submissionItemData.submission_id,
@@ -42,9 +47,7 @@ export const getSubmissionItemData = async (
   }
 };
 
-export const getSubmissionData = async (
-  id: string
-) => {
+export const getSubmissionData = async (id: string) => {
   const token = cookies().get("token")?.value;
   if (!token) {
     return null;
@@ -67,7 +70,7 @@ export const getSubmissionData = async (
     return null;
   } else {
     const data: GetSubmissionDataResponse = await response.json();
-    const submissionData = data.data
+    const submissionData = data.data;
     return {
       id: submissionData.id,
       course_section_id: submissionData.course_section_id,

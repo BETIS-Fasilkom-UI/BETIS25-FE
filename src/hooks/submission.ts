@@ -20,9 +20,9 @@ export const submissionItemSchema = z.object({
     }, `Max image size is 5MB.`)
     .refine(
       (files) =>
-        ACCEPTED_IMAGE_TYPES.includes(files?.type) ||
-        files?.type === "application/pdf",
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
+        files?.type === "application/pdf" ||
+        ACCEPTED_IMAGE_TYPES.includes(files?.type),
+      "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
     ),
 });
 
