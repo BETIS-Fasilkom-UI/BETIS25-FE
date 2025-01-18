@@ -72,6 +72,13 @@ const SubmissionModule = ({
     new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
   );
 
+  function isCutoffReached(cutoffAt: string): boolean {
+    const cutoffDate = new Date(cutoffAt);
+    return now > cutoffDate;
+  }
+
+  const isDisabled = isCutoffReached(submissionData.cutoff_at);
+
   function calculateTimeRemaining(closedAt: string): string {
     const closedDate = new Date(closedAt);
     if (isNaN(closedDate.getTime())) throw new Error("Invalid date");
@@ -161,6 +168,7 @@ const SubmissionModule = ({
               }}
               className="w-[100%] h-[50%] sm:h-[80%]"
               variant="secondary"
+              disabled={isDisabled}
             >
               Add Submission
             </Button>
@@ -233,6 +241,7 @@ const SubmissionModule = ({
                 }
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
                 variant="secondary"
+                disabled={isDisabled}
               >
                 Remove Submission
               </Button>
@@ -242,6 +251,7 @@ const SubmissionModule = ({
                   push(`/sub/submission-item/${submissionData.id}`);
                 }}
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
+                disabled={isDisabled}
               >
                 Edit Submission
               </Button>
