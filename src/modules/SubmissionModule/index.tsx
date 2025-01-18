@@ -74,7 +74,8 @@ const SubmissionModule = ({
   );
 
   function calculateTimeRemaining(closedAt: string): string {
-    const closedDate = new Date(closedAt.replace(" ", "T"));
+    const closedDate = new Date(closedAt);
+    if (isNaN(closedDate.getTime())) throw new Error("Invalid date");
 
     const diffInMs = closedDate.getTime() - now.getTime();
 

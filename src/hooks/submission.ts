@@ -49,12 +49,17 @@ export async function useSubmission(
     // const folder = `submissions/${course}/${week}/${submissionTitle}/${userName}_${userId}`;
     const folder = `submissions/courseTest/weekTest/${submissionTitle}/${userName}_${userId}`;
 
+    const fileName = values.submission?.name.split('.').slice(0, -1).join('.');
+
     // Upload Necessary files to s3
     const submissionUrl = await uploadFile(
       values.submission,
-      `${values.submission?.name}`,
+      fileName,
       folder
     );
+
+    console.log(submissionUrl);
+    console.log(values.submission?.name);
 
     const body = {
       submission_id: submissionId,
@@ -109,10 +114,12 @@ export async function updateSubmission(
     // const folder = `submissions/${course}/${week}/${submissionTitle}/${userName}_${userId}`;
     const folder = `submissions/courseTest/weekTest/${submissionTitle}/${userName}_${userId}`;
 
+    const fileName = values.submission?.name.split('.').slice(0, -1).join('.');
+
     // Upload Necessary files to s3
     const submissionUrl = await uploadFile(
       values.submission,
-      `${values.submission?.name}`,
+      fileName,
       folder
     );
 

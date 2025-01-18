@@ -34,12 +34,11 @@ const SubmissionItemModule = ({
 
   useEffect(() => {
     if (data?.url) {
-      setFormData({ submission: data.url });
       setIsEdit(true);
     }
   }, [data]);
 
-  const { replace } = useRouter();
+  const { push } = useRouter();
 
   const form = useForm<SubmissionItemFormValues>({
     resolver: zodResolver(submissionItemSchema),
@@ -54,7 +53,7 @@ const SubmissionItemModule = ({
   useEffect(() => {
     if (isSubmissionClosed) {
       toast.error("Submisi sudah tutup");
-      replace(`/sub/submission/${submissionData.id}`);
+      push(`/sub/submission/${submissionData.id}`);
     }
   }, []);
 
@@ -87,7 +86,7 @@ const SubmissionItemModule = ({
       form.reset();
       setFormData(null);
 
-      replace(`/sub/submission/${submissionData.id}`);
+      push(`/sub/submission/${submissionData.id}`);
     } else {
       toast.error(result.message);
     }
@@ -147,7 +146,7 @@ const SubmissionItemModule = ({
           <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
             <Button
               onClick={() => {
-                replace(`/sub/submission/${submissionData.id}`);
+                push(`/sub/submission/${submissionData.id}`);
               }}
               className="h-[10%] sm:w-[50%] sm:h-[80%] sm:text-t7"
               variant="secondary"
@@ -161,8 +160,7 @@ const SubmissionItemModule = ({
               onClick={() => {
                 if (form.getValues().submission === undefined) {
                   toast.warning("Please fill in all required fields");
-                }
-                if (form.formState.errors.submission) {
+                } else if (form.formState.errors.submission) {
                   toast.warning(
                     typeof form.formState.errors.submission?.message ===
                       "string"
