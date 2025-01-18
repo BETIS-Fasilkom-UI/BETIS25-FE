@@ -120,7 +120,7 @@ const CourseList = () => {
         </motion.div>
       </div>
 
-      <div className="absolute w-[142vw] overflow-x-clip aspect-[2015/2152] z-[91] top-[170px] sm:top-[120px]">
+      <div className="absolute min-w-[610px] w-[142vw] overflow-x-clip aspect-[2015/2152] z-[91] top-[170px] sm:top-[120px]">
         <Image
           alt="background"
           src={getAsset("/hutan.png")}
