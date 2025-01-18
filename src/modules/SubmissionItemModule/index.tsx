@@ -52,8 +52,8 @@ const SubmissionItemModule = ({
 
   useEffect(() => {
     if (isSubmissionClosed) {
-      toast.error("Submisi sudah tutup");
       push(`/sub/submission/${submissionData.id}`);
+      toast.error("Submisi sudah tutup");
     }
   }, []);
 
@@ -76,17 +76,18 @@ const SubmissionItemModule = ({
       result = await updateSubmission(
         combinedData,
         data.id,
+        data.url.split("/").pop() || "UnknownFileName",
         submissionData.id,
         submissionData.title
       );
     }
 
     if (result.isSuccess) {
-      toast.success("Submission success");
       form.reset();
       setFormData(null);
 
       push(`/sub/submission/${submissionData.id}`);
+      toast.success("Submission success");
     } else {
       toast.error(result.message);
     }

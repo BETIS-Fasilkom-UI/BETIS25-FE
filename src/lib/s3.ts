@@ -34,9 +34,11 @@ const uploadFile = async (file: File, key?: string, folder?: string) => {
 
 const deleteFile = async (key: string, folder?: string) => {
     console.log(JSON.stringify({ key, folder }))
+    const fullKey = folder ? `${folder}/${key}` : key;
+    
     const response = await fetch('/api/delete', {
         method: 'DELETE',
-        body: JSON.stringify({ key, folder }),
+        body: JSON.stringify({ fullKey }),
     });
 
     if (!response.ok) {

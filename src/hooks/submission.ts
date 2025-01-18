@@ -93,6 +93,7 @@ export async function useSubmission(
 export async function updateSubmission(
   values: z.infer<typeof submissionItemSchema>,
   submissionItemId: string,
+  submissionItemName: string,
   submissionId: string,
   submissionTitle: string
 ) {
@@ -115,6 +116,8 @@ export async function updateSubmission(
     const folder = `submissions/courseTest/weekTest/${submissionTitle}/${userName}_${userId}`;
 
     const fileName = values.submission?.name.split('.').slice(0, -1).join('.');
+
+    const submissionDelete = await deleteFile(`${submissionItemName}`, folder);
 
     // Upload Necessary files to s3
     const submissionUrl = await uploadFile(
@@ -158,7 +161,6 @@ export async function updateSubmission(
 export async function deleteSubmission(
   submissionItemId: string,
   submissionItemName: string,
-  submissionId: string,
   submissionTitle: string
 ) {
   try {
@@ -180,6 +182,7 @@ export async function deleteSubmission(
     const folder = `submissions/courseTest/weekTest/${submissionTitle}/${userName}_${userId}`;
 
     const submissionUrl = await deleteFile(`${submissionItemName}`, folder);
+    // console.log(submissionUrl)
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

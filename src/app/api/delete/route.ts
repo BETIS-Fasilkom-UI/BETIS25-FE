@@ -3,9 +3,9 @@ import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 
 export async function DELETE(req: Request) {
     try {
-        const { key } = await req.json();
+        const { fullKey } = await req.json();
 
-        const response = await s3.send(new DeleteObjectCommand({ Bucket, Key: key }));
+        const response = await s3.send(new DeleteObjectCommand({ Bucket, Key: fullKey }));
         if (!response || response.$metadata.httpStatusCode !== 204) {
             throw new Error('Failed to delete file from S3');
         }

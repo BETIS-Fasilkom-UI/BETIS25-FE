@@ -32,7 +32,6 @@ const SubmissionModule = ({
       const result = await deleteSubmission(
         submissionItemId,
         submissionItemName,
-        submissionData.id,
         submissionData.title
       );
       if (result.isSuccess) {
