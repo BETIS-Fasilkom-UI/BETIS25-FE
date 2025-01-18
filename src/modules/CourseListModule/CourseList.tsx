@@ -120,17 +120,15 @@ const CourseList = () => {
         </motion.div>
       </div>
 
-      {/* usahain make 1 file aja tpi klo kepaksa/biar lebih gampang make gambar hutansmol.png utk mobile */}
       <div className="absolute w-[142vw] overflow-x-clip aspect-[2015/2152] z-[91] top-[170px] sm:top-[120px]">
         <Image
           alt="background"
           src={getAsset("/hutan.png")}
           fill
           sizes="none"
-          className="object-contain"
+          className="object-contain "
         />
       </div>
-      {/*  */}
     </div>
   );
 };
