@@ -32,7 +32,7 @@ const CourseScroll = ({id, title, description, items, week}: Section & {week: st
                     </h1>
                     <Image
                         alt="gulungan"
-                        src={getAsset("/gulungan.png")} 
+                        src={getAsset("/gulungan1.png")} 
                         fill
                         sizes="none"
                         className="object-contain"
@@ -121,7 +121,7 @@ const CourseScroll = ({id, title, description, items, week}: Section & {week: st
                     </div>
                     <Image
                         alt="gulungan"
-                        src={getAsset("/gulungan.png")} 
+                        src={getAsset("/gulungan2.png")} 
                         fill
                         sizes="none"
                         className="object-contain"
