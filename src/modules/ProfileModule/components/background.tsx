@@ -8,7 +8,7 @@ const Background = () => {
         width={205}
         height={181}
         alt="kupu-kupu"
-        className="absolute w-[14vw] right-[5vw] top-[25vh]"
+        className="absolute hidden lg:block w-[14vw] right-[5vw] top-[25vh]"
       />
 
       <Image
@@ -16,7 +16,7 @@ const Background = () => {
         width={205}
         height={181}
         alt="kupu-kupu"
-        className="absolute rotate-45 w-[14vw] left-[5vw] top-[15vh]"
+        className="absolute hidden lg:block rotate-45 w-[14vw] left-[5vw] top-[15vh]"
       />
 
       <Image
