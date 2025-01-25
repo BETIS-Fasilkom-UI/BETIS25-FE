@@ -8,8 +8,9 @@ import Input from "@/modules/ProfileModule/input";
 import { Modal, ModalButton } from "@/modules/ProfileModule/modal"; // Adjust the import path
 import Tooltip from "@/components/ui/tooltip";
 import { DatePicker } from "@/modules/ProfileModule/date-picker"; // Import your custom DatePicker
+import { User } from "@/hooks/interface";
 
-const ProfileModule = () => {
+const ProfileModule = ({ user }: { user: User }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState("/Pp-girl1.png"); // Default avatar
   const [newAvatar, setNewAvatar] = useState(selectedAvatar); // Avatar selected in the modal
