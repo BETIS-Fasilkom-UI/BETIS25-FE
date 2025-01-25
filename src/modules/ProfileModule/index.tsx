@@ -4,10 +4,10 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import Input from "@/modules/ProfileModule/input";
-import { Modal, ModalButton } from "@/modules/ProfileModule/modal"; // Adjust the import path
+import Input from "./components/input";
+import { Modal, ModalButton } from "./components/modal";
 import Tooltip from "@/components/ui/tooltip";
-import { DatePicker } from "@/modules/ProfileModule/date-picker"; // Import your custom DatePicker
+import { DatePicker } from "./components/date-picker"; // Import your custom DatePicker
 import { User } from "@/hooks/interface";
 
 const ProfileModule = ({ user }: { user: User }) => {
