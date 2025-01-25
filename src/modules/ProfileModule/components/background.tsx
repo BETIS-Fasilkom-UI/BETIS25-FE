@@ -4,6 +4,22 @@ const Background = () => {
   return (
     <>
       <Image
+        src="/kupukanan.png"
+        width={205}
+        height={181}
+        alt="kupu-kupu"
+        className="absolute w-[14vw] right-[5vw] top-[25vh]"
+      />
+
+      <Image
+        src="/kupukanan.png"
+        width={205}
+        height={181}
+        alt="kupu-kupu"
+        className="absolute rotate-45 w-[14vw] left-[5vw] top-[15vh]"
+      />
+
+      <Image
         src="/pohon-kanan.png"
         width={700}
         height={1150}
