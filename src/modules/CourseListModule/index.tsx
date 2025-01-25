@@ -19,7 +19,7 @@ const CourseList = ({ courses }: { courses: CourseInterface[] }) => {
             className="object-contain"
           />
         </div>
-        <Link href={courses[0].id}>
+        <Link href={`/course/${courses[0].id}`}>
           <motion.div
             className="w-[651px] aspect-[651/195] absolute z-[99] top-[208px] left-[14px]"
             whileHover={{ scale: 1.15 }}
@@ -34,7 +34,7 @@ const CourseList = ({ courses }: { courses: CourseInterface[] }) => {
             />
           </motion.div>
         </Link>
-        <Link href={courses[1].id}>
+        <Link href={`/course/${courses[1].id}`}>
           <motion.div
             className="w-[651px] aspect-[651/195] absolute z-[98] top-[386px] left-[129px]"
             whileHover={{ scale: 1.15 }}
@@ -49,7 +49,7 @@ const CourseList = ({ courses }: { courses: CourseInterface[] }) => {
             />
           </motion.div>
         </Link>
-        <Link href={courses[2].id}>
+        <Link href={`/course/${courses[2].id}`}>
           <motion.div
             className=" w-[651px] aspect-[651/195] absolute z-[97] top-[564px] left-[14px]"
             whileHover={{ scale: 1.15 }}
@@ -64,7 +64,7 @@ const CourseList = ({ courses }: { courses: CourseInterface[] }) => {
             />
           </motion.div>
         </Link>
-        <Link href={courses[3].id}>
+        <Link href={`/course/${courses[3].id}`}>
           <motion.div
             className="w-[651px] aspect-[651/195] absolute z-[96] top-[732px] left-[129px]"
             whileHover={{ scale: 1.15 }}
@@ -79,7 +79,7 @@ const CourseList = ({ courses }: { courses: CourseInterface[] }) => {
             />
           </motion.div>
         </Link>
-        <Link href={courses[4].id}>
+        <Link href={`/course/${courses[4].id}`}>
           <motion.div
             className="w-[651px] aspect-[651/195] absolute z-[95] top-[910px] "
             whileHover={{ scale: 1.15 }}
@@ -94,7 +94,7 @@ const CourseList = ({ courses }: { courses: CourseInterface[] }) => {
             />
           </motion.div>
         </Link>
-        <Link href={courses[5].id}>
+        <Link href={`/course/${courses[5].id}`}>
           <motion.div
             className="w-[651px] aspect-[651/195] absolute z-[94] top-[1088px] left-[129px]"
             whileHover={{ scale: 1.15 }}
@@ -109,7 +109,7 @@ const CourseList = ({ courses }: { courses: CourseInterface[] }) => {
             />
           </motion.div>
         </Link>
-        <Link href={courses[6].id}>
+        <Link href={`/course/${courses[6].id}`}>
           <motion.div
             className="w-[651px] aspect-[651/195] absolute z-[93] top-[1247px] left-[14px]"
             whileHover={{ scale: 1.15 }}
