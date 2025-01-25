@@ -41,7 +41,7 @@ export interface GetUserDataResponse extends Response {
 export interface UserJWT {
   name: string;
   email: string;
-  // nanti nambah <3
+  token: string;
 }
 
 export interface User {
@@ -70,4 +70,10 @@ export interface User {
   residence_photo_url: string;
   affiliation_code: string;
   isVerified: boolean;
+}
+
+export interface ApiResponse<T> {
+  data: T;
+  message: string;
+  status: string;
 }

@@ -19,6 +19,7 @@ export const getUserService = async () => {
   return {
     name: userData[0] as String,
     email: payload.email as String,
+    token: token,
   } as UserJWT;
 };
 
