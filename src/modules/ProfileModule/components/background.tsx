@@ -4,6 +4,13 @@ const Background = () => {
   return (
     <>
       <Image
+        src="/background-salju.png"
+        width={433}
+        height={1500}
+        alt="salju"
+        className="absolute top-0 left-0 right-0 bottom-0"
+      />
+      <Image
         src="/kupukanan.png"
         width={205}
         height={181}

@@ -105,7 +105,7 @@ const ProfileModule = ({ user }: { user: User }) => {
               <Input
                 id="nama-lengkap"
                 type="text"
-                className="max-h-[52px] h-[110vh] max-w-[382px] w-[80vw] flex-grow border-none outline-none mb-0 text-2xl"
+                className="max-h-[52px] h-[110vh] lg:max-w-[382px] w-[80vw] flex-grow border-none outline-none mb-0 text-2xl"
                 value="Hendra Andromeda"
                 readOnly
               />
