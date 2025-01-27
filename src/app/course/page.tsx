@@ -11,17 +11,7 @@ const page = async () => {
     redirect("/login");
   }
 
-  const data = await fetch(process.env.SERVER_URL + "course", {
-    method: "GET",
-    credentials: "omit",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${user.token}`,
-    },
-  });
-  const response: ApiResponse<CourseInterface[]> = await data.json();
-  console.log(response);
-  return <CourseList courses={response.data} />;
+  return <CourseList />;
 };
 
 export default page;

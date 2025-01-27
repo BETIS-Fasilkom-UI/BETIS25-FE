@@ -4,15 +4,21 @@ import { getUserService } from "@/hooks/user";
 import { redirect } from "next/navigation";
 import { CourseDetailResponse } from "@/modules/CourseDetailModule/interface";
 import { NextPage } from "next";
+import { courseId } from "@/modules/CourseDetailModule/const";
 
 const page: NextPage<{
-    params: Promise<{ id: string }>;
-  }> = async ({ params }) => {
+  params: Promise<{ courseName: string }>;
+}> = async ({ params }) => {
   const user = await getUserService();
   if (!user) {
     redirect("/login");
   }
-  const res = await fetch(process.env.SERVER_URL + `course/${(await params).id}`, {
+
+  const courseName = courseId.find(
+    async (course) => course.name === (await params).courseName
+  );
+
+  const res = await fetch(process.env.SERVER_URL + `course/${courseName?.id}`, {
     method: "GET",
     credentials: "omit",
     headers: {
@@ -21,6 +27,7 @@ const page: NextPage<{
     },
   });
   const response: CourseDetailResponse = await res.json();
+
   return <CourseDetailModule courseData={response.data} />;
 };
 
