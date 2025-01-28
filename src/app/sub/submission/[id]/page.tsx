@@ -21,10 +21,6 @@ const page: NextPage<{
   }
   
   const submissionItemData = await getSubmissionItemData(params.id, user.id);
-  
-  console.log(submissionItemData);
-
-  console.log(submissionData);
 
   return (
     <div className="flex justify-center flex-col gap-1 pt-16 items-center overflow-hidden">

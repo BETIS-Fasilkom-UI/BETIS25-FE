@@ -10,6 +10,7 @@ import { SubmissionItem } from "@/modules/SubmissionItemModule/interface";
 import { useRouter } from "next/navigation";
 import { deleteSubmission } from "@/hooks/submission";
 import { toast } from "@/components/ui/sonner";
+import Link from "next/link";
 
 const SubmissionModule = ({
   submissionItemData,
@@ -158,7 +159,7 @@ const SubmissionModule = ({
               />
               <div className="text-black text-[15px] sm:text-[16px] font-normal font-sans">
                 Time Remaining:{" "}
-                {calculateTimeRemaining(submissionData.cutoff_at)}
+                {calculateTimeRemaining(submissionData.closed_at)}
               </div>
             </div>
 
@@ -224,9 +225,9 @@ const SubmissionModule = ({
                   className="size-4 sm:size-6"
                   stroke="#500910"
                 />
-                <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans overflow-hidden whitespace-nowrap text-ellipsis">
+                <Link href={submissionItemData.url} className="text-black underline text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans overflow-hidden whitespace-nowrap text-ellipsis">
                   {submissionItemData.url.split("/").pop()}
-                </div>
+                </Link>
               </div>
             </Tooltip>
 

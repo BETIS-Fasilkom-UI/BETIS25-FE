@@ -70,7 +70,7 @@ const CourseScroll = ({
                   {section.items.map((item) =>
                     item.type === "material" ? (
                       item.title.toLowerCase().includes("quiz") ? (
-                        <Link key={item.id} href={`/`}>
+                        <Link key={item.id} href={`/`} target="_blank">
                           <div className="flex gap-3 items-center transition-all hover:opacity-70">
                             <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
                               <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
@@ -89,7 +89,7 @@ const CourseScroll = ({
                           </div>
                         </Link>
                       ) : (
-                        <Link key={item.id} href={item.url}>
+                        <Link key={item.id} href={item.url} target="_blank">
                           <div className="flex gap-3 items-center transition-all hover:opacity-70">
                             <div className="p-[7px] bg-[#AB98B2] rounded-[12px]">
                               <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
@@ -109,7 +109,7 @@ const CourseScroll = ({
                         </Link>
                       )
                     ) : (
-                      <Link key={item.id} href={`/`}>
+                      <Link key={item.id} href={`/sub/submission/${item.id}`} target="_blank">
                         <div className="flex gap-3 items-center transition-all hover:opacity-70">
                           <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
                             <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">

@@ -76,9 +76,9 @@ export const getSubmissionData = async (id: string) => {
       course_section_id: submissionData.course_section_id,
       title: submissionData.title,
       description: submissionData.description,
-      opened_at: submissionData.opened_at,
-      closed_at: submissionData.closed_at,
-      cutoff_at: submissionData.cutoff_at,
+      opened_at: submissionData.opened_at.split(" ").slice(0, 3).join(" "),
+      closed_at: submissionData.closed_at.split(" ").slice(0, 3).join(" "),
+      cutoff_at: submissionData.cutoff_at.split(" ").slice(0, 3).join(" "),
     } as Submission;
   }
 };
