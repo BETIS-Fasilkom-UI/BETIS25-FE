@@ -17,6 +17,7 @@ export const CourseDetailModule = ({
   const router = useRouter();
 
   useEffect(() => {
+    console.log(courseData);
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -51,10 +52,8 @@ export const CourseDetailModule = ({
             id={scroll.id}
             title={scroll.title}
             description={scroll.description}
-            items={
+            sections={
               scroll.sections
-                ? scroll.sections.flatMap((section) => section.items ?? [])
-                : []
             }
             week={`Week ${index + 1}`}
           />
