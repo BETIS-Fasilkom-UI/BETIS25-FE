@@ -40,17 +40,23 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
-          rel="icon"
-          href="/icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
         />
         <link
-          rel="apple-touch-icon"
-          href="/apple-icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
         />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
         suppressContentEditableWarning
@@ -58,9 +64,7 @@ export default function RootLayout({
         className={` ${raleway.variable} ${cinzel.variable} ${openSans.variable} antialiased`}
       >
         <NextTopLoader showSpinner={false} color="#c5599e" shadow={false} />
-        <Layout>
-            {children}
-        </Layout>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
