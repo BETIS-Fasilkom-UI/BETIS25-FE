@@ -25,17 +25,17 @@ export function DatePicker({ defaultDate }: DatePickerProps) {
         <button
           className={cn(
             "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-            "max-h-[52px] h-[110vh] max-w-[382px] w-[80vw] flex-grow border-none outline-none mb-0 justify-start text-left font-normal p-2 rounded-[0.5rem] border-none bg-white",
+            "max-h-[52px] h-[110vh] lg:max-w-[382px] w-full lg:w-auto text-[20px] leading-[28px] w-full flex-grow border-none outline-none mb-0 justify-start text-left font-normal p-2 rounded-[0.5rem] border-none bg-white",
             date ? "text-zinc-950" : "text-gray-500"
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? (
-            <span className="text-2xl font-raleway font-bold">
+            <span className=" font-raleway font-bold">
               {format(date, "PPP")}
             </span>
           ) : (
-            <span className="text-2xl font-raleway font-bold">Pick a date</span>
+            <span className=" font-raleway font-bold">Pick a date</span>
           )}
         </button>
       </PopoverTrigger>
