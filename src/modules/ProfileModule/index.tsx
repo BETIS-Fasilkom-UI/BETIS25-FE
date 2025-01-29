@@ -11,6 +11,7 @@ import { DatePicker } from "@/modules/ProfileModule/components/date-picker"; // 
 import { Background } from "@/modules/ProfileModule/components/background"; // Import your custom DatePicker
 import Image from "next/image";
 import { User } from "@/hooks/interface";
+import { getUserData } from "@/hooks/user";
 
 const ProfileModule = ({ user }: { user: User }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -26,6 +27,10 @@ const ProfileModule = ({ user }: { user: User }) => {
 
   // Load the saved avatar from localStorage when the component mounts
   useEffect(() => {
+    (async () => {
+      const user = getUserData();
+    })()
+
     const savedAvatar = localStorage.getItem("selectedAvatar"); // Retrieve saved avatar from localStorage
     if (savedAvatar) {
       setSelectedAvatar(savedAvatar); // Update state with the saved avatar

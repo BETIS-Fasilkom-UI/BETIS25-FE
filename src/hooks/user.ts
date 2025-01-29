@@ -57,6 +57,7 @@ export const getUserData = async () => {
       phoneNumber: userData.phone_number,
       nickname: userData.nickname,
       address: userData.address,
+      avatar: userData.avatar,
       identity_card_url: userData.identity_card_url,
       study_method: userData.study_method,
       guardian_name: userData.guardian_name,

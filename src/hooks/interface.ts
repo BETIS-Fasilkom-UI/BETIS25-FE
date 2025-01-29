@@ -18,6 +18,7 @@ export interface GetUserDataResponse extends Response {
     address: string;
     identity_card_url: string;
     study_method: string;
+    avatar: number;
     guardian_name: string;
     guardian_relationship: string;
     guardian_phone: string;
