@@ -59,7 +59,7 @@ const RegistrationModule = () => {
   });
 
   useEffect(() => {
-    if (isRegistrationClosed) {
+    if (true) {
       toast.error("Registrasi sudah tutup");
       replace("/");
     }
