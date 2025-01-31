@@ -1,5 +1,5 @@
 import { getUserData, getUserService } from "@/hooks/user";
-import { ProfilePageModule } from "@/modules/ProfilePageModule";
+import ProfileModule from "@/modules/ProfileModule";
 import { redirect } from "next/navigation";
 
 const ProfilePage = async () => {
@@ -7,7 +7,7 @@ const ProfilePage = async () => {
   if (!user) {
     redirect("/login");
   }
-  return <ProfilePageModule user={user} />;
+  return <ProfileModule user={user} />;
 };
 
 export default ProfilePage;

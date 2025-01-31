@@ -125,7 +125,7 @@ const ProfileModule = ({ user }: { user: User }) => {
               <Input
                 id="nama-lengkap"
                 type="text"
-                className="max-h-[52px] h-[110vh] max-w-[382px] w-[80vw] flex-grow border-none outline-none mb-0 text-2xl"
+                className="max-h-[52px] h-[110vh] lg:max-w-[382px] w-full text-[20px] leading-[28px] flex-grow border-none outline-none mb-0 font-bold "
                 value={user.fullname}
                 readOnly
               />
@@ -142,7 +142,7 @@ const ProfileModule = ({ user }: { user: User }) => {
               <Input
                 id="nama-panggilan"
                 type="text"
-                className="max-h-[52px] h-[110vh] max-w-[382px] w-[80vw] flex-grow border-none outline-none mb-0 font-bold text-2xl"
+                className="max-h-[52px] h-[110vh] lg:max-w-[382px] w-full text-[20px] leading-[28px] flex-grow border-none outline-none mb-0 font-bold "
                 value={user.nickname}
                 readOnly
               />
@@ -160,7 +160,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                 id="nama-panggilan"
                 type="text"
                 className="max-h-[52px] h-[110vh] lg:max-w-[382px] w-full text-[20px] leading-[28px] flex-grow border-none outline-none mb-0 font-bold "
-                value="Januari 2025"
+                value={new Date(user.date_of_birth.replace(' WIB', '')).toLocaleDateString("id-ID")}
                 readOnly
               />
             </div>
@@ -177,14 +177,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                   id="nomor-hp"
                   type="text"
                   className="max-h-[52px] h-[110vh] text-[20px] leading-[28px] lg:max-w-[382px] w-full flex-grow border-none outline-none mb-0 font-bold "
-                  onInput={(e) => {
-                    const inputElement = e.target as HTMLInputElement;
-                    inputElement.value = inputElement.value.replace(
-                      /[^0-9]/g,
-                      "",
-                    );
-                  }}
-                  value="081234567890"
+                  value={user.phoneNumber}
                   readOnly
                 />
             </div>
@@ -201,7 +194,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                 id="email"
                 type="email"
                 className="max-h-[52px] h-[110vh] text-[20px] leading-[28px] lg:max-w-[382px] w-full flex-grow border-none outline-none mb-0 font-bold "
-                value="betis.2025@ui.ac.id"
+                value={user.email}
                 readOnly
               />
             </div>
@@ -218,7 +211,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                 id="asal-sma"
                 type="text"
                 className="max-h-[52px] h-[110vh] text-[20px] leading-[28px] lg:max-w-[382px] w-full flex-grow border-none outline-none mb-0 font-bold "
-                value="SMA Indonesia Depok"
+                value={user.school_name}
                 readOnly
               />
             </div>
@@ -235,7 +228,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                   id="kelas"
                   type="text"
                   className="max-h-[52px] h-[110vh] lg:max-w-[382px] text-[20px] leading-[28px] flex-grow order-none outline-none mb-0 font-bold l"
-                  value="XII SMA (MIPA)"
+                  value={user.grade === 'gap-year' ? 'Gap Year' : 'Kelas XII'}
                   readOnly
                 />
             </div>
@@ -252,7 +245,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                 id="alamat"
                 type="text"
                 className="max-h-[52px] h-[110vh] lg:max-w-[382px] w-full text-[20px] leading-[28px] flex-grow border-none outline-none mb-0 font-bold "
-                value="Jl. Kacang No.13"
+                value={user.address}
                 readOnly
               />
             </div>
