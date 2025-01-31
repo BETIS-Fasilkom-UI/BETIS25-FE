@@ -76,28 +76,30 @@ const CourseScroll = ({
                         <>
                           {section.items.map((item) =>
                             item.type === "material" ? (
-                              item.title.toLowerCase().includes("quiz") ? (
-                                <Link key={item.id} href={`/`} target="_blank">
-                                  <div className="flex gap-3 items-center transition-all hover:opacity-70">
-                                    <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
-                                      <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
-                                        <Image
-                                          alt="materi"
-                                          src={getAsset(
-                                            "/li_file-question.svg"
-                                          )}
-                                          fill
-                                          sizes="none"
-                                          className="object-contain"
-                                        />
-                                      </div>
-                                    </div>
-                                    <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
-                                      {item.title}
-                                    </p>
-                                  </div>
-                                </Link>
-                              ) : (
+                              // item.title.toLowerCase().includes("quiz") ?
+                              //   (
+                              //   <Link key={item.id} href={`/`} target="_blank">
+                              //     <div className="flex gap-3 items-center transition-all hover:opacity-70">
+                              //       <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
+                              //         <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
+                              //           <Image
+                              //             alt="materi"
+                              //             src={getAsset(
+                              //               "/li_file-question.svg"
+                              //             )}
+                              //             fill
+                              //             sizes="none"
+                              //             className="object-contain"
+                              //           />
+                              //         </div>
+                              //       </div>
+                              //       <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
+                              //         {item.title}
+                              //       </p>
+                              //     </div>
+                              //   </Link>
+                              // ) : (
+                              // )
                                 <Link
                                   key={item.id}
                                   href={item.url}
@@ -120,7 +122,6 @@ const CourseScroll = ({
                                     </p>
                                   </div>
                                 </Link>
-                              )
                             ) : (
                               <Link
                                 key={item.id}
