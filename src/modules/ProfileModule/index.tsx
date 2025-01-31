@@ -11,8 +11,6 @@ import { DatePicker } from "@/modules/ProfileModule/components/date-picker"; // 
 import { Background } from "@/modules/ProfileModule/components/background"; // Import your custom DatePicker
 import Image from "next/image";
 import { User } from "@/hooks/interface";
-import { getUserData } from "@/hooks/user";
-
 const ProfileModule = ({ user }: { user: User }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState("/Pp-girl1.png"); // Default avatar
@@ -27,9 +25,6 @@ const ProfileModule = ({ user }: { user: User }) => {
 
   // Load the saved avatar from localStorage when the component mounts
   useEffect(() => {
-    (async () => {
-      const user = getUserData();
-    })()
 
     const savedAvatar = localStorage.getItem("selectedAvatar"); // Retrieve saved avatar from localStorage
     if (savedAvatar) {
@@ -46,7 +41,8 @@ const ProfileModule = ({ user }: { user: User }) => {
 
   return (
     <>
-      <div className="relative pt-[230px] bg-[url('/background-salju.png')] bg-repeat flex overflow-y-clip overflow-x-hidden max-w-full flex-col items-center justify-center min-h-screen pb-[299px]">
+      <div className="relative pt-[230px] flex overflow-y-clip overflow-x-hidden max-w-full flex-col items-center justify-center min-h-screen pb-[299px]">
+        <div className="fixed w-screen h-screen bg-[url('/background-salju.png')] bg-repeat left-0 top-0 right-0 bottom-0 -z-10 "></div>
 
         <Background />
         {/* Avatar and User Information */}
