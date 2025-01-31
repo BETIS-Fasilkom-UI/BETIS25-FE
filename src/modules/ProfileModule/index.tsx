@@ -1,18 +1,17 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Label } from "@/components/ui/label";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { toast } from "@/components/ui/sonner";
+import { User } from "@/hooks/interface";
+import { getAsset } from "@/lib/s3";
+import { Background } from "@/modules/ProfileModule/components/background"; // Import your custom DatePicker
 import Input from "@/modules/ProfileModule/components/input";
 import { Modal, ModalButton } from "@/modules/ProfileModule/components/modal"; // Adjust the import path
-import Tooltip from "@/components/ui/tooltip";
-import { DatePicker } from "@/modules/ProfileModule/components/date-picker"; // Import your custom DatePicker
-import { Background } from "@/modules/ProfileModule/components/background"; // Import your custom DatePicker
-import Image from "next/image";
-import { User } from "@/hooks/interface";
-import { toast } from "sonner";
 import { getCookie } from "cookies-next";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const ProfileModule = ({ user }: { user: User }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -49,7 +48,7 @@ const ProfileModule = ({ user }: { user: User }) => {
     });
 
     if (res.ok) {
-      toast.success("Berhasil mengganti avatar!");
+      toast.success("Avatar updated successfully");
     }
     setModalOpen(false); // Close modal
   };
@@ -62,22 +61,22 @@ const ProfileModule = ({ user }: { user: User }) => {
         <Background />
         {/* Avatar and User Information */}
         <div className="relative flex flex-col items-center relative">
- <Image
-        src="/EllipseLight.png"
-        width={2000}
-        height={2000}
-        alt="light"
-        className="absolute -top-[100px] object-contain scale-[2]"
-      />
-     
-     
+          <Image
+            src="/EllipseLight.png"
+            width={2000}
+            height={2000}
+            alt="light"
+            className="absolute -top-[100px] object-contain scale-[2]"
+          />
+
+
           <div className="relative mb-4 w-[300px] h-[300px] mb-[28px]">
-       
+
             <Avatar className="relative h-full w-full z-20">
-              <AvatarImage src={selectedAvatar} alt="Profile Picture " />
+              <AvatarImage src={getAsset(selectedAvatar)} alt="Profile Picture " />
               <AvatarFallback>?</AvatarFallback>
             </Avatar>
-     
+
 
             {/* Edit Button */}
             <Button
@@ -110,7 +109,7 @@ const ProfileModule = ({ user }: { user: User }) => {
           </span>
         </div>
 
-      <Card className="border-none mt-[60px] p-6 lg:py-[44px] lg:px-[40px] w-[91vw] max-w-[774px] lg:h-[644px] bg-[#F8EBF333] bg-opacity-20">
+        <Card className="border-none mt-[60px] p-6 lg:py-[44px] lg:px-[40px] w-[91vw] max-w-[774px] lg:h-[644px] bg-[#F8EBF333] bg-opacity-20">
           {/* Contact Information */}
 
           <div className="relative top-0 left-0 right-0 space-y-[20px] flex flex-col items-center justify-center mr-0 h-full w-full px-5 py-1 lg:px-10">
@@ -173,13 +172,13 @@ const ProfileModule = ({ user }: { user: User }) => {
               >
                 Nomor HP/WA
               </Label>
-                <Input
-                  id="nomor-hp"
-                  type="text"
-                  className="max-h-[52px] h-[110vh] text-[20px] leading-[28px] lg:max-w-[382px] w-full flex-grow border-none outline-none mb-0 font-bold "
-                  value={user.phoneNumber}
-                  readOnly
-                />
+              <Input
+                id="nomor-hp"
+                type="text"
+                className="max-h-[52px] h-[110vh] text-[20px] leading-[28px] lg:max-w-[382px] w-full flex-grow border-none outline-none mb-0 font-bold "
+                value={user.phoneNumber}
+                readOnly
+              />
             </div>
 
             {/* Email */}
@@ -224,13 +223,13 @@ const ProfileModule = ({ user }: { user: User }) => {
               >
                 Kelas
               </Label>
-                <Input
-                  id="kelas"
-                  type="text"
-                  className="max-h-[52px] h-[110vh] lg:max-w-[382px] text-[20px] leading-[28px] flex-grow order-none outline-none mb-0 font-bold l"
-                  value={user.grade === 'gap-year' ? 'Gap Year' : 'Kelas XII'}
-                  readOnly
-                />
+              <Input
+                id="kelas"
+                type="text"
+                className="max-h-[52px] h-[110vh] lg:max-w-[382px] text-[20px] leading-[28px] flex-grow order-none outline-none mb-0 font-bold l"
+                value={user.grade === 'gap-year' ? 'Gap Year' : 'Kelas XII'}
+                readOnly
+              />
             </div>
 
             {/* Alamat */}
@@ -264,14 +263,13 @@ const ProfileModule = ({ user }: { user: User }) => {
                 <button
                   key={avatar}
                   onClick={() => setNewAvatar(avatar)}
-                  className={`p-1 border-4 rounded-full ${
-                    newAvatar === avatar
-                      ? "border-[#692597]"
-                      : "border-transparent"
-                  }`}
+                  className={`p-1 border-4 rounded-full ${newAvatar === avatar
+                    ? "border-[#692597]"
+                    : "border-transparent"
+                    }`}
                 >
                   <img
-                    src={avatar}
+                    src={getAsset(avatar)}
                     alt="Avatar Option"
                     className="w-24 h-24 object-cover rounded-full"
                   />
@@ -280,16 +278,17 @@ const ProfileModule = ({ user }: { user: User }) => {
             </div>
           </div>
           {/* Modal Buttons */}
-          <div className="justify-center mt-6">
+          <div className="justify-center mt-6 space-x-4">
+            <ModalButton onClick={() => setModalOpen(false)} variant={'secondary'}>
+              Cancel
+            </ModalButton>
+
             <ModalButton
               closeOnClick={false}
               onClick={handleSave}
               className="mr-2"
             >
               Save
-            </ModalButton>
-            <ModalButton onClick={() => setModalOpen(false)}>
-              Cancel
             </ModalButton>
           </div>
         </Modal>
