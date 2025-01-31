@@ -29,7 +29,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     return (
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-2 w-full lg:w-auto'>
         {label && <Label>{label} {asterisk && <span className="text-red-500"> *</span>}</Label>}
         <div className='flex items-center border-none rounded-[0.5rem] w-full text-black outline-none overflow-hidden relative'>
           <div className={cn('absolute', iconPosition === 'left' ? 'left-5' : 'right-5')}>
