@@ -45,19 +45,24 @@ export const CourseDetailModule = ({
             {courseData?.title}
           </h1>
         </div>
-
-        {courseData?.scrolls.map((scroll, index) => (
-          <CourseScroll
-            key={scroll.id}
-            id={scroll.id}
-            title={scroll.title}
-            description={scroll.description}
-            sections={
-              scroll.sections
-            }
-            week={`Week ${index + 1}`}
-          />
-        ))}
+        {courseData.scrolls !== null ? (
+          <>
+            {courseData?.scrolls.map((scroll, index) => (
+              <CourseScroll
+                key={scroll.id}
+                id={scroll.id}
+                title={scroll.title}
+                description={scroll.description}
+                sections={scroll.sections}
+                week={`Week ${index + 1}`}
+              />
+            ))}
+          </>
+        ) : (
+          <p className="text-white text-center font-cinzel text-4xl max-md:text-4xl max-sm:text-2xl font-[900]">
+            No scroll available
+          </p>
+        )}
 
         {/* Background */}
         <div className="w-full h-full">

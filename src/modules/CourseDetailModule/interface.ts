@@ -8,21 +8,21 @@ export interface CourseDetail {
   id: string;
   title: string;
   description: string;
-  scrolls: Scroll[];
+  scrolls: Scroll[] | null;
 }
 
 export interface Scroll {
   id: string;
   title: string;
   description: string;
-  sections: Section[];
+  sections: Section[] | null;
 }
 
 export interface Section {
   id: string;
   title: string;
   description: string;
-  items: Item[];
+  items: Item[] | null;
 }
 
 export interface Item {
