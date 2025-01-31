@@ -19,6 +19,7 @@ export const getUserService = async () => {
   return {
     name: userData[0] as String,
     email: payload.email as String,
+    token: token,
   } as UserJWT;
 };
 
@@ -36,7 +37,7 @@ export const getUserData = async () => {
   const API_URL = process.env.SERVER_URL;
 
   const response = await fetch(
-    `${API_URL}user/${user?.email}`,
+    `${API_URL}user/email/${user?.email}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

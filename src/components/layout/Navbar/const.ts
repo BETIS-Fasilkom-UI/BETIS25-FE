@@ -7,7 +7,7 @@ export const navData = [
   {
     title: "Course",
     href: "/course",
-    isAvailable: false
+    isAvailable: true
   },
   {
     title: "Leaderboard",

@@ -158,7 +158,7 @@ export const useUserData:
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const response = await fetch(
-    `${API_URL}user/${user?.email}`,
+    `${API_URL}user/email/${user?.email}`,
     {
       credentials: "omit",
       headers: {
