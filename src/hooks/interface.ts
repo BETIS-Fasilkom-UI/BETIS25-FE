@@ -16,6 +16,7 @@ export interface GetUserDataResponse extends Response {
     phone_number: string;
     nickname: string;
     address: string;
+    avatar: number;
     identity_card_url: string;
     study_method: string;
     guardian_name: string;
@@ -51,6 +52,7 @@ export interface User {
   phoneNumber: string;
   nickname: string;
   address: string;
+  avatar: number;
   identity_card_url: string;
   study_method: string;
   guardian_name: string;

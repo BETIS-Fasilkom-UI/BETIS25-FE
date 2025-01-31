@@ -11,6 +11,8 @@ import { DatePicker } from "@/modules/ProfileModule/components/date-picker"; // 
 import { Background } from "@/modules/ProfileModule/components/background"; // Import your custom DatePicker
 import Image from "next/image";
 import { User } from "@/hooks/interface";
+import { toast } from "sonner";
+import { getCookie } from "cookies-next";
 
 const ProfileModule = ({ user }: { user: User }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -26,16 +28,29 @@ const ProfileModule = ({ user }: { user: User }) => {
 
   // Load the saved avatar from localStorage when the component mounts
   useEffect(() => {
-    const savedAvatar = localStorage.getItem("selectedAvatar"); // Retrieve saved avatar from localStorage
+    const savedAvatar = user.avatar;
     if (savedAvatar) {
-      setSelectedAvatar(savedAvatar); // Update state with the saved avatar
-      setNewAvatar(savedAvatar); // Ensure modal starts with the saved avatar
+      setSelectedAvatar(avatarOptions[savedAvatar]); // Update state with the saved avatar
+      setNewAvatar(avatarOptions[savedAvatar]); // Ensure modal starts with the saved avatar
     }
   }, []); // Empty dependency array ensures this runs only once on mount
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setSelectedAvatar(newAvatar); // Update main avatar
-    localStorage.setItem("selectedAvatar", newAvatar); // Save the selected avatar to localStorage
+    const idx = avatarOptions.indexOf(newAvatar);
+
+    const url = process.env.NEXT_PUBLIC_API_URL || '';
+    const token = await getCookie('token');
+    const res = await fetch(url + 'user/avatar/' + user.id + '/' + idx, {
+      method: "PATCH",
+      headers: {
+        "Authorization": "Bearer " + token,
+      }
+    });
+
+    if (res.ok) {
+      toast.success("Berhasil mengganti avatar!");
+    }
     setModalOpen(false); // Close modal
   };
 
@@ -106,7 +121,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                 id="nama-lengkap"
                 type="text"
                 className="max-h-[52px] h-[110vh] max-w-[382px] w-[80vw] flex-grow border-none outline-none mb-0 text-2xl"
-                value="Hendra Andromeda"
+                value={user.fullname}
                 readOnly
               />
             </div>
@@ -123,7 +138,7 @@ const ProfileModule = ({ user }: { user: User }) => {
                 id="nama-panggilan"
                 type="text"
                 className="max-h-[52px] h-[110vh] max-w-[382px] w-[80vw] flex-grow border-none outline-none mb-0 font-bold text-2xl"
-                value="Hendra"
+                value={user.nickname}
                 readOnly
               />
             </div>
