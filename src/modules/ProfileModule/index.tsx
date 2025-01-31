@@ -100,7 +100,7 @@ const ProfileModule = ({ user }: { user: User }) => {
           </div>
           {/* User's Name */}
           <h2 className="text-white text-5xl font-semibold font-cinzel mb-[20px]">
-            HENDRA
+            {user.nickname}
           </h2>
           {/* User's Role */}
           <span className="relative inline-block w-[85vw] max-w-[528px] h-[56px] rounded-[20px] text-center leading-[56px] text-[#A7327A] text-3xl font-cinzel bg-gradient-to-r from-[#82275F] to-[#A7327A] p-[2px] mb-0">
