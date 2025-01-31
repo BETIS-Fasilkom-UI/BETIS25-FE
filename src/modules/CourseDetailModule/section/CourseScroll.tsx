@@ -57,80 +57,109 @@ const CourseScroll = ({
             }`}
           >
             <div className="w-full flex flex-col gap-5 px-12">
-              {sections.map((section) => (
-                <div key={section.id} className="w-full flex flex-col gap-2">
-                  <div>
-                    <h2 className="text-lg max-md:text-base max-sm:text-sm font-semibold">
-                      {section.title}
-                    </h2>
-                    <p className="text-base max-md:text-sm max-sm:text-xs">
-                      {section.description}
-                    </p>
-                  </div>
-                  {section.items.map((item) =>
-                    item.type === "material" ? (
-                      item.title.toLowerCase().includes("quiz") ? (
-                        <Link key={item.id} href={`/`} target="_blank">
-                          <div className="flex gap-3 items-center transition-all hover:opacity-70">
-                            <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
-                              <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
-                                <Image
-                                  alt="materi"
-                                  src={getAsset("/li_file-question.svg")}
-                                  fill
-                                  sizes="none"
-                                  className="object-contain"
-                                />
-                              </div>
-                            </div>
-                            <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
-                              {item.title}
-                            </p>
-                          </div>
-                        </Link>
+              {sections !== null ? (
+                <>
+                  {sections.map((section) => (
+                    <div
+                      key={section.id}
+                      className="w-full flex flex-col gap-2"
+                    >
+                      <div>
+                        <h2 className="text-lg max-md:text-base max-sm:text-sm font-semibold">
+                          {section.title}
+                        </h2>
+                        <p className="text-base max-md:text-sm max-sm:text-xs">
+                          {section.description}
+                        </p>
+                      </div>
+                      {section.items !== null ? (
+                        <>
+                          {section.items.map((item) =>
+                            item.type === "material" ? (
+                              item.title.toLowerCase().includes("quiz") ? (
+                                <Link key={item.id} href={`/`} target="_blank">
+                                  <div className="flex gap-3 items-center transition-all hover:opacity-70">
+                                    <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
+                                      <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
+                                        <Image
+                                          alt="materi"
+                                          src={getAsset(
+                                            "/li_file-question.svg"
+                                          )}
+                                          fill
+                                          sizes="none"
+                                          className="object-contain"
+                                        />
+                                      </div>
+                                    </div>
+                                    <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
+                                      {item.title}
+                                    </p>
+                                  </div>
+                                </Link>
+                              ) : (
+                                <Link
+                                  key={item.id}
+                                  href={item.url}
+                                  target="_blank"
+                                >
+                                  <div className="flex gap-3 items-center transition-all hover:opacity-70">
+                                    <div className="p-[7px] bg-[#AB98B2] rounded-[12px]">
+                                      <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
+                                        <Image
+                                          alt="materi"
+                                          src={getAsset("/li_file-text.svg")}
+                                          fill
+                                          sizes="none"
+                                          className="object-contain"
+                                        />
+                                      </div>
+                                    </div>
+                                    <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
+                                      {item.title}
+                                    </p>
+                                  </div>
+                                </Link>
+                              )
+                            ) : (
+                              <Link
+                                key={item.id}
+                                href={`/sub/submission/${item.id}`}
+                                target="_blank"
+                              >
+                                <div className="flex gap-3 items-center transition-all hover:opacity-70">
+                                  <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
+                                    <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
+                                      <Image
+                                        alt="materi"
+                                        src={getAsset("/li_file-plus.svg")}
+                                        fill
+                                        sizes="none"
+                                        className="object-contain"
+                                      />
+                                    </div>
+                                  </div>
+                                  <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
+                                    {item.title}
+                                  </p>
+                                </div>
+                              </Link>
+                            )
+                          )}
+                        </>
                       ) : (
-                        <Link key={item.id} href={item.url} target="_blank">
-                          <div className="flex gap-3 items-center transition-all hover:opacity-70">
-                            <div className="p-[7px] bg-[#AB98B2] rounded-[12px]">
-                              <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
-                                <Image
-                                  alt="materi"
-                                  src={getAsset("/li_file-text.svg")}
-                                  fill
-                                  sizes="none"
-                                  className="object-contain"
-                                />
-                              </div>
-                            </div>
-                            <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
-                              {item.title}
-                            </p>
-                          </div>
-                        </Link>
-                      )
-                    ) : (
-                      <Link key={item.id} href={`/sub/submission/${item.id}`} target="_blank">
-                        <div className="flex gap-3 items-center transition-all hover:opacity-70">
-                          <div className="p-[7px] bg-[#CB4551] rounded-[12px]">
-                            <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
-                              <Image
-                                alt="materi"
-                                src={getAsset("/li_file-plus.svg")}
-                                fill
-                                sizes="none"
-                                className="object-contain"
-                              />
-                            </div>
-                          </div>
-                          <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
-                            {item.title}
-                          </p>
-                        </div>
-                      </Link>
-                    )
-                  )}
-                </div>
-              ))}
+                        <p className="text-base max-md:text-sm max-sm:text-xs">
+                          Belum ada materi
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <p className="text-base max-md:text-sm max-sm:text-xs">
+                  Belum ada section
+                </p>
+              )}
             </div>
           </div>
         </div>

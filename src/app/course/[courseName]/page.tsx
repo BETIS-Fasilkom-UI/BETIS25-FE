@@ -14,8 +14,10 @@ const page: NextPage<{
     redirect("/login");
   }
 
+  const paramsReady = await params;
+
   const courseName = courseId.find(
-    async (course) => course.name === (await params).courseName
+    (course) => course.name === paramsReady.courseName
   );
 
   const res = await fetch(process.env.SERVER_URL + `course/${courseName?.id}`, {
