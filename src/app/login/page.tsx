@@ -1,10 +1,10 @@
 import LoginModule from "@/modules/LoginModule";
 import React from "react";
-import { getUserService } from "@/hooks/user";
+import { getUserData } from "@/hooks/user";
 import { redirect } from "next/navigation";
 
 const LoginPage = async () => {
-  const user = await getUserService();
+  const user = await getUserData();
 
   if (user) {
     redirect("/");

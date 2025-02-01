@@ -1,10 +1,10 @@
-import { getUserService } from "@/hooks/user";
+import { getUserData } from "@/hooks/user";
 import RegisterModule from "@/modules/RegisterModule";
 import { redirect } from "next/navigation";
 import React from "react";
 
 const RegisterPage = async () => {
-  const user = await getUserService();
+  const user = await getUserData();
   if (user) {
     redirect("/");
   }
