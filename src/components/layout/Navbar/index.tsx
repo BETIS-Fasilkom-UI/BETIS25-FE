@@ -16,7 +16,6 @@ import { navData } from "./const";
 export const Navbar = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
   const isAuthenticated = user !== null;
-
   const avatarOptions = [
     "/Pp-girl1.png",
     "/Pp-girl2.png",

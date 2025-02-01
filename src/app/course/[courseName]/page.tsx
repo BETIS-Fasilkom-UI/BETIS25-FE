@@ -1,4 +1,4 @@
-import { getUserService } from "@/hooks/user";
+import { getUserData } from "@/hooks/user";
 import fetchServer from "@/lib/fetchServer";
 import { CourseDetailModule } from "@/modules/CourseDetailModule";
 import { courseId } from "@/modules/CourseDetailModule/const";
@@ -9,10 +9,7 @@ import { redirect } from "next/navigation";
 const page: NextPage<{
   params: Promise<{ courseName: string }>;
 }> = async ({ params }) => {
-  const user = await getUserService();
-  if (!user) {
-    redirect("/login");
-  }
+  const user = await getUserData();
 
   const paramsReady = await params;
 

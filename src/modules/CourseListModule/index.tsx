@@ -4,7 +4,6 @@ import Image from "next/image";
 import { getAsset } from "@/lib/s3";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { CourseInterface } from "./interface";
 import { courseId } from "../CourseDetailModule/const";
 
 const CourseList = () => {

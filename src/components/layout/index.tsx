@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { Toaster } from "../ui/sonner";
-import { getUserData, getUserService } from "@/hooks/user";
+import { getUserData } from "@/hooks/user";
 
 export const Layout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getUserData();
