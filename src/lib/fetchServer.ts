@@ -1,45 +1,34 @@
+import { ApiResponse } from "@/hooks/interface";
 import { cookies } from "next/headers";
-import { fetchDataResponse } from "./fetchClient";
 
-export async function fetchDataServer<T>(endpoint: string, options?: RequestInit): Promise<fetchDataResponse<T>> {
+export default async function fetchServer<T>(endpoint: string, init?: RequestInit): Promise<ApiResponse<T | null>> {
     const token = cookies().get("token")?.value;
 
-    if (!token) {
-        console.log("Token not found");
-    }
-
+    // Remove leading slash
+    const cleanedEndpoint = endpoint.replace(/^\//, '');
 
     const API_URL = process.env.SERVER_URL;
 
-    // Remove trailing and beginning slash from endpoint
-    endpoint = endpoint.replace(/^\/|\/$/g, "");
-    
     try {
-        const response = await fetch(`${API_URL}${endpoint}`, {
-            ...options,
+        const response = await fetch(`${API_URL}${cleanedEndpoint}`, {
+            ...init,
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
-            },
+            }
         });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data: T = await response.json();
-        return {
-            ok: response.ok,
-            status: response.status,
-            data: data,
-            message: null
-        };
-    } catch (error) {
-        console.error('Fetch error:', error);
 
+        const responseBody: ApiResponse<T> = await response.json();
+
+        return responseBody;
+    }
+
+    catch (error) {
         return {
+            error: (error as Error).message,
+            message: 'An error occurred',
             ok: false,
-            status: 500,
-            data: null,
-            message: (error as Error).message
-        };
+            data: null
+        }
     }
 }

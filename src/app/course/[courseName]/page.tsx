@@ -1,10 +1,10 @@
-import React from "react";
-import { CourseDetailModule } from "@/modules/CourseDetailModule";
 import { getUserService } from "@/hooks/user";
-import { redirect } from "next/navigation";
-import { CourseDetailResponse } from "@/modules/CourseDetailModule/interface";
-import { NextPage } from "next";
+import fetchServer from "@/lib/fetchServer";
+import { CourseDetailModule } from "@/modules/CourseDetailModule";
 import { courseId } from "@/modules/CourseDetailModule/const";
+import { CourseDetail, CourseDetailResponse } from "@/modules/CourseDetailModule/interface";
+import { NextPage } from "next";
+import { redirect } from "next/navigation";
 
 const page: NextPage<{
   params: Promise<{ courseName: string }>;
@@ -20,17 +20,15 @@ const page: NextPage<{
     (course) => course.name === paramsReady.courseName
   );
 
-  const res = await fetch(process.env.SERVER_URL + `course/${courseName?.id}`, {
-    method: "GET",
-    credentials: "omit",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${user.token}`,
-    },
-  });
-  const response: CourseDetailResponse = await res.json();
+  const response = await fetchServer<CourseDetail>(`course/${courseName?.id}`);
 
-  return <CourseDetailModule courseData={response.data} />;
+  if (!response.data) {
+    return <div>An Error Occured! Please Refresh: {response.error}</div>;
+  }
+
+  const data = response.data;
+
+  return <CourseDetailModule courseData={data} />;
 };
 
 export default page;
