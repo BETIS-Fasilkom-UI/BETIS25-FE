@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Loading } from "@/components/elements/Loading";
 import { getAsset } from "@/lib/s3";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
-import { Loading } from "@/components/elements/Loading";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { CourseDetail } from "./interface";
 import CourseScroll from "./section/CourseScroll";
-import { CourseDetailResponse, CourseDetail } from "./interface";
-import { getCookie } from "cookies-next";
 
 export const CourseDetailModule = ({
   courseData,
@@ -47,7 +46,7 @@ export const CourseDetailModule = ({
         </div>
         {courseData.scrolls !== null ? (
           <>
-            {courseData?.scrolls.map((scroll, index) => (
+            {courseData?.scrolls?.map((scroll, index) => (
               <CourseScroll
                 key={scroll.id}
                 id={scroll.id}
