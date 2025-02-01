@@ -1,9 +1,6 @@
-import React from "react";
-import CourseList from "@/modules/CourseListModule/";
 import { getUserService } from "@/hooks/user";
+import CourseList from "@/modules/CourseListModule/";
 import { redirect } from "next/navigation";
-import { ApiResponse } from "@/hooks/interface";
-import { CourseInterface } from "@/modules/CourseListModule/interface";
 
 const page = async () => {
   const user = await getUserService();

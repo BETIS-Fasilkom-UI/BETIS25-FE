@@ -77,7 +77,8 @@ export interface User {
 }
 
 export interface ApiResponse<T> {
-  data: T;
+  ok: boolean;
   message: string;
-  status: string;
+  error: string;
+  data?: T;
 }

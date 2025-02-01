@@ -10,6 +10,7 @@ export const getUserService = async () => {
   }
 
   const payload = decode(token) as JwtPayload;
+
   if (!payload) {
     return null;
   }
