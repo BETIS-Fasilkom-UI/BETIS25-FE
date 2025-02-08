@@ -4,24 +4,37 @@ import { LeaderboardHeroProps } from "./interfaces"
 
 export const LeaderboardHeroDesktop = ({ first, second, third }: LeaderboardHeroProps) => {
     return (
-        <div className="lg:flex-1 flex lg:flex-row max-lg:hidden w-screen justify-center items-center h-full xl:gap-[110px]">
-            <div className="w-[380px] h-[650px] pt-[6rem] flex justify-center">
-                <SecondAvatar {...second} />
+        <>
+            <div className="lg:flex-1 flex flex-row max-lg:hidden w-screen justify-center items-center h-full xl:gap-[110px] gap-[25px]">
+                <div className="w-[380px] h-[650px] pt-[6rem] flex justify-center">
+                    <SecondAvatar {...second} />
+                </div>
+                <div className="w-[380px] h-[650px] flex justify-center">
+                    <FirstAvatar {...first} />
+                </div>
+                <div className="w-[380px] h-[650px] pt-[6rem] flex justify-center">
+                    <ThirdAvatar {...third} />
+                </div>
             </div>
-            <div className="w-[380px] h-[650px] flex justify-center">
-                <FirstAvatar {...first} />
+            <div className="md:flex-1 flex flex-col flex-wrap max-md:hidden lg:hidden w-screen justify-center items-center h-full gap-[25px]">
+                <div className="w-[380px] h-[650px] flex justify-center">
+                    <FirstAvatar {...first} />
+                </div>
+                <div className="w-[380px] h-[650px] flex justify-center">
+                    <ThirdAvatar {...third} />
+                </div>
+                <div className="w-[380px] h-[650px] flex justify-center">
+                    <SecondAvatar {...second} />
+                </div>
             </div>
-            <div className="w-[380px] h-[650px] pt-[6rem] flex justify-center">
-                <ThirdAvatar {...third} />
-            </div>
-        </div>
+        </>
     )
 }
 
 
 export const LeaderboardHeroMobile = ({ first, second, third }: LeaderboardHeroProps) => {
     return (
-        <div className="max-lg:flex-1 flex flex-col lg:hidden w-screen justify-center items-center gap-[30px]">
+        <div className="max-md:flex-1 flex flex-col md:hidden w-screen justify-center items-center gap-[30px]">
             <div className="w-[380px] h-[350px] flex justify-center">
                 <FirstAvatarMobile {...first} />
             </div>
