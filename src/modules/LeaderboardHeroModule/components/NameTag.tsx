@@ -1,6 +1,12 @@
 
+export interface NameTagProps {
+    name: string,
+    institute: string,
+    score: string | number
+}
 
-export const NameTag = ({name, institute, score} : {name: string, institute:string, score: string}) => {
+
+export const NameTag = ({ name, institute, score }: NameTagProps) => {
     return (
         <div className="relative">
             <div className="relative flex flex-col w-[355px] h-[90px] gap-[5px] px-[40px] py-[15px] bg-[#F8EBF3] rounded-[20px] justify-center items-center flex-shrink-0">

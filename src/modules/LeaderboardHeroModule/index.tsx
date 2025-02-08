@@ -1,4 +1,3 @@
-import { NameTag } from "./components/NameTag"
 import { FirstAvatar, SecondAvatar, ThirdAvatar } from "./components/PodiumAvatar"
 
 
