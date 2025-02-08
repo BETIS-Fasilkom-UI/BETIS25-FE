@@ -57,3 +57,17 @@ export const LeaderboardHeroModule = (props: LeaderboardHeroProps) => {
         </>
     )
 }
+
+
+export const SamplePage = () => {
+    const samplePodium: LeaderboardHeroProps = {
+        first: {name:"NAOMI SHAKILA ISBONO", institute:"SMA Labschool Cirendeu", score:750, avatarSrc:"/Pp-girl2.png"},
+        second: {name:"NAOMI SHAKILA ISBONO", institute:"SMA Labschool Cirendeu", score:750, avatarSrc:"/Pp-girl2.png"},
+        third: {name:"NAOMI SHAKILA ISBONO", institute:"SMA Labschool Cirendeu", score:750, avatarSrc:"/Pp-girl2.png"}
+    }; 
+    return (
+    <div className="h-[200vh] w-screen pt-[200px] flex flex-col items-center justify-center">
+        <LeaderboardHeroModule {...samplePodium}/>
+    </div>
+    )
+}
