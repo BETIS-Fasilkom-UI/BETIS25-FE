@@ -1,11 +1,7 @@
 import { getAsset } from "@/lib/s3"
 import Image from "next/image"
-import { NameTag, NameTagProps } from "./NameTag"
-
-
-export type PodiumAvatarProps = {
-    avatarSrc: string
-} & NameTagProps
+import { NameTag, NameTagMobile } from "./NameTag"
+import { PodiumAvatarProps } from "../interfaces"
 
 
 export const FirstAvatar = ({ avatarSrc, name, institute, score }: PodiumAvatarProps) => {
@@ -46,6 +42,50 @@ export const ThirdAvatar = ({ avatarSrc, name, institute, score }: PodiumAvatarP
                 <Image src={getAsset(avatarSrc || '/Pp-girl2.png')} alt="" width={275} height={280} className="rounded-full" />
                 <div className="absolute bottom-[-22%] w-full flex flex-col items-center">
                     <NameTag name={name} institute={institute} score={score} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+export const FirstAvatarMobile = ({ avatarSrc, name, institute, score }: PodiumAvatarProps) => {
+    return (
+        <div className="pt-[5rem] px-[30px] pb-[2rem]">
+            <div className="rounded-full w-[200px] h-[200px] bg-[#D5AF26] flex items-center justify-center relative">
+                <Image src={'/PodiumHat-1.png'} width={137} height={86} alt="" className="z-10 absolute top-[-4.1rem] right-[-5%] rotate-[19.5deg]" />
+                <Image src={getAsset(avatarSrc || '/Pp-girl2.png')} alt="" width={194} height={194} className="rounded-full" />
+                <div className="absolute bottom-[-26%] w-full flex flex-col items-center">
+                    <NameTagMobile name={name} institute={institute} score={score} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const SecondAvatarMobile = ({ avatarSrc, name, institute, score }: PodiumAvatarProps) => {
+    return (
+        <div className="pt-[6rem] px-[30px] pb-[2rem]">
+            <div className="rounded-full w-[200px] h-[200px] bg-[#D5AF26] flex items-center justify-center relative">
+                <Image src={'/PodiumHat-2.png'} width={144} height={121} alt="" className="z-10 absolute top-[-5.55rem] left-[7%] rotate-[5deg]" />
+                <Image src={getAsset(avatarSrc || '/Pp-girl2.png')} alt="" width={194} height={194} className="rounded-full" />
+                <div className="absolute bottom-[-26%] w-full flex flex-col items-center">
+                    <NameTagMobile name={name} institute={institute} score={score} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+export const ThirdAvatarMobile = ({ avatarSrc, name, institute, score }: PodiumAvatarProps) => {
+    return (
+        <div className="pt-[7rem] px-[30px] pb-[2rem]">
+            <div className="rounded-full w-[200px] h-[200px] bg-[#D5AF26] flex items-center justify-center relative">
+                <Image src={'/PodiumHat-3.png'} width={205} height={136} alt="" className="z-10 absolute top-[-6.5rem] right-[-3%] rotate-[-7deg]" />
+                <Image src={getAsset(avatarSrc || '/Pp-girl2.png')} alt="" width={194} height={194} className="rounded-full" />
+                <div className="absolute bottom-[-26%] w-full flex flex-col items-center">
+                    <NameTagMobile name={name} institute={institute} score={score} />
                 </div>
             </div>
         </div>

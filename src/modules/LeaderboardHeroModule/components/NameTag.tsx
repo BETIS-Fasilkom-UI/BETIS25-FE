@@ -1,9 +1,4 @@
-
-export interface NameTagProps {
-    name: string,
-    institute: string,
-    score: string | number
-}
+import { NameTagProps } from "../interfaces"
 
 
 export const NameTag = ({ name, institute, score }: NameTagProps) => {
@@ -21,3 +16,21 @@ export const NameTag = ({ name, institute, score }: NameTagProps) => {
         </div>
     )
 }
+
+
+export const NameTagMobile = ({ name, institute, score }: NameTagProps) => {
+    return (
+        <div className="relative">
+            <div className="relative flex flex-col w-[255px] h-[70px] gap-[5px] px-[15px] py-[15px] bg-[#F8EBF3] rounded-[12px] justify-center items-center flex-shrink-0">
+                <p className="font-cinzel font-[900] text-[16px] text-[#82275F] leading-[14px]">{name}</p>
+                <p className="font-raleway font-[600] text-[14px] text-[#82275F] leading-[14px]">{institute}</p>
+                <div className="absolute z-10 left-[37%] top-[-25%]">
+                    <div className="flex flex-col w-[67px] h-[28.5px] gap-[5px] px-[29px] py-[8px] bg-[#82275F] rounded-[8.5px] justify-center items-center flex-shrink-0">
+                        <p className="font-cinzel font-[900] text-[16px] text-[#F8EBF3] leading-[28px]">{score}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
