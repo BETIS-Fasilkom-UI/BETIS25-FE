@@ -5,7 +5,7 @@ import { LeaderboardHeroProps } from "./interfaces"
 export const LeaderboardHeroDesktop = ({ first, second, third }: LeaderboardHeroProps) => {
     return (
         <>
-            <div className="lg:flex-1 flex flex-row max-lg:hidden w-screen justify-center items-center h-full xl:gap-[110px] gap-[25px]">
+            <div className="min-[1170px]:flex-1 flex flex-row max-[1170px]:hidden w-screen justify-center items-center h-full xl:gap-[110px] gap-[25px]">
                 <div className="w-[380px] h-[650px] pt-[6rem] flex justify-center">
                     <SecondAvatar {...second} />
                 </div>
@@ -16,7 +16,7 @@ export const LeaderboardHeroDesktop = ({ first, second, third }: LeaderboardHero
                     <ThirdAvatar {...third} />
                 </div>
             </div>
-            <div className="md:flex-1 flex flex-col flex-wrap max-md:hidden lg:hidden w-screen justify-center items-center h-full gap-[25px]">
+            <div className="max-[1170px]:flex-1 flex flex-col flex-wrap min-[1170px]:hidden w-screen justify-center items-center h-full gap-[25px]">
                 <div className="w-[380px] h-[650px] flex justify-center">
                     <FirstAvatar {...first} />
                 </div>
