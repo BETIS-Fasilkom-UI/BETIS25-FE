@@ -16,7 +16,7 @@ export const LeaderboardHeroDesktop = ({ first, second, third }: LeaderboardHero
                     <ThirdAvatar {...third} />
                 </div>
             </div>
-            <div className="max-[1170px]:flex-1 flex flex-col flex-wrap min-[1170px]:hidden w-screen justify-center items-center h-full gap-[25px]">
+            <div className="md:max-[1170px]:flex-1 flex flex-col flex-wrap max-md:hidden min-[1170px]:hidden w-screen justify-center items-center h-full gap-[25px]">
                 <div className="w-[380px] h-[650px] flex justify-center">
                     <FirstAvatar {...first} />
                 </div>
