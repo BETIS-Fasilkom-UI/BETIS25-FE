@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Layout } from "@/components/layout";
-import { Cinzel, Raleway, Open_Sans } from "next/font/google";
+import { Cinzel, Raleway, Open_Sans, Playfair_Display } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 
 const openSans = Open_Sans({
@@ -24,6 +24,13 @@ const cinzel = Cinzel({
   subsets: ["latin"],
   display: "swap",
 });
+
+const playfair = Playfair_Display({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "BETIS 2025",
@@ -61,7 +68,7 @@ export default function RootLayout({
       <body
         suppressContentEditableWarning
         suppressHydrationWarning
-        className={` ${raleway.variable} ${cinzel.variable} ${openSans.variable} antialiased`}
+        className={` ${raleway.variable} ${cinzel.variable} ${openSans.variable} ${playfair.variable} antialiased`}
       >
         <NextTopLoader showSpinner={false} color="#c5599e" shadow={false} />
         <Layout>{children}</Layout>
