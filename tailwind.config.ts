@@ -14,6 +14,7 @@ const config: Config = {
         raleway: ["var(--font-raleway)"],
         cinzel: ["var(--font-cinzel)"],
         openSans: ["var(--font-open-sans)"],
+        playfairDisplay: ["var(--font-playfair-display)"],
       },
 
       fontSize: {
