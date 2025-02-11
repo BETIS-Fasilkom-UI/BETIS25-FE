@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, Tooltip } from "recharts"
+import { useState, useEffect } from 'react';
+import { Bar, BarChart, CartesianGrid, XAxis, Tooltip, LabelList } from "recharts"
 import {
   Card,
   CardContent,
@@ -9,54 +9,10 @@ import {
   ChartConfig,
   ChartContainer,
 } from "@/components/ui/chart"
-import {
-    Button
-} from "@/components/ui/button"
-
-const chartData = [
-    {
-        to: 'TO 1',
-        score: 74,
-        data:{
-            PU: 100,
-            PPU: 100,
-            PBM: 100,
-            PK: 100,
-            LBI: 100,
-            LBE: 100,
-            PM: 100
-        }
-    },
-    {
-        to: 'TO 2',
-        score: 100,
-        data:{
-            PU: 100,
-            PPU: 100,
-            PBM: 100,
-            PK: 100,
-            LBI: 100,
-            LBE: 100,
-            PM: 100
-        }
-    },
-    {
-        to: 'TO 3',
-        score: 100,
-        data:{
-            PU: 100,
-            PPU: 100,
-            PBM: 100,
-            PK: 100,
-            LBI: 100,
-            LBE: 100,
-            PM: 100
-        }
-    }
-]
+import { Data } from './interface';
 
 const chartConfig = {
-    score: {
+    average_score: {
       label: "Skor",
       color: "#308F9D",
     },
@@ -69,10 +25,10 @@ interface CustomTooltipProps {
 
 const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
-        const data = payload[0].payload.data;
+        const data = payload[0].payload.detail_score;
         return (
             <div className="bg-white p-2 shadow-md rounded text-[#692597]">
-                <p className="font-bold">{payload[0].payload.to}</p>
+                <p className="font-bold">{payload[0].payload.name}</p>
                 {Object.entries(data).map(([key, value]) => (
                     <p key={key}>{key}: {value as React.ReactNode}</p>
                 ))}
@@ -82,8 +38,18 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     return null;
 };
 
-const LeaderboardTabs = () =>{
+const LeaderboardTabs = (
+    {
+      userData,
+    }: {
+        userData: Data;
+    }
+) =>{
     const [activeTab, setActiveTab] = useState(true);
+    const [chartData, setchartData] = useState(userData.tryout)
+    const [nilai, setNilai] = useState(userData.nilai.daftar_quiz)
+
+
 
     return(
         <>
@@ -107,45 +73,47 @@ const LeaderboardTabs = () =>{
 
                     </div>
                 </div>
-                {/* shadow-[0px_2px_30px_0px_rgba(255,255,255,1.00)] */}
-                <div className="w-full h-full p-10 max-md:p-8 max-sm:p-6 bg-[#F8EBF3] rounded-[50px] max-md:rounded-[30px] max-sm:rounded-[20px] bg-opacity-20 shadow-[0px_2px_30px_0px_rgba(255,255,255,1.00)]">
+                <div className="w-full h-full p-10 max-md:p-8 max-sm:p-0 bg-[#F8EBF3] rounded-[50px] max-md:rounded-[30px] max-sm:rounded-[20px] bg-opacity-20 shadow-[0px_2px_30px_0px_rgba(255,255,255,1.00)]">
                     {
                     activeTab?(
-                    <div className="flex min-h-72 flex-col gap-4 text-2xl max-md:text-xl max-sm:text-lg font-openSans">
+                    <div className="flex min-h-72 flex-col gap-4 text-2xl max-md:text-xl max-sm:text-lg max-sm:px-4 max-sm:py-2 font-openSans">
                         <h3 className='font-raleway font-semibold'>Detail Nilai</h3>
                         <div className="w-full h-[1px] bg-white"></div>
                         <div className="flex flex-col gap-10">
-                            <div className="flex justify-between px-4">
-                                <p>Skor TO 1&2</p>
-                                <p>100</p>
-                            </div>
-                            <div className="flex justify-between px-4">
-                                <p>Mini-Quiz</p>
-                                <p>100</p>
-                            </div>
-                            <div className="flex justify-between px-4">
-                                <p>PR</p>
-                                <p>100</p>
-                            </div>
-                            <div className="flex justify-between px-4">
-                                <p>Presensi</p>
-                                <p>100</p>
-                            </div>
+                            {
+                                nilai.map((item, index) => (
+                                    <div key={index} className="flex justify-between px-4">
+                                        <p>{item.title}</p>
+                                        <p>{item.score}</p>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>): (
-                        <Card className='rounded-none shadow-none bg-opacity-0'>
+                        <Card className='rounded-none shadow-none bg-opacity-0 text-white'>
                             <CardContent>
                                 <ChartContainer config={chartConfig}>
                                 <BarChart accessibilityLayer data={chartData}>
                                     <CartesianGrid vertical={false} />
                                     <XAxis
-                                    dataKey="to"
+                                    dataKey="name"
                                     tickLine={false}
                                     tickMargin={10}
                                     axisLine={false}
+                                    className='fill-white'
                                     />
                                     <Tooltip cursor={false} content={<CustomTooltip />} />
-                                    <Bar dataKey="score" fill="#308F9D" radius={8} />
+                                    <Bar dataKey="average_score" fill="#308F9D" radius={20}
+                                    height={100}
+                                    >
+                                    <LabelList
+                                        position="top"
+                                        offset={4}
+                                        className="fill-white"
+                                        fontSize={16}
+                                        z={10}
+                                    />
+                                    </Bar>
                                 </BarChart>
                                 </ChartContainer>
                             </CardContent>
