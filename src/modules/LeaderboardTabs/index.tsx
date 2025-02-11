@@ -13,7 +13,7 @@ import {
 const chartData = [
     {
         to: 'TO 1',
-        score: 100,
+        score: 74,
         data:{
             PU: 100,
             PPU: 100,
@@ -71,7 +71,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
             <div className="bg-white p-2 shadow-md rounded text-[#692597]">
                 <p className="font-bold">{payload[0].payload.to}</p>
                 {Object.entries(data).map(([key, value]) => (
-                    <p key={key}>{key}: {value}</p>
+                    <p key={key}>{key}: {value as React.ReactNode}</p>
                 ))}
             </div>
         );
@@ -80,7 +80,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
 };
 
 const LeaderboardTabs = () =>{
-    const [activeTab, setActiveTab] = useState(false);
+    const [activeTab, setActiveTab] = useState(true);
 
     return(
         <>
