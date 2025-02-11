@@ -1,6 +1,5 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { isRegistrationClosed } from "@/const";
 import { useRouter } from "next/navigation";
 
 export function Greet(props: {
@@ -24,13 +23,8 @@ export function Greet(props: {
         <Button
           onClick={() => replace(props.linkPrimary)}
           className="w-full"
-          disabled={isRegistrationClosed}
+          disabled
         >Daftar Sekarang</Button>
-        <Button
-          onClick={() => replace(props.linkSecondary)}
-          className="w-full" variant="secondary">
-          Description
-        </Button>
       </div>
     </div>
   );

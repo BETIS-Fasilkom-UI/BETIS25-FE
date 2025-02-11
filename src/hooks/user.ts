@@ -1,6 +1,7 @@
 import { cookies, headers } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
 import { GetUserDataResponse, User, UserJWT } from "./interface";
+import { deleteCookie } from "cookies-next";
 
 export const getUserService = async () => {
   const token = cookies().get("token")?.value;
@@ -10,6 +11,7 @@ export const getUserService = async () => {
   }
 
   const payload = decode(token) as JwtPayload;
+
   if (!payload) {
     return null;
   }
@@ -29,12 +31,9 @@ export const getUserData = async () => {
     return null;
   }
 
-  const user = decode(token) as JwtPayload;
-  if (!user) {
-    return null;
-  }
-
   const API_URL = process.env.SERVER_URL;
+
+  const user = decode(token) as JwtPayload;
 
   const response = await fetch(
     `${API_URL}user/email/${user?.email}`,
@@ -44,6 +43,10 @@ export const getUserData = async () => {
       },
     }
   );
+
+  if (response.status === 401) {
+    return null;
+  }
 
   if (!response.ok) {
     return null;

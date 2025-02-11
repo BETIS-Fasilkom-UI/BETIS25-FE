@@ -1,21 +1,28 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import { navData } from "./const";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils";
-import { AlignJustify } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { UserJWT } from "@/hooks/interface";
-import { getCookie, setCookie } from "cookies-next";
+import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/sonner";
+import { User } from "@/hooks/interface";
 import { getAsset } from "@/lib/s3";
+import { cn } from "@/lib/utils";
+import { getCookie, setCookie } from "cookies-next";
+import { AnimatePresence, motion } from "framer-motion";
+import { AlignJustify } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { navData } from "./const";
 
-export const Navbar = ({ user }: { user: UserJWT | null }) => {
+export const Navbar = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
   const isAuthenticated = user !== null;
+  const avatarOptions = [
+    "/Pp-girl1.png",
+    "/Pp-girl2.png",
+    "/Pp-boy1.png",
+    "/Pp-boy2.png",
+  ];
+
   const Logout = async () => {
     if (isAuthenticated) {
       const token = getCookie("token");
@@ -86,7 +93,7 @@ export const Navbar = ({ user }: { user: UserJWT | null }) => {
                 <Link href={"/profile"}>
                   <Avatar>
                     <AvatarImage
-                      src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                      src={getAsset(avatarOptions[user.avatar])}
                       alt="profile"
                     />
                     <AvatarFallback>CN</AvatarFallback>

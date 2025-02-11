@@ -1,12 +1,10 @@
-import React from "react";
+"use server";
+import { getUserData } from "@/hooks/user";
 import CourseList from "@/modules/CourseListModule/";
-import { getUserService } from "@/hooks/user";
 import { redirect } from "next/navigation";
-import { ApiResponse } from "@/hooks/interface";
-import { CourseInterface } from "@/modules/CourseListModule/interface";
 
 const page = async () => {
-  const user = await getUserService();
+  const user = await getUserData();
   if (!user) {
     redirect("/login");
   }
