@@ -8,7 +8,7 @@ import { getAsset } from "@/lib/s3";
 import { Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { SPEAKERS } from "../const";
+import { SPEAKERS, TEXT } from "../const";
 
 const Speaker = () => {
   return (
@@ -47,18 +47,11 @@ const Speaker = () => {
 
               <div>
                 <CardTitle className="font-black text-white text-xl lg:text-4xl text-center lg:text-left">
-                  Enhancing Today&apos;s Youth Perception
+                  {TEXT.title}
                 </CardTitle>
 
                 <p className="font-semibold text-sm lg:text-xl text-center pt-2 lg:text-left lg:pt-5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit. Lorem ipsum dolor sit amet, consectetur
-                  adipisicing elit. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Eligendi qui
-                  voluptatem dolore sint illum esse pariatur porro
-                  voluptas in temporibus nam error vitae, eaque
-                  molestiae nostrum reprehenderit accusantium?
-                  Blanditiis, quis!
+                  {TEXT.subtitle}
                 </p>
 
                 <div className="max-lg:hidden flex flex-row pt-11 pb-7 space-x-3">
@@ -76,7 +69,7 @@ const Speaker = () => {
                       Date:
                     </p>
                     <p className="font-openSans text-2xl">
-                      10 Juli 2025
+                      {TEXT.date}
                     </p>
                   </div>
                 </div>
@@ -96,7 +89,7 @@ const Speaker = () => {
                       Place:
                     </p>
                     <p className="font-openSans text-2xl">
-                      Auditorium
+                      {TEXT.place}
                     </p>
                   </div>
                 </div>
@@ -117,7 +110,7 @@ const Speaker = () => {
                 <p className="text-foreground font-semibold text-sm">
                   Date:
                 </p>
-                <p className="font-openSans text-sm">10 Juli 2025</p>
+                <p className="font-openSans text-sm">{TEXT.date}</p>
               </div>
 
               <div
@@ -133,7 +126,7 @@ const Speaker = () => {
                 <p className="text-foreground font-semibold text-sm">
                   Place:
                 </p>
-                <p className="font-openSans text-sm">Auditorium</p>
+                <p className="font-openSans text-sm">{TEXT.place}</p>
               </div>
             </div>
           </CardContent>
@@ -142,15 +135,12 @@ const Speaker = () => {
         <Card className="bg-white bg-opacity-20 rounded-xl lg:rounded-2xl border-[1px] lg:border-2 border-white border-opacity-40 lg:border-opacity-60 pt-16 pb-12 px-5 md:px-16 md:pb-16 md:pt-16 lg:px-20 lg:pb-16 lg:pt-20">
           <CardHeader className="flex flex-row items-center justify-center">
             <CardTitle className="font-black text-xl md:text-2xl lg:text-3xl text-center lg:px-32">
-              Enhancing Today&apos;s Youth Perception
+              {TEXT.title}
             </CardTitle>
           </CardHeader>
           <CardContent className="font-raleway text-foreground/70">
             <p className="font-semibold text-sm lg:text-lg text-center lg:px-32">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Lorem ipsum dolor sit amet, consectetur
+              {TEXT.subtitle}
             </p>
 
             <div className="max-lg:hidden flex flex-row items-center justify-center space-x-3 pt-12 pb-20">
@@ -167,7 +157,7 @@ const Speaker = () => {
                 <p className="text-foreground font-semibold text-2xl">
                   Date:
                 </p>
-                <p className="font-openSans text-2xl">10 Juli 2025</p>
+                <p className="font-openSans text-2xl">{TEXT.date}</p>
               </div>
 
               <div
@@ -183,7 +173,7 @@ const Speaker = () => {
                 <p className="text-foreground font-semibold text-2xl">
                   Place:
                 </p>
-                <p className="font-openSans text-2xl">Auditorium</p>
+                <p className="font-openSans text-2xl">{TEXT.place}</p>
               </div>
             </div>
 
@@ -235,7 +225,7 @@ const Speaker = () => {
                   Date:
                 </p>
                 <p className="font-openSans text-sm md:text-lg">
-                  10 Juli 2025
+                  {TEXT.date}
                 </p>
               </div>
 
@@ -253,7 +243,7 @@ const Speaker = () => {
                   Place:
                 </p>
                 <p className="font-openSans text-sm md:text-lg">
-                  Auditorium
+                  {TEXT.place}
                 </p>
               </div>
             </div>
