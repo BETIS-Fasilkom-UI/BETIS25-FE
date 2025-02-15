@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { getAsset } from "@/lib/s3";
 import Image from "next/image";
 
-const BeTalksHeroModule = () => {
+export const BeTalksHero = () => {
   return (
-    <Card className="flex flex-col overflow-hidden justify-center items-center bg-[#F8EBF3] bg-opacity-[20%] shadow-[5px_5px_20px_rgba(254,245,255,1),-5px_-5px_20px_rgba(254,245,255,1)] sm:shadow-[10px_10px_30px_rgba(254,245,255,1),-10px_-10px_30px_rgba(254,245,255,1)] md:shadow-[10px_10px_40px_rgba(254,245,255,1),-10px_-10px_40px_rgba(254,245,255,1)] w-[85%] md:w-[80%] h-fit rounded-[51.64px] sm:rounded-[59.25px] lg:rounded-[69.25px] xl:rounded-[89.25px]">
+    <Card className="mx-auto flex flex-col overflow-hidden justify-center items-center bg-[#F8EBF3] bg-opacity-[20%] shadow-[5px_5px_20px_rgba(254,245,255,1),-5px_-5px_20px_rgba(254,245,255,1)] sm:shadow-[10px_10px_30px_rgba(254,245,255,1),-10px_-10px_30px_rgba(254,245,255,1)] md:shadow-[10px_10px_40px_rgba(254,245,255,1),-10px_-10px_40px_rgba(254,245,255,1)] w-full h-fit rounded-[51.64px] sm:rounded-[59.25px] lg:rounded-[69.25px] xl:rounded-[89.25px]">
       <CardTitle className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5">
         Be-Talks
       </CardTitle>
@@ -103,5 +103,3 @@ const BeTalksHeroModule = () => {
     </Card>
   );
 };
-
-export default BeTalksHeroModule;

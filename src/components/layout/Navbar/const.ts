@@ -11,7 +11,7 @@ export const navData = [
   },
   {
     title: "Betis-talk",
-    href: "/talk",
+    href: "/betalks",
     isAvailable: true
   },
   {

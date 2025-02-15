@@ -1,11 +1,15 @@
 import React from "react";
 import Speaker from "./section/speaker";
+import { Rundown } from "./section/rundown";
+import { BeTalksHero } from "./section/BeTalksHero";
 
 const BetalksModule = () => {
   return (
-    <div className="py-20 px-4 md:py-28 md:px-8 lg:py-32 lg:px-16">
+    <main className="py-22 px-8 md:py-32 md:px-10 lg:py-44 lg:px-16 space-y-32">
+      <BeTalksHero />
       <Speaker />
-    </div>
+      <Rundown />
+    </main>
   );
 };
 
