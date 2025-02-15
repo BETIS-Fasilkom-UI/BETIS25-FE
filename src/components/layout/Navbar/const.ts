@@ -10,13 +10,18 @@ export const navData = [
     isAvailable: true
   },
   {
+    title: "Betis-talk",
+    href: "/talk",
+    isAvailable: true
+  },
+  {
+    title: "Webinar PPKB",
+    href: "/ppkb",
+    isAvailable: true
+  },
+  {
     title: "Leaderboard",
     href: "/leaderboard",
     isAvailable: false
   },
-  {
-    title: "Betis-talk",
-    href: "/talk",
-    isAvailable: false
-  }
 ];
