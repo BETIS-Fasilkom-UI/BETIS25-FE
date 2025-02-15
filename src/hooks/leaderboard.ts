@@ -5,7 +5,7 @@ const avatarOptions = [
     "/Pp-girl2.png",
     "/Pp-boy1.png",
     "/Pp-boy2.png",
-  ];
+];
 
 interface LeaderboardEntry {
     id: string;
@@ -94,7 +94,7 @@ const useLeaderboard = (id: string) => {
                 const result: LeaderboardResponse = await response.json();
 
                 if (result.ok) {
-                    const topTen = result.data.leaderboard.slice(0, 10);
+                    const topTen = result.data.leaderboard.slice(4, 10);
                     const loggedInUser = result.data.user;
 
                     setLeaderboard(topTen);
