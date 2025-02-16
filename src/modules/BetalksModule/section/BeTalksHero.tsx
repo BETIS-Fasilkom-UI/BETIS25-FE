@@ -3,6 +3,7 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getAsset } from "@/lib/s3";
 import Image from "next/image";
+import { Link } from "lucide-react";
 
 export const BeTalksHero = () => {
   return (
@@ -23,13 +24,14 @@ export const BeTalksHero = () => {
             dapat kembali termotivasi dan lebih bersemangat dalam belajar.
           </div>
         </div>
-        <Button
-          variant={"primary"}
-          className="max-md:-mt-5 max-md:w-full h-[39px] md:h-[43px] lg:h-[48px] text-xs md:text-t8 rounded-[16px] md:rounded-[14px] lg:rounded-5"
-        >
-          Register Here
-        </Button>
-
+        <Link href="http://ristek.link/RSVPBetalksBETIS25" target="_blank">
+          <Button
+            variant={"primary"}
+            className="max-md:-mt-5 max-md:w-full h-[39px] md:h-[43px] lg:h-[48px] text-xs md:text-t8 rounded-[16px] md:rounded-[14px] lg:rounded-5"
+          >
+            Register Here
+          </Button>
+        </Link>
         <div className="relative max-lg:self-start lg:absolute -z-20 h-[200px] sm:h-[250px] md:h-[270px] lg:h-[400px] xl:h-[500px] -left-5 lg:-left-4 lg:-bottom-8 xl:-bottom-10 -mt-28 -mb-11 -ml-5 sm:-mt-40 sm:-mb-12 sm:-ml-16 md:-mt-52 md:-ml-14 lg:mt-0 lg:mb-0 lg:ml-0 aspect-[4/5]">
           <Image
             alt="BG"
