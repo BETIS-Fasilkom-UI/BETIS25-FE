@@ -33,7 +33,7 @@ const Faq = () => {
               Apakah acaranya terbuka untuk selain peserta BETIS?
             </AccordionTrigger>
             <AccordionContent>
-              Iya, Be-Talks akan terbuka untuk umum.
+              Iya, Webinar PPKB akan terbuka untuk umum.
             </AccordionContent>
           </AccordionItem>
 
@@ -41,7 +41,7 @@ const Faq = () => {
           <AccordionItem value="item-2">
             <AccordionTrigger>Apakah acara ini berbayar?</AccordionTrigger>
             <AccordionContent>
-              Untuk peserta Betis maupun non peserta Betis, Be-Talks tidak
+              Untuk peserta Betis maupun non peserta Betis, Webinar PPKB tidak
               berbayar (gratis).
             </AccordionContent>
           </AccordionItem>
@@ -65,6 +65,18 @@ const Faq = () => {
             <AccordionContent>
               Acara ini dilakukan secara online melalui aplikasi Zoom sesuai
               dengan link yang diberikan.
+            </AccordionContent>
+          </AccordionItem>
+
+          {/* Question 5 */}
+          <AccordionItem value="item-4">
+            <AccordionTrigger>
+              Apakah akan terdapat sesi klinik essay PPKB 1 on 1?
+            </AccordionTrigger>
+            <AccordionContent>
+              Tidak, pembicara hanya akan menjelaskan secara keseluruhan
+              bagaimana menulis essay PPKB dengan baik dan benar. Namun, akan
+              terdapat sesi tanya jawab jika memiliki pertanyaan
             </AccordionContent>
           </AccordionItem>
         </Accordion>

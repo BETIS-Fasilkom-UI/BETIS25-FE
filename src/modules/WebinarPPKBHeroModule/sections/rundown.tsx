@@ -19,11 +19,11 @@ export const Rundown = () => {
       status: "current",
     },
     { time: "13.50 - 14.05", activity: "ICE BREAKING", status: "upcoming" },
-    { time: "14.05 - 15.35", activity: "SHARING SESSION", status: "upcoming" },
-    { time: "15.35 - 15.50", activity: "Q&A SESSION", status: "upcoming" },
+    { time: "14.05 - 14.50", activity: "SHARING SESSION", status: "upcoming" },
+    { time: "14.50 - 15.20", activity: "Q&A SESSION", status: "upcoming" },
     {
-      time: "15.50 - 16.00",
-      activity: "DOKUMENTASI\nDAN CLOSING",
+      time: "15.20 - 15.30",
+      activity: "DOKUMENTASI\nDAN PENUTUP",
       status: "upcoming",
     },
   ];

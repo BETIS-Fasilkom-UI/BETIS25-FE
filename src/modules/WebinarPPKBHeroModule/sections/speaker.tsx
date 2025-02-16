@@ -63,9 +63,9 @@ const Speaker = () => {
                   >
                     <Image
                       alt={SPEAKERS[0].name}
-                      src={getAsset(SPEAKERS[0].image)}
+                      src={SPEAKERS[0].image}
                       fill
-                      className="object-contain"
+                      className="object-cover rounded-xl"
                     />
                   </div>
 
@@ -267,7 +267,7 @@ const Speaker = () => {
                     >
                       <Image
                         alt={speaker.name}
-                        src={getAsset(speaker.image)}
+                        src={speaker.image}
                         fill
                         className="object-contain"
                       />
