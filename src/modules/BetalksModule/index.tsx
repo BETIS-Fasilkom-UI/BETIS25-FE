@@ -1,9 +1,9 @@
 import React from "react";
-import Speaker from "./section/speaker";
-import { Rundown } from "./section/rundown";
-import { BeTalksHero } from "./section/BeTalksHero";
-import Faq from "./section/Faq";
-import { ContactPerson } from "./section/ContactPerson";
+import Speaker from "./sections/speaker";
+import { Rundown } from "./sections/rundown";
+import { BeTalksHero } from "./sections/BeTalksHero";
+import Faq from "./sections/Faq";
+import { ContactPerson } from "./sections/ContactPerson";
 
 const BetalksModule = () => {
   return (
