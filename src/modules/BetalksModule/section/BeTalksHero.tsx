@@ -14,7 +14,7 @@ export const BeTalksHero = () => {
         <div className="flex flex-col gap-[32px]">
           <CountdownHero
             displayDate
-            targetDate={new Date("2025-02-14T08:00:00")}
+            targetDate={new Date("2025-03-15T13:00:00")}
           />
           <div className="text-center text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg -mt-2 md:mt-0 xl:mt-5">
             Be-Talks adalah acara yang bertujuan untuk membangkitkan semangat

@@ -2,6 +2,8 @@ import React from "react";
 import Speaker from "./section/speaker";
 import { Rundown } from "./section/rundown";
 import { BeTalksHero } from "./section/BeTalksHero";
+import Faq from "./section/Faq";
+import { ContactPerson } from "./section/ContactPerson";
 
 const BetalksModule = () => {
   return (
@@ -9,6 +11,8 @@ const BetalksModule = () => {
       <BeTalksHero />
       <Speaker />
       <Rundown />
+      <Faq />
+      <ContactPerson />
     </main>
   );
 };

@@ -62,7 +62,7 @@ export const Rundown = () => {
   };
 
   return (
-    <Card className="relative w-full mx-auto py-24 px-8 rounded-3xl overflow-hidden bg-white bg-opacity-20">
+    <Card className="relative w-full mx-auto py-24 px-8 rounded-3xl overflow-hidden bg-white shadow-[5px_5px_20px_rgba(254,245,255,1),-5px_-5px_20px_rgba(254,245,255,1)] bg-opacity-20">
       <div className="relative z-10 max-w-xl mx-auto">
         <h1 className="font-cinzel text-4xl font-bold text-white mb-12 text-center z-10">
           RUNDOWN
