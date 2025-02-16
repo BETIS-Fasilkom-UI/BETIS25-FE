@@ -1,11 +1,11 @@
-export const mockLeaderboardData = {
+export const mockLeaderboardUpdated = {
     "ok": true,
     "message": "fetched",
     "data": {
         "user": {
             "id": "5b7394f0-98f0-4e0f-9910-de6cf90e8310",
             "rank": 11,
-            "full_name": "Rajwa Naura Azizah",
+            "full_name": "Hemhem",
             "school_name": "SMAN 1 Tambun Selatan",
             "avatar": 1,
             "average_score": 436

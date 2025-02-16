@@ -8,7 +8,6 @@ import { getAsset } from "@/lib/s3"
 import { useEffect, useState } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import useLeaderboard from "@/hooks/leaderboard"
-import Link from "next/link"
 import { LeaderboardHeroModule } from "../LeaderboardHeroModule"
 
 const avatarOptions = [
@@ -33,9 +32,9 @@ const Card = React.forwardRef<
 ));
 
 export default function Leaderboard(LeaderboardId: { id: string }) {
-  const [selectedTryout, setSelectedTryout] = useState("0"); // Default: All Tryout
+  const [selectedTryout, setSelectedTryout] = useState(""); // Default: All Tryout
   const { leaderboard, leaderboards, currentUser, loading, error, refetch } = useLeaderboard(selectedTryout); // Fetch leaderboard data
-
+  console.log(leaderboard);
   // Trigger refetch when selectedTryout changes
   useEffect(() => {
     refetch();
@@ -47,7 +46,26 @@ export default function Leaderboard(LeaderboardId: { id: string }) {
 
   return (
     <div className="flex flex-col justify-center">
-      <LeaderboardHeroModule leaderboardId= { selectedTryout }/>
+      <LeaderboardHeroModule 
+        first={{
+          name: leaderboard[0].full_name || "",
+          institute: leaderboard[0].school_name || "",
+          score: leaderboard[0].average_score,
+          avatarSrc: getAsset(avatarOptions[leaderboard[0].avatar])
+        }} 
+        second={{
+          name: leaderboard[1].full_name,
+          institute: leaderboard[1].school_name || "",
+          score: leaderboard[1].average_score,
+          avatarSrc: getAsset(avatarOptions[leaderboard[1].avatar])
+        }} 
+        third={{
+          name: leaderboard[2].full_name,
+          institute: leaderboard[2].school_name || "",
+          score: leaderboard[2].average_score,
+          avatarSrc: getAsset(avatarOptions[leaderboard[2].avatar])
+        }} 
+      />
     <div
       className="min-h-screen flex flex-row justify-center px-4 md:px-0 mt-10"     >
       <div className="space-y-4">
@@ -58,7 +76,7 @@ export default function Leaderboard(LeaderboardId: { id: string }) {
               <SelectValue placeholder="Select Tryout" />
             </SelectTrigger>
             <SelectContent className="w-24 md:w-[276px] bg-[#D9D9D9] border-0 md:rounded-[35px] rounded-[12px] relative text-[#82275F] font-playfairDisplay font-semibold text-[10px] md:text-[35px]">
-              <SelectItem value="0" className="text-[10px] md:text-[35px] text-left">All Tryout</SelectItem>
+            <SelectItem value="0" className="text-[10px] md:text-[35px] text-left">All Tryout</SelectItem>
               {leaderboards.map((tryout) => (
                 <SelectItem key={tryout.id} value={tryout.id} className="text-[10px] md:text-[35px] text-left">
                   {tryout.title}
@@ -123,7 +141,7 @@ export default function Leaderboard(LeaderboardId: { id: string }) {
               </Card>
 
               {/* Leaderboard Entries */}
-              {leaderboard.map((currentUser) => (
+              {leaderboard.slice(3, 10).map((currentUser) => (
                  <Card className="border-0 text-white w-[390px] h-[72px] md:w-[1076px] md:h-[128px] bg-[#F8EBF3] mb-[6px] md:mb-[16.82px]">
                  <div className="flex items-center justify-between">
                    <div className="flex items-center gap-3">
