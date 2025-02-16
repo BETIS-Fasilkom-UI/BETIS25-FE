@@ -53,7 +53,8 @@ const LeaderboardTabs = (
 
     return(
         <>
-            <div className="w-[60%] max-md:w-[70%] max-sm:w-[90%] flex flex-col gap-7">
+            <div className='w-full flex justify-center py-20'>
+            <div className="w-[390px] md:w-[600px] lg:w-[1064px] flex flex-col">
                 <div className='w-full grid grid-cols-2 gap-5 font-cinzel text-2xl max-md:text-xl max-sm:text-lg'>
                     <div className='w-full h-full'>
                         <button
@@ -73,7 +74,7 @@ const LeaderboardTabs = (
 
                     </div>
                 </div>
-                <div className="w-full h-full p-10 max-md:p-8 max-sm:p-0 bg-[#F8EBF3] rounded-[50px] max-md:rounded-[30px] max-sm:rounded-[20px] bg-opacity-20 shadow-[0px_2px_30px_0px_rgba(255,255,255,1.00)]">
+                <div className={`w-full ${activeTab?'':'p-0'} h-full p-10 max-md:p-8 max-sm:p-0 bg-[#F8EBF3] rounded-[50px] max-md:rounded-[30px] max-sm:rounded-[20px] bg-opacity-20 shadow-[0px_2px_30px_0px_rgba(255,255,255,1.00)]`}>
                     {
                     activeTab?(
                     <div className="flex min-h-72 flex-col gap-4 text-2xl max-md:text-xl max-sm:text-lg max-sm:px-4 max-sm:py-2 font-openSans">
@@ -90,10 +91,10 @@ const LeaderboardTabs = (
                             }
                         </div>
                     </div>): (
-                        <Card className='rounded-none shadow-none bg-opacity-0 text-white'>
-                            <CardContent>
+                        <Card className='rounded-[50px] max-md:rounded-[30px] max-sm:rounded-[20px] shadow-none bg-opacity-0 py-0 px-0 text-white'>
+                            <CardContent className='px-0 max-sm:pt-5'>
                                 <ChartContainer config={chartConfig}>
-                                <BarChart accessibilityLayer data={chartData}>
+                                <BarChart accessibilityLayer data={chartData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
                                     <CartesianGrid vertical={false} />
                                     <XAxis
                                     dataKey="name"
@@ -104,7 +105,6 @@ const LeaderboardTabs = (
                                     />
                                     <Tooltip cursor={false} content={<CustomTooltip />} />
                                     <Bar dataKey="average_score" fill="#308F9D" radius={20}
-                                    height={100}
                                     >
                                     <LabelList
                                         position="top"
@@ -120,6 +120,7 @@ const LeaderboardTabs = (
                         </Card>
                     )}
                 </div>
+            </div>
             </div>
         </>
     )
