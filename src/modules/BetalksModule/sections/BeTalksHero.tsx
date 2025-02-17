@@ -1,9 +1,9 @@
 import CountdownHero from "@/components/elements/CountdownHero";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { getAsset } from "@/lib/s3";
 import Image from "next/image";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 export const BeTalksHero = () => {
   return (

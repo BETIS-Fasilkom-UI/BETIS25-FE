@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { getAsset } from "@/lib/s3";
+import Link from "next/link";
 
 export const ContactPerson = () => {
   return (

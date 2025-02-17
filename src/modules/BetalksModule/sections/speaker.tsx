@@ -97,7 +97,7 @@ const Speaker = () => {
                       <Calendar color="white" size={40} />
                     </div>
                     <div className="pr-11">
-                      <p className="text-foreground font-semibold text-2xl">
+                      <p className="text-foreground font-semibold text-xl">
                         Date:
                       </p>
                       <p className="font-openSans text-2xl">
@@ -117,7 +117,7 @@ const Speaker = () => {
                       <MapPin color="white" size={40} />
                     </div>
                     <div>
-                      <p className="text-foreground font-semibold text-2xl">
+                      <p className="text-foreground font-semibold text-xl">
                         Place:
                       </p>
                       <p className="font-openSans text-2xl">
