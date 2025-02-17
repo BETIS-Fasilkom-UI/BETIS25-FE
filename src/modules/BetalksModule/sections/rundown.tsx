@@ -1,32 +1,56 @@
-import React from "react";
+import { Card } from "@/components/ui/card";
 import { Check, Clock, X } from "lucide-react";
 import Image from "next/image";
-import { Card } from "@/components/ui/card";
 
 interface TimelineItem {
   time: string;
   activity: string;
-  status: "completed" | "current" | "upcoming";
+  status?: "completed" | "current" | "upcoming";
 }
 
 export const Rundown = () => {
-  const timelineItems: TimelineItem[] = [
-    { time: "13.00 - 13.30", activity: "PERSIAPAN", status: "completed" },
-    { time: "13.30 - 13.35", activity: "PEMBUKAAN", status: "completed" },
+  // March 15, 2025
+  const eventDate = new Date(2025, 3, 15);
+
+  let timelineItems: TimelineItem[] = [
+    { time: "13.00 - 13.30", activity: "PERSIAPAN" },
+    { time: "13.30 - 13.35", activity: "PEMBUKAAN" },
     {
       time: "13.35 - 13.50",
       activity: "SAMBUTAN PO/VPO\nDAN PENGENALAN\nBETIS 2025",
       status: "current",
     },
-    { time: "13.50 - 14.05", activity: "ICE BREAKING", status: "upcoming" },
-    { time: "14.05 - 15.35", activity: "SHARING SESSION", status: "upcoming" },
-    { time: "15.35 - 15.50", activity: "Q&A SESSION", status: "upcoming" },
+    { time: "13.50 - 14.05", activity: "ICE BREAKING" },
+    { time: "14.05 - 15.35", activity: "SHARING SESSION" },
+    { time: "15.35 - 15.50", activity: "Q&A SESSION" },
     {
       time: "15.50 - 16.00",
       activity: "DOKUMENTASI\nDAN CLOSING",
-      status: "upcoming",
     },
   ];
+
+  const updateTimelineStatus = () => {
+    const now = new Date();
+    const gmtPlus7Offset = 7 * 60 * 60 * 1000;
+    const nowGmtPlus7 = new Date(now.getTime() + gmtPlus7Offset);
+
+    return timelineItems.map((item) => {
+      const [startTime, endTime] = item.time.split(" - ").map((time) => {
+        const [hours, minutes] = time.split(".").map(Number);
+        return new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate(), hours, minutes);
+      });
+
+      if (nowGmtPlus7 >= startTime && nowGmtPlus7 <= endTime) {
+        return { ...item, status: "current" as "current" };
+      } else if (nowGmtPlus7 > endTime) {
+        return { ...item, status: "completed" as "completed" };
+      } else {
+        return { ...item, status: "upcoming" as "upcoming" };
+      }
+    });
+  };
+
+  timelineItems = updateTimelineStatus();
 
   const getStatusIcon = (status: TimelineItem["status"]) => {
     switch (status) {
