@@ -1,8 +1,6 @@
 import { redirect } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
-import { getUserData } from "@/hooks/user";
-import { mockLeaderboardData } from "@/modules/LeaderboardAllModule/mock-data";
-import { mockLeaderboardUpdated } from "@/modules/LeaderboardAllModule/mock-data-update";
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { getUserData } from './user';
 
 interface LeaderboardEntry {
     id: string;
@@ -29,33 +27,38 @@ interface Leaderboard {
 }
 
 const useLeaderboard = (id: string) => {
-    const result: LeaderboardResponse = mockLeaderboardData;
-    const [leaderboards, setLeaderboards] = useState<Leaderboard[]>(result.data.leaderboards);
-    const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(result.data.leaderboard);
-    const [currentUser, setCurrentUser] = useState<LeaderboardEntry | null>(result.data.user);
+    const [leaderboards, setLeaderboards] = useState<Leaderboard[]>([]);
+    const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+    const [currentUser, setCurrentUser] = useState<LeaderboardEntry | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const hasFetched = useRef(false);
 
-    const fetchLeaderboard = async () => {
+    const fetchLeaderboard = useCallback(async () => {
         setLoading(true);
         setError(null);
-        const result: LeaderboardResponse = mockLeaderboardUpdated;
         try {
-            const API_URL = process.env.NEXT_PUBLIC_API_URL;
             const token = localStorage.getItem('token');
-            const userId = "5b7394f0-98f0-4e0f-9910-de6cf90e8310";
             if (!token) {
                 redirect('/login');
             }
-            console.log(token);
-            id = id === "0" ? "" : id;
-            console.log(`${API_URL}leaderboard/${id}?userid=${userId}`);
-            console.log("Fetched data:", result);
+
+            const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/leaderboard`;
+            const endpoint = id && id !== "0" ? `${baseUrl}/${id}` : baseUrl;
+            const user = await getUserData();
+            const userId = user?.id;
+            const url = `${endpoint}?userid=${userId}`;
+            const response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const result = await response.json() as LeaderboardResponse;
+
             if (result.ok) {
-                setLeaderboards(result.data.leaderboards);
-                setLeaderboard(result.data.leaderboard);
-                setCurrentUser(result.data.user);
+                setLeaderboards(result.data.leaderboards ?? []);
+                setLeaderboard(result.data.leaderboard ?? []);
+                setCurrentUser(result.data.user ?? null);
             } else {
                 setError('Failed to fetch leaderboard');
             }
@@ -65,20 +68,14 @@ const useLeaderboard = (id: string) => {
         } finally {
             setLoading(false);
         }
-    };
-    
-    useEffect(() => {
-        if (!hasFetched.current) {
-            (async () => {
-                await fetchLeaderboard();
-            })();
-            hasFetched.current = true;
-        }
     }, [id]);
 
     useEffect(() => {
-        console.log("Updated leaderboard state:", leaderboard);
-    }, [leaderboard]);
+        if (!hasFetched.current) {
+            fetchLeaderboard();
+            hasFetched.current = true;
+        }
+    }, [fetchLeaderboard]);
 
     return { leaderboard, leaderboards, currentUser, loading, error, refetch: fetchLeaderboard };
 };
