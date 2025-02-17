@@ -13,7 +13,7 @@ export const BeTalksHero = () => {
       </CardTitle>
       <CardContent className="w-[100%] sm:w-[80%] md:w-[80%] lg:w-[75%] xl:w-[63%] flex flex-col justify-center items-center gap-[35px]">
         <div className="flex flex-col gap-[32px]">
-          <div className="relative">
+          <div className="relative w-full max-w-3xl mx-auto">
             <CountdownHero
               displayDate
               targetDate={new Date("2025-03-15T13:00:00")}
