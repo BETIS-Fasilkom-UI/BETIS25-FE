@@ -7,7 +7,7 @@ import { ContactPerson } from "./sections/ContactPerson";
 
 const BetalksModule = () => {
   return (
-    <main className="py-22 px-8 md:py-32 md:px-10 lg:py-44 lg:px-16 space-y-32">
+    <main className="py-24 px-8 md:py-32 md:px-10 lg:py-44 lg:px-16 space-y-32">
       <BeTalksHero />
       <Speaker />
       <Rundown />
