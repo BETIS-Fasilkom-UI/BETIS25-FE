@@ -60,7 +60,7 @@ const ProfileModule = ({ user }: { user: User }) => {
 
         <Background />
         {/* Avatar and User Information */}
-        <div className="relative flex flex-col items-center relative">
+        <div className="relative flex flex-col items-center">
           <Image
             src="/EllipseLight.png"
             width={2000}
@@ -70,7 +70,7 @@ const ProfileModule = ({ user }: { user: User }) => {
           />
 
 
-          <div className="relative mb-4 w-[300px] h-[300px] mb-[28px]">
+          <div className="relative w-[300px] h-[300px] mb-[28px]">
 
             <Avatar className="relative h-full w-full z-20">
               <AvatarImage src={getAsset(selectedAvatar)} alt="Profile Picture " />

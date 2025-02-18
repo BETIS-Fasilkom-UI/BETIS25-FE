@@ -13,7 +13,7 @@ export const getSubmissionItemData = async (
   submissionId: string,
   userId: string
 ) => {
-  const token = cookies().get("token")?.value;
+  const token = (await cookies()).get("token")?.value;
   if (!token) {
     return null;
   }
@@ -48,7 +48,7 @@ export const getSubmissionItemData = async (
 };
 
 export const getSubmissionData = async (id: string) => {
-  const token = cookies().get("token")?.value;
+  const token = (await cookies()).get("token")?.value;
   if (!token) {
     return null;
   }

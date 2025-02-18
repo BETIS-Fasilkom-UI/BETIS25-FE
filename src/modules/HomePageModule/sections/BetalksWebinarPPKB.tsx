@@ -7,12 +7,15 @@ import Image from "next/image";
 import { Modal, ModalButton } from "@/components/ui/modal";
 import { useState } from "react";
 import { getAsset } from "@/lib/s3";
+import { useRouter } from "next/navigation";
 
 const BetalksWebinarPPKB = () => {
   // isRegisterOpen state as placeholder for needing login
   const [isRegisterOpen, setRegisterOpen] = useState(false);
   const [isBetalksDescOpen, setBetalksDescOpen] = useState(false);
   const [isWebinarppkbDescOpen, setWebinarppkbDescOpen] = useState(false);
+
+  const router = useRouter();
 
   return (
     <div className="flex flex-col w-full px-5 md:px-10 lg:px-20">
@@ -42,12 +45,14 @@ const BetalksWebinarPPKB = () => {
                 Daftar Sekarang
               </Button>
               <Button
-                disabled
                 className="flex-1 !py-3"
                 variant="secondary"
-                onClick={() => setBetalksDescOpen(true)}
+                disabled
+                onClick={() => {
+                  router.push("/betalks");
+                }}
               >
-                Description
+                Detail
               </Button>
               <Modal
                 title="OOPS!"
@@ -108,19 +113,19 @@ const BetalksWebinarPPKB = () => {
             </div>
             <div className="gap-3 flex flex-col xl:flex-row">
               <Button
-                disabled
                 className="flex-1 !py-3"
-                onClick={() => setRegisterOpen(true)}
+                disabled
               >
                 Daftar Sekarang
               </Button>
               <Button
-                disabled
                 className="flex-1 !py-3"
                 variant="secondary"
-                onClick={() => setBetalksDescOpen(true)}
+                onClick={() => {
+                  router.push("/ppkb");
+                }}
               >
-                Description
+                Detail
               </Button>
               <Modal
                 title="OOPS!"
