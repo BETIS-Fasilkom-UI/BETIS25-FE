@@ -1,13 +1,12 @@
-import React from "react";
-import { NextPage } from "next";
-import SubmissionItemModule from "@/modules/SubmissionItemModule";
-import { getUserData } from "@/hooks/user";
-import { redirect } from "next/navigation";
-import { getSubmissionData, getSubmissionItemData } from "@/hooks/sub";
 import NotFound from "@/app/not-found";
+import { getSubmissionData, getSubmissionItemData } from "@/hooks/sub";
+import { getUserData } from "@/hooks/user";
+import SubmissionItemModule from "@/modules/SubmissionItemModule";
+import { NextPage } from "next";
+import { redirect } from "next/navigation";
 
 const page: NextPage<{
-  params: { submission_id: string };
+  params: Promise<{ submission_id: string }>;
 }> = async props => {
   const params = await props.params;
   const user = await getUserData();
