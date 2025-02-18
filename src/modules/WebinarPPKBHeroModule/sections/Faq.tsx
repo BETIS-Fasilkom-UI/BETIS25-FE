@@ -69,7 +69,7 @@ const Faq = () => {
           </AccordionItem>
 
           {/* Question 5 */}
-          <AccordionItem value="item-4">
+          <AccordionItem value="item-5">
             <AccordionTrigger>
               Apakah akan terdapat sesi klinik essay PPKB 1 on 1?
             </AccordionTrigger>
