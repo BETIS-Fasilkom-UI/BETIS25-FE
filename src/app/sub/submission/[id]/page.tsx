@@ -7,7 +7,7 @@ import { getSubmissionData, getSubmissionItemData } from "@/hooks/sub";
 import NotFound from "@/app/not-found";
 
 const page: NextPage<{
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }> = async props => {
   const params = await props.params;
   const user = await getUserData();
