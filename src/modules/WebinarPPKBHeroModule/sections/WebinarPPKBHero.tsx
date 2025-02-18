@@ -1,11 +1,14 @@
+'use client'
 import CountdownHero from "@/components/elements/CountdownHero";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getAsset } from "@/lib/s3";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const WebinarPPKBHero = () => {
+  const router = useRouter();
   return (
     <Card className="flex flex-col overflow-hidden justify-center items-center bg-[#F8EBF3] bg-opacity-[20%] shadow-[5px_5px_20px_rgba(254,245,255,1),-5px_-5px_20px_rgba(254,245,255,1)] sm:shadow-[10px_10px_30px_rgba(254,245,255,1),-10px_-10px_30px_rgba(254,245,255,1)] md:shadow-[10px_10px_40px_rgba(254,245,255,1),-10px_-10px_40px_rgba(254,245,255,1)] w-full h-fit rounded-[51.64px] sm:rounded-[59.25px] lg:rounded-[69.25px] xl:rounded-[89.25px]">
       <CardTitle className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5">
@@ -29,14 +32,16 @@ export const WebinarPPKBHero = () => {
             dalam seleksi.
           </div>
         </div>
-        <Link href="http://ristek.link/RSVPPPKBBETIS25" target="_blank">
-          <Button
-            variant={"primary"}
-            className="max-md:-mt-5 max-md:w-full h-[39px] md:h-[43px] lg:h-[48px] text-xs md:text-t8 rounded-[16px] md:rounded-[14px] lg:rounded-5"
-          >
-            Register Here
-          </Button>
-        </Link>
+        <Button
+          variant={"primary"}
+          className="max-md:-mt-5 max-md:w-full h-[39px] md:h-[43px] lg:h-[48px] text-xs md:text-t8 rounded-[16px] md:rounded-[14px] lg:rounded-5"
+          onClick={() => {
+            router.push("http://ristek.link/RSVPPPKBBETIS25");
+          }}
+          disabled
+        >
+          Register Here
+        </Button>
         <div className="absolute max-md:hidden -z-20 sm:h-full md:h-full lg:h-5/6 xl:h-full left-0 sm:-bottom-[120px] md:-bottom-[110px] lg:-bottom-[68px] xl:-bottom-[95px] sm:aspect-[1/2] md:aspect-[5/8] lg:aspect-[4/5] xl:aspect-[7/9]">
           <Image
             alt="BG"

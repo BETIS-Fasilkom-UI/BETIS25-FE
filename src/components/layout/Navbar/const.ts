@@ -12,7 +12,7 @@ export const navData = [
   {
     title: "Betis-talk",
     href: "/betalks",
-    isAvailable: true
+    isAvailable: false
   },
   {
     title: "Webinar PPKB",

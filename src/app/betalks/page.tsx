@@ -1,7 +1,10 @@
 import BetalksModule from "@/modules/BetalksModule";
-import React from "react";
+import { redirect } from "next/navigation";
 
 const BetalksPage = async () => {
+  
+  redirect('/')
+
   return <BetalksModule />;
 };
 
