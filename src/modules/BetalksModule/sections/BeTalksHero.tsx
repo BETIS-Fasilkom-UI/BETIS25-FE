@@ -13,10 +13,31 @@ export const BeTalksHero = () => {
       </CardTitle>
       <CardContent className="w-[100%] sm:w-[80%] md:w-[80%] lg:w-[75%] xl:w-[63%] flex flex-col justify-center items-center gap-[35px]">
         <div className="flex flex-col gap-[32px]">
-          <CountdownHero
-            displayDate
-            targetDate={new Date("2025-03-15T13:00:00")}
-          />
+          <div className="relative w-full max-w-3xl mx-auto">
+            <CountdownHero
+              displayDate
+              targetDate={new Date("2025-03-15T13:00:00")}
+            />
+            <div className="absolute max-sm:hidden -z-20 h-[80px] sm:h-[150px] md:h-[160px] lg:h-[180px] xl:h-[190px] -left-[10px] md:-left-16 lg:-left-16 xl:-left-0 -top-[4px] sm:-top-[47px] md:-top-0 aspect-[17/10]">
+              <Image
+                alt="BG"
+                src={getAsset("/bocilatas.png")}
+                fill
+                sizes="none"
+                className="object-contain"
+              />
+            </div>
+
+            <div className="absolute -z-20 h-[80px] sm:h-[150px] md:h-[160px] lg:h-[180px] xl:h-[190px] -right-12 md:-right-14 lg:-right-16 xl:-right-0 bottom-4 md:-bottom-0 aspect-[17/10]">
+              <Image
+                alt="BG"
+                src={getAsset("/bocilbawah.png")}
+                fill
+                sizes="none"
+                className="object-contain"
+              />
+            </div>
+          </div>
           <div className="text-center text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg -mt-2 md:mt-0 xl:mt-5">
             Be-Talks adalah acara yang bertujuan untuk membangkitkan semangat
             belajar bagi peserta BETIS Fasilkom UI 2025 dan masyarakat umum agar
