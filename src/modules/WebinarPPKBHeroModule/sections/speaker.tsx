@@ -52,8 +52,8 @@ const Speaker = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4 lg:gap-20">
-                <div>
+              <div className="flex flex-col md:flex-row max-md:items-center gap-4 lg:gap-20">
+                <div className="flex flex-col items-center justify-center">
                   <div
                     className="relative w-[162px] h-[162px] lg:w-[524px] lg:h-[329px] rounded-xl"
                     style={{
