@@ -34,7 +34,6 @@ const Card = React.forwardRef<
 export default function Leaderboard() {
   const [selectedTryout, setSelectedTryout] = useState(""); // Default: All Tryout
   const { leaderboard, leaderboards, currentUser, loading, error, refetch } = useLeaderboard(selectedTryout); // Fetch leaderboard data
-  console.log(leaderboard);
   
   if (error) {
     return <div className="p-4 text-center text-red-500">{error}</div>;
