@@ -16,15 +16,16 @@ export const LeaderboardHeroDesktop = ({ first, second, third }: LeaderboardHero
                     <ThirdAvatar {...third} />
                 </div>
             </div>
-            <div className="md:max-[1170px]:flex-1 flex flex-col flex-wrap max-md:hidden min-[1170px]:hidden w-screen justify-center items-center h-full gap-[25px]">
-                <div className="w-[380px] h-[650px] flex justify-center">
+
+            <div className="md:max-[1170px]:flex-1 flex flex-col flex-wrap max-md:hidden min-[1170px]:hidden w-screen mx-auto justify-center items-center gap-[25px]">
+                <div className="w-[380px] h-[650px] flex">
                     <FirstAvatar {...first} />
                 </div>
-                <div className="w-[380px] h-[650px] flex justify-center">
-                    <ThirdAvatar {...third} />
-                </div>
-                <div className="w-[380px] h-[650px] flex justify-center">
+                <div className="w-[380px] h-[550px] flex">
                     <SecondAvatar {...second} />
+                </div>
+                <div className="w-[380px] h-[550px] flex">
+                    <ThirdAvatar {...third} />
                 </div>
             </div>
         </>
@@ -61,7 +62,7 @@ export const LeaderboardHeroModule = (props: LeaderboardHeroProps) => {
 
 export const SamplePage = () => {
     const samplePodium: LeaderboardHeroProps = {
-        first: {name:"NAOMI SHAKILA ISBONO", institute:"SMA Labschool Cirendeu", score:750, avatarSrc:"/Pp-girl2.png"},
+        first: {name:"NAOMI SHAKILA ISBONO", institute:"SMA Labschool Cirendeu", score:750, avatarSrc:""},
         second: {name:"NAOMI SHAKILA ISBONO", institute:"SMA Labschool Cirendeu", score:750, avatarSrc:"/Pp-girl2.png"},
         third: {name:"NAOMI SHAKILA ISBONO", institute:"SMA Labschool Cirendeu", score:750, avatarSrc:"/Pp-girl2.png"}
     }; 
