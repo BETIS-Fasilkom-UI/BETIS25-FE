@@ -36,7 +36,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
       if (!icon) return null;
       
       if (variant === "tertiary") {
-        return React.cloneElement(icon as React.ReactElement, {
+        return React.cloneElement(icon as React.ReactElement<any>, {
           className: cn(
             "mr-3 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:w-6",
           ),
@@ -48,7 +48,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
         });
       }
 
-      return React.cloneElement(icon as React.ReactElement, {
+      return React.cloneElement(icon as React.ReactElement<any>, {
         className: cn(
           "mr-3 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:w-6"
         )

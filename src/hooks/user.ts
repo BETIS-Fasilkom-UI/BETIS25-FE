@@ -5,7 +5,7 @@ import { GetUserDataResponse, User, UserJWT } from "./interface";
 import { deleteCookie } from "cookies-next";
 
 export const getUserService = async () => {
-  const token = cookies().get("token")?.value;
+  const token = (await cookies()).get("token")?.value;
 
   if (!token) {
     return null;
@@ -27,7 +27,7 @@ export const getUserService = async () => {
 };
 
 export const getUserData = async () => {
-  const token = cookies().get("token")?.value;
+  const token = (await cookies()).get("token")?.value;
   if (!token) {
     return null;
   }

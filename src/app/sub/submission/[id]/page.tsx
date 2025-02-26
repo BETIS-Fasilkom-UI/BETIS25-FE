@@ -8,7 +8,8 @@ import NotFound from "@/app/not-found";
 
 const page: NextPage<{
   params: { id: string };
-}> = async ({ params }) => {
+}> = async props => {
+  const params = await props.params;
   const user = await getUserData();
   if (!user) {
     redirect("/login");
@@ -19,7 +20,7 @@ const page: NextPage<{
     <NotFound />
     return null
   }
-  
+
   const submissionItemData = await getSubmissionItemData(params.id, user.id);
 
   return (
