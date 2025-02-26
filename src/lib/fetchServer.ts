@@ -2,7 +2,7 @@ import { ApiResponse } from "@/hooks/interface";
 import { cookies } from "next/headers";
 
 export default async function fetchServer<T>(endpoint: string, init?: RequestInit): Promise<ApiResponse<T | null>> {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     // Remove leading slash
     const cleanedEndpoint = endpoint.replace(/^\//, '');

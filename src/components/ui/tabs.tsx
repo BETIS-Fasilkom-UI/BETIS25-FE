@@ -142,7 +142,7 @@ const TabsComponent = React.forwardRef<
     const renderIcon = () => {
       if (!icon || !React.isValidElement(icon)) return null;
 
-      return React.cloneElement(icon as React.ReactElement, {
+      return React.cloneElement(icon as React.ReactElement<any>, {
         className: "mr-3 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:w-6",
       });
     };

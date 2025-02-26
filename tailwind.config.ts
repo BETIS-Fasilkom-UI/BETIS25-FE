@@ -19,6 +19,7 @@ const config: Config = {
   			],
   			openSans: [
   				'var(--font-open-sans)'
+        playfairDisplay: ["var(--font-playfair-display)"],
   			]
   		},
   		fontSize: {
