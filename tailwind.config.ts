@@ -14,9 +14,9 @@ const config: Config = {
         raleway: ["var(--font-raleway)"],
         cinzel: ["var(--font-cinzel)"],
         openSans: ["var(--font-open-sans)"],
+
         playfairDisplay: ["var(--font-playfair-display)"],
       },
-
       fontSize: {
         t1: "60px",
         t2: "48px",
@@ -43,8 +43,8 @@ const config: Config = {
           "linear-gradient(180deg, rgba(41,15,56,255) 0%, rgba(34, 12, 49, 0.8) 70%, rgba(125,40,130,255) 100%)",
       },
       colors: {
-        background: "linear-gradient(180deg, #692597 0%, #220C31 100%)",
-        foreground: "#FEF5FF",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         "magenta-50": "#f8ebf3",
         "magenta-100": "#e9c1d9",
         "magenta-150": "#eb92c9",
@@ -126,6 +126,44 @@ const config: Config = {
         "neutral-700": "#919191",
         "neutral-800": "#707070",
         "neutral-900": "#565656",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -139,19 +177,37 @@ const config: Config = {
       },
       keyframes: {
         swing: {
-          "0%": { transform: "rotate(-10deg)" },
-          "30%": { transform: "rotate(10deg)" },
-          "50%": { transform: "rotate(-10deg)" },
-          "80%": { transform: "rotate(10deg)" },
-          "100%": { transform: "rotate(-10deg)" },
+          "0%": {
+            transform: "rotate(-10deg)",
+          },
+          "30%": {
+            transform: "rotate(10deg)",
+          },
+          "50%": {
+            transform: "rotate(-10deg)",
+          },
+          "80%": {
+            transform: "rotate(10deg)",
+          },
+          "100%": {
+            transform: "rotate(-10deg)",
+          },
         },
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
       },
     },
