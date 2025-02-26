@@ -1,3 +1,4 @@
+"use server"
 import { cookies, headers } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
 import { GetUserDataResponse, User, UserJWT } from "./interface";
