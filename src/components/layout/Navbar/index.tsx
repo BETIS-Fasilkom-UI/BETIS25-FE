@@ -84,6 +84,15 @@ export const Navbar = ({ user }: { user: User | null }) => {
                   {item.title}
                 </Link>
               ))}
+              <Link
+                href={"https://tryout.betis.id"}
+                className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${true
+                    ? "cursor-pointer"
+                    : "cursor-not-allowed text-white/30"
+                  }`}
+              >
+                Tryout
+              </Link>
             </div>
             {isAuthenticated ? (
               <div className="flex items-center gap-6">
@@ -147,6 +156,20 @@ export const Navbar = ({ user }: { user: User | null }) => {
                   </Link>
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 + 7 * 0.1, type: "tween" }}
+                className="px-5 py-[15px]"
+              >
+                <Link
+                  href={'https://tryout.betis.id'}
+                  className="cursor-pointer"
+                >
+                  Tryout
+                </Link>
+              </motion.div>
               <Link
                 href={isAuthenticated ? "#" : "/login"}
                 onClick={isAuthenticated ? Logout : () => {}}
