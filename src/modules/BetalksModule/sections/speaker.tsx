@@ -52,10 +52,10 @@ const Speaker = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4 lg:gap-20">
-                <div>
+              <div className="flex flex-col xl:flex-row max-md:items-center gap-4 lg:gap-20">
+                <div className="flex flex-col items-center justify-center">
                   <div
-                    className="relative w-[162px] h-[162px] lg:w-[524px] lg:h-[329px] rounded-xl"
+                    className="relative w-[162px] h-[162px] lg:w-[524px] lg:h-[329px] xl:h-full rounded-xl"
                     style={{
                       background:
                         "linear-gradient(180deg, rgba(183, 55, 134, 0.1) 10%, rgba(183, 55, 134, 0.3) 90%)",
@@ -63,9 +63,9 @@ const Speaker = () => {
                   >
                     <Image
                       alt={SPEAKERS[0].name}
-                      src={getAsset(SPEAKERS[0].image)}
+                      src={SPEAKERS[0].image}
                       fill
-                      className="object-contain"
+                      className="object-contain rounded-xl"
                     />
                   </div>
 
@@ -368,13 +368,6 @@ const Speaker = () => {
           }`}
         />
 
-        <Image
-          alt="Semak"
-          src={getAsset("/Semak.png")}
-          width={200}
-          height={183}
-          className="max-lg:hidden absolute bottom-[-1rem] left-[-2rem]"
-        />
       </div>
     </section>
   );

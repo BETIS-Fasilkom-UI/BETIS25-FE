@@ -12,12 +12,12 @@ export const navData = [
   {
     title: "Betis-talk",
     href: "/betalks",
-    isAvailable: false
+    isAvailable: true
   },
   {
     title: "Webinar PPKB",
     href: "/ppkb",
-    isAvailable: true
+    isAvailable: false
   },
   {
     title: "Leaderboard",
