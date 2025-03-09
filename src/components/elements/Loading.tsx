@@ -1,12 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import { getAsset } from "@/lib/s3";
+import React from 'react';
+import Image from 'next/image';
 
 export const Loading = () => {
   return (
     <main className="flex flex-col gap-10 items-center justify-center h-screen">
       <Image
-        src={getAsset("/Load.png")}
+        src={'/s3/Load.png'}
         alt="Logo"
         width={180}
         height={158}

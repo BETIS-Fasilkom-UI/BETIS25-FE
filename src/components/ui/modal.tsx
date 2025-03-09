@@ -1,28 +1,28 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { LucideProps, X } from 'lucide-react'
-import { Button, ButtonProps } from './button'
-import { twMerge } from 'tailwind-merge'
-import { ScrollArea } from './scroll-area'
+import * as React from 'react';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { LucideProps, X } from 'lucide-react';
+import { Button, ButtonProps } from './button';
+import { twMerge } from 'tailwind-merge';
+import { ScrollArea } from './scroll-area';
 
 type IconType = React.ForwardRefExoticComponent<
   Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
->
+>;
 
-type ButtonType = React.ReactNode
+type ButtonType = React.ReactNode;
 
-type TriggerType = React.ReactNode
+type TriggerType = React.ReactNode;
 
 export interface ModalProps
   extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root> {
-  trigger?: TriggerType
-  icon?: IconType
-  title: string
-  buttons?: [ButtonType] | [ButtonType, ButtonType]
-  hideClose?: boolean
-  disableClickOutside?: boolean
+  trigger?: TriggerType;
+  icon?: IconType;
+  title: string;
+  buttons?: [ButtonType] | [ButtonType, ButtonType];
+  hideClose?: boolean;
+  disableClickOutside?: boolean;
 }
 
 const Modal = ({
@@ -88,25 +88,22 @@ const Modal = ({
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
-  )
-}
+  );
+};
 
 interface ModalButtonProps extends ButtonProps {
-  closeOnClick?: boolean
+  closeOnClick?: boolean;
 }
 
 const ModalButton = React.forwardRef<HTMLButtonElement, ModalButtonProps>(
   ({ closeOnClick, ...props }: ModalButtonProps, ref) => {
-    const el = <Button {...props} ref={ref} />
+    const el = <Button {...props} ref={ref} />;
     return closeOnClick ? (
       <DialogPrimitive.Close asChild>{el}</DialogPrimitive.Close>
     ) : (
       el
-    )
+    );
   }
-)
+);
 
-export {
-  Modal,
-  ModalButton,
-}
+export { Modal, ModalButton };

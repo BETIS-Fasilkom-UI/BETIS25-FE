@@ -1,6 +1,6 @@
-'use client'
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+'use client';
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 export function Greet(props: {
   linkPrimary: string;
@@ -24,7 +24,9 @@ export function Greet(props: {
           onClick={() => replace(props.linkPrimary)}
           className="w-full"
           disabled
-        >Daftar Sekarang</Button>
+        >
+          Daftar Sekarang
+        </Button>
       </div>
     </div>
   );

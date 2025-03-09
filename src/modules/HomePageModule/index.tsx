@@ -1,13 +1,13 @@
-import { ContactPerson } from "@/components/elements/ContactPerson";
-import { betisCarousel, betisCarouselOptions } from "./const";
-import AboutBetis from "./sections/AboutBetis";
-import CountdownSNBT from "./sections/CountdownSNBT";
-import DocumentationCarousel from "./sections/DocumentationCarousel";
-import Faq from "./sections/Faq";
-import Hero from "./sections/hero";
-import Timeline from "./sections/Timeline";
-import Vismis from "./sections/VismisModule/Vismis";
-import BetalksWebinarPPKB from "./sections/BetalksWebinarPPKB";
+import { ContactPerson } from '@/components/elements/ContactPerson';
+import { betisCarousel, betisCarouselOptions } from './const';
+import AboutBetis from './sections/AboutBetis';
+import CountdownSNBT from './sections/CountdownSNBT';
+import DocumentationCarousel from './sections/DocumentationCarousel';
+import Faq from './sections/Faq';
+import Hero from './sections/hero';
+import Timeline from './sections/Timeline';
+import Vismis from './sections/VismisModule/Vismis';
+import BetalksWebinarPPKB from './sections/BetalksWebinarPPKB';
 
 export const HomePageModule = () => {
   return (

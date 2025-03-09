@@ -1,13 +1,12 @@
-import React from "react";
-import Image from "next/image";
-import { getAsset } from "@/lib/s3";
+import React from 'react';
+import Image from 'next/image';
 
 export const ContactPerson = () => {
   return (
     <div className="bg-[#1E0D2599] flex flex-col -z-10 relative justify-center items-center py-20 md:py-[54px] w-full max-md:px-4 md:px-8 rounded-[40px]">
       <div className="absolute w-full h-full -z-10 max-md:hidden">
         <Image
-          src={getAsset("/ContactPersonBg.png")}
+          src={'/s3/ContactPersonBg.png'}
           fill
           alt=""
           sizes="none"
@@ -16,7 +15,7 @@ export const ContactPerson = () => {
       </div>
       <div className="absolute w-full h-full -z-10 md:hidden">
         <Image
-          src={getAsset("/ContactPersonBgMob.png")}
+          src={'/s3/ContactPersonBgMob.png'}
           fill
           sizes="none"
           alt=""
@@ -25,7 +24,7 @@ export const ContactPerson = () => {
       </div>
       <div className="absolute w-[100px] h-[180px] z-10 top-0 left-0 md:top-10 md:left-[10%] lg:left-[20%]">
         <Image
-          src={getAsset("/ContactPersonLamp.png")}
+          src={'/s3/ContactPersonLamp.png'}
           fill
           sizes="none"
           alt=""
@@ -34,7 +33,7 @@ export const ContactPerson = () => {
       </div>
       <div className="absolute w-[120px] h-[100px] z-10 top-0 right-0 md:hidden">
         <Image
-          src={getAsset("/ContactPersonBurung.png")}
+          src={'/s3/ContactPersonBurung.png'}
           fill
           sizes="none"
           alt=""
@@ -55,7 +54,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={getAsset("/social/LINE.svg")}
+                src={'/s3/social/LINE.svg'}
                 alt="line"
                 fill
                 sizes="none"
@@ -67,7 +66,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={getAsset("/social/Whatsapp.svg")}
+                src={'/s3/social/Whatsapp.svg'}
                 alt="wa"
                 fill
                 sizes="none"
@@ -84,7 +83,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={getAsset("/social/LINE.svg")}
+                src={'/s3/social/LINE.svg'}
                 alt="line"
                 fill
                 sizes="none"
@@ -96,7 +95,7 @@ export const ContactPerson = () => {
           <div className="flex gap-3 justify-center items-center text-t8 lg:text-t6">
             <div className="lg:w-[32px] lg:h-[32px] w-[20px] h-[20px] relative">
               <Image
-                src={getAsset("/social/Whatsapp.svg")}
+                src={'/s3/social/Whatsapp.svg'}
                 alt="wa"
                 fill
                 sizes="none"

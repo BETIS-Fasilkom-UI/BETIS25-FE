@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils";
-import { EventEntry } from "../interface";
+import { cn } from '@/lib/utils';
+import { EventEntry } from '../interface';
 
 export function EventCard({
-  className = "",
+  className = '',
   event,
 }: {
   className?: string;

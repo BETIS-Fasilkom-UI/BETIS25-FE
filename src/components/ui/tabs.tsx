@@ -1,8 +1,8 @@
-import * as React from "react";
-import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { ArrowLeft, ArrowRight, ArrowDown, ArrowUp } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useEffect } from "react";
+import { cn } from '@/lib/utils';
+import * as TabsPrimitive from '@radix-ui/react-tabs';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp } from 'lucide-react';
+import * as React from 'react';
+import { useEffect } from 'react';
 
 const Tabs = TabsPrimitive.Root;
 
@@ -10,7 +10,7 @@ const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.List ref={ref} className={cn("flex", className)} {...props} />
+  <TabsPrimitive.List ref={ref} className={cn('flex', className)} {...props} />
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
 
@@ -18,12 +18,11 @@ const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger 
-    ref={ref} 
-    className={cn(
-      "flex-1",
-      className)} 
-    {...props} />
+  <TabsPrimitive.Trigger
+    ref={ref}
+    className={cn('flex-1', className)}
+    {...props}
+  />
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
@@ -33,7 +32,7 @@ const TabsContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
     ref={ref}
-    className={cn("p-4", className)}
+    className={cn('p-4', className)}
     {...props}
   />
 ));
@@ -45,7 +44,7 @@ interface TabItem {
 }
 
 interface TabsProps {
-  orientation?: "horizontal" | "vertical";
+  orientation?: 'horizontal' | 'vertical';
   backgroundColor?: boolean;
   showIcon?: boolean;
   showNumber?: boolean;
@@ -63,7 +62,7 @@ const TabsComponent = React.forwardRef<
 >(
   (
     {
-      orientation = "horizontal",
+      orientation = 'horizontal',
       backgroundColor = true,
       showIcon = false,
       showNumber = false,
@@ -72,7 +71,7 @@ const TabsComponent = React.forwardRef<
       tabs = [],
       initialTab = -1,
       page,
-      setPage
+      setPage,
     },
     ref
   ) => {
@@ -92,68 +91,67 @@ const TabsComponent = React.forwardRef<
 
     const tabWithBackgroundStyles = (isActive: boolean) =>
       cn(
-        "relative group px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base flex-1",
-        "rounded-xl overflow-hidden",
+        'relative group px-3 py-3 lg:px-8 lg:py-4 -transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base flex-1',
+        'rounded-xl overflow-hidden',
         isActive
-          ? "bg-tosca-light-active text-tosca-tabs-active"
-          : "text-white hover:bg-tosca-light-active hover:text-tosca-tabs-active"
-        
+          ? 'bg-tosca-light-active text-tosca-tabs-active'
+          : 'text-white hover:bg-tosca-light-active hover:text-tosca-tabs-active'
       );
 
     const tabWithoutBackgroundStyles = (isActive: boolean) =>
       cn(
-        "px-3 py-3 lg:px-8 lg:py-4 transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base",
+        'px-3 py-3 lg:px-8 lg:py-4 transition-colors duration-300 cursor-pointer rounded-xl font-raleway font-bold text-xs md:text-sm lg:text-base',
         isActive
-          ? "bg-tosca-light-active text-blue-tabs-active"
-          : "text-gray-600 hover:bg-tosca-light-active hover:text-blue-tabs-active"
+          ? 'bg-tosca-light-active text-blue-tabs-active'
+          : 'text-gray-600 hover:bg-tosca-light-active hover:text-blue-tabs-active'
       );
 
     const numberWithBackgroundStyles = (isActive: boolean) =>
       cn(
-        "mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold",
+        'mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold',
         isActive
-          ? "bg-[#9fc7d2] text-tosca-tabs-active"
-          : "bg-[#669aa2] text-white",
-        "hover:bg-[#9fc7d2] hover:text-tosca-tabs-active"
+          ? 'bg-[#9fc7d2] text-tosca-tabs-active'
+          : 'bg-[#669aa2] text-white',
+        'hover:bg-[#9fc7d2] hover:text-tosca-tabs-active'
       );
 
     const numberWithoutBackgroundStyles = (isActive: boolean) =>
       cn(
-        "mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold",
+        'mr-2 px-2 py-1 rounded-full text-xs md:text-sm lg:text-base font-bold',
         isActive
-          ? "bg-[#94abc3] text-blue-tabs-active"
-          : "bg-gray-600 bg-opacity-40 text-gray-600"
+          ? 'bg-[#94abc3] text-blue-tabs-active'
+          : 'bg-gray-600 bg-opacity-40 text-gray-600'
       );
 
     const arrowVerticalStyles = (isTop: boolean, hasBackground: boolean) =>
       cn(
-        "absolute left-6 px-2 py-2 rounded-full",
-        hasBackground ? "bg-[#669aa2]" : "bg-gray-600 bg-opacity-40",
-        isTop ? "top-4 mb-4" : "bottom-4 mt-4"
+        'absolute left-6 px-2 py-2 rounded-full',
+        hasBackground ? 'bg-[#669aa2]' : 'bg-gray-600 bg-opacity-40',
+        isTop ? 'top-4 mb-4' : 'bottom-4 mt-4'
       );
 
     const arrowHorizontalStyles = (isLeft: boolean, hasBackground: boolean) =>
       cn(
-        "absolute px-2 py-2 rounded-full",
-        hasBackground ? "bg-[#669aa2]" : "bg-gray-600 bg-opacity-40",
-        isLeft ? "left-4 ml-4" : "right-4 mr-4"
+        'absolute px-2 py-2 rounded-full',
+        hasBackground ? 'bg-[#669aa2]' : 'bg-gray-600 bg-opacity-40',
+        isLeft ? 'left-4 ml-4' : 'right-4 mr-4'
       );
 
     const renderIcon = () => {
       if (!icon || !React.isValidElement(icon)) return null;
 
       return React.cloneElement(icon as React.ReactElement<any>, {
-        className: "mr-3 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:w-6",
+        className: 'mr-3 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:w-6',
       });
     };
 
     const renderTabs = () => (
       <div
         className={cn(
-          "flex items-center p-2 rounded-2xl justify-center",
+          'flex items-center p-2 rounded-2xl justify-center',
           backgroundColor &&
-            "bg-gradient-to-b from-tosca-normal-active to-tosca-pagination-darker",
-          orientation === "vertical" && activeTab !== -1 ? "w-1/3" : "w-full"
+            'bg-gradient-to-b from-tosca-normal-active to-tosca-pagination-darker',
+          orientation === 'vertical' && activeTab !== -1 ? 'w-1/3' : 'w-full'
         )}
       >
         {showNumber && (
@@ -161,12 +159,12 @@ const TabsComponent = React.forwardRef<
             {showArrow && (
               <div
                 className={cn(
-                  orientation === "vertical"
+                  orientation === 'vertical'
                     ? arrowVerticalStyles(true, backgroundColor)
                     : arrowHorizontalStyles(true, backgroundColor)
                 )}
               >
-                {orientation === "vertical" ? (
+                {orientation === 'vertical' ? (
                   <ArrowUp
                     size={20}
                     strokeWidth={3}
@@ -194,10 +192,10 @@ const TabsComponent = React.forwardRef<
 
             <TabsList
               className={cn(
-                "flex w-full",
-                orientation === "vertical"
-                  ? "flex-col space-y-3"
-                  : "flex-row space-x-4"
+                'flex w-full',
+                orientation === 'vertical'
+                  ? 'flex-col space-y-3'
+                  : 'flex-row space-x-4'
               )}
             >
               {tabs.map((tab, index) => (
@@ -227,12 +225,12 @@ const TabsComponent = React.forwardRef<
             {showArrow && (
               <div
                 className={cn(
-                  orientation === "vertical"
+                  orientation === 'vertical'
                     ? arrowVerticalStyles(false, backgroundColor)
                     : arrowHorizontalStyles(false, backgroundColor)
                 )}
               >
-                {orientation === "vertical" ? (
+                {orientation === 'vertical' ? (
                   <ArrowDown
                     size={20}
                     strokeWidth={3}
@@ -257,17 +255,16 @@ const TabsComponent = React.forwardRef<
                 )}
               </div>
             )}
-            
           </div>
         )}
 
         {!showNumber && showIcon && (
           <TabsList
             className={cn(
-              "flex",
-              orientation === "vertical"
-                ? "flex-col space-y-3"
-                : "flex-row space-x-4"
+              'flex',
+              orientation === 'vertical'
+                ? 'flex-col space-y-3'
+                : 'flex-row space-x-4'
             )}
           >
             {tabs.map((tab, index) => (
@@ -292,10 +289,10 @@ const TabsComponent = React.forwardRef<
         {!showNumber && !showIcon && (
           <TabsList
             className={cn(
-              "flex",
-              orientation === "vertical"
-                ? "flex-col space-y-3"
-                : "flex-row space-x-4"
+              'flex',
+              orientation === 'vertical'
+                ? 'flex-col space-y-3'
+                : 'flex-row space-x-4'
             )}
           >
             {tabs.map((tab, index) => (
@@ -320,19 +317,19 @@ const TabsComponent = React.forwardRef<
       <div
         ref={tabsRef}
         className={cn(
-          orientation === "vertical"
+          orientation === 'vertical'
             ? activeTab !== -1
-              ? "w-full"
-              : "inline-flex w-auto"
-            : "w-full"
+              ? 'w-full'
+              : 'inline-flex w-auto'
+            : 'w-full'
         )}
       >
         <Tabs
           ref={ref}
           className={cn(
-            "relative flex",
-            orientation === "vertical" ? "flex-row" : "flex-col",
-            showNumber && (orientation === "vertical" ? "" : "")
+            'relative flex',
+            orientation === 'vertical' ? 'flex-row' : 'flex-col',
+            showNumber && (orientation === 'vertical' ? '' : '')
           )}
           value={activeTab.toString()}
           onValueChange={(value) => handleTabClick(Number(value))}
@@ -342,11 +339,11 @@ const TabsComponent = React.forwardRef<
           {activeTab !== -1 && (
             <div
               className={cn(
-                "transition-all duration-300",
-                orientation === "vertical"
-                  ? "w-full text-sm"
-                  : "w-full text-sm",
-                !backgroundColor && "text-gray-500"
+                'transition-all duration-300',
+                orientation === 'vertical'
+                  ? 'w-full text-sm'
+                  : 'w-full text-sm',
+                !backgroundColor && 'text-gray-500'
               )}
             >
               {tabs.map((tab, index) => (
@@ -361,6 +358,6 @@ const TabsComponent = React.forwardRef<
     );
   }
 );
-TabsComponent.displayName = "TabsComponent";
+TabsComponent.displayName = 'TabsComponent';
 
-export { Tabs, TabsList, TabsTrigger, TabsContent, TabsComponent };
+export { Tabs, TabsComponent, TabsContent, TabsList, TabsTrigger };

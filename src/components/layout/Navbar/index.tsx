@@ -1,31 +1,31 @@
-"use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/sonner";
-import { User } from "@/hooks/interface";
-import { getAsset } from "@/lib/s3";
-import { cn } from "@/lib/utils";
-import { getCookie, setCookie } from "cookies-next";
-import { AnimatePresence, motion } from "framer-motion";
-import { AlignJustify } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { navData } from "./const";
+'use client';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/sonner';
+import { User } from '@/hooks/interface';
+
+import { cn } from '@/lib/utils';
+import { getCookie, setCookie } from 'cookies-next';
+import { AnimatePresence, motion } from 'framer-motion';
+import { AlignJustify } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { navData } from './const';
 
 export const Navbar = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
   const isAuthenticated = user !== null;
   const avatarOptions = [
-    "/Pp-girl1.png",
-    "/Pp-girl2.png",
-    "/Pp-boy1.png",
-    "/Pp-boy2.png",
+    '/Pp-girl1.png',
+    '/Pp-girl2.png',
+    '/Pp-boy1.png',
+    '/Pp-boy2.png',
   ];
 
   const Logout = async () => {
     if (isAuthenticated) {
-      const token = getCookie("token");
+      const token = getCookie('token');
       const API_URL = process.env.NEXT_PUBLIC_API_URL;
       if (token) {
         await fetch(`${API_URL}auth/logout`, {
@@ -33,10 +33,10 @@ export const Navbar = ({ user }: { user: User | null }) => {
             Authorization: `Bearer ${token}`,
           },
         }).then(() => {
-          setCookie("token", "", {
+          setCookie('token', '', {
             expires: new Date(0),
           });
-          toast.success("Logout success");
+          toast.success('Logout success');
           window.location.reload();
         });
       }
@@ -46,19 +46,19 @@ export const Navbar = ({ user }: { user: User | null }) => {
     <>
       <nav
         className={cn(
-          "z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full max-w-[1920px]"
+          'z-[1000] shadow-lg backdrop-blur-lg fixed top-0 w-full max-w-[1920px]'
         )}
       >
         <div
           className={cn(
-            "flex items-center justify-between max-md:px-4 px-7 py-4 md:py-5 bg-[#481e58a6]",
-            isAuthenticated ? "xl:px-14" : "xl:px-8"
+            'flex items-center justify-between max-md:px-4 px-7 py-4 md:py-5 bg-[#481e58a6]',
+            isAuthenticated ? 'xl:px-14' : 'xl:px-8'
           )}
         >
-          <Link href={"/"} className="flex items-center justify-center gap-7">
+          <Link href={'/'} className="flex items-center justify-center gap-7">
             <div className="w-[40px] md:w-[52px] h-[36px] md:h-[48px] relative">
               <Image
-                src={getAsset("/Footer.png")}
+                src={'/s3/Footer.png'}
                 fill
                 sizes="none"
                 className="object-contain"
@@ -74,35 +74,38 @@ export const Navbar = ({ user }: { user: User | null }) => {
               {navData.map((item, index) => (
                 <Link
                   key={index}
-                  href={item.isAvailable ? item.href : "#"}
+                  href={item.isAvailable ? item.href : '#'}
                   className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${
                     item.isAvailable
-                      ? "cursor-pointer"
-                      : "cursor-not-allowed text-white/30"
+                      ? 'cursor-pointer'
+                      : 'cursor-not-allowed text-white/30'
                   }`}
                 >
                   {item.title}
                 </Link>
               ))}
               <Link
-                href={"https://tryout.betis.id"}
-                className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${true
-                    ? "cursor-pointer"
-                    : "cursor-not-allowed text-white/30"
-                  }`}
+                href={'https://tryout.betis.id'}
+                className={`text-white lg:text-t8 xl:text-t7 text-center font-semibold font-raleway ${
+                  true ? 'cursor-pointer' : 'cursor-not-allowed text-white/30'
+                }`}
               >
                 Tryout
               </Link>
             </div>
             {isAuthenticated ? (
               <div className="flex items-center gap-6">
-                <Button onClick={Logout} variant="destructive" className="max-h-[50px]">
+                <Button
+                  onClick={Logout}
+                  variant="destructive"
+                  className="max-h-[50px]"
+                >
                   Logout
                 </Button>
-                <Link href={"/profile"}>
+                <Link href={'/profile'}>
                   <Avatar>
                     <AvatarImage
-                      src={getAsset(avatarOptions[user.avatar])}
+                      src={avatarOptions[user.avatar]}
                       alt="profile"
                     />
                     <AvatarFallback>CN</AvatarFallback>
@@ -124,32 +127,32 @@ export const Navbar = ({ user }: { user: User | null }) => {
           {open && (
             <motion.div
               initial={{ height: 0 }}
-              animate={{ height: "auto" }}
+              animate={{ height: 'auto' }}
               exit={{ height: 0 }}
               className="flex flex-col bg-[#481e58a6] justify-start text-[#FEF5FF] text-t7 lg:hidden"
             >
               {[
                 ...navData,
-                { title: "Profile", href: "/profile", isAvailable: false },
+                { title: 'Profile', href: '/profile', isAvailable: false },
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 + index * 0.1, type: "tween" }}
+                  transition={{ duration: 0.3 + index * 0.1, type: 'tween' }}
                   className="px-5 py-[15px]"
                 >
                   <Link
                     href={
                       item.isAvailable || (index === 4 && isAuthenticated)
                         ? item.href
-                        : "#"
+                        : '#'
                     }
                     className={`w-fit ${
                       item.isAvailable || (index === 4 && isAuthenticated)
-                        ? "cursor-pointer"
-                        : "cursor-not-allowed text-white/30"
+                        ? 'cursor-pointer'
+                        : 'cursor-not-allowed text-white/30'
                     }`}
                   >
                     {item.title}
@@ -160,7 +163,7 @@ export const Navbar = ({ user }: { user: User | null }) => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 + 7 * 0.1, type: "tween" }}
+                transition={{ duration: 0.3 + 7 * 0.1, type: 'tween' }}
                 className="px-5 py-[15px]"
               >
                 <Link
@@ -171,7 +174,7 @@ export const Navbar = ({ user }: { user: User | null }) => {
                 </Link>
               </motion.div>
               <Link
-                href={isAuthenticated ? "#" : "/login"}
+                href={isAuthenticated ? '#' : '/login'}
                 onClick={isAuthenticated ? Logout : () => {}}
               >
                 <motion.div
@@ -180,13 +183,13 @@ export const Navbar = ({ user }: { user: User | null }) => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.9 }}
                   className={cn(
-                    "font-bold px-5 py-[15px] rounded-b-[20px]",
+                    'font-bold px-5 py-[15px] rounded-b-[20px]',
                     isAuthenticated
-                      ? "bg-magenta-800"
-                      : "bg-gradient-to-b from-magenta-500 to-magenta-button"
+                      ? 'bg-magenta-800'
+                      : 'bg-gradient-to-b from-magenta-500 to-magenta-button'
                   )}
                 >
-                  {isAuthenticated ? "Logout" : "Login"}
+                  {isAuthenticated ? 'Logout' : 'Login'}
                 </motion.div>
               </Link>
             </motion.div>

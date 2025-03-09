@@ -1,4 +1,4 @@
-import BetalksModule from "@/modules/BetalksModule";
+import BetalksModule from '@/modules/BetalksModule';
 
 const BetalksPage = async () => {
   return <BetalksModule />;

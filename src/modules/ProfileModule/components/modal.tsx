@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { LucideProps, X } from "lucide-react";
-import { Button, ButtonProps } from "@/components/ui/button";
-import { twMerge } from "tailwind-merge";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button, ButtonProps } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { LucideProps, X } from 'lucide-react';
+import * as React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type IconType = React.ForwardRefExoticComponent<
-  Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
+  Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
 >;
 
 type ButtonType = React.ReactNode;
@@ -23,7 +23,6 @@ export interface ModalProps
   buttons?: [ButtonType] | [ButtonType, ButtonType];
   hideClose?: boolean;
   disableClickOutside?: boolean;
-
 }
 
 const Modal = ({
@@ -45,17 +44,17 @@ const Modal = ({
           onInteractOutside={(e) => disableClickOutside && e.preventDefault()}
           onEscapeKeyDown={(e) => disableClickOutside && e.preventDefault()}
           className={twMerge(
-            "bg-[#f8f8f8] fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-4 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-3xl",
-            "py-6 sm:py-8 text-[#B73786]",
-            "w-[90vw] max-w-xl md:max-w-xl flex flex-col justify-center items-center border-none",
+            'bg-[#f8f8f8] fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-4 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-3xl',
+            'py-6 sm:py-8 text-[#B73786]',
+            'w-[90vw] max-w-xl md:max-w-xl flex flex-col justify-center items-center border-none'
           )}
         >
           <ScrollArea className="max-h-96">
             <div
               className={twMerge(
-                "flex gap-y-4 gap-x-8 mt-2",
-                "md:flex-row md:items-center md:justify-center md:text-left",
-                "flex-col items-center text-center justify-center"
+                'flex gap-y-4 gap-x-8 mt-2',
+                'md:flex-row md:items-center md:justify-center md:text-left',
+                'flex-col items-center text-center justify-center'
               )}
             >
               <div>{Icon && <Icon size="4rem" />}</div>
@@ -78,8 +77,8 @@ const Modal = ({
           {!!buttons?.length && (
             <div
               className={twMerge(
-                "flex gap-x-2 mt-3 px-6 sm:px-10",
-                "flex-col gap-2 md:flex-row-reverse [&>*]:flex-grow md:[&>*]:flex-grow-0"
+                'flex gap-x-2 mt-3 px-6 sm:px-10',
+                'flex-col gap-2 md:flex-row-reverse [&>*]:flex-grow md:[&>*]:flex-grow-0'
               )}
             >
               {buttons?.[0]}

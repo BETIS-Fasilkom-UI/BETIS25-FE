@@ -1,10 +1,9 @@
-import { cookies, headers } from "next/headers";
-import { decode, JwtPayload } from "jsonwebtoken";
-import { GetUserDataResponse, User, UserJWT } from "./interface";
-import { deleteCookie } from "cookies-next";
+import { decode, JwtPayload } from 'jsonwebtoken';
+import { cookies } from 'next/headers';
+import { GetUserDataResponse, User, UserJWT } from './interface';
 
 export const getUserService = async () => {
-  const token = (await cookies()).get("token")?.value;
+  const token = (await cookies()).get('token')?.value;
 
   if (!token) {
     return null;
@@ -16,17 +15,17 @@ export const getUserService = async () => {
     return null;
   }
 
-  const userData = payload.name?.split("<|>") || [];
+  const userData = payload.name?.split('<|>') || [];
 
   return {
-    name: userData[0] as String,
-    email: payload.email as String,
+    name: userData[0] as string,
+    email: payload.email as string,
     token: token,
   } as UserJWT;
 };
 
 export const getUserData = async () => {
-  const token = (await cookies()).get("token")?.value;
+  const token = (await cookies()).get('token')?.value;
   if (!token) {
     return null;
   }
@@ -35,14 +34,11 @@ export const getUserData = async () => {
 
   const user = decode(token) as JwtPayload;
 
-  const response = await fetch(
-    `${API_URL}user/email/${user?.email}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await fetch(`${API_URL}user/email/${user?.email}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   if (response.status === 401) {
     return null;

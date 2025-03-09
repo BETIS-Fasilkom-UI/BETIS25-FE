@@ -1,6 +1,6 @@
-import PPKBModule from "@/modules/WebinarPPKBHeroModule";
-import { redirect } from "next/navigation";
-import React from "react";
+import PPKBModule from '@/modules/WebinarPPKBHeroModule';
+import { redirect } from 'next/navigation';
+import React from 'react';
 
 const page = () => {
   redirect('/');

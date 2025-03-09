@@ -1,8 +1,8 @@
-import fetchServer from "@/lib/fetchServer";
-import { CourseDetailModule } from "@/modules/CourseDetailModule";
-import { courseId } from "@/modules/CourseDetailModule/const";
-import { CourseDetail } from "@/modules/CourseDetailModule/interface";
-import { NextPage } from "next";
+import fetchServer from '@/lib/fetchServer';
+import { CourseDetailModule } from '@/modules/CourseDetailModule';
+import { courseId } from '@/modules/CourseDetailModule/const';
+import { CourseDetail } from '@/modules/CourseDetailModule/interface';
+import { NextPage } from 'next';
 
 const page: NextPage<{
   params: Promise<{ courseName: string }>;

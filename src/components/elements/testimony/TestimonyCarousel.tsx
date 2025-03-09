@@ -1,16 +1,15 @@
-"use client";
+'use client';
 
 import {
   EmblaCarouselType,
   EmblaEventType,
   EmblaOptionsType,
-} from "embla-carousel";
-import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { CarouselButton, usePrevNextButtons } from "./TestimonyCarouselButton";
-import { cn } from "@/lib/utils";
-import { getAsset } from "@/lib/s3";
+} from 'embla-carousel';
+import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { CarouselButton, usePrevNextButtons } from './TestimonyCarouselButton';
+import { cn } from '@/lib/utils';
 
 type PropType = {
   slides: TestimonyCarouselItemProps[];
@@ -36,7 +35,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector(".slide-image") as HTMLElement;
+      return slideNode.querySelector('.slide-image') as HTMLElement;
     });
   }, []);
 
@@ -44,7 +43,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
     (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
       const engine = emblaApi.internalEngine();
       const slidesInView = emblaApi.slidesInView();
-      const isScrollEvent = eventName === "scroll";
+      const isScrollEvent = eventName === 'scroll';
       const totalSlides = slides.length;
 
       // Calculate indices for previous and next slides with circular indexing
@@ -58,20 +57,20 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
           if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
 
           const tweenNode = tweenNodes.current[slideIndex];
-          tweenNode.style.position = "relative";
+          tweenNode.style.position = 'relative';
 
           if (slideIndex === activeSlideIndex) {
             // Active slide: fully visible, on top
             tweenNode.style.transform = `scale(1) translateX(0%)`;
-            tweenNode.style.zIndex = "100";
+            tweenNode.style.zIndex = '100';
           } else if (slideIndex === prevSlideIndex) {
             // Previous slide: partially visible, slightly behind
             tweenNode.style.transform = `scale(0.8) translateX(75%)`;
-            tweenNode.style.zIndex = "10";
+            tweenNode.style.zIndex = '10';
           } else if (slideIndex === nextSlideIndex) {
             // Next slide: partially visible, slightly behind
             tweenNode.style.transform = `scale(0.8) translateX(-75%)`;
-            tweenNode.style.zIndex = "10";
+            tweenNode.style.zIndex = '10';
           } else {
             // Other slides: hidden or in background
             tweenNode.style.transform = `scale(0.8) translateX(0%)`;
@@ -89,10 +88,10 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
     tweenScale(emblaApi);
 
     emblaApi
-      .on("reInit", setTweenNodes)
-      .on("reInit", tweenScale)
-      .on("scroll", tweenScale)
-      .on("select", () => setActiveSlideIndex(emblaApi.selectedScrollSnap()));
+      .on('reInit', setTweenNodes)
+      .on('reInit', tweenScale)
+      .on('scroll', tweenScale)
+      .on('select', () => setActiveSlideIndex(emblaApi.selectedScrollSnap()));
 
     setActiveSlideIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi, setTweenNodes, slides.length, tweenScale]);
@@ -110,12 +109,12 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
               <div className="relative" key={index}>
                 <div
                   className={cn(
-                    "slide-image relative w-[270px] md:w-[630px] lg:w-[700px] transition-all md:h-[400px] duration-300 ease-in-out bg-[#33153E] rounded-[32px] px-6 md:px-10 pt-10 max-md:pb-7 md:py-8 shadow-testimony-card flex md:flex-row flex-col justify-center items-center gap-[20px] md:gap-[70px]"
+                    'slide-image relative w-[270px] md:w-[630px] lg:w-[700px] transition-all md:h-[400px] duration-300 ease-in-out bg-[#33153E] rounded-[32px] px-6 md:px-10 pt-10 max-md:pb-7 md:py-8 shadow-testimony-card flex md:flex-row flex-col justify-center items-center gap-[20px] md:gap-[70px]'
                   )}
                 >
                   <div className="absolute w-[50px] h-full z-10 max-md:right-[10%] md:left-1/3 -top-[40%]">
                     <Image
-                      src={getAsset("/testimony/petik.png")}
+                      src={'/s3/testimony/petik.png'}
                       fill
                       sizes="none"
                       alt=""
@@ -124,7 +123,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                   </div>
                   <div className="absolute w-[50px] h-full z-10 left-[10%] bottom-[5%] md:hidden rotate-180">
                     <Image
-                      src={getAsset("/testimony/petik.png")}
+                      src={'/s3/testimony/petik.png'}
                       fill
                       sizes="none"
                       alt=""
@@ -133,7 +132,7 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
                   </div>
                   <div className="absolute w-full h-full -z-10">
                     <Image
-                      src={getAsset("/testimony/background.png")}
+                      src={'/s3/testimony/background.png'}
                       fill
                       sizes="none"
                       alt=""
@@ -179,8 +178,8 @@ const TestimonyCarousel: React.FC<PropType> = (props) => {
             onClick={() => emblaApi?.scrollTo(index)}
             key={index}
             className={cn(
-              "size-6 rounded-full cursor-pointer",
-              activeSlideIndex === index ? "bg-violet-300" : "bg-[#D9D9D9]"
+              'size-6 rounded-full cursor-pointer',
+              activeSlideIndex === index ? 'bg-violet-300' : 'bg-[#D9D9D9]'
             )}
           />
         ))}

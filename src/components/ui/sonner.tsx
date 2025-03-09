@@ -1,44 +1,47 @@
-"use client"
+'use client';
 
-import { Check, CircleAlert, Info, LoaderCircle, X } from "lucide-react"
-import { useTheme } from "next-themes"
-import { ReactNode } from "react"
-import { ExternalToast, Toaster as Sonner, toast as sonnerToast } from "sonner"
+import { Check, CircleAlert, Info, LoaderCircle, X } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { ReactNode } from 'react';
+import { ExternalToast, Toaster as Sonner, toast as sonnerToast } from 'sonner';
 
-type ToasterProps = React.ComponentProps<typeof Sonner>
+type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+  const { theme = 'system' } = useTheme();
 
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
+      theme={theme as ToasterProps['theme']}
       className="toaster group"
       toastOptions={{
         classNames: {
-          toast: "flex items-center gap-6 p-3 rounded-[0.5rem] text-raleway font-bold text-black",
-          description: "group-[.toast]:text-neutral-500",
-          actionButton: "group-[.toast]:bg-neutral-900 group-[.toast]:text-neutral-50",
-          cancelButton: "group-[.toast]:bg-neutral-100 group-[.toast]:text-neutral-500",
+          toast:
+            'flex items-center gap-6 p-3 rounded-[0.5rem] text-raleway font-bold text-black',
+          description: 'group-[.toast]:text-neutral-500',
+          actionButton:
+            'group-[.toast]:bg-neutral-900 group-[.toast]:text-neutral-50',
+          cancelButton:
+            'group-[.toast]:bg-neutral-100 group-[.toast]:text-neutral-500',
         },
       }}
       {...props}
     />
-  )
-}
+  );
+};
 
 const toast = {
   ...sonnerToast,
   success: (message: ReactNode, data: ExternalToast | undefined = {}) => {
     return sonnerToast.success(message, {
       ...data,
-      className: "border-tosca-normal bg-tosca-light-hover",
+      className: 'border-tosca-normal bg-tosca-light-hover',
       icon: (
         <div className="bg-tosca-normal p-1.5 rounded-full">
           <Check size={20} className="stroke-tosca-light-hover" />
         </div>
       ),
-    })
+    });
   },
   error: (message: ReactNode, data: ExternalToast | undefined = {}) => {
     return sonnerToast.error(message, {
@@ -49,7 +52,7 @@ const toast = {
           <X size={20} className="stroke-red-50" />
         </div>
       ),
-    })
+    });
   },
   warning: (message: ReactNode, data: ExternalToast | undefined = {}) => {
     return sonnerToast.error(message, {
@@ -60,7 +63,7 @@ const toast = {
           <CircleAlert size={20} className="stroke-yellow-50" />
         </div>
       ),
-    })
+    });
   },
   info: (message: ReactNode, data: ExternalToast | undefined = {}) => {
     return sonnerToast.message(message, {
@@ -71,7 +74,7 @@ const toast = {
           <Info size={20} className="stroke-[#EAEDF0]" />
         </div>
       ),
-    })
+    });
   },
   loading: (message: ReactNode, data: ExternalToast | undefined = {}) => {
     return sonnerToast.message(message, {
@@ -82,8 +85,8 @@ const toast = {
           <LoaderCircle size={20} className="animate-spin stroke-tosca-light" />
         </div>
       ),
-    })
+    });
   },
-}
+};
 
-export { Toaster, toast }
+export { Toaster, toast };

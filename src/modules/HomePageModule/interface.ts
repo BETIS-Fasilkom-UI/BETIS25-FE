@@ -1,8 +1,7 @@
-
-export type Status = 'Done'|'In Progress'|'Awaiting'
+export type Status = 'Done' | 'In Progress' | 'Awaiting';
 
 export interface EventEntry {
-    name: string,
-    date: string,
-    status: Status
+  name: string;
+  date: string;
+  status: Status;
 }

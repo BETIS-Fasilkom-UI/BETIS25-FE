@@ -1,9 +1,9 @@
-import React from "react";
-import Speaker from "./sections/speaker";
-import { Rundown } from "./sections/rundown";
-import { WebinarPPKBHero } from "./sections/WebinarPPKBHero";
-import Faq from "./sections/Faq";
-import { ContactPerson } from "./sections/ContactPerson";
+import React from 'react';
+import Speaker from './sections/speaker';
+import { Rundown } from './sections/rundown';
+import { WebinarPPKBHero } from './sections/WebinarPPKBHero';
+import Faq from './sections/Faq';
+import { ContactPerson } from './sections/ContactPerson';
 
 const PPKBModule = () => {
   return (

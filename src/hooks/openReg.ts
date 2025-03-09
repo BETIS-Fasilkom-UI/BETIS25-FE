@@ -1,15 +1,15 @@
-"use client";
-import { uploadFile } from "@/lib/s3";
-import z from "zod";
-import { useUserData } from "./auth";
-import { getCookie } from "cookies-next";
+'use client';
+import { uploadFile } from '@/lib/s3';
+import z from 'zod';
+import { useUserData } from './auth';
+import { getCookie } from 'cookies-next';
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
 ];
 
 export const openRegSchema = z.object({
@@ -25,7 +25,7 @@ export const openRegSchema = z.object({
     }, `Max image size is 5MB.`)
     .refine(
       (files) => ACCEPTED_IMAGE_TYPES.includes(files?.type),
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
+      'Only .jpg, .jpeg, .png and .webp formats are supported.'
     ),
   studyMethood: z.string(),
   parentName: z.string(),
@@ -40,8 +40,8 @@ export const openRegSchema = z.object({
       return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => files?.type === "application/pdf",
-      "Only .PDF formats are supported."
+      (files) => files?.type === 'application/pdf',
+      'Only .PDF formats are supported.'
     ),
   motivationLetter: z
     .any()
@@ -49,8 +49,8 @@ export const openRegSchema = z.object({
       return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => files?.type === "application/pdf",
-      "Only .PDF formats are supported."
+      (files) => files?.type === 'application/pdf',
+      'Only .PDF formats are supported.'
     ),
   commitmentLetter: z
     .any()
@@ -58,8 +58,8 @@ export const openRegSchema = z.object({
       return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => files?.type === "application/pdf",
-      "Only .PDF formats are supported."
+      (files) => files?.type === 'application/pdf',
+      'Only .PDF formats are supported.'
     ),
   proofOfFollowing: z
     .any()
@@ -67,8 +67,8 @@ export const openRegSchema = z.object({
       return files?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
-      (files) => files?.type === "application/pdf",
-      "Only .PDF formats are supported."
+      (files) => files?.type === 'application/pdf',
+      'Only .PDF formats are supported.'
     ),
   proofOfTwibbon: z
     .any()
@@ -77,9 +77,9 @@ export const openRegSchema = z.object({
     }, `Max image size is 5MB.`)
     .refine(
       (files) =>
-        files?.type === "application/pdf" ||
+        files?.type === 'application/pdf' ||
         ACCEPTED_IMAGE_TYPES.includes(files?.type),
-      "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
+      'Only .PDF, .jpg, .jpeg, .png and .webp formats are supported.'
     ),
   proofOfSg: z
     .any()
@@ -88,9 +88,9 @@ export const openRegSchema = z.object({
     }, `Max image size is 5MB.`)
     .refine(
       (files) =>
-        files?.type === "application/pdf" ||
+        files?.type === 'application/pdf' ||
         ACCEPTED_IMAGE_TYPES.includes(files?.type),
-      "Only .PDFm .jpg, .jpeg, .png and .webp formats are supported."
+      'Only .PDFm .jpg, .jpeg, .png and .webp formats are supported.'
     ),
   referralCode: z.string().optional(),
 });
@@ -101,7 +101,7 @@ const validateFile = (
   errorMessage: string
 ) => {
   if (file.size > MAX_FILE_SIZE) {
-    return { isSuccess: false, message: "Max image size is 5MB." };
+    return { isSuccess: false, message: 'Max image size is 5MB.' };
   } else if (!acceptedTypes.includes(file.type)) {
     return { isSuccess: false, message: errorMessage };
   }
@@ -118,17 +118,17 @@ export async function useOpenReg(
   }
 ) {
   try {
-    console.log("Registering user");
-    const token = await getCookie("token");
+    console.log('Registering user');
+    const token = await getCookie('token');
     if (!token) {
-      return { isSuccess: false, message: "Unauthorized access" };
+      return { isSuccess: false, message: 'Unauthorized access' };
     }
     const user = await useUserData();
 
     const userId = user?.id;
-    const userName = user?.fullname.replace(/\s+/g, "-");
+    const userName = user?.fullname.replace(/\s+/g, '-');
 
-    console.log("Upload files to s3");
+    console.log('Upload files to s3');
 
     console.log(user);
 
@@ -188,8 +188,8 @@ export async function useOpenReg(
     if (paycheck) {
       const validation = validateFile(
         paycheck,
-        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
-        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
+        ['application/pdf', ...ACCEPTED_IMAGE_TYPES],
+        'Only .PDF, .jpg, .jpeg, .png and .webp formats are supported.'
       );
       if (!validation.isSuccess) return validation;
 
@@ -203,8 +203,8 @@ export async function useOpenReg(
     if (povertyLetter) {
       const validation = validateFile(
         povertyLetter,
-        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
-        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
+        ['application/pdf', ...ACCEPTED_IMAGE_TYPES],
+        'Only .PDF, .jpg, .jpeg, .png and .webp formats are supported.'
       );
       if (!validation.isSuccess) return validation;
       povertyLetterUrl = await uploadFile(
@@ -217,8 +217,8 @@ export async function useOpenReg(
     if (housePhoto) {
       const validation = validateFile(
         housePhoto,
-        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
-        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
+        ['application/pdf', ...ACCEPTED_IMAGE_TYPES],
+        'Only .PDF, .jpg, .jpeg, .png and .webp formats are supported.'
       );
       if (!validation.isSuccess) return validation;
 
@@ -232,8 +232,8 @@ export async function useOpenReg(
     if (electricityBill) {
       const validation = validateFile(
         electricityBill,
-        ["application/pdf", ...ACCEPTED_IMAGE_TYPES],
-        "Only .PDF, .jpg, .jpeg, .png and .webp formats are supported."
+        ['application/pdf', ...ACCEPTED_IMAGE_TYPES],
+        'Only .PDF, .jpg, .jpeg, .png and .webp formats are supported.'
       );
       if (!validation.isSuccess) return validation;
 
@@ -267,20 +267,20 @@ export async function useOpenReg(
       social_media_following_url: proofOfFollowingUrl,
       twibbon_upload_url: proofOfTwibbonUrl,
       post_sg_proof_url: proofOfSg,
-      financial_need_letter_url: povertyLetterUrl ?? "",
-      electric_bill_document_url: electricityBillUrl ?? "",
-      residence_photo_url: housePhotoUrl ?? "",
+      financial_need_letter_url: povertyLetterUrl ?? '',
+      electric_bill_document_url: electricityBillUrl ?? '',
+      residence_photo_url: housePhotoUrl ?? '',
       affiliation_code: values.referralCode,
     };
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const response = await fetch(`${API_URL}user/daftar-peserta`, {
-      method: "POST",
-      credentials: "omit",
+      method: 'POST',
+      credentials: 'omit',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, 
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -290,7 +290,7 @@ export async function useOpenReg(
       return { isSuccess: false, message: data.message };
     }
 
-    return { isSuccess: true, message: "Registration success" };
+    return { isSuccess: true, message: 'Registration success' };
   } catch (error) {
     return { isSuccess: false, message: (error as Error).message };
   }

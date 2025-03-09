@@ -1,19 +1,19 @@
-import { cookies } from "next/headers";
-import { decode, JwtPayload } from "jsonwebtoken";
+import { cookies } from 'next/headers';
+import { decode, JwtPayload } from 'jsonwebtoken';
 import {
   GetSubmissionItemDataResponse,
   SubmissionItem,
-} from "@/modules/SubmissionItemModule/interface";
+} from '@/modules/SubmissionItemModule/interface';
 import {
   GetSubmissionDataResponse,
   Submission,
-} from "@/modules/SubmissionModule/interface";
+} from '@/modules/SubmissionModule/interface';
 
 export const getSubmissionItemData = async (
   submissionId: string,
   userId: string
 ) => {
-  const token = (await cookies()).get("token")?.value;
+  const token = (await cookies()).get('token')?.value;
   if (!token) {
     return null;
   }
@@ -48,7 +48,7 @@ export const getSubmissionItemData = async (
 };
 
 export const getSubmissionData = async (id: string) => {
-  const token = (await cookies()).get("token")?.value;
+  const token = (await cookies()).get('token')?.value;
   if (!token) {
     return null;
   }
@@ -76,9 +76,9 @@ export const getSubmissionData = async (id: string) => {
       course_section_id: submissionData.course_section_id,
       title: submissionData.title,
       description: submissionData.description,
-      opened_at: submissionData.opened_at.split(" ").slice(0, 3).join(" "),
-      closed_at: submissionData.closed_at.split(" ").slice(0, 3).join(" "),
-      cutoff_at: submissionData.cutoff_at.split(" ").slice(0, 3).join(" "),
+      opened_at: submissionData.opened_at.split(' ').slice(0, 3).join(' '),
+      closed_at: submissionData.closed_at.split(' ').slice(0, 3).join(' '),
+      cutoff_at: submissionData.cutoff_at.split(' ').slice(0, 3).join(' '),
     } as Submission;
   }
 };

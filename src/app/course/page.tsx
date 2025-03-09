@@ -1,12 +1,12 @@
-"use server";
-import { getUserData } from "@/hooks/user";
-import CourseList from "@/modules/CourseListModule/";
-import { redirect } from "next/navigation";
+'use server';
+import { getUserData } from '@/hooks/user';
+import CourseList from '@/modules/CourseListModule/';
+import { redirect } from 'next/navigation';
 
 const page = async () => {
   const user = await getUserData();
   if (!user) {
-    redirect("/login");
+    redirect('/login');
   }
 
   return <CourseList />;
