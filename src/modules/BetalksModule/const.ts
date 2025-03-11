@@ -1,8 +1,8 @@
 export const SPEAKERS = [
   {
     name: 'Alfie Vere Likhie',
-    role: 'Mahasiswa FK UI dan 12 besar  Clash of Champions',
-    image: '/alfie.png',
+    role: 'Mahasiswa FK UI dan 12 besar Clash of Champions',
+    image: '/s3/alfie.png',
   },
 ];
 
