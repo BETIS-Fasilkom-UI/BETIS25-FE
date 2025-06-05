@@ -2,7 +2,6 @@
 export interface NameTagProps {
     name: string,
     institute: string,
-    score: string | number
 }
 
 export type PodiumAvatarProps = {

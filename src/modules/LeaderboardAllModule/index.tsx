@@ -1,14 +1,20 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { cn } from "@/lib/utils"
-import React from "react"
-import { getAsset } from "@/lib/s3"
-import { useEffect, useState } from "react"
-import { Skeleton } from "@/components/ui/skeleton"
-import useLeaderboard from "@/hooks/leaderboard"
-import { LeaderboardHeroModule } from "../LeaderboardHeroModule"
+import Image from "next/image";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import React from "react";
+import { getAsset } from "@/lib/s3";
+import { useEffect, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import useLeaderboard from "@/hooks/leaderboard";
+import { LeaderboardHeroModule } from "../LeaderboardHeroModule";
 
 const avatarOptions = [
   "/Pp-girl1.png",
@@ -31,189 +37,146 @@ const Card = React.forwardRef<
   />
 ));
 
+const students = [
+  {
+    email: "rikodwisaputra48@gmail.com",
+    name: "Riko Dwi Saputra",
+    institute: "SMAN 67 JAKARTA",
+  },
+  {
+    email: "valentinoakram12@gmail.com",
+    name: "Valentino Akram",
+    institute: "SMA Negeri 13 Jakarta",
+  },
+  {
+    email: "sbta1915@gmail.com",
+    name: "Salsa Bila Titiana",
+    institute: "SMA Negeri 1 Kradenan",
+  },
+  {
+    email: "vinkabellyani@gmail.com",
+    name: "Vinka Bellyani",
+    institute: "SMA Muhammadiyah 3 Bandung",
+  },
+  {
+    email: "rdvnarabel@gmail.com",
+    name: "Radiva Narabel",
+    institute: "SMAN 5 Tambun Selatan",
+  },
+  {
+    email: "rasyaaurellasefa@gmail.com",
+    name: "Rasya Aurella Sefa",
+    institute: "SMAN 1 Kudus",
+  },
+  {
+    email: "aisiah1227@gmail.com",
+    name: "Aisiah Nur Handini",
+    institute: "SMAIT Asy Syukriyyah",
+  },
+  {
+    email: "zaidanizdiharkhairan@gmail.com",
+    name: "Zaidan izdihar khairan",
+    institute: "SMA 17 Agustus 1945",
+  },
+  {
+    email: "salsabilaoktyfs@gmail.com",
+    name: "Salsabila Okty Fajar Saida",
+    institute: "SMAN 1 Kademangan",
+  },
+  {
+    email: "satyaatmadja07@gmail.com",
+    name: "Satya Virya Atmadja",
+    institute: "SMAK PENABUR Serang",
+  },
+];
+
 export default function Leaderboard() {
   const [selectedTryout, setSelectedTryout] = useState(""); // Default: All Tryout
-  const { leaderboard, leaderboards, currentUser, loading, error, refetch } = useLeaderboard(selectedTryout); // Fetch leaderboard data
-  
-  if (error) {
-    return <div className="p-4 text-center text-red-500">{error}</div>;
-  }
+  //const { leaderboard, leaderboards, currentUser, loading, error, refetch } = useLeaderboard(selectedTryout); // Fetch leaderboard data
+
+  //if (error) {
+  //  return <div className="p-4 text-center text-red-500">{error}</div>;
+  //}
+
+  const leaderboard = students.map((student, index) => ({
+    rank: index + 1,
+    full_name: student.name,
+    school_name: student.institute,
+  }));
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full my-[150px]">
+      <h1 className="font-cinzel text-6xl max-md:text-4xl max-sm:text-2xl font-[900] text-white text-center">
+        Leaderboard
+      </h1>
       {/* Hero Module with Skeleton */}
-      {loading ? (
-        <div className="w-full max-w-4xl animate-pulse">
-          <div className="h-96 bg-white/10 rounded-xl" />
-        </div>
-      ) : (
-        <LeaderboardHeroModule
+      <LeaderboardHeroModule
         first={{
           name: leaderboard[0].full_name || "",
           institute: leaderboard[0].school_name || "",
-          score: leaderboard[0].average_score,
-          avatarSrc: getAsset(avatarOptions[leaderboard[0].avatar])
-        }} 
+          avatarSrc: getAsset("/Pp-boy1.png"),
+        }}
         second={{
           name: leaderboard[1].full_name,
           institute: leaderboard[1].school_name || "",
-          score: leaderboard[1].average_score,
-          avatarSrc: getAsset(avatarOptions[leaderboard[1].avatar])
-        }} 
+          avatarSrc: getAsset("/Pp-boy1.png"),
+        }}
         third={{
           name: leaderboard[2].full_name,
           institute: leaderboard[2].school_name || "",
-          score: leaderboard[2].average_score,
-          avatarSrc: getAsset(avatarOptions[leaderboard[2].avatar])
-        }} 
+          avatarSrc: getAsset("/Pp-boy1.png"),
+        }}
       />
-      )}
-    <div
-      className="min-h-screen flex flex-row justify-center px-4 lg:px-0 mt-10"     >
-      <div className="space-y-4">
-        {/* Dropdown to Select Tryout */}
-        <div className="lg:mb-[50.79px]">
-          <Select value={selectedTryout} defaultValue={"0"} onValueChange={setSelectedTryout}>
-            <SelectTrigger className="w-24 h-6 lg:w-[276px] lg:h-[65px] bg-[#D9D9D9] border-0 rounded-[12px] lg:rounded-[35px] text-[#82275F] font-playfairDisplay font-semibold text-[10px] lg:text-[35px] text-left">
-              <SelectValue placeholder="Select Tryout" />
-            </SelectTrigger>
-            <SelectContent className="w-24 lg:w-[276px] bg-[#D9D9D9] border-0 lg:rounded-[35px] rounded-[12px] relative text-[#82275F] font-playfairDisplay font-semibold text-[10px] lg:text-[35px]">
-            <SelectItem value="0" className="text-[10px] lg:text-[35px] text-left">All Tryout</SelectItem>
-              {leaderboards.map((tryout) => (
-                <SelectItem key={tryout.id} value={tryout.id} className="text-[10px] lg:text-[35px] text-left">
-                  {tryout.title}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="px-4 lg:px-20 w-full">
+        <div className="space-y-4 w-full">
+          {/* Leaderboard Table */}
+          <div className="mt-[24px]">
+            <Card className="border-0 text-white w-full h-[54px] lg:h-[96px] bg-[#D9D9D9] transform translate-y-7 lg:translate-y-14 py-0">
+              <div className="flex items-center gap-[75px] lg:gap-[150px] h-full -translate-y-3 lg:-translate-y-7">
+                <div className="text-[13px] lg:text-[26px] font-semibold font-playfairDisplay text-[#82275F]">
+                  Rank
+                </div>
+                <div className="text-[13px] lg:text-[26px] font-semibold font-playfairDisplay text-[#82275F]">
+                  Name & School
+                </div>
+              </div>
+            </Card>
 
-        {/* Leaderboard Content */}
-        {loading ? (
-          <LoadingSkeleton />
-        ) : (
-          <>
-            {/* Current User Card */}
-            {currentUser && (
-              <Card className="border-0 text-white w-[390px] h-[72px] lg:w-[1076px] lg:h-[128px] bg-[#6D4B79]">
+            {/* Leaderboard Entries */}
+            {leaderboard.slice(3, 10).map((currentUser, index) => (
+              <Card
+                key={index}
+                className="border-0 text-white w-full h-[72px] lg:h-[128px] bg-[#F8EBF3] mb-[6px] lg:mb-[16.82px]"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="text-3xl lg:text-6xl font-black font-cinzel text-[#F8EBF3] w-5 lg:w-8">
+                    <div className="text-3xl lg:text-6xl font-black font-cinzel text-[#82275F] w-5 lg:w-8">
                       {currentUser.rank}
                     </div>
-                    <div className="ml-1 lg:ml-7 w-[52px] h-[52px] lg:h-28 lg:w-28 bg-[#651E4A] rounded-full flex items-center justify-center">
-                      <Image src={getAsset(avatarOptions[currentUser.avatar])} width={ 112 } height={ 112 } alt="" className="" />
+                    <div className="ml-1 lg:ml-7 w-[52px] h-[52px] lg:h-28 lg:w-28 bg-[#6D4B79] rounded-full flex items-center justify-center">
+                      <Image
+                        src={getAsset("/Pp-boy1.png")}
+                        width={112}
+                        height={112}
+                        alt=""
+                        className=""
+                      />
                     </div>
                     <div className="space-y-0 ml-1 lg:ml-4">
-                      <div className="font-black text-[#F8EBF3] truncate max-w-40 lg:max-w-lg text-base lg:text-4xl font-playfairDisplay">
+                      <div className="font-black text-[#82275F] truncate max-w-40 lg:max-w-lg text-base lg:text-4xl font-playfairDisplay">
                         {currentUser.full_name}
                       </div>
-                      <div className="font-normal text-[#F8EBF3] truncate max-w-40 lg:max-w-lg text-base lg:text-2xl font-playfairDisplay">
+                      <div className="font-normal text-[#82275F] truncate max-w-40 lg:max-w-lg overflow-hidden text-base lg:text-2xl font-playfairDisplay">
                         {currentUser.school_name}
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                      <div className="text-base font-bold flex flex-col justify-center align-center lg:ml-5">
-                        <div className="w-[71px] h-[33px] lg:w-[156px] lg:h-[73px] p-1 rounded-[10px] lg:rounded-[21px] border-0 bg-[#33153E] mb-1 flex flex-row justify-center align-center">
-                          <div className="text-[#F8EBF3] text-base lg:text-4xl font-semibold font-playfairDisplay my-auto">
-                            {currentUser.average_score}
-                          </div>
-                        </div>
-                        <div className="text-xs font-semibold font-playfairDisplay text-[#F8EBF3] lg:hidden text-center">
-                            Detail
-                        </div>
-                      </div>
-                      <div className="text-[25px] font-semibold font-playfairDisplay text-[#F8EBF3] ml-2 hidden lg:block">
-                        Detail
-                      </div>
-                    </div>
                 </div>
               </Card>
-            )}
-
-            {/* Leaderboard Table */}
-            <div className="mt-[24px] lg:mt-[77.26px]">
-              <Card className="border-0 text-white w-[390px] h-[54px] lg:w-[1076px] lg:h-[96px] bg-[#D9D9D9] transform translate-y-7 lg:translate-y-14 py-0">
-                <div className="flex items-center justify-between h-full -translate-y-3 lg:-translate-y-7">
-                  <div className="text-[13px] lg:text-[26px] font-semibold font-playfairDisplay text-[#82275F]">Rank</div>
-                  <div className="text-[13px] lg:text-[26px] font-semibold font-playfairDisplay text-[#82275F] ml-0 -translate-x-[22px] lg:-translate-x-[135px]">Name & School</div>
-                  <div className="text-[13px] lg:text-[26px] font-semibold font-playfairDisplay text-[#82275F] mr-[18px] lg:mr-36">Score</div>
-                </div>
-              </Card>
-
-              {/* Leaderboard Entries */}
-              {leaderboard.slice(3, 10).map((currentUser) => (
-                 <Card className="border-0 text-white w-[390px] h-[72px] lg:w-[1076px] lg:h-[128px] bg-[#F8EBF3] mb-[6px] lg:mb-[16.82px]">
-                 <div className="flex items-center justify-between">
-                   <div className="flex items-center gap-3">
-                     <div className="text-3xl lg:text-6xl font-black font-cinzel text-[#82275F] w-5 lg:w-8">
-                       {currentUser.rank}
-                     </div>
-                     <div className="ml-1 lg:ml-7 w-[52px] h-[52px] lg:h-28 lg:w-28 bg-[#6D4B79] rounded-full flex items-center justify-center">
-                       <Image src={getAsset(avatarOptions[currentUser.avatar])} width={ 112 } height={ 112 } alt="" className="" />
-                     </div>
-                     <div className="space-y-0 ml-1 lg:ml-4">
-                       <div className="font-black text-[#82275F] truncate max-w-40 lg:max-w-lg text-base lg:text-4xl font-playfairDisplay">
-                         {currentUser.full_name}
-                       </div>
-                       <div className="font-normal text-[#82275F] truncate max-w-40 lg:max-w-lg overflow-hidden text-base lg:text-2xl font-playfairDisplay">
-                         {currentUser.school_name}
-                       </div>
-                     </div>
-                   </div>
-                   <div className="flex items-center gap-4">
-                       <div className="text-base font-bold flex flex-col justify-center align-center lg:ml-5">
-                         <div className="w-[71px] h-[33px] lg:w-[156px] lg:h-[73px] p-1 rounded-[10px] lg:rounded-[21px] border-0 bg-[#82275F] mb-1 flex flex-row justify-center align-center">
-                           <div className="text-[#F8EBF3] text-base lg:text-4xl  font-semibold font-playfairDisplay my-auto">
-                             {currentUser.average_score}
-                           </div>
-                         </div>
-                         <div className="text-xs font-semibold font-playfairDisplay text-[#82275F] lg:hidden text-center">
-                             Detail
-                         </div>
-                       </div>
-                       <div className="text-[25px] font-semibold font-playfairDisplay text-[#82275F] ml-2 hidden lg:block">
-                         Detail
-                       </div>
-                     </div>
-                 </div>
-               </Card>
-              ))}
-            </div>
-          </>
-        )}
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
-
-
-function LoadingSkeleton() {
-  return (
-    <div className="space-y-4 w-[390px] lg:w-[1076px]">
-      <Card className="p-41 bg-[#382C4B] border-0">
-        <div className="flex items-center gap-4">
-          <Skeleton className="h-12 w-12 rounded-full" />
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-[200px]" />
-            <Skeleton className="h-4 w-[160px]" />
-          </div>
-        </div>
-      </Card>
-      {[...Array(5)].map((_, i) => (
-        <Card key={i} className="p-4 bg-white/10 border-0">
-          <div className="flex items-center gap-4">
-            <Skeleton className="h-12 w-12 rounded-full" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[200px]" />
-              <Skeleton className="h-4 w-[160px]" />
-            </div>
-          </div>
-        </Card>
-      ))}
-    </div>
-  )
-}
-
