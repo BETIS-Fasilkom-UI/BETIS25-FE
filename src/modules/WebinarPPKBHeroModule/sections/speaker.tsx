@@ -1,15 +1,10 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { getAsset } from "@/lib/s3";
-import { Calendar, MapPin } from "lucide-react";
-import Image from "next/image";
-import React from "react";
-import { SPEAKERS, TEXT } from "../const";
-import styles from "./speaker.module.css";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+import { Calendar, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import React from 'react';
+import { SPEAKERS, TEXT } from '../const';
+import styles from './speaker.module.css';
 
 const Speaker = () => {
   return (
@@ -52,13 +47,13 @@ const Speaker = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4 lg:gap-20">
-                <div>
+              <div className="flex flex-col md:flex-row max-md:items-center gap-4 lg:gap-20">
+                <div className="flex flex-col items-center justify-center">
                   <div
                     className="relative w-[162px] h-[162px] lg:w-[524px] lg:h-[329px] rounded-xl"
                     style={{
                       background:
-                        "linear-gradient(180deg, rgba(183, 55, 134, 0.1) 10%, rgba(183, 55, 134, 0.3) 90%)",
+                        'linear-gradient(180deg, rgba(183, 55, 134, 0.1) 10%, rgba(183, 55, 134, 0.3) 90%)',
                     }}
                   >
                     <Image
@@ -91,7 +86,7 @@ const Speaker = () => {
                       className=" p-3 rounded-xl"
                       style={{
                         background:
-                          "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                          'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                       }}
                     >
                       <Calendar color="white" size={40} />
@@ -100,9 +95,7 @@ const Speaker = () => {
                       <p className="text-foreground font-semibold text-xl">
                         Date:
                       </p>
-                      <p className="font-openSans text-2xl">
-                        {TEXT.date}
-                      </p>
+                      <p className="font-openSans text-2xl">{TEXT.date}</p>
                     </div>
                   </div>
 
@@ -111,7 +104,7 @@ const Speaker = () => {
                       className="p-3 rounded-xl"
                       style={{
                         background:
-                          "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                          'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                       }}
                     >
                       <MapPin color="white" size={40} />
@@ -120,9 +113,7 @@ const Speaker = () => {
                       <p className="text-foreground font-semibold text-xl">
                         Place:
                       </p>
-                      <p className="font-openSans text-2xl">
-                        {TEXT.place}
-                      </p>
+                      <p className="font-openSans text-2xl">{TEXT.place}</p>
                     </div>
                   </div>
                 </div>
@@ -133,15 +124,13 @@ const Speaker = () => {
                   className=" p-[5px] rounded-[6px]"
                   style={{
                     background:
-                      "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                      'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                   }}
                 >
                   <Calendar color="white" />
                 </div>
                 <div className="pr-8">
-                  <p className="text-foreground font-semibold text-sm">
-                    Date:
-                  </p>
+                  <p className="text-foreground font-semibold text-sm">Date:</p>
                   <p className="font-openSans text-sm">{TEXT.date}</p>
                 </div>
 
@@ -149,7 +138,7 @@ const Speaker = () => {
                   className="p-[5px] rounded-[6px]"
                   style={{
                     background:
-                      "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                      'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                   }}
                 >
                   <MapPin color="white" />
@@ -158,9 +147,7 @@ const Speaker = () => {
                   <p className="text-foreground font-semibold text-sm">
                     Place:
                   </p>
-                  <p className="font-openSans text-sm">
-                    {TEXT.place}
-                  </p>
+                  <p className="font-openSans text-sm">{TEXT.place}</p>
                 </div>
               </div>
             </CardContent>
@@ -169,7 +156,7 @@ const Speaker = () => {
           <div className="relative">
             <Image
               alt="Kelinci"
-              src={getAsset("/KelinciMic.png")}
+              src={'/s3/KelinciMic.png'}
               width={80}
               height={73}
               className="lg:hidden absolute bottom-[-4rem] right-[-1rem]"
@@ -222,15 +209,13 @@ const Speaker = () => {
                 className=" p-3 rounded-xl"
                 style={{
                   background:
-                    "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                    'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                 }}
               >
                 <Calendar color="white" size={40} />
               </div>
               <div className="pr-11">
-                <p className="text-foreground font-semibold text-2xl">
-                  Date:
-                </p>
+                <p className="text-foreground font-semibold text-2xl">Date:</p>
                 <p className="font-openSans text-2xl">{TEXT.date}</p>
               </div>
 
@@ -238,15 +223,13 @@ const Speaker = () => {
                 className="p-3 rounded-xl"
                 style={{
                   background:
-                    "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                    'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                 }}
               >
                 <MapPin color="white" size={40} />
               </div>
               <div>
-                <p className="text-foreground font-semibold text-2xl">
-                  Place:
-                </p>
+                <p className="text-foreground font-semibold text-2xl">Place:</p>
                 <p className="font-openSans text-2xl">{TEXT.place}</p>
               </div>
             </div>
@@ -262,7 +245,7 @@ const Speaker = () => {
                       className="relative w-[142px] h-[142px] md:w-[284px] md:h-[160px] lg:w-[504px] lg:h-[309px] rounded-xl lg:rounded-3xl"
                       style={{
                         background:
-                          "linear-gradient(180deg, rgba(183, 55, 134, 0.1) 10%, rgba(183, 55, 134, 0.3) 90%)",
+                          'linear-gradient(180deg, rgba(183, 55, 134, 0.1) 10%, rgba(183, 55, 134, 0.3) 90%)',
                       }}
                     >
                       <Image
@@ -289,7 +272,7 @@ const Speaker = () => {
                 className="p-[5px] md:p-3 rounded-[6px] md:rounded-xl"
                 style={{
                   background:
-                    "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                    'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                 }}
               >
                 <Calendar color="white" />
@@ -298,16 +281,14 @@ const Speaker = () => {
                 <p className="text-foreground font-semibold text-sm md:text-lg">
                   Date:
                 </p>
-                <p className="font-openSans text-sm md:text-lg">
-                  {TEXT.date}
-                </p>
+                <p className="font-openSans text-sm md:text-lg">{TEXT.date}</p>
               </div>
 
               <div
                 className="p-[5px] md:p-3 rounded-[6px md:rounded-xl"
                 style={{
                   background:
-                    "linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)",
+                    'linear-gradient(180deg, #7D4893 -0.02%, #8E2B8F 129.94%)',
                 }}
               >
                 <MapPin color="white" />
@@ -316,9 +297,7 @@ const Speaker = () => {
                 <p className="text-foreground font-semibold text-sm md:text-lg">
                   Place:
                 </p>
-                <p className="font-openSans text-sm md:text-lg">
-                  {TEXT.place}
-                </p>
+                <p className="font-openSans text-sm md:text-lg">{TEXT.place}</p>
               </div>
             </div>
           </CardContent>
@@ -328,7 +307,7 @@ const Speaker = () => {
       <div className="relative">
         <Image
           alt="Jamur"
-          src={getAsset("/JamurGabungan.png")}
+          src={'/s3/JamurGabungan.png'}
           width={160}
           height={143}
           className="max-lg:hidden absolute bottom-[-0.5rem] right-[-5rem]"
@@ -336,7 +315,7 @@ const Speaker = () => {
 
         <Image
           alt="Lampu"
-          src={getAsset("/Lampu.png")}
+          src={'/s3/Lampu.png'}
           width={SPEAKERS.length === 1 ? 70 : 90}
           height={SPEAKERS.length === 1 ? 53 : 73}
           className="max-lg:hidden absolute bottom-[-0.7rem] left-[-3rem]"
@@ -344,15 +323,15 @@ const Speaker = () => {
 
         <Image
           alt="Light"
-          src={getAsset("/CahayaLampu.png")}
+          src={'/s3/CahayaLampu.png'}
           width={SPEAKERS.length === 1 ? 30 : 40}
           height={SPEAKERS.length === 1 ? 13 : 23}
           className={`${
             styles.twinkleReverse
           } max-lg:hidden absolute left-[-1.4rem] ${
             SPEAKERS.length === 1
-              ? "left-[-1.7rem] bottom-[25.8rem]"
-              : "left-[-1.4rem] bottom-[33.2rem]"
+              ? 'left-[-1.7rem] bottom-[25.8rem]'
+              : 'left-[-1.4rem] bottom-[33.2rem]'
           }`}
         />
 
@@ -363,14 +342,14 @@ const Speaker = () => {
           height={SPEAKERS.length === 1 ? 8 : 18}
           className={`${styles.twinkle} max-lg:hidden absolute ${
             SPEAKERS.length === 1
-              ? "left-[-1.6rem] bottom-[25.8rem]"
-              : "left-[-1.25rem] bottom-[33.2rem]"
+              ? 'left-[-1.6rem] bottom-[25.8rem]'
+              : 'left-[-1.25rem] bottom-[33.2rem]'
           }`}
         />
 
         <Image
           alt="Semak"
-          src={getAsset("/Semak.png")}
+          src={'/s3/Semak.png'}
           width={200}
           height={183}
           className="max-lg:hidden absolute bottom-[-1rem] left-[-2rem]"

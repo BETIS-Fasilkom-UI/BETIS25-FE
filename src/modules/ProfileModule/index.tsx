@@ -1,28 +1,28 @@
-"use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/components/ui/sonner";
-import { User } from "@/hooks/interface";
-import { getAsset } from "@/lib/s3";
-import { Background } from "@/modules/ProfileModule/components/background"; // Import your custom DatePicker
-import Input from "@/modules/ProfileModule/components/input";
-import { Modal, ModalButton } from "@/modules/ProfileModule/components/modal"; // Adjust the import path
-import { getCookie } from "cookies-next";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+'use client';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { toast } from '@/components/ui/sonner';
+import { User } from '@/hooks/interface';
+
+import { Background } from '@/modules/ProfileModule/components/background'; // Import your custom DatePicker
+import Input from '@/modules/ProfileModule/components/input';
+import { Modal, ModalButton } from '@/modules/ProfileModule/components/modal'; // Adjust the import path
+import { getCookie } from 'cookies-next';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 const ProfileModule = ({ user }: { user: User }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedAvatar, setSelectedAvatar] = useState("/Pp-girl1.png"); // Default avatar
+  const [selectedAvatar, setSelectedAvatar] = useState('/Pp-girl1.png'); // Default avatar
   const [newAvatar, setNewAvatar] = useState(selectedAvatar); // Avatar selected in the modal
 
   const avatarOptions = [
-    "/Pp-girl1.png",
-    "/Pp-girl2.png",
-    "/Pp-boy1.png",
-    "/Pp-boy2.png",
+    '/Pp-girl1.png',
+    '/Pp-girl2.png',
+    '/Pp-boy1.png',
+    '/Pp-boy2.png',
   ];
 
   // Load the saved avatar from localStorage when the component mounts
@@ -41,14 +41,14 @@ const ProfileModule = ({ user }: { user: User }) => {
     const url = process.env.NEXT_PUBLIC_API_URL || '';
     const token = await getCookie('token');
     const res = await fetch(url + 'user/avatar/' + user.id + '/' + idx, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Authorization": "Bearer " + token,
-      }
+        Authorization: 'Bearer ' + token,
+      },
     });
 
     if (res.ok) {
-      toast.success("Avatar updated successfully");
+      toast.success('Avatar updated successfully');
     }
     setModalOpen(false); // Close modal
   };
@@ -69,21 +69,18 @@ const ProfileModule = ({ user }: { user: User }) => {
             className="absolute -top-[100px] object-contain scale-[2]"
           />
 
-
           <div className="relative w-[300px] h-[300px] mb-[28px]">
-
             <Avatar className="relative h-full w-full z-20">
-              <AvatarImage src={getAsset(selectedAvatar)} alt="Profile Picture " />
+              <AvatarImage src={selectedAvatar} alt="Profile Picture " />
               <AvatarFallback>?</AvatarFallback>
             </Avatar>
-
 
             {/* Edit Button */}
             <Button
               className="rounded-full absolute bottom-3 z-20 right-9 bg-transparent p-0"
               style={{
-                width: "46px",
-                height: "46px",
+                width: '46px',
+                height: '46px',
               }}
               aria-label="Edit Avatar"
               onClick={() => setModalOpen(true)} // Open modal on click
@@ -159,7 +156,9 @@ const ProfileModule = ({ user }: { user: User }) => {
                 id="nama-panggilan"
                 type="text"
                 className="max-h-[52px] h-[110vh] lg:max-w-[382px] w-full text-[20px] leading-[28px] flex-grow border-none outline-none mb-0 font-bold "
-                value={new Date(user.date_of_birth.replace(' WIB', '')).toLocaleDateString("id-ID")}
+                value={new Date(
+                  user.date_of_birth.replace(' WIB', '')
+                ).toLocaleDateString('id-ID')}
                 readOnly
               />
             </div>
@@ -263,13 +262,14 @@ const ProfileModule = ({ user }: { user: User }) => {
                 <button
                   key={avatar}
                   onClick={() => setNewAvatar(avatar)}
-                  className={`p-1 border-4 rounded-full ${newAvatar === avatar
-                    ? "border-[#692597]"
-                    : "border-transparent"
-                    }`}
+                  className={`p-1 border-4 rounded-full ${
+                    newAvatar === avatar
+                      ? 'border-[#692597]'
+                      : 'border-transparent'
+                  }`}
                 >
                   <img
-                    src={getAsset(avatar)}
+                    src={avatar}
                     alt="Avatar Option"
                     className="w-24 h-24 object-cover rounded-full"
                   />
@@ -279,7 +279,10 @@ const ProfileModule = ({ user }: { user: User }) => {
           </div>
           {/* Modal Buttons */}
           <div className="justify-center mt-6 space-x-4">
-            <ModalButton onClick={() => setModalOpen(false)} variant={'secondary'}>
+            <ModalButton
+              onClick={() => setModalOpen(false)}
+              variant={'secondary'}
+            >
               Cancel
             </ModalButton>
 

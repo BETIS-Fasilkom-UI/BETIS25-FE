@@ -1,19 +1,10 @@
-"use client";
+'use client';
 
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardImage,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-import "./styles.css";
-import Image from "next/image";
-import { MouseEventHandler, useState } from "react";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { getAsset } from "@/lib/s3";
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useState } from 'react';
+import './styles.css';
 
 const Vismis = () => {
   const [isRotated, setIsRotated] = useState<Array<boolean>>([
@@ -39,7 +30,7 @@ const Vismis = () => {
           className="card w-full max-md:w-[290px] h-[340px]"
         >
           <motion.div
-            style={{ rotateY: isRotated[0] ? "180deg" : 0 }}
+            style={{ rotateY: isRotated[0] ? '180deg' : 0 }}
             className="h-full card__content transition-transform duration-1000"
           >
             <Card className="card__front absolute bg-[#F8EBF333] bg-opacity-100 top-0 bottom-0 right-0 left-0 flex flex-col items-center justify-start">
@@ -47,7 +38,7 @@ const Vismis = () => {
                 <CardTitle className="z-40">Inspiratif</CardTitle>
               </CardHeader>
               <Image
-                src={getAsset("/buku.png")}
+                src={'/s3/buku.png'}
                 alt="Insipiratif"
                 width={694}
                 height={452}
@@ -74,7 +65,7 @@ const Vismis = () => {
           className="card w-full max-md:w-[290px] h-[340px]"
         >
           <motion.div
-            style={{ rotateY: isRotated[1] ? "180deg" : 0 }}
+            style={{ rotateY: isRotated[1] ? '180deg' : 0 }}
             className="h-full card__content transition-transform duration-1000"
           >
             <Card className="card__front absolute bg-[#F8EBF333] bg-opacity-100 top-0 bottom-0 right-0 left-0 flex flex-col items-center justify-center overflow-hidden">
@@ -82,7 +73,7 @@ const Vismis = () => {
                 <CardTitle>Kolaboratif</CardTitle>
               </CardHeader>
               <Image
-                src={getAsset("/lentera-with-hand.png")}
+                src={'/s3/lentera-with-hand.png'}
                 alt="Kolaboratif"
                 width={257}
                 height={316}
@@ -109,7 +100,7 @@ const Vismis = () => {
           className="card w-full max-md:w-[290px] h-[340px]"
         >
           <motion.div
-            style={{ rotateY: isRotated[2] ? "180deg" : 0 }}
+            style={{ rotateY: isRotated[2] ? '180deg' : 0 }}
             className="h-full card__content transition-transform duration-1000"
           >
             <Card className="card__front absolute bg-[#F8EBF333] bg-opacity-100 top-0 bottom-0 right-0 left-0 flex flex-col items-center justify-center">
@@ -117,7 +108,7 @@ const Vismis = () => {
                 <CardTitle>Progresif</CardTitle>
               </CardHeader>
               <Image
-                src={getAsset("/Kupu-Kupu.png")}
+                src={'/s3/Kupu-Kupu.png'}
                 alt="Progresif"
                 width={240}
                 height={150}

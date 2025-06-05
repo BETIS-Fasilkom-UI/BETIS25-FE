@@ -1,20 +1,19 @@
-"use client";
+'use client';
 
+import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import {
   EmblaCarouselType,
   EmblaEventType,
   EmblaOptionsType,
-} from "embla-carousel";
-import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+} from 'embla-carousel';
+import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   CarouselButton,
   usePrevNextButtons,
-} from "../module-elements/CarouselButtons";
-import { cn } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
-import { getAsset } from "@/lib/s3";
+} from '../module-elements/CarouselButtons';
 
 type PropType = {
   slides: CarouselItemProps[];
@@ -41,7 +40,7 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector(".slide-image") as HTMLElement;
+      return slideNode.querySelector('.slide-image') as HTMLElement;
     });
   }, []);
 
@@ -49,7 +48,7 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
     (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
       const engine = emblaApi.internalEngine();
       const slidesInView = emblaApi.slidesInView();
-      const isScrollEvent = eventName === "scroll";
+      const isScrollEvent = eventName === 'scroll';
       const totalSlides = slides.length;
 
       // Calculate indices for previous and next slides with circular indexing
@@ -63,28 +62,28 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
           if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
 
           const tweenNode = tweenNodes.current[slideIndex];
-          tweenNode.style.position = "relative";
+          tweenNode.style.position = 'relative';
 
           if (slideIndex === activeSlideIndex) {
             // Active slide
-            tweenNode.classList.remove("blur-sm");
+            tweenNode.classList.remove('blur-sm');
             tweenNode.style.transform = `scale(1) translateX(0%)`;
-            tweenNode.style.zIndex = "100";
+            tweenNode.style.zIndex = '100';
           } else if (
             slideIndex === prevSlideIndex ||
             slideIndex === nextSlideIndex
           ) {
             // Previous or Next slides
-            tweenNode.classList.add("blur-sm");
+            tweenNode.classList.add('blur-sm');
             tweenNode.style.transform = `scale(0.75) translateX(${
-              slideIndex === prevSlideIndex ? "15%" : "-15%"
+              slideIndex === prevSlideIndex ? '15%' : '-15%'
             })`;
-            tweenNode.style.zIndex = "10";
+            tweenNode.style.zIndex = '10';
           } else {
             // Other slides
-            tweenNode.classList.add("blur-sm");
+            tweenNode.classList.add('blur-sm');
             tweenNode.style.transform = `scale(0) translateX(0%)`;
-            tweenNode.style.zIndex = "0";
+            tweenNode.style.zIndex = '0';
           }
         });
       });
@@ -99,10 +98,10 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
     tweenScale(emblaApi);
 
     emblaApi
-      .on("reInit", setTweenNodes)
-      .on("reInit", tweenScale)
-      .on("scroll", tweenScale)
-      .on("select", () => setActiveSlideIndex(emblaApi.selectedScrollSnap()));
+      .on('reInit', setTweenNodes)
+      .on('reInit', tweenScale)
+      .on('scroll', tweenScale)
+      .on('select', () => setActiveSlideIndex(emblaApi.selectedScrollSnap()));
 
     setActiveSlideIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi, setTweenNodes, slides.length, tweenScale]);
@@ -120,12 +119,12 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
               <div className="relative" key={index}>
                 <Card
                   className={cn(
-                    "w-full border-0 shadow-[0px_0px_12px_rgba(255,255,255,0.60)] slide-image relative transition-all duration-300 ease-in-out bg-[#ffffff] rounded-[32px] px-[4.5vmin] pt-[6vmin] sm:px-8 sm:pt-10 sm:pb-8 flex flex-col justify-center items-center"
+                    'w-full border-0 shadow-[0px_0px_12px_rgba(255,255,255,0.60)] slide-image relative transition-all duration-300 ease-in-out bg-[#ffffff] rounded-[32px] px-[4.5vmin] pt-[6vmin] sm:px-8 sm:pt-10 sm:pb-8 flex flex-col justify-center items-center'
                   )}
                 >
                   <div className="w-[50vmin] h-[42vmin] sm:w-[331px] sm:h-[277px] relative rounded-2xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.20)]">
                     <Image
-                      src={getAsset(slide.src)}
+                      src={slide.src}
                       alt={slide.alt}
                       fill
                       sizes="none"
@@ -153,10 +152,10 @@ const DocumentationCarousel: React.FC<PropType> = (props) => {
             onClick={() => emblaApi?.scrollTo(index)}
             key={index}
             className={cn(
-              "size-[0.55rem] sm:size-4 rounded-full cursor-pointer",
+              'size-[0.55rem] sm:size-4 rounded-full cursor-pointer',
               activeSlideIndex === index
-                ? "w-[1.10rem] sm:w-8 bg-gradient-to-b from-[#b73786] to-[#621d48]"
-                : "bg-black"
+                ? 'w-[1.10rem] sm:w-8 bg-gradient-to-b from-[#b73786] to-[#621d48]'
+                : 'bg-black'
             )}
           />
         ))}

@@ -1,9 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { social } from "./const";
-import { MapPin, Mail } from "lucide-react";
-import { getAsset } from "@/lib/s3";
+import { Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { social } from './const';
 
 export const Footer = () => {
   return (
@@ -14,7 +12,7 @@ export const Footer = () => {
           <div className="flex gap-6 items-center">
             <div className="w-[90px] h-[78px] relative">
               <Image
-                src={getAsset("/Footer.png")}
+                src={'/s3/Footer.png'}
                 alt="FooterLogo"
                 fill
                 sizes="none"
@@ -64,7 +62,7 @@ export const Footer = () => {
         <div className="bg-[#481E58] px-8 sm:px-[62px] h-full py-8 flex justify-center items-center flex-col">
           <div className="w-[78px] h-[66px] relative">
             <Image
-              src={getAsset("/Footer.png")}
+              src={'/s3/Footer.png'}
               alt="FooterLogo"
               fill
               sizes="none"
@@ -126,14 +124,14 @@ const ContactLogo = ({ href, image }: { href: string; image: string }) => {
     >
       <div className="relative xl:w-[24px] xl:h-[24px] lg:w-[24px] lg:h-[24px] w-[14px] h-[14px]">
         <Image
-          src={getAsset(image)}
+          src={image}
           alt="Logo"
           fill
           sizes="none"
           className="object-contain max-md:hidden"
         />
         <Image
-          src={getAsset(image.split(".").join("Mob."))}
+          src={image.split('.').join('Mob.')}
           alt="Logo"
           fill
           sizes="none"

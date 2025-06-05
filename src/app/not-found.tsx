@@ -1,6 +1,6 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const NotFound = () => {
   return (
@@ -15,7 +15,7 @@ const NotFound = () => {
         <h3 className="font-raleway text-t8 md:text-t6 max-md:mt-3">
           seems like the page you&apos;re trying to open is not ready
         </h3>
-        <Link href={"/"}>
+        <Link href={'/'}>
           <Button variant="primary" className="mt-8">
             Back to Home
           </Button>

@@ -1,16 +1,16 @@
-import * as React from 'react'
-import { cn } from '@/lib/utils'
-import { Label } from '@/components/ui/label'
+import * as React from 'react';
+import { cn } from '@/lib/utils';
+import { Label } from '@/components/ui/label';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string
-  errorMessage?: string
-  description?: string
-  icon?: React.ReactNode
-  color?: 'light' | 'dark'
-  iconPosition?: 'left' | 'right'
-  asterisk?: boolean
+  label?: string;
+  errorMessage?: string;
+  description?: string;
+  icon?: React.ReactNode;
+  color?: 'light' | 'dark';
+  iconPosition?: 'left' | 'right';
+  asterisk?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -29,10 +29,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     return (
-      <div className='flex flex-col gap-2 w-full lg:w-auto'>
-        {label && <Label>{label} {asterisk && <span className="text-red-500"> *</span>}</Label>}
-        <div className='flex items-center border-none rounded-[0.5rem] w-full text-black outline-none overflow-hidden relative'>
-          <div className={cn('absolute', iconPosition === 'left' ? 'left-5' : 'right-5')}>
+      <div className="flex flex-col gap-2 w-full lg:w-auto">
+        {label && (
+          <Label>
+            {label} {asterisk && <span className="text-red-500"> *</span>}
+          </Label>
+        )}
+        <div className="flex items-center border-none rounded-[0.5rem] w-full text-black outline-none overflow-hidden relative">
+          <div
+            className={cn(
+              'absolute',
+              iconPosition === 'left' ? 'left-5' : 'right-5'
+            )}
+          >
             {icon}
           </div>
           <input
@@ -52,15 +61,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </p>
         )}
         {description && (
-          <p className="font-normal items-center text-sm">
-            {description}
-          </p>
+          <p className="font-normal items-center text-sm">{description}</p>
         )}
       </div>
-    )
+    );
   }
-)
+);
 
-Input.displayName = 'Input'
+Input.displayName = 'Input';
 
-export default Input
+export default Input;

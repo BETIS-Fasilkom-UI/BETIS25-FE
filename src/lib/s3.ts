@@ -1,56 +1,54 @@
-import {
-    S3Client
-} from "@aws-sdk/client-s3";
+import { S3Client } from '@aws-sdk/client-s3';
 
 const Bucket = process.env.AMPLIFY_BUCKET;
 const s3 = new S3Client({
-    region: process.env.AWS_REGION,
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
-    },
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
+  },
 });
 
-const uploadFile = async (file: File, key?: string, folder?: string) => { 
-    const formData = new FormData();
+const uploadFile = async (file: File, key?: string, folder?: string) => {
+  const formData = new FormData();
 
-    formData.append('file', file);
-    formData.append('data', JSON.stringify({ key, folder }));
+  formData.append('file', file);
+  formData.append('data', JSON.stringify({ key, folder }));
 
-    // Fetch
-    const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-    })
+  // Fetch
+  const response = await fetch('/api/upload', {
+    method: 'POST',
+    body: formData,
+  });
 
-    if (!response.ok) {
-        throw new Error('Failed to upload file');
-    }
+  if (!response.ok) {
+    throw new Error('Failed to upload file');
+  }
 
-    const data: {url: string} = await response.json();
+  const data: { url: string } = await response.json();
 
-    return data.url;
-}
+  return data.url;
+};
 
 const deleteFile = async (key: string, folder?: string) => {
-    console.log(JSON.stringify({ key, folder }))
-    const fullKey = folder ? `${folder}/${key}` : key;
-    
-    const response = await fetch('/api/delete', {
-        method: 'DELETE',
-        body: JSON.stringify({ fullKey }),
-    });
+  console.log(JSON.stringify({ key, folder }));
+  const fullKey = folder ? `${folder}/${key}` : key;
 
-    if (!response.ok) {
-        throw new Error('Failed to delete file');
-    }
-}
+  const response = await fetch('/api/delete', {
+    method: 'DELETE',
+    body: JSON.stringify({ fullKey }),
+  });
 
-const getAsset = (key: string): string => { 
-    const cleanedKey = key.replace(/^\/|\/$/g, '');
-    const url = `https://betis25.s3.ap-southeast-2.amazonaws.com/assets/${cleanedKey}`;
+  if (!response.ok) {
+    throw new Error('Failed to delete file');
+  }
+};
 
-    return url;
-}
+const getAsset = (key: string): string => {
+  const cleanedKey = key.replace(/^\/|\/$/g, '');
+  const url = `https://betis25.s3.ap-southeast-2.amazonaws.com/assets/${cleanedKey}`;
 
-export { Bucket, s3, uploadFile, getAsset, deleteFile};
+  return url;
+};
+
+export { Bucket, s3, uploadFile, getAsset, deleteFile };

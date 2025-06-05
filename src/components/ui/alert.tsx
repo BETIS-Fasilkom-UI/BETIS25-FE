@@ -1,25 +1,29 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { Check, CircleAlert, Info, LoaderCircle, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { Check, CircleAlert, Info, LoaderCircle, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const alertVariants = cva(
-  "relative w-full rounded-[0.5rem] border-l-8 text-gray-950 p-4 pl-[70px] [&>.icon+div]:translate-y-[-12px] [&>.icon]:absolute [&>.icon]:left-4 [&>.icon]:top-2",
+  'relative w-full rounded-[0.5rem] border-l-8 text-gray-950 p-4 pl-[70px] [&>.icon+div]:translate-y-[-12px] [&>.icon]:absolute [&>.icon]:left-4 [&>.icon]:top-2',
   {
     variants: {
       variant: {
-        success: "border-tosca-normal bg-tosca-light-hover [&>.icon]:bg-tosca-normal [&_svg]:stroke-tosca-light-hover",
-        error: "border-red-500 bg-red-50 [&>.icon]:bg-red-500 [&_svg]:stroke-tosca-light-hover",
-        warning: "border-[#EAC02A] bg-yellow-50 [&>.icon]:bg-[#EAC02A] [&_svg]:stroke-tosca-light-hover",
-        info: "border-[#5458F7] bg-[#EAEDF0] [&>.icon]:bg-[#5458F7] [&_svg]:stroke-tosca-light-hover",
-        loading: "border-[#2F4A6A] bg-tosca-light [&>.icon]:bg-[#2F4A6A] [&_svg]:stroke-tosca-light-hover"
+        success:
+          'border-tosca-normal bg-tosca-light-hover [&>.icon]:bg-tosca-normal [&_svg]:stroke-tosca-light-hover',
+        error:
+          'border-red-500 bg-red-50 [&>.icon]:bg-red-500 [&_svg]:stroke-tosca-light-hover',
+        warning:
+          'border-[#EAC02A] bg-yellow-50 [&>.icon]:bg-[#EAC02A] [&_svg]:stroke-tosca-light-hover',
+        info: 'border-[#5458F7] bg-[#EAEDF0] [&>.icon]:bg-[#5458F7] [&_svg]:stroke-tosca-light-hover',
+        loading:
+          'border-[#2F4A6A] bg-tosca-light [&>.icon]:bg-[#2F4A6A] [&_svg]:stroke-tosca-light-hover',
       },
     },
     defaultVariants: {
-      variant: "success",
+      variant: 'success',
     },
   }
-)
+);
 
 const Alert = React.forwardRef<
   HTMLDivElement,
@@ -32,16 +36,16 @@ const Alert = React.forwardRef<
     {...props}
   >
     <span className="icon p-2 rounded-full">
-      {variant === "success" && <Check />}
-      {variant === "error" && <X />}
-      {variant === "warning" && <CircleAlert />}
-      {variant === "info" && <Info />}
-      {variant === "loading" && <LoaderCircle />}
+      {variant === 'success' && <Check />}
+      {variant === 'error' && <X />}
+      {variant === 'warning' && <CircleAlert />}
+      {variant === 'info' && <Info />}
+      {variant === 'loading' && <LoaderCircle />}
     </span>
     {children}
   </div>
-))
-Alert.displayName = "Alert"
+));
+Alert.displayName = 'Alert';
 
 const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -49,11 +53,14 @@ const AlertTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn("mb-1 font-bold font-raleway font-lg leading-none tracking-tight", className)}
+    className={cn(
+      'mb-1 font-bold font-raleway font-lg leading-none tracking-tight',
+      className
+    )}
     {...props}
   />
-))
-AlertTitle.displayName = "AlertTitle"
+));
+AlertTitle.displayName = 'AlertTitle';
 
 const AlertDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -61,10 +68,10 @@ const AlertDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-sm [&_p]:leading-relaxed", className)}
+    className={cn('text-sm [&_p]:leading-relaxed', className)}
     {...props}
   />
-))
-AlertDescription.displayName = "AlertDescription"
+));
+AlertDescription.displayName = 'AlertDescription';
 
-export { Alert, AlertTitle, AlertDescription }
+export { Alert, AlertTitle, AlertDescription };

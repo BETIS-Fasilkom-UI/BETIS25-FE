@@ -1,4 +1,4 @@
-export function BigBlurredStarIcon({ className = "" }: { className?: string }) {
+export function BigBlurredStarIcon({ className = '' }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -42,7 +42,7 @@ export function BigBlurredStarIcon({ className = "" }: { className?: string }) {
 }
 
 export function SmallBlurredStarIcon({
-  className = "",
+  className = '',
 }: {
   className?: string;
 }) {

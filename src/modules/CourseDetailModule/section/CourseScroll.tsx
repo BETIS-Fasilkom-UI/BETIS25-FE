@@ -1,9 +1,9 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import { getAsset } from "@/lib/s3";
-import Link from "next/link";
-import { Scroll, Section } from "../interface";
+'use client';
+import Image from 'next/image';
+import { useState } from 'react';
+
+import Link from 'next/link';
+import { Scroll } from '../interface';
 
 const CourseScroll = ({
   id,
@@ -23,7 +23,7 @@ const CourseScroll = ({
         <div className="absolute w-full h-[97%] top-[1%]">
           <Image
             alt="kertas"
-            src={getAsset("/lembarankertas2.png")}
+            src={'/s3/lembarankertas2.png'}
             fill
             sizes="none"
             priority
@@ -36,7 +36,7 @@ const CourseScroll = ({
           </h1>
           <Image
             alt="gulungan"
-            src={getAsset("/gulungan1.png")}
+            src={'/s3/gulungan1.png'}
             fill
             sizes="none"
             className="object-contain"
@@ -53,7 +53,7 @@ const CourseScroll = ({
           {active && <hr className="border-[#50091054]" />}
           <div
             className={`font-raleway text-[#500910] w-full ${
-              active ? "block" : "hidden"
+              active ? 'block' : 'hidden'
             }`}
           >
             <div className="w-full flex flex-col gap-5 px-12">
@@ -75,7 +75,7 @@ const CourseScroll = ({
                       {section.items !== null ? (
                         <>
                           {section.items.map((item) =>
-                            item.type === "material" ? (
+                            item.type === 'material' ? (
                               // item.title.toLowerCase().includes("quiz") ?
                               //   (
                               //   <Link key={item.id} href={`/`} target="_blank">
@@ -100,28 +100,28 @@ const CourseScroll = ({
                               //   </Link>
                               // ) : (
                               // )
-                                <Link
-                                  key={item.id}
-                                  href={item.url}
-                                  target="_blank"
-                                >
-                                  <div className="flex gap-3 items-center transition-all hover:opacity-70">
-                                    <div className="p-[7px] bg-[#AB98B2] rounded-[12px]">
-                                      <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
-                                        <Image
-                                          alt="materi"
-                                          src={getAsset("/li_file-text.svg")}
-                                          fill
-                                          sizes="none"
-                                          className="object-contain"
-                                        />
-                                      </div>
+                              <Link
+                                key={item.id}
+                                href={item.url}
+                                target="_blank"
+                              >
+                                <div className="flex gap-3 items-center transition-all hover:opacity-70">
+                                  <div className="p-[7px] bg-[#AB98B2] rounded-[12px]">
+                                    <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
+                                      <Image
+                                        alt="materi"
+                                        src={'/s3/li_file-text.svg'}
+                                        fill
+                                        sizes="none"
+                                        className="object-contain"
+                                      />
                                     </div>
-                                    <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
-                                      {item.title}
-                                    </p>
                                   </div>
-                                </Link>
+                                  <p className="font-openSans text-xl max-md:text-lg max-sm:text-sm">
+                                    {item.title}
+                                  </p>
+                                </div>
+                              </Link>
                             ) : (
                               <Link
                                 key={item.id}
@@ -133,7 +133,7 @@ const CourseScroll = ({
                                     <div className="relative w-[35px] h-[35px] max-md:w-[30px] max-md:h-[30px] max-sm:w-[20px] max-sm:h-[20px]">
                                       <Image
                                         alt="materi"
-                                        src={getAsset("/li_file-plus.svg")}
+                                        src={'/s3/li_file-plus.svg'}
                                         fill
                                         sizes="none"
                                         className="object-contain"
@@ -171,17 +171,17 @@ const CourseScroll = ({
           <div className="z-10 relative w-[25px] h-[25px] max-md:w-[20px] max-md:h-[20px]">
             <Image
               alt="panah"
-              src={getAsset("/panah.svg")}
+              src={'/s3/panah.svg'}
               fill
               sizes="none"
               className={`object-contain duration-300 ${
-                active ? "transform rotate-180" : ""
+                active ? 'transform rotate-180' : ''
               }`}
             />
           </div>
           <Image
             alt="gulungan"
-            src={getAsset("/gulungan2.png")}
+            src={'/s3/gulungan2.png'}
             fill
             sizes="none"
             className="object-contain"

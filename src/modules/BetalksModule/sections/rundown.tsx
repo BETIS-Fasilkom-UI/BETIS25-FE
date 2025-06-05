@@ -1,11 +1,11 @@
-import { Card } from "@/components/ui/card";
-import { Check, Clock, X } from "lucide-react";
-import Image from "next/image";
+import { Card } from '@/components/ui/card';
+import { Check, Clock, X } from 'lucide-react';
+import Image from 'next/image';
 
 interface TimelineItem {
   time: string;
   activity: string;
-  status?: "completed" | "current" | "upcoming";
+  status?: 'completed' | 'current' | 'upcoming';
 }
 
 export const Rundown = () => {
@@ -13,19 +13,19 @@ export const Rundown = () => {
   const eventDate = new Date(2025, 3, 15);
 
   let timelineItems: TimelineItem[] = [
-    { time: "13.00 - 13.30", activity: "PERSIAPAN" },
-    { time: "13.30 - 13.35", activity: "PEMBUKAAN" },
+    { time: '13.00 - 13.30', activity: 'PERSIAPAN' },
+    { time: '13.30 - 13.35', activity: 'PEMBUKAAN' },
     {
-      time: "13.35 - 13.50",
-      activity: "SAMBUTAN PO/VPO\nDAN PENGENALAN\nBETIS 2025",
-      status: "current",
+      time: '13.35 - 13.50',
+      activity: 'SAMBUTAN PO/VPO\nDAN PENGENALAN\nBETIS 2025',
+      status: 'current',
     },
-    { time: "13.50 - 14.05", activity: "ICE BREAKING" },
-    { time: "14.05 - 15.35", activity: "SHARING SESSION" },
-    { time: "15.35 - 15.50", activity: "Q&A SESSION" },
+    { time: '13.50 - 14.05', activity: 'ICE BREAKING' },
+    { time: '14.05 - 15.35', activity: 'SHARING SESSION' },
+    { time: '15.35 - 15.50', activity: 'Q&A SESSION' },
     {
-      time: "15.50 - 16.00",
-      activity: "DOKUMENTASI\nDAN CLOSING",
+      time: '15.50 - 16.00',
+      activity: 'DOKUMENTASI\nDAN CLOSING',
     },
   ];
 
@@ -35,53 +35,59 @@ export const Rundown = () => {
     const nowGmtPlus7 = new Date(now.getTime() + gmtPlus7Offset);
 
     return timelineItems.map((item) => {
-      const [startTime, endTime] = item.time.split(" - ").map((time) => {
-        const [hours, minutes] = time.split(".").map(Number);
-        return new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate(), hours, minutes);
+      const [startTime, endTime] = item.time.split(' - ').map((time) => {
+        const [hours, minutes] = time.split('.').map(Number);
+        return new Date(
+          eventDate.getFullYear(),
+          eventDate.getMonth(),
+          eventDate.getDate(),
+          hours,
+          minutes
+        );
       });
 
       if (nowGmtPlus7 >= startTime && nowGmtPlus7 <= endTime) {
-        return { ...item, status: "current" as "current" };
+        return { ...item, status: 'current' as 'current' };
       } else if (nowGmtPlus7 > endTime) {
-        return { ...item, status: "completed" as "completed" };
+        return { ...item, status: 'completed' as 'completed' };
       } else {
-        return { ...item, status: "upcoming" as "upcoming" };
+        return { ...item, status: 'upcoming' as 'upcoming' };
       }
     });
   };
 
   timelineItems = updateTimelineStatus();
 
-  const getStatusIcon = (status: TimelineItem["status"]) => {
+  const getStatusIcon = (status: TimelineItem['status']) => {
     switch (status) {
-      case "completed":
+      case 'completed':
         return <Check className="w-4 h-4 text-white" />;
-      case "current":
+      case 'current':
         return <Clock className="w-4 h-4 text-white" />;
-      case "upcoming":
+      case 'upcoming':
         return <X className="w-4 h-4 text-white" />;
     }
   };
 
-  const getItemColor = (status: TimelineItem["status"]) => {
+  const getItemColor = (status: TimelineItem['status']) => {
     switch (status) {
-      case "completed":
-        return "bg-gradient-to-b from-[#7D4893] to-[#8E2B8F]";
-      case "current":
-        return "bg-gradient-to-b from-[#B73786] to-[#8E2B8F]";
-      case "upcoming":
-        return "bg-[#C6B9CB]";
+      case 'completed':
+        return 'bg-gradient-to-b from-[#7D4893] to-[#8E2B8F]';
+      case 'current':
+        return 'bg-gradient-to-b from-[#B73786] to-[#8E2B8F]';
+      case 'upcoming':
+        return 'bg-[#C6B9CB]';
     }
   };
 
-  const getLineColor = (status: TimelineItem["status"]) => {
+  const getLineColor = (status: TimelineItem['status']) => {
     switch (status) {
-      case "completed":
-        return "bg-[#481E58]";
-      case "current":
-        return "bg-gradient-to-b from-[#B73786] to-[#8E2B8F]";
-      case "upcoming":
-        return "bg-[#C6B9CB]";
+      case 'completed':
+        return 'bg-[#481E58]';
+      case 'current':
+        return 'bg-gradient-to-b from-[#B73786] to-[#8E2B8F]';
+      case 'upcoming':
+        return 'bg-[#C6B9CB]';
     }
   };
 

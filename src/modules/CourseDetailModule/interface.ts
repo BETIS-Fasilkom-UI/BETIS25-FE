@@ -42,7 +42,7 @@ export interface Material {
   id: string;
   title: string;
   description: string;
-  type: "material";
+  type: 'material';
   url: string;
 }
 
@@ -50,7 +50,7 @@ export interface Submission {
   id: string;
   title: string;
   description: string;
-  type: "submission";
+  type: 'submission';
   opened_at: string;
   closed_at: string;
   cutoff_at: string;
@@ -60,6 +60,6 @@ export interface Quiz {
   id: string;
   title: string;
   description: string;
-  type: "quiz";
+  type: 'quiz';
   duration: number;
 }

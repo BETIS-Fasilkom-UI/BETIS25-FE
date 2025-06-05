@@ -1,21 +1,21 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { FileInput } from "@/components/ui/file-input";
-import { toast } from "@/components/ui/sonner";
-import { getAsset } from "@/lib/s3";
-import Image from "next/image";
+'use client';
+import { Button } from '@/components/ui/button';
+import { FileInput } from '@/components/ui/file-input';
+import { toast } from '@/components/ui/sonner';
+import { useEffect, useState } from 'react';
+
 import {
   submissionItemSchema,
   updateSubmission,
   useSubmission,
-} from "@/hooks/submission";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { SubmissionItem } from "@/modules/SubmissionItemModule/interface";
-import { Submission } from "@/modules/SubmissionModule/interface";
+} from '@/hooks/submission';
+import { SubmissionItem } from '@/modules/SubmissionItemModule/interface';
+import { Submission } from '@/modules/SubmissionModule/interface';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 type SubmissionItemFormValues = z.infer<typeof submissionItemSchema>;
 
@@ -44,16 +44,16 @@ const SubmissionItemModule = ({
     resolver: zodResolver(submissionItemSchema),
   });
 
-  const targetDate = new Date(submissionData.cutoff_at.replace(" ", "T"));
+  const targetDate = new Date(submissionData.cutoff_at.replace(' ', 'T'));
   const now = new Date(
-    new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
+    new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
   );
   const isSubmissionClosed = now > targetDate;
 
   useEffect(() => {
     if (isSubmissionClosed) {
       push(`/sub/submission/${submissionData.id}`);
-      toast.error("Submisi sudah tutup");
+      toast.error('Submisi sudah tutup');
     }
   }, []);
 
@@ -64,7 +64,7 @@ const SubmissionItemModule = ({
 
     const combinedData = { ...FormData, ...values };
 
-    let result = { isSuccess: false, message: "Unknown Error"};
+    let result = { isSuccess: false, message: 'Unknown Error' };
     // eslint-disable-next-line react-hooks/rules-of-hooks
     if (!isEdit) {
       result = await useSubmission(
@@ -76,9 +76,8 @@ const SubmissionItemModule = ({
       result = await updateSubmission(
         combinedData,
         data.id,
-        data.url.split("/").pop() || "UnknownFileName",
-        submissionData.id,
-        submissionData.title
+        data.url.split('/').pop() || 'UnknownFileName',
+        submissionData.id
       );
     }
 
@@ -87,7 +86,7 @@ const SubmissionItemModule = ({
       setFormData(null);
 
       push(`/sub/submission/${submissionData.id}`);
-      toast.success("Submission success");
+      toast.success('Submission success');
     } else {
       toast.error(result.message);
     }
@@ -108,7 +107,7 @@ const SubmissionItemModule = ({
       <div className="absolute md:w-[581.588px] md:h-[389.025px] lg:w-[664.672px] lg:h-[444.6px] max-md:hidden">
         <Image
           alt="Scroll"
-          src={getAsset("/scroll.png")}
+          src={'/s3/scroll.png'}
           fill
           priority
           sizes="none"
@@ -119,7 +118,7 @@ const SubmissionItemModule = ({
       <div className="absolute w-[305.968px] h-[350.88px] sm:w-[382.46px] sm:h-[438.6px] md:hidden">
         <Image
           alt="ScrollKecil"
-          src={getAsset("/scrollkecil.png")}
+          src={'/s3/scrollkecil.png'}
           fill
           priority
           sizes="none"
@@ -140,8 +139,8 @@ const SubmissionItemModule = ({
           </div>
 
           <FileInput
-            file={form.watch("submission")}
-            setFile={(file) => form.setValue("submission", file)}
+            file={form.watch('submission')}
+            setFile={(file) => form.setValue('submission', file)}
           />
 
           <div className="relative flex flex-col -translate-y-5 sm:translate-y-0 sm:flex-row justify-center gap-1 sm:gap-3 w-[100%]">
@@ -160,13 +159,13 @@ const SubmissionItemModule = ({
               type="submit"
               onClick={() => {
                 if (form.getValues().submission === undefined) {
-                  toast.warning("Please fill in all required fields");
+                  toast.warning('Please fill in all required fields');
                 } else if (form.formState.errors.submission) {
                   toast.warning(
                     typeof form.formState.errors.submission?.message ===
-                      "string"
+                      'string'
                       ? form.formState.errors.submission.message
-                      : ""
+                      : ''
                   );
                 }
               }}
@@ -181,7 +180,7 @@ const SubmissionItemModule = ({
       <div className="absolute -z-20 h-2/5 sm:h-2/3 aspect-[1/3] sm:aspect-[1/2] md:h-full -left-5 -bottom-[88px] sm:-bottom-16 md:-bottom-[98px] lg:bottom-0 lg:aspect-[2/3]">
         <Image
           alt="BG"
-          src={getAsset("/SubmissionBGKIRI.png")}
+          src={'/s3/SubmissionBGKIRI.png'}
           fill
           sizes="none"
           className="object-contain"
@@ -190,7 +189,7 @@ const SubmissionItemModule = ({
       <div className="absolute -z-20 h-2/5 sm:h-2/3 aspect-[1/3] sm:aspect-[1/2]  md:h-full -right-5 -bottom-[86px] sm:-bottom-16 md:-bottom-[86px] lg:bottom-0 lg:aspect-[2/3]">
         <Image
           alt="BG"
-          src={getAsset("/SubmissionBGKANAN.png")}
+          src={'/s3/SubmissionBGKANAN.png'}
           fill
           sizes="none"
           className="object-contain"

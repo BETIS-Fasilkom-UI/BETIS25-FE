@@ -1,6 +1,6 @@
-import { EmblaCarouselType } from "embla-carousel";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import React, { PropsWithChildren, useCallback } from "react";
+import { EmblaCarouselType } from 'embla-carousel';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import React, { PropsWithChildren, useCallback } from 'react';
 
 type UsePrevNextButtonsType = {
   onPrevButtonClick: () => void;
@@ -35,7 +35,7 @@ type PropType = PropsWithChildren<
     HTMLButtonElement
   >
 > & {
-  direction: "prev" | "next";
+  direction: 'prev' | 'next';
   onClick: () => void;
 };
 
@@ -44,7 +44,7 @@ export const CarouselButton: React.FC<PropType> = (props) => {
 
   return (
     <button onClick={onClick} {...restProps}>
-      {direction === "prev" ? (
+      {direction === 'prev' ? (
         // button color should be bg-gradient-to-b from-[#b73786] to-[#621d48]
         <div className="flex items-center justify-center size-[1.875rem] sm:size-12 bg-gradient-to-b from-[#b73786] to-[#621d48] rounded-full">
           <ArrowLeft

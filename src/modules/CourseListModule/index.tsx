@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import { getAsset } from "@/lib/s3";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { courseId } from "../CourseDetailModule/const";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { courseId } from '../CourseDetailModule/const';
 
 const CourseList = () => {
   return (
@@ -13,7 +13,7 @@ const CourseList = () => {
         <div className="w-[494px] aspect-[494/155] absolute z-[100] left-[115px]">
           <Image
             alt="Header Courses"
-            src={getAsset("/Courses.png")}
+            src={'/s3/Courses.png'}
             fill
             sizes="none"
             className="object-contain"
@@ -27,7 +27,7 @@ const CourseList = () => {
           >
             <Image
               alt="Kemampuan Penalaran Umum"
-              src={getAsset("/KPU.png")}
+              src={'/s3/KPU.png'}
               fill
               sizes="none"
               className="object-contain"
@@ -42,7 +42,7 @@ const CourseList = () => {
           >
             <Image
               alt="Pengetahuan dan Pemahaman Umum"
-              src={getAsset("/PPU.png")}
+              src={'/s3/PPU.png'}
               fill
               sizes="none"
               className="object-contain"
@@ -57,7 +57,7 @@ const CourseList = () => {
           >
             <Image
               alt="Pengetahuan dan Pemahaman Umum"
-              src={getAsset("/PBM.png")}
+              src={'/s3/PBM.png'}
               fill
               sizes="none"
               className="object-contain"
@@ -72,7 +72,7 @@ const CourseList = () => {
           >
             <Image
               alt="Pengetahuan dan Pemahaman Umum"
-              src={getAsset("/KK.png")}
+              src={'/s3/KK.png'}
               fill
               sizes="none"
               className="object-contain"
@@ -87,7 +87,7 @@ const CourseList = () => {
           >
             <Image
               alt="Pengetahuan dan Pemahaman Umum"
-              src={getAsset("/LBI.png")}
+              src={'/s3/LBI.png'}
               fill
               sizes="none"
               className="object-contain"
@@ -102,7 +102,7 @@ const CourseList = () => {
           >
             <Image
               alt="Pengetahuan dan Pemahaman Umum"
-              src={getAsset("/LBE.png")}
+              src={'/s3/LBE.png'}
               fill
               sizes="none"
               className="object-contain"
@@ -117,7 +117,7 @@ const CourseList = () => {
           >
             <Image
               alt="Pengetahuan dan Pemahaman Umum"
-              src={getAsset("/PM.png")}
+              src={'/s3/PM.png'}
               fill
               sizes="none"
               className="object-contain"
@@ -127,7 +127,7 @@ const CourseList = () => {
         <motion.div className="w-[142px] aspect-[142/1501] absolute z-[92] top-[184px] left-[331px]">
           <Image
             alt="Batang"
-            src={getAsset("/Batang.png")}
+            src={'/s3/Batang.png'}
             fill
             sizes="none"
             className="object-contain"
@@ -138,7 +138,7 @@ const CourseList = () => {
       <div className="absolute min-w-[610px] w-[142vw] overflow-x-clip aspect-[2015/2152] z-[91] top-[170px] sm:top-[120px]">
         <Image
           alt="background"
-          src={getAsset("/hutan.png")}
+          src={'/s3/hutan.png'}
           fill
           sizes="none"
           className="object-contain "

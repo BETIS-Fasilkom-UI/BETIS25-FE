@@ -1,40 +1,40 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Layout } from "@/components/layout";
-import { Cinzel, Raleway, Open_Sans, Playfair_Display } from "next/font/google";
-import NextTopLoader from "nextjs-toploader";
+import type { Metadata } from 'next';
+import './globals.css';
+import { Layout } from '@/components/layout';
+import { Cinzel, Raleway, Open_Sans, Playfair_Display } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
 
 const openSans = Open_Sans({
-  weight: "400",
-  variable: "--font-open-sans",
-  subsets: ["latin"],
-  display: "swap",
+  weight: '400',
+  variable: '--font-open-sans',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const raleway = Raleway({
-  weight: ["400", "500", "600"],
-  variable: "--font-raleway",
-  subsets: ["latin"],
-  display: "swap",
+  weight: ['400', '500', '600'],
+  variable: '--font-raleway',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const cinzel = Cinzel({
-  weight: "900",
-  variable: "--font-cinzel",
-  subsets: ["latin"],
-  display: "swap",
+  weight: '900',
+  variable: '--font-cinzel',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const playfair = Playfair_Display({
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-playfair-display",
-  subsets: ["latin"],
-  display: "swap",
-})
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-playfair-display',
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: "BETIS 2025",
-  description: "DROG is my life and savior",
+  title: 'BETIS 2025',
+  description: 'DROG is my life and savior',
 };
 
 export default function RootLayout({

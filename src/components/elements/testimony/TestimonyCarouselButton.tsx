@@ -1,6 +1,6 @@
-import { EmblaCarouselType } from "embla-carousel";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import React, { PropsWithChildren, useCallback } from "react";
+import { EmblaCarouselType } from 'embla-carousel';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { PropsWithChildren, useCallback } from 'react';
 
 type UsePrevNextButtonsType = {
   onPrevButtonClick: () => void;
@@ -35,7 +35,7 @@ type PropType = PropsWithChildren<
     HTMLButtonElement
   >
 > & {
-  direction: "prev" | "next";
+  direction: 'prev' | 'next';
   onClick: () => void;
 };
 
@@ -44,21 +44,13 @@ export const CarouselButton: React.FC<PropType> = (props) => {
 
   return (
     <button onClick={onClick} {...restProps}>
-      {direction === "prev" ? (
+      {direction === 'prev' ? (
         <div className="flex items-center justify-center bg-violet-300 rounded-full">
-          <ChevronLeft
-            color="#FEF5FF"
-            size="28"
-            className="w-8 md:w-auto"
-          />
+          <ChevronLeft color="#FEF5FF" size="28" className="w-8 md:w-auto" />
         </div>
       ) : (
         <div className="flex items-center justify-center bg-violet-300 rounded-full">
-          <ChevronRight
-            color="#FEF5FF"
-            size="28"
-            className="w-8 md:w-auto"
-          />
+          <ChevronRight color="#FEF5FF" size="28" className="w-8 md:w-auto" />
         </div>
       )}
       {children}

@@ -1,16 +1,12 @@
-import { getUserData } from "@/hooks/user";
-import fetchServer from "@/lib/fetchServer";
-import { CourseDetailModule } from "@/modules/CourseDetailModule";
-import { courseId } from "@/modules/CourseDetailModule/const";
-import { CourseDetail, CourseDetailResponse } from "@/modules/CourseDetailModule/interface";
-import { NextPage } from "next";
-import { redirect } from "next/navigation";
+import fetchServer from '@/lib/fetchServer';
+import { CourseDetailModule } from '@/modules/CourseDetailModule';
+import { courseId } from '@/modules/CourseDetailModule/const';
+import { CourseDetail } from '@/modules/CourseDetailModule/interface';
+import { NextPage } from 'next';
 
 const page: NextPage<{
   params: Promise<{ courseName: string }>;
 }> = async ({ params }) => {
-  const user = await getUserData();
-
   const paramsReady = await params;
 
   const courseName = courseId.find(

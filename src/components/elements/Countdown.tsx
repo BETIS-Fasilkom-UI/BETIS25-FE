@@ -1,16 +1,16 @@
-"use client"
-import React, { ComponentPropsWithoutRef, useEffect, useState } from "react"
-import { Timer } from "lucide-react"
-import { cn } from "@/lib/utils"
+'use client';
+import React, { ComponentPropsWithoutRef, useEffect, useState } from 'react';
+import { Timer } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface CountdownProps {
-  date: string
-  type: "Days" | "Hours" | "Minutes" | "Seconds"
-  classNameType?: string
-  classNameBlock?: string
+  date: string;
+  type: 'Days' | 'Hours' | 'Minutes' | 'Seconds';
+  classNameType?: string;
+  classNameBlock?: string;
 }
 
-const BlockTime: React.FC<ComponentPropsWithoutRef<"div"> & CountdownProps> = ({
+const BlockTime: React.FC<ComponentPropsWithoutRef<'div'> & CountdownProps> = ({
   date,
   type,
   classNameType,
@@ -20,7 +20,7 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<"div"> & CountdownProps> = ({
     <div className="flex flex-col items-center gap-1">
       <span
         className={cn(
-          "font-raleway inline-block font-semibold text-white text-xs sm:text-sm md:text-base lg:text-xl",
+          'font-raleway inline-block font-semibold text-white text-xs sm:text-sm md:text-base lg:text-xl',
           classNameType
         )}
       >
@@ -28,13 +28,13 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<"div"> & CountdownProps> = ({
       </span>
       <div
         className={cn(
-          "flex justify-center items-center h-[5rem] w-[4rem] md:h-[5.188rem] md:w-[4.563rem] lg:w-[5.813rem] lg:h-[6.938rem] bg-white dark:bg-[#00090A] border-2 border-[#F3F0FE] dark:border-[#252525] rounded-[0.5rem]",
+          'flex justify-center items-center h-[5rem] w-[4rem] md:h-[5.188rem] md:w-[4.563rem] lg:w-[5.813rem] lg:h-[6.938rem] bg-white dark:bg-[#00090A] border-2 border-[#F3F0FE] dark:border-[#252525] rounded-[0.5rem]',
           classNameBlock
         )}
       >
         <span
           className={cn(
-            "inline-block font-cinzel font-black leading-9 text-3xl md:text-4xl lg:text-5xl text-tosca-dark-active hover:text-tosca-dark-hover dark:text-white",
+            'inline-block font-cinzel font-black leading-9 text-3xl md:text-4xl lg:text-5xl text-tosca-dark-active hover:text-tosca-dark-hover dark:text-white',
             classNameType
           )}
         >
@@ -42,8 +42,8 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<"div"> & CountdownProps> = ({
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const DotTime = () => {
   return (
@@ -51,8 +51,8 @@ const DotTime = () => {
       <div className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-white"></div>
       <div className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-white"></div>
     </div>
-  )
-}
+  );
+};
 
 const Countdown = ({
   targetDate,
@@ -61,37 +61,37 @@ const Countdown = ({
   classNameBlock,
   onComplete,
 }: {
-  targetDate: Date
-  displayDate?: boolean
-  classNameType?: string
-  classNameBlock?: string
-  onComplete?: () => void
+  targetDate: Date;
+  displayDate?: boolean;
+  classNameType?: string;
+  classNameBlock?: string;
+  onComplete?: () => void;
 }) => {
   const defaultRemainingTime = {
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
-  }
+  };
 
-  const [remainingTime, setRemainingTime] = useState(defaultRemainingTime)
+  const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
   const [dateTime, setDateTime] = useState({
-    date: "",
-    time: "",
-  })
+    date: '',
+    time: '',
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const deadlineDate = targetDate.getTime()
-      const now = new Date().getTime()
-      const distance = deadlineDate - now
+      const deadlineDate = targetDate.getTime();
+      const now = new Date().getTime();
+      const distance = deadlineDate - now;
 
-      const days = Math.floor(distance / (24 * 60 * 60 * 1000))
+      const days = Math.floor(distance / (24 * 60 * 60 * 1000));
       const hours = Math.floor(
         (distance % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)
-      )
-      const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60))
-      const seconds = Math.floor((distance % (60 * 1000)) / 1000)
+      );
+      const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+      const seconds = Math.floor((distance % (60 * 1000)) / 1000);
 
       if (distance < 0) {
         setRemainingTime({
@@ -99,9 +99,9 @@ const Countdown = ({
           hours: 0,
           minutes: 0,
           seconds: 0,
-        })
+        });
         if (onComplete) {
-          onComplete()
+          onComplete();
         }
       } else {
         setRemainingTime({
@@ -109,32 +109,32 @@ const Countdown = ({
           hours,
           minutes,
           seconds,
-        })
+        });
       }
-    }, 1000)
+    }, 1000);
 
-    return () => clearInterval(interval)
-  }, [targetDate, displayDate, onComplete])
+    return () => clearInterval(interval);
+  }, [targetDate, displayDate, onComplete]);
 
   useEffect(() => {
-    const date = targetDate.toLocaleDateString("id-ID", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    })
+    const date = targetDate.toLocaleDateString('id-ID', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
     const time = targetDate
-      .toLocaleTimeString("id-ID", {
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZoneName: "short",
+      .toLocaleTimeString('id-ID', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short',
       })
-      .replace(".", ":")
+      .replace('.', ':');
 
     setDateTime({
       date,
       time,
-    })
-  }, [targetDate])
+    });
+  }, [targetDate]);
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -142,33 +142,33 @@ const Countdown = ({
         <BlockTime
           classNameBlock={classNameBlock}
           classNameType={classNameType}
-          type={remainingTime.days != 0 ? "Days" : "Hours"}
+          type={remainingTime.days != 0 ? 'Days' : 'Hours'}
           date={
             remainingTime.days != 0
-              ? remainingTime.days.toString().padStart(2, "0")
-              : remainingTime.hours.toString().padStart(2, "0")
+              ? remainingTime.days.toString().padStart(2, '0')
+              : remainingTime.hours.toString().padStart(2, '0')
           }
         />
         <DotTime />
         <BlockTime
           classNameBlock={classNameBlock}
           classNameType={classNameType}
-          type={remainingTime.days != 0 ? "Hours" : "Minutes"}
+          type={remainingTime.days != 0 ? 'Hours' : 'Minutes'}
           date={
             remainingTime.days != 0
-              ? remainingTime.hours.toString().padStart(2, "0")
-              : remainingTime.minutes.toString().padStart(2, "0")
+              ? remainingTime.hours.toString().padStart(2, '0')
+              : remainingTime.minutes.toString().padStart(2, '0')
           }
         />
         <DotTime />
         <BlockTime
           classNameBlock={classNameBlock}
           classNameType={classNameType}
-          type={remainingTime.days != 0 ? "Minutes" : "Seconds"}
+          type={remainingTime.days != 0 ? 'Minutes' : 'Seconds'}
           date={
             remainingTime.days != 0
-              ? remainingTime.minutes.toString().padStart(2, "0")
-              : remainingTime.seconds.toString().padStart(2, "0")
+              ? remainingTime.minutes.toString().padStart(2, '0')
+              : remainingTime.seconds.toString().padStart(2, '0')
           }
         />
       </div>
@@ -176,20 +176,20 @@ const Countdown = ({
         <div className="flex items-center gap-1 sm:gap-2">
           <Timer
             className={cn(
-              "w-[0.875rem] h-[0.875rem] sm:w-[1.125rem] sm:h-[1.125rem] text-white",
+              'w-[0.875rem] h-[0.875rem] sm:w-[1.125rem] sm:h-[1.125rem] text-white',
               classNameType
             )}
           />
           <span
             className={cn(
-              "inline-block text-xs md:text-sm lg:text-base pt-[0.125rem] sm:pt-0 text-white",
+              'inline-block text-xs md:text-sm lg:text-base pt-[0.125rem] sm:pt-0 text-white',
               classNameType
             )}
           >{`${dateTime.date}, ${dateTime.time}`}</span>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Countdown
+export default Countdown;

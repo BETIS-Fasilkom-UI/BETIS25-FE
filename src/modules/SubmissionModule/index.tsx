@@ -1,16 +1,16 @@
-"use client";
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import Tooltip from "@/components/ui/tooltip";
-import { getAsset } from "@/lib/s3";
-import Image from "next/image";
-import { Calendar, Clock, File } from "lucide-react";
-import { Submission } from "@/modules/SubmissionModule/interface";
-import { SubmissionItem } from "@/modules/SubmissionItemModule/interface";
-import { useRouter } from "next/navigation";
-import { deleteSubmission } from "@/hooks/submission";
-import { toast } from "@/components/ui/sonner";
-import Link from "next/link";
+'use client';
+import { Button } from '@/components/ui/button';
+import Tooltip from '@/components/ui/tooltip';
+import { useState } from 'react';
+
+import { toast } from '@/components/ui/sonner';
+import { deleteSubmission } from '@/hooks/submission';
+import { SubmissionItem } from '@/modules/SubmissionItemModule/interface';
+import { Submission } from '@/modules/SubmissionModule/interface';
+import { Calendar, Clock, File } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const SubmissionModule = ({
   submissionItemData,
@@ -25,18 +25,11 @@ const SubmissionModule = ({
 
   const { push } = useRouter();
 
-  const handleDelete = async (
-    submissionItemId: string,
-    submissionItemName: string
-  ) => {
+  const handleDelete = async (submissionItemId: string) => {
     try {
-      const result = await deleteSubmission(
-        submissionItemId,
-        submissionItemName,
-        submissionData.title
-      );
+      const result = await deleteSubmission(submissionItemId);
       if (result.isSuccess) {
-        toast.success("Submission deleted");
+        toast.success('Submission deleted');
         setCurrentSection(1);
       } else {
         toast.error(result.message);
@@ -49,28 +42,28 @@ const SubmissionModule = ({
   function formatDueDate(isoString: string): string {
     try {
       const date = new Date(isoString);
-      if (isNaN(date.getTime())) throw new Error("Invalid date");
+      if (isNaN(date.getTime())) throw new Error('Invalid date');
 
       const options: Intl.DateTimeFormatOptions = {
-        weekday: "long",
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
+        weekday: 'long',
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
         hour12: true,
       };
 
-      const formatter = new Intl.DateTimeFormat("en-US", options);
-      return formatter.format(date).replace(/\./g, ":");
+      const formatter = new Intl.DateTimeFormat('en-US', options);
+      return formatter.format(date).replace(/\./g, ':');
     } catch (error) {
       console.error(error);
-      return "Invalid date";
+      return 'Invalid date';
     }
   }
 
   const now = new Date(
-    new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
+    new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
   );
 
   function isCutoffReached(cutoffAt: string): boolean {
@@ -82,12 +75,12 @@ const SubmissionModule = ({
 
   function calculateTimeRemaining(closedAt: string): string {
     const closedDate = new Date(closedAt);
-    if (isNaN(closedDate.getTime())) throw new Error("Invalid date");
+    if (isNaN(closedDate.getTime())) throw new Error('Invalid date');
 
     const diffInMs = closedDate.getTime() - now.getTime();
 
     if (diffInMs <= 0) {
-      return "Submission closed";
+      return 'Submission closed';
     }
 
     const msInHour = 1000 * 60 * 60;
@@ -104,7 +97,7 @@ const SubmissionModule = ({
       <div className="absolute md:w-[581.588px] md:h-[389.025px] lg:w-[664.672px] lg:h-[444.6px] max-md:hidden">
         <Image
           alt="Scroll"
-          src={getAsset("/scroll.png")}
+          src={'/s3/scroll.png'}
           fill
           priority
           sizes="none"
@@ -115,7 +108,7 @@ const SubmissionModule = ({
       <div className="absolute w-[305.968px] h-[350.88px] sm:w-[382.46px] sm:h-[438.6px] md:hidden">
         <Image
           alt="ScrollKecil"
-          src={getAsset("/scrollkecil.png")}
+          src={'/s3/scrollkecil.png'}
           fill
           priority
           sizes="none"
@@ -158,7 +151,7 @@ const SubmissionModule = ({
                 stroke="#500910"
               />
               <div className="text-black text-[15px] sm:text-[16px] font-normal font-sans">
-                Time Remaining:{" "}
+                Time Remaining:{' '}
                 {calculateTimeRemaining(submissionData.closed_at)}
               </div>
             </div>
@@ -212,21 +205,24 @@ const SubmissionModule = ({
                 stroke="#500910"
               />
               <div className="text-black text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans">
-                Time Remaining:{" "}
+                Time Remaining:{' '}
                 {calculateTimeRemaining(submissionData.cutoff_at)}
               </div>
             </div>
 
             {/* filename */}
-            <Tooltip text={submissionItemData.url.split("/").pop() || "N/A"}>
+            <Tooltip text={submissionItemData.url.split('/').pop() || 'N/A'}>
               <div className="flex items-center space-x-2">
                 <File
                   color="white"
                   className="size-4 sm:size-6"
                   stroke="#500910"
                 />
-                <Link href={submissionItemData.url} className="text-black underline text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans overflow-hidden whitespace-nowrap text-ellipsis">
-                  {submissionItemData.url.split("/").pop()}
+                <Link
+                  href={submissionItemData.url}
+                  className="text-black underline text-[12px] sm:text-[15px] md:text-[16px] font-normal font-sans overflow-hidden whitespace-nowrap text-ellipsis"
+                >
+                  {submissionItemData.url.split('/').pop()}
                 </Link>
               </div>
             </Tooltip>
@@ -234,12 +230,7 @@ const SubmissionModule = ({
             {/* button remove and edit */}
             <div className="relative flex flex-col md:flex-row justify-center gap-1 sm:w-[100%] -translate-y-7 md:translate-y-0">
               <Button
-                onClick={() =>
-                  handleDelete(
-                    submissionItemData.id,
-                    submissionItemData.url.split("/").pop() || "UnknownFileName"
-                  )
-                }
+                onClick={() => handleDelete(submissionItemData.id)}
                 className="md:w-[50%] md:h-[80%] h-[10%] sm:h-[10%]"
                 variant="secondary"
                 disabled={isDisabled}
@@ -264,7 +255,7 @@ const SubmissionModule = ({
       <div className="absolute -z-20 h-2/5 sm:h-2/3 aspect-[1/3] sm:aspect-[1/2] md:h-full -left-5 -bottom-[88px] sm:-bottom-16 md:-bottom-[98px] lg:bottom-0 lg:aspect-[2/3]">
         <Image
           alt="BG"
-          src={getAsset("/SubmissionBGKIRI.png")}
+          src={'/s3/SubmissionBGKIRI.png'}
           fill
           sizes="none"
           className="object-contain"
@@ -273,7 +264,7 @@ const SubmissionModule = ({
       <div className="absolute -z-20 h-2/5 sm:h-2/3 aspect-[1/3] sm:aspect-[1/2]  md:h-full -right-5 -bottom-[86px] sm:-bottom-16 md:-bottom-[86px] lg:bottom-0 lg:aspect-[2/3]">
         <Image
           alt="BG"
-          src={getAsset("/SubmissionBGKANAN.png")}
+          src={'/s3/SubmissionBGKANAN.png'}
           fill
           sizes="none"
           className="object-contain"

@@ -1,5 +1,3 @@
-import { string } from "zod";
-
 export interface Response {
   ok: boolean;
   message: string;

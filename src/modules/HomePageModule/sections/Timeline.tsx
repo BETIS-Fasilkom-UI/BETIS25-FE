@@ -1,20 +1,19 @@
-"use client";
+'use client';
 
-import { getAsset } from "@/lib/s3";
-import Image from "next/image";
-import { events } from "../const";
+import Image from 'next/image';
+import { events } from '../const';
 import {
   BigBlurredStarIcon,
   SmallBlurredStarIcon,
-} from "../module-elements/BlurredStarIcon";
-import { EventCard } from "../module-elements/card";
+} from '../module-elements/BlurredStarIcon';
+import { EventCard } from '../module-elements/card';
 
 const Timeline = () => {
   return (
     <div className="relative w-full flex flex-col items-center pt-[10vh] md:py-[20vh] mb-52">
       <div className="absolute w-[150vw] h-full xl:h-[2000px] overflow-x-clip -translate-y-[100px] md:-translate-y-[300px] lg:-translate-y-[350px] xl:-translate-y-[400px] 2xl:-translate-y-[300px]">
         <Image
-          src={getAsset("/TimelineBg.png")}
+          src={'/s3/TimelineBg.png'}
           alt=" "
           fill
           sizes="none"
@@ -41,7 +40,7 @@ const Timeline = () => {
           >
             <Image
               className="object-fill"
-              src={getAsset("/TreasureChest.png")}
+              src={'/s3/TreasureChest.png'}
               alt=""
               fill
               sizes="none"
@@ -62,31 +61,31 @@ const Timeline = () => {
             className={`w-0 
                                 ${
                                   idx == events.length - 1
-                                    ? "h-0"
-                                    : "max-md:h-[60px] max-md:border-[2.5px] md:h-[100px] md:border-[4.5px] lg:h-[200px] lg:border-[6.5px]"
+                                    ? 'h-0'
+                                    : 'max-md:h-[60px] max-md:border-[2.5px] md:h-[100px] md:border-[4.5px] lg:h-[200px] lg:border-[6.5px]'
                                 } 
                                 ${
-                                  event.status === "Done"
-                                    ? "border-[#FCFFCCCC]"
-                                    : "border-[#FCFFCC4D]"
+                                  event.status === 'Done'
+                                    ? 'border-[#FCFFCCCC]'
+                                    : 'border-[#FCFFCC4D]'
                                 } 
                                 shadow-timeline relative 
                                 ${
                                   idx == events.length - 1 ||
-                                  events[idx + 1].status !== "Done"
-                                    ? "max-md:rounded-b-[2.5px] md:rounded-b-[6px]"
-                                    : ""
+                                  events[idx + 1].status !== 'Done'
+                                    ? 'max-md:rounded-b-[2.5px] md:rounded-b-[6px]'
+                                    : ''
                                 }`}
           >
             {/* Horizontal line */}
             <div
               className={`h-0
-                                    ${idx % 2 == 1 && "right-0"} 
+                                    ${idx % 2 == 1 && 'right-0'} 
                                     max-md:w-[27px] md:w-[49px] lg:w-[70px]
                                     ${
                                       idx == events.length - 1
-                                        ? "max-md:top-[-2px] md:top-[-4.5px] lg:top-[-6.5px]"
-                                        : "max-md:top-[-4px] md:top-[-8.5px] lg:top-[-12.5px]"
+                                        ? 'max-md:top-[-2px] md:top-[-4.5px] lg:top-[-6.5px]'
+                                        : 'max-md:top-[-4px] md:top-[-8.5px] lg:top-[-12.5px]'
                                     }
                                     max-md:border-[1px] max-md:rounded-[2.5px] 
                                     md:border-[2.25px] md:rounded-[1.4px] 
@@ -107,8 +106,8 @@ const Timeline = () => {
                                     max-md:top-[-25px] md:top-[-37px] lg:top-[-70px] 
                                     ${
                                       idx % 2 == 0
-                                        ? "max-md:left-[25px] md:left-[48px] lg:left-[68px]"
-                                        : "max-md:right-[25px] md:right-[48px] lg:right-[68px]"
+                                        ? 'max-md:left-[25px] md:left-[48px] lg:left-[68px]'
+                                        : 'max-md:right-[25px] md:right-[48px] lg:right-[68px]'
                                     }`}
               event={event}
             />
@@ -126,7 +125,13 @@ const Timeline = () => {
                         lg:right-[-45vw] lg:top-[-10vw] lg:w-[280px] lg:h-[357px]
                         2xl:right-[-40vw] 2xl:top-[-7vw] 2xl:w-[330px] 2xl:h-[407px]`}
           >
-            <Image src={getAsset("/KelinciTimeline.png")} alt="" fill className="object-fill" sizes="none" />
+            <Image
+              src={'/s3/KelinciTimeline.png'}
+              alt=""
+              fill
+              className="object-fill"
+              sizes="none"
+            />
           </div>
         </div>
       </div>

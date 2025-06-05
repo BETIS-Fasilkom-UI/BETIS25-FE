@@ -1,10 +1,6 @@
-import BetalksModule from "@/modules/BetalksModule";
-import { redirect } from "next/navigation";
+import BetalksModule from '@/modules/BetalksModule';
 
 const BetalksPage = async () => {
-  
-  redirect('/')
-
   return <BetalksModule />;
 };
 

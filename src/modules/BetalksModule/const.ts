@@ -1,15 +1,15 @@
 export const SPEAKERS = [
   {
-    name: "Alfie Vere Likhie",
-    role: "Clash of Champions",
-    image: "/RadityaDika.png",
+    name: 'Alfie Vere Likhie',
+    role: 'Mahasiswa FK UI dan 12 besar Clash of Champions',
+    image: '/s3/alfie.png',
   },
 ];
 
 export const TEXT = {
-  title: "Enhancing Today's Youth Perception",
+  title: 'Pathway to the Future',
   subtitle:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi qui voluptatem dolore sint illum esse pariatur porro voluptas in temporibus nam error vitae, eaque molestiae nostrum reprehenderit accusantium? Blanditiis, quis!",
-  date: "15 Maret 2025",
-  place: "Online",
+    'Tahun ini, Be-Talks mengundang Alfie Vere Likhie sebagai pembicara. Selain merupakan salah satu finalis Clash of Champions, Alfie saat ini juga merupakan mahasiswa FK UI yang aktif berkegiatan. Pada sesi ini, Kak Alfie akan membantu kalian untuk tetap termotivasi dalam berjuang meraih PTN impian kalian!',
+  date: '15 Maret 2025',
+  place: 'Online',
 };

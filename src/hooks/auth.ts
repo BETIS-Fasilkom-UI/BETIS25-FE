@@ -1,32 +1,31 @@
-"use client";
+'use client';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
   //sendEmailVerification,
   sendPasswordResetEmail,
-} from "firebase/auth";
-import { auth } from "@/lib/firebase";
-import { toast } from "@/components/ui/sonner";
-import z from "zod";
-import { GetUserDataResponse, LoginResponse, User } from "./interface";
-import { getCookie, setCookie } from "cookies-next";
-import { decode, JwtPayload } from "jsonwebtoken";
+} from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+import { toast } from '@/components/ui/sonner';
+import z from 'zod';
+import { GetUserDataResponse, LoginResponse, User } from './interface';
+import { getCookie, setCookie } from 'cookies-next';
+import { decode, JwtPayload } from 'jsonwebtoken';
 
 export const loginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
 });
 
-export const registerSchema = z
-  .object({
-    email: z.string().email(),
-    fullName: z.string(),
-    username: z.string(),
-    phoneNumber: z.string().regex(/[1-9]\d{1,14}$/), // Make country code optional
-    password: z.string().min(6),
-    confirmPassword: z.string().min(6),
-  });
+export const registerSchema = z.object({
+  email: z.string().email(),
+  fullName: z.string(),
+  username: z.string(),
+  phoneNumber: z.string().regex(/[1-9]\d{1,14}$/), // Make country code optional
+  password: z.string().min(6),
+  confirmPassword: z.string().min(6),
+});
 
 export const forgotPasswordSchema = z.object({
   email: z.string().email(),
@@ -48,34 +47,31 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
       //  };
       //}
       const idToken = await user.getIdToken();
-      const userData = user.displayName?.split("<|>") || [];
+      const userData = user.displayName?.split('<|>') || [];
 
       const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-      const response = await fetch(
-        `${API_URL}auth/create-session/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id_token: idToken,
-            full_name: userData[0],
-            nickname: userData[1],
-            phone_number: userData[2],
-          }),
-        }
-      );
+      const response = await fetch(`${API_URL}auth/create-session/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id_token: idToken,
+          full_name: userData[0],
+          nickname: userData[1],
+          phone_number: userData[2],
+        }),
+      });
 
       if (response.ok) {
         const data: LoginResponse = await response.json();
-        setCookie("token", data.token, {
+        setCookie('token', data.token, {
           maxAge: 60 * 60 * 24 * 5,
         });
-        return { isSuccess: true, message: "Login success" };
+        return { isSuccess: true, message: 'Login success' };
       } else {
-        return { isSuccess: false, message: "Login failed" };
+        return { isSuccess: false, message: 'Login failed' };
       }
     })
     .catch((error) => {
@@ -83,8 +79,8 @@ export async function useLogin(values: z.infer<typeof loginSchema>) {
       return {
         isSuccess: false,
         message: ` ${
-          (errorCode === "auth/invalid-credential" && "Wrong email/password") ||
-          "Login failed"
+          (errorCode === 'auth/invalid-credential' && 'Wrong email/password') ||
+          'Login failed'
         }`,
       };
     });
@@ -107,10 +103,10 @@ export async function useRegister(values: z.infer<typeof registerSchema>) {
 
         return {
           isSuccess: true,
-          message: "Register success!",
+          message: 'Register success!',
         };
       } else {
-        return { isSuccess: false, message: "Register failed" };
+        return { isSuccess: false, message: 'Register failed' };
       }
     })
     .catch((error) => {
@@ -118,9 +114,9 @@ export async function useRegister(values: z.infer<typeof registerSchema>) {
       return {
         isSuccess: false,
         message: ` ${
-          (errorCode === "auth/email-already-in-use" &&
-            "Email already in use") ||
-          "Register failed"
+          (errorCode === 'auth/email-already-in-use' &&
+            'Email already in use') ||
+          'Register failed'
         }`,
       };
     });
@@ -133,7 +129,7 @@ export function useForgotPassword(
 ) {
   sendPasswordResetEmail(auth, values.email)
     .then(() => {
-      toast.success("Email reset password telah dikirim");
+      toast.success('Email reset password telah dikirim');
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -142,10 +138,8 @@ export function useForgotPassword(
     });
 }
 
-export const useUserData: 
-  () => Promise<User | null>
-= async () => {
-  const token = await getCookie("token");
+export const useUserData: () => Promise<User | null> = async () => {
+  const token = await getCookie('token');
   if (!token) {
     return null;
   }
@@ -157,15 +151,12 @@ export const useUserData:
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const response = await fetch(
-    `${API_URL}user/email/${user?.email}`,
-    {
-      credentials: "omit",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await fetch(`${API_URL}user/email/${user?.email}`, {
+    credentials: 'omit',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   if (!response.ok) {
     return null;

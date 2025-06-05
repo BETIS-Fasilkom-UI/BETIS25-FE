@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import Image from "next/image";
-import { Modal, ModalButton } from "@/components/ui/modal";
-import { useState } from "react";
-import { getAsset } from "@/lib/s3";
-import { useRouter } from "next/navigation";
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import Image from 'next/image';
+import { Modal, ModalButton } from '@/components/ui/modal';
+import { useState } from 'react';
+
+import { useRouter } from 'next/navigation';
 
 const BetalksWebinarPPKB = () => {
   // isRegisterOpen state as placeholder for needing login
@@ -49,7 +49,7 @@ const BetalksWebinarPPKB = () => {
                 variant="secondary"
                 disabled
                 onClick={() => {
-                  router.push("/betalks");
+                  router.push('/betalks');
                 }}
               >
                 Detail
@@ -82,7 +82,7 @@ const BetalksWebinarPPKB = () => {
           <div className="relative mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-[8.75rem]">
             <Image
               alt="Megaphone"
-              src={getAsset("/ImageBEtalks.png")}
+              src={'/s3/ImageBEtalks.png'}
               fill
               sizes="none"
               className="object-contain animate-swing"
@@ -94,7 +94,7 @@ const BetalksWebinarPPKB = () => {
           <div className="relative mx-auto w-[225px] h-[143px] md:w-[326px] md:h-[208px] xl:w-[528px] xl:h-[338px] xl:!-top-[8.75rem]">
             <Image
               alt="Scroll"
-              src={getAsset("/ImageWebinarPPKB.png")}
+              src={'/s3/ImageWebinarPPKB.png'}
               fill
               sizes="none"
               className="object-contain animate-swing"
@@ -112,17 +112,14 @@ const BetalksWebinarPPKB = () => {
               kriteria, dengan tujuan meningkatkan peluang keberhasilan.
             </div>
             <div className="gap-3 flex flex-col xl:flex-row">
-              <Button
-                className="flex-1 !py-3"
-                disabled
-              >
+              <Button className="flex-1 !py-3" disabled>
                 Daftar Sekarang
               </Button>
               <Button
                 className="flex-1 !py-3"
                 variant="secondary"
                 onClick={() => {
-                  router.push("/ppkb");
+                  router.push('/ppkb');
                 }}
               >
                 Detail

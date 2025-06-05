@@ -1,35 +1,40 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { forgotPasswordSchema, useForgotPassword } from "@/hooks/auth";
-import { z } from "zod";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { forgotPasswordSchema, useForgotPassword } from '@/hooks/auth';
+import { z } from 'zod';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Input from "@/components/ui/input";
-import StarryBackground from "../LoginModule/module-elements/background";
-import { getAsset } from "@/lib/s3";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import Input from '@/components/ui/input';
+import StarryBackground from '../LoginModule/module-elements/background';
 
-type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>
+type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
 
 const ForgotPasswordModule = () => {
   const form = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
-  })
+  });
 
   const onSubmit = async (values: ForgotPasswordFormValues) => {
     try {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      useForgotPassword(values)
-      console.log("Password reset email sent successfully");
+      useForgotPassword(values);
+      console.log('Password reset email sent successfully');
     } catch (error) {
-      console.error("Failed to send reset password email", error)
+      console.error('Failed to send reset password email', error);
     }
-  }
+  };
 
   return (
     <div className="flex flex-col min-h-screen relative">
@@ -53,15 +58,23 @@ const ForgotPasswordModule = () => {
                   type="email"
                   placeholder="Enter your email"
                   asterisk
-                  onChange={(e) => {form.setValue("email", e.target.value)}}
+                  onChange={(e) => {
+                    form.setValue('email', e.target.value);
+                  }}
                 />
                 {form.formState.errors.email && (
-                  <p className="text-sm text-red-500">{form.formState.errors.email.message}</p>
+                  <p className="text-sm text-red-500">
+                    {form.formState.errors.email.message}
+                  </p>
                 )}
               </div>
 
               <div className="flex justify-center pt-3">
-                <Button type="submit" className="w-full rounded-[20px] lg:py-7" size="lg">
+                <Button
+                  type="submit"
+                  className="w-full rounded-[20px] lg:py-7"
+                  size="lg"
+                >
                   Submit
                 </Button>
               </div>
@@ -70,7 +83,7 @@ const ForgotPasswordModule = () => {
 
           <CardFooter className="flex justify-center pb-2">
             <p className="text-sm">
-              Ingat Kata Sandi Anda?{" "}
+              Ingat Kata Sandi Anda?{' '}
               <Link href="/login" className="text-yellow-400 font-bold">
                 Login
               </Link>
@@ -82,7 +95,7 @@ const ForgotPasswordModule = () => {
       {/* BACKGROUND IMAGE */}
       <div className="relative">
         <Image
-          src={getAsset("/RumahJamur.png")}
+          src={'/s3/RumahJamur.png'}
           width={280}
           height={373}
           alt="Jamur"
@@ -92,7 +105,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src={getAsset("/Pohon3.png")}
+          src={'/s3/Pohon3.png'}
           width={300}
           height={493}
           alt="Pohon"
@@ -102,7 +115,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src={getAsset("/PohonBesar.png")}
+          src={'/s3/PohonBesar.png'}
           width={700}
           height={790}
           alt="Pohon Besar"
@@ -110,7 +123,7 @@ const ForgotPasswordModule = () => {
         />
 
         <Image
-          src={getAsset("/Daun2.png")}
+          src={'/s3/Daun2.png'}
           width={153}
           height={126}
           alt="Daun"
@@ -118,7 +131,7 @@ const ForgotPasswordModule = () => {
         />
 
         <Image
-          src={getAsset("/Daun3.png")}
+          src={'/s3/Daun3.png'}
           width={166}
           height={126}
           alt="Daun"
@@ -128,7 +141,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src={getAsset("/MascotDewasa.png")}
+          src={'/s3/MascotDewasa.png'}
           width={118}
           height={319}
           alt="Mascot"
@@ -138,7 +151,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src={getAsset("/RumahJamur4.png")}
+          src={'/s3/RumahJamur4.png'}
           width={740}
           height={703}
           alt="Jamur"
@@ -148,7 +161,7 @@ const ForgotPasswordModule = () => {
 
       <div className="relative">
         <Image
-          src={getAsset("/PohonKecil2.png")}
+          src={'/s3/PohonKecil2.png'}
           width={306}
           height={417}
           alt="Pohon Kecil"
@@ -156,16 +169,15 @@ const ForgotPasswordModule = () => {
         />
 
         <Image
-          src={getAsset("/PohonKecil.png")}
+          src={'/s3/PohonKecil.png'}
           width={148}
           height={228}
           alt="Pohon Kecil"
           className="max-lg:hidden absolute bottom-0 left-[37rem] -z-10"
         />
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPasswordModule
+export default ForgotPasswordModule;
