@@ -7,7 +7,7 @@ import {
 
 const Faq = () => {
   return (
-    <section className="mt-48 grid lg:grid-cols-2 lg:gap-20 gap-6 px-5 md:px-10 lg:px-20 w-full mb-48">
+    <section className="mt-24 lg:mt-48 grid lg:grid-cols-2 lg:gap-20 gap-6 px-5 md:px-10 lg:px-20 w-full mb-48">
       {/* Left Section: FAQ Title and Description */}
       <div className="text-center lg:text-left">
         {/* FAQ Title */}

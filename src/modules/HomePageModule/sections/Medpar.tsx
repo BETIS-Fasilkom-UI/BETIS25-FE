@@ -41,7 +41,7 @@ const Medpar = () => {
   let medparCount = 1; // Track the correct medpar number
 
   return (
-    <div className="hidden lg:flex flex-col items-center space-y-10">
+    <div className="hidden lg:flex flex-col items-center space-y-10 mt-20">
       {/* Title */}
       <h1 className="text-2xl md:text-4xl lg:text-5xl font-cinzel text-white">
         Our Media Partners
